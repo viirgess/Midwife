@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "7775155401",
+    "project_id": "midwifementor-a515e",
+    "storage_bucket": "midwifementor-a515e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:7775155401:android:15e9255d17e5c7dfcfc918",
+        "android_client_info": {
+          "package_name": "com.mycompany.midwifementor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDslz4nKB6ooRJsbX00b9tkGxuOrFsd34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
