@@ -62,6 +62,7 @@ class _CalendarCardWidgetState extends State<CalendarCardWidget> {
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Outfit',
                         fontSize: 20.0,
+                        letterSpacing: 0.0,
                         fontWeight: FontWeight.w500,
                       ),
                 ),
@@ -74,6 +75,7 @@ class _CalendarCardWidgetState extends State<CalendarCardWidget> {
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Outfit',
                         fontSize: 14.0,
+                        letterSpacing: 0.0,
                         fontWeight: FontWeight.normal,
                       ),
                 ),
@@ -89,6 +91,7 @@ class _CalendarCardWidgetState extends State<CalendarCardWidget> {
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Outfit',
                           fontSize: 14.0,
+                          letterSpacing: 0.0,
                           fontWeight: FontWeight.normal,
                         ),
                   ),
@@ -102,6 +105,7 @@ class _CalendarCardWidgetState extends State<CalendarCardWidget> {
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Outfit',
                         fontSize: 14.0,
+                        letterSpacing: 0.0,
                         fontWeight: FontWeight.normal,
                       ),
                 ),
@@ -115,6 +119,7 @@ class _CalendarCardWidgetState extends State<CalendarCardWidget> {
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Outfit',
                           fontSize: 14.0,
+                          letterSpacing: 0.0,
                           fontWeight: FontWeight.normal,
                         ),
                   ),
@@ -134,7 +139,10 @@ class _CalendarCardWidgetState extends State<CalendarCardWidget> {
                     builder: (context) => Text(
                       dateTimeFormat(
                           'd/M/y', currentUserDocument!.calculatedDate!),
-                      style: FlutterFlowTheme.of(context).bodyMedium,
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Outfit',
+                            letterSpacing: 0.0,
+                          ),
                     ),
                   ),
                 ),

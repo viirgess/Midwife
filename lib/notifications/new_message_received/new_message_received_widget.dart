@@ -93,6 +93,7 @@ class _NewMessageReceivedWidgetState extends State<NewMessageReceivedWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Outfit',
                               fontSize: 16.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -101,7 +102,11 @@ class _NewMessageReceivedWidgetState extends State<NewMessageReceivedWidget> {
                             const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                         child: Text(
                           'Hurry up to check it!',
-                          style: FlutterFlowTheme.of(context).bodyMedium,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Outfit',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                       ),
                     ],

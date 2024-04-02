@@ -8,27 +8,21 @@ class FreeEbookPageModel extends FlutterFlowModel<FreeEbookPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Model for AppBar component.
-  late AppBarModel appBarModel;
   // Model for drawerData component.
   late DrawerDataModel drawerDataModel;
-
-  /// Initialization and disposal methods.
+  // Model for AppBar component.
+  late AppBarModel appBarModel;
 
   @override
   void initState(BuildContext context) {
-    appBarModel = createModel(context, () => AppBarModel());
     drawerDataModel = createModel(context, () => DrawerDataModel());
+    appBarModel = createModel(context, () => AppBarModel());
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    appBarModel.dispose();
     drawerDataModel.dispose();
+    appBarModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

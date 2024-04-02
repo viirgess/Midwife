@@ -18,8 +18,6 @@ class CoursePageModel extends FlutterFlowModel<CoursePageWidget> {
   List<LessonsRecord> get checkboxCheckedItems =>
       checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
@@ -27,8 +25,4 @@ class CoursePageModel extends FlutterFlowModel<CoursePageWidget> {
   void dispose() {
     unfocusNode.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

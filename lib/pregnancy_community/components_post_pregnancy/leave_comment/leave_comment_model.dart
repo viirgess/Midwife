@@ -10,8 +10,6 @@ class LeaveCommentModel extends FlutterFlowModel<LeaveCommentWidget> {
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
@@ -20,8 +18,4 @@ class LeaveCommentModel extends FlutterFlowModel<LeaveCommentWidget> {
     textFieldFocusNode?.dispose();
     textController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

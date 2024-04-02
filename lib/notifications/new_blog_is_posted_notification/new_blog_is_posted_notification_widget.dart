@@ -101,6 +101,7 @@ class _NewBlogIsPostedNotificationWidgetState
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Outfit',
                                     fontSize: 18.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
@@ -109,7 +110,12 @@ class _NewBlogIsPostedNotificationWidgetState
                               0.0, 12.0, 0.0, 0.0),
                           child: Text(
                             'New blog just have been posted!\n\nClick here to check',
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Outfit',
+                                  letterSpacing: 0.0,
+                                ),
                           ),
                         ),
                       ],

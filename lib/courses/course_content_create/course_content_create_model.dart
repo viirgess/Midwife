@@ -35,8 +35,6 @@ class CourseContentCreateModel
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl2 = '';
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
@@ -49,8 +47,4 @@ class CourseContentCreateModel
     textFieldAddLessonFocusNode?.dispose();
     textFieldAddLessonController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

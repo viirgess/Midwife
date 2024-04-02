@@ -57,14 +57,34 @@ class _FreeEbookPageWidgetState extends State<FreeEbookPageWidget> {
             ),
           ),
         ),
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(100.0),
+          child: AppBar(
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            automaticallyImplyLeading: false,
+            actions: const [],
+            flexibleSpace: FlexibleSpaceBar(
+              title: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  wrapWithModel(
+                    model: _model.appBarModel,
+                    updateCallback: () => setState(() {}),
+                    child: const AppBarWidget(),
+                  ),
+                ],
+              ),
+              centerTitle: true,
+              expandedTitleScale: 1.0,
+            ),
+            elevation: 0.0,
+          ),
+        ),
         body: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            wrapWithModel(
-              model: _model.appBarModel,
-              updateCallback: () => setState(() {}),
-              child: const AppBarWidget(),
-            ),
             Expanded(
               child: ListView(
                 padding: EdgeInsets.zero,
@@ -95,6 +115,7 @@ class _FreeEbookPageWidgetState extends State<FreeEbookPageWidget> {
                                         .override(
                                           fontFamily: 'Outfit',
                                           fontSize: 30.0,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
                                         ),
                                   ),
@@ -114,6 +135,7 @@ class _FreeEbookPageWidgetState extends State<FreeEbookPageWidget> {
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
                                             fontSize: 16.0,
+                                            letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),
@@ -180,6 +202,7 @@ class _FreeEbookPageWidgetState extends State<FreeEbookPageWidget> {
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
                                 fontSize: 12.0,
+                                letterSpacing: 0.0,
                               ),
                         ),
                       ),

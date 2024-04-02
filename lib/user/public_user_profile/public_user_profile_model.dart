@@ -10,8 +10,6 @@ class PublicUserProfileModel extends FlutterFlowModel<PublicUserProfileWidget> {
   // Model for drawerData component.
   late DrawerDataModel drawerDataModel;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     drawerDataModel = createModel(context, () => DrawerDataModel());
@@ -22,8 +20,4 @@ class PublicUserProfileModel extends FlutterFlowModel<PublicUserProfileWidget> {
     unfocusNode.dispose();
     drawerDataModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

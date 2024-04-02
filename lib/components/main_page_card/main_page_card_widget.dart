@@ -81,7 +81,7 @@ class _MainPageCardWidgetState extends State<MainPageCardWidget> {
             );
           } else if (widget.parameter3 == 'Zwangerschapscommunity') {
             context.goNamed(
-              'PregnancyCommunityPage',
+              'CommunityPage',
               extra: <String, dynamic>{
                 kTransitionInfoKey: const TransitionInfo(
                   hasTransition: true,
@@ -213,6 +213,7 @@ class _MainPageCardWidgetState extends State<MainPageCardWidget> {
                             fontFamily: 'Outfit',
                             color: FlutterFlowTheme.of(context).accent3,
                             fontSize: 14.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
                           ),
                     ),
@@ -240,6 +241,7 @@ class _MainPageCardWidgetState extends State<MainPageCardWidget> {
                           fontFamily: 'Outfit',
                           color: FlutterFlowTheme.of(context).primary,
                           fontSize: 20.0,
+                          letterSpacing: 0.0,
                           fontWeight: FontWeight.bold,
                         ),
                   ),
@@ -252,6 +254,7 @@ class _MainPageCardWidgetState extends State<MainPageCardWidget> {
                           fontFamily: 'Outfit',
                           color: FlutterFlowTheme.of(context).primaryText,
                           fontSize: 16.0,
+                          letterSpacing: 0.0,
                           lineHeight: 1.2,
                         ),
                   ),

@@ -50,50 +50,41 @@ class _AppBarWidgetState extends State<AppBarWidget> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(16.0, 30.0, 6.0, 10.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            InkWell(
-              splashColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              onTap: () async {
-                Scaffold.of(context).openDrawer();
-              },
-              child: Icon(
-                Icons.menu_rounded,
-                color: FlutterFlowTheme.of(context).accent1,
-                size: 32.0,
-              ),
-            ),
-            InkWell(
-              splashColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              onTap: () async {
-                await showModalBottomSheet(
-                  isScrollControlled: true,
-                  backgroundColor: FlutterFlowTheme.of(context).alternate,
-                  barrierColor: const Color(0x19C67AF5),
-                  context: context,
-                  builder: (context) {
-                    return WebViewAware(
-                      child: Padding(
-                        padding: MediaQuery.viewInsetsOf(context),
-                        child: const NotificationModalSheetWidget(),
-                      ),
-                    );
+            Expanded(
+              child: Align(
+                alignment: const AlignmentDirectional(1.0, 0.0),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    await showModalBottomSheet(
+                      isScrollControlled: true,
+                      backgroundColor: FlutterFlowTheme.of(context).alternate,
+                      barrierColor: const Color(0x19C67AF5),
+                      context: context,
+                      builder: (context) {
+                        return WebViewAware(
+                          child: Padding(
+                            padding: MediaQuery.viewInsetsOf(context),
+                            child: const NotificationModalSheetWidget(),
+                          ),
+                        );
+                      },
+                    ).then((value) => safeSetState(() {}));
                   },
-                ).then((value) => safeSetState(() {}));
-              },
-              child: Icon(
-                Icons.notifications_none,
-                color: FlutterFlowTheme.of(context).secondary,
-                size: 32.0,
+                  child: Icon(
+                    Icons.notifications_none,
+                    color: FlutterFlowTheme.of(context).primary,
+                    size: 32.0,
+                  ),
+                ),
               ),
             ),
           ],

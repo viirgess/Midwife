@@ -78,7 +78,10 @@ class _EditLessonNameWidgetState extends State<EditLessonNameWidget> {
             boxShadow: [
               BoxShadow(
                 color: FlutterFlowTheme.of(context).primaryBackground,
-                offset: const Offset(0.0, 2.0),
+                offset: const Offset(
+                  0.0,
+                  2.0,
+                ),
               )
             ],
             borderRadius: const BorderRadius.only(
@@ -115,12 +118,14 @@ class _EditLessonNameWidgetState extends State<EditLessonNameWidget> {
                                   .override(
                                     fontFamily: 'Outfit',
                                     fontSize: 16.0,
+                                    letterSpacing: 0.0,
                                   ),
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
                                     fontFamily: 'Outfit',
                                     fontSize: 16.0,
+                                    letterSpacing: 0.0,
                                   ),
                               enabledBorder: InputBorder.none,
                               focusedBorder: InputBorder.none,
@@ -134,9 +139,9 @@ class _EditLessonNameWidgetState extends State<EditLessonNameWidget> {
                                 .override(
                                   fontFamily: 'Outfit',
                                   fontSize: 16.0,
+                                  letterSpacing: 0.0,
                                 ),
                             maxLines: 5,
-                            minLines: 1,
                             validator: _model.textControllerValidator
                                 .asValidator(context),
                           ),
@@ -151,7 +156,7 @@ class _EditLessonNameWidgetState extends State<EditLessonNameWidget> {
                           buttonSize: 55.0,
                           fillColor: FlutterFlowTheme.of(context).secondary,
                           icon: Icon(
-                            Icons.edit,
+                            Icons.check,
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
                             size: 30.0,

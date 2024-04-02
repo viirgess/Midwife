@@ -11,8 +11,6 @@ class ResetPasswordModel extends FlutterFlowModel<ResetPasswordWidget> {
   TextEditingController? emailTextController;
   String? Function(BuildContext, String?)? emailTextControllerValidator;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
@@ -22,8 +20,4 @@ class ResetPasswordModel extends FlutterFlowModel<ResetPasswordWidget> {
     textFieldFocusNode?.dispose();
     emailTextController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

@@ -1,17 +1,13 @@
 import '/components/app_bar/app_bar_widget.dart';
 import '/components/drawer_data/drawer_data_widget.dart';
-import '/components/nav_bar/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'user_profile_widget.dart' show UserProfileWidget;
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class UserProfileModel extends FlutterFlowModel<UserProfileWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Model for AppBar component.
-  late AppBarModel appBarModel;
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -50,28 +46,24 @@ class UserProfileModel extends FlutterFlowModel<UserProfileWidget> {
   TextEditingController? textController6;
   late bool passwordVisibility4;
   String? Function(BuildContext, String?)? textController6Validator;
-  // Model for NavBar component.
-  late NavBarModel navBarModel;
   // Model for drawerData component.
   late DrawerDataModel drawerDataModel;
-
-  /// Initialization and disposal methods.
+  // Model for AppBar component.
+  late AppBarModel appBarModel;
 
   @override
   void initState(BuildContext context) {
-    appBarModel = createModel(context, () => AppBarModel());
     passwordVisibility1 = false;
     passwordVisibility2 = false;
     passwordVisibility3 = false;
     passwordVisibility4 = false;
-    navBarModel = createModel(context, () => NavBarModel());
     drawerDataModel = createModel(context, () => DrawerDataModel());
+    appBarModel = createModel(context, () => AppBarModel());
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    appBarModel.dispose();
     textFieldFocusNode1?.dispose();
     textController1?.dispose();
 
@@ -93,11 +85,7 @@ class UserProfileModel extends FlutterFlowModel<UserProfileWidget> {
     textFieldFocusNode6?.dispose();
     textController6?.dispose();
 
-    navBarModel.dispose();
     drawerDataModel.dispose();
+    appBarModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

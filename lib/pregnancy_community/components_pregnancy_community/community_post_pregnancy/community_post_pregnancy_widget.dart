@@ -153,15 +153,29 @@ class _CommunityPostPregnancyWidgetState
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          '${columnUsersRecord.firstName} ${columnUsersRecord.lastName}',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Outfit',
-                                                fontSize: 18.0,
-                                                fontWeight: FontWeight.w600,
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Text(
+                                              '${columnUsersRecord.firstName} ${columnUsersRecord.lastName}',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Outfit',
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                            ),
+                                            if (columnUsersRecord.isAdmin)
+                                              const Icon(
+                                                Icons.verified,
+                                                color: Color(0xFF52A7FB),
+                                                size: 18.0,
                                               ),
+                                          ],
                                         ),
                                         Align(
                                           alignment:
@@ -172,7 +186,11 @@ class _CommunityPostPregnancyWidgetState
                                                 containerPregnancyCommunityForumRecord
                                                     .createdTime!),
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Outfit',
+                                                  letterSpacing: 0.0,
+                                                ),
                                           ),
                                         ),
                                       ],
@@ -206,6 +224,7 @@ class _CommunityPostPregnancyWidgetState
                                           color: FlutterFlowTheme.of(context)
                                               .primaryBackground,
                                           fontSize: 16.0,
+                                          letterSpacing: 0.0,
                                         ),
                                   ),
                                 ),
@@ -238,6 +257,7 @@ class _CommunityPostPregnancyWidgetState
                                     .override(
                                       fontFamily: 'Outfit',
                                       fontSize: 16.0,
+                                      letterSpacing: 0.0,
                                     ),
                               ),
                             ),
@@ -405,6 +425,7 @@ class _CommunityPostPregnancyWidgetState
                                         .override(
                                           fontFamily: 'Outfit',
                                           fontSize: 16.0,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.w500,
                                         ),
                                   ),
@@ -420,6 +441,7 @@ class _CommunityPostPregnancyWidgetState
                                       .override(
                                         fontFamily: 'Outfit',
                                         fontSize: 16.0,
+                                        letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),

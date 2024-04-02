@@ -21,6 +21,12 @@ class FFAppState extends ChangeNotifier {
     await _safeInitAsync(() async {
       _isMainPage = await secureStorage.getBool('ff_isMainPage') ?? _isMainPage;
     });
+    await _safeInitAsync(() async {
+      _isPregnant = await secureStorage.getBool('ff_isPregnant') ?? _isPregnant;
+    });
+    await _safeInitAsync(() async {
+      _AIChat = await secureStorage.getStringList('ff_AIChat') ?? _AIChat;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -39,6 +45,56 @@ class FFAppState extends ChangeNotifier {
 
   void deleteIsMainPage() {
     secureStorage.delete(key: 'ff_isMainPage');
+  }
+
+  bool _isPregnant = true;
+  bool get isPregnant => _isPregnant;
+  set isPregnant(bool value) {
+    _isPregnant = value;
+    secureStorage.setBool('ff_isPregnant', value);
+  }
+
+  void deleteIsPregnant() {
+    secureStorage.delete(key: 'ff_isPregnant');
+  }
+
+  List<String> _AIChat = [];
+  List<String> get AIChat => _AIChat;
+  set AIChat(List<String> value) {
+    _AIChat = value;
+    secureStorage.setStringList('ff_AIChat', value);
+  }
+
+  void deleteAIChat() {
+    secureStorage.delete(key: 'ff_AIChat');
+  }
+
+  void addToAIChat(String value) {
+    _AIChat.add(value);
+    secureStorage.setStringList('ff_AIChat', _AIChat);
+  }
+
+  void removeFromAIChat(String value) {
+    _AIChat.remove(value);
+    secureStorage.setStringList('ff_AIChat', _AIChat);
+  }
+
+  void removeAtIndexFromAIChat(int index) {
+    _AIChat.removeAt(index);
+    secureStorage.setStringList('ff_AIChat', _AIChat);
+  }
+
+  void updateAIChatAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    _AIChat[index] = updateFn(_AIChat[index]);
+    secureStorage.setStringList('ff_AIChat', _AIChat);
+  }
+
+  void insertAtIndexInAIChat(int index, String value) {
+    _AIChat.insert(index, value);
+    secureStorage.setStringList('ff_AIChat', _AIChat);
   }
 }
 

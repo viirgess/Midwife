@@ -5,6 +5,7 @@ import 'package:collection/collection.dart';
 import '/backend/schema/util/firestore_util.dart';
 
 import 'index.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
 class UsersRecord extends FirestoreRecord {
   UsersRecord._(
@@ -70,6 +71,31 @@ class UsersRecord extends FirestoreRecord {
       _friendRequestsPending ?? const [];
   bool hasFriendRequestsPending() => _friendRequestsPending != null;
 
+  // "monthly_subscription" field.
+  bool? _monthlySubscription;
+  bool get monthlySubscription => _monthlySubscription ?? false;
+  bool hasMonthlySubscription() => _monthlySubscription != null;
+
+  // "annual_subscription" field.
+  bool? _annualSubscription;
+  bool get annualSubscription => _annualSubscription ?? false;
+  bool hasAnnualSubscription() => _annualSubscription != null;
+
+  // "ai_requests" field.
+  int? _aiRequests;
+  int get aiRequests => _aiRequests ?? 0;
+  bool hasAiRequests() => _aiRequests != null;
+
+  // "is_pregnant" field.
+  bool? _isPregnant;
+  bool get isPregnant => _isPregnant ?? false;
+  bool hasIsPregnant() => _isPregnant != null;
+
+  // "is_admin" field.
+  bool? _isAdmin;
+  bool get isAdmin => _isAdmin ?? false;
+  bool hasIsAdmin() => _isAdmin != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -83,6 +109,11 @@ class UsersRecord extends FirestoreRecord {
     _userFriends = getDataList(snapshotData['user_friends']);
     _friendRequestsPending =
         getDataList(snapshotData['friend_requests_pending']);
+    _monthlySubscription = snapshotData['monthly_subscription'] as bool?;
+    _annualSubscription = snapshotData['annual_subscription'] as bool?;
+    _aiRequests = castToType<int>(snapshotData['ai_requests']);
+    _isPregnant = snapshotData['is_pregnant'] as bool?;
+    _isAdmin = snapshotData['is_admin'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -128,6 +159,11 @@ Map<String, dynamic> createUsersRecordData({
   String? firstName,
   String? lastName,
   DateTime? calculatedDate,
+  bool? monthlySubscription,
+  bool? annualSubscription,
+  int? aiRequests,
+  bool? isPregnant,
+  bool? isAdmin,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -140,6 +176,11 @@ Map<String, dynamic> createUsersRecordData({
       'first_name': firstName,
       'last_name': lastName,
       'calculated_date': calculatedDate,
+      'monthly_subscription': monthlySubscription,
+      'annual_subscription': annualSubscription,
+      'ai_requests': aiRequests,
+      'is_pregnant': isPregnant,
+      'is_admin': isAdmin,
     }.withoutNulls,
   );
 
@@ -163,7 +204,12 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.calculatedDate == e2?.calculatedDate &&
         listEquality.equals(e1?.userFriends, e2?.userFriends) &&
         listEquality.equals(
-            e1?.friendRequestsPending, e2?.friendRequestsPending);
+            e1?.friendRequestsPending, e2?.friendRequestsPending) &&
+        e1?.monthlySubscription == e2?.monthlySubscription &&
+        e1?.annualSubscription == e2?.annualSubscription &&
+        e1?.aiRequests == e2?.aiRequests &&
+        e1?.isPregnant == e2?.isPregnant &&
+        e1?.isAdmin == e2?.isAdmin;
   }
 
   @override
@@ -178,7 +224,12 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.lastName,
         e?.calculatedDate,
         e?.userFriends,
-        e?.friendRequestsPending
+        e?.friendRequestsPending,
+        e?.monthlySubscription,
+        e?.annualSubscription,
+        e?.aiRequests,
+        e?.isPregnant,
+        e?.isAdmin
       ]);
 
   @override

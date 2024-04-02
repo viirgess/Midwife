@@ -62,6 +62,7 @@ class _EmptyNotificationsWidgetState extends State<EmptyNotificationsWidget> {
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Outfit',
                             fontSize: 22.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
                           ),
                     ),
@@ -74,6 +75,7 @@ class _EmptyNotificationsWidgetState extends State<EmptyNotificationsWidget> {
                               fontFamily: 'Outfit',
                               color: FlutterFlowTheme.of(context).accent2,
                               fontSize: 16.0,
+                              letterSpacing: 0.0,
                             ),
                       ),
                     ),

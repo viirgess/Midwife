@@ -31,8 +31,6 @@ class RegisterPageModel extends FlutterFlowModel<RegisterPageWidget> {
   // State field(s) for Checkbox widget.
   bool? checkboxValue;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     passwordVisibility = false;
@@ -53,8 +51,4 @@ class RegisterPageModel extends FlutterFlowModel<RegisterPageWidget> {
     textFieldFocusNode4?.dispose();
     passwordTextController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

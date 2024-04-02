@@ -73,14 +73,20 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
                 child: Text(
                   'Abonnement / Betaling',
-                  style: FlutterFlowTheme.of(context).headlineMedium,
+                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                        fontFamily: 'Outfit',
+                        letterSpacing: 0.0,
+                      ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
                 child: Text(
                   'Jouw abonnement',
-                  style: FlutterFlowTheme.of(context).labelMedium,
+                  style: FlutterFlowTheme.of(context).labelMedium.override(
+                        fontFamily: 'Outfit',
+                        letterSpacing: 0.0,
+                      ),
                 ),
               ),
               Expanded(
@@ -95,11 +101,19 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                       children: [
                         Text(
                           'Maand abonnement\n',
-                          style: FlutterFlowTheme.of(context).bodyMedium,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Outfit',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                         Text(
                           'Jaar abonnement',
-                          style: FlutterFlowTheme.of(context).bodyMedium,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Outfit',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                         FFButtonWidget(
                           onPressed: () async {
@@ -121,6 +135,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                   fontFamily: 'Outfit',
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
+                                  letterSpacing: 0.0,
                                 ),
                             elevation: 2.0,
                             borderSide: const BorderSide(

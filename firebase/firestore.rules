@@ -5,7 +5,7 @@ service cloud.firestore {
       allow create: if request.auth.uid == document;
       allow read: if request.auth.uid == document;
       allow write: if request.auth.uid == document;
-      allow delete: if false;
+      allow delete: if request.auth.uid == document;
     }
 
     match /dashboard/{document} {
@@ -59,7 +59,7 @@ service cloud.firestore {
       allow create: if request.auth.uid == parent;
       allow read: if request.auth.uid == parent;
       allow write: if request.auth.uid == parent;
-      allow delete: if false;
+      allow delete: if request.auth.uid == parent;
     }
 
     match /chats/{document} {
@@ -148,6 +148,30 @@ service cloud.firestore {
     }
 
     match /{path=**}/lessons/{document} {
+      allow read: if true;
+    }
+
+
+    match /pregnancy_community_forum/{parent}/pregnancy_replies/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/pregnancy_replies/{document} {
+      allow read: if true;
+    }
+
+
+    match /post_pregnancy_community_forum/{parent}/post_pregnancy_replies/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/post_pregnancy_replies/{document} {
       allow read: if true;
     }
 

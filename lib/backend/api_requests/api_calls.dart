@@ -11,7 +11,7 @@ class ChatGPTServiceCall {
   static Future<ApiCallResponse> call({
     String? assistantId = 'asst_NloFw7Pdy26VtS7oNLIwaKvC',
     String? question = '',
-    String? aPIKey = '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',
+    String? aPIKey = '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',
     String? instruction =
         'You are assistant. Zwangerschapsmentor is a specialized tool for providing advice to pregnant women, based on the information from deverloskundige.nl. This GPT takes a balanced approach between formal and informal language, making the advice both accessible and authoritative. It emphasizes research information, ensuring accuracy and relevance in the advice. Crucially, Pregnancy Mentor does not diagnose or recommend medical treatments. This is the sole responsibility of qualified medical personnel. The GPT remains faithful to the content of deverloskundige.nl, to ensure consistency and reliability in supporting pregnancy-related questions and concerns. The GPT will expressly indicate that users must consult their medical provider for diagnoses and treatments. Here is your question',
     String? language =
@@ -51,6 +51,59 @@ class ChatGPTServiceCall {
         response,
         r'''$.choices[:].text''',
       ));
+}
+
+class SendEmailCall {
+  static Future<ApiCallResponse> call({
+    String? subject = '',
+    String? body = '',
+    String? toEmail = 'maxlabyk@gmail.com',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "personalizations": [
+    {
+      "to": [
+        {
+          "email": "$toEmail"
+        }
+      ],
+      "subject": "$subject"
+    }
+  ],
+  "content": [
+    {
+      "type": "text/plain",
+      "value": "$body"
+    }
+  ],
+  "from": {
+    "email": "maksym.labyk@archysoft.com",
+    "name": "Outerly Support Team"
+  },
+  "reply_to": {
+    "email": "maksym.labyk@archysoft.com",
+    "name": "Outerly Support Team"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'SendEmail',
+      apiUrl: 'https://api.sendgrid.com/v3/mail/send?ref=blog.flutterflow.io',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization':
+            'Bearer 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',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 class ApiPagingParams {

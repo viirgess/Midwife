@@ -15,8 +15,6 @@ class TestPageModel extends FlutterFlowModel<TestPageWidget> {
   Query? listViewPagingQuery;
   List<StreamSubscription?> listViewStreamSubscriptions = [];
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
@@ -29,10 +27,7 @@ class TestPageModel extends FlutterFlowModel<TestPageWidget> {
     listViewPagingController?.dispose();
   }
 
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
-
+  /// Additional helper methods.
   PagingController<DocumentSnapshot?, PregnancyCommunityForumRecord>
       setListViewController(
     Query query, {

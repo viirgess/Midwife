@@ -1,6 +1,9 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/stripe/payment_manager.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'subscription_choose_page_model.dart';
 export 'subscription_choose_page_model.dart';
@@ -93,6 +96,7 @@ class _SubscriptionChoosePageWidgetState
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
                             fontSize: 28.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
                           ),
                     ),
@@ -152,6 +156,7 @@ class _SubscriptionChoosePageWidgetState
                                                   : FlutterFlowTheme.of(context)
                                                       .primaryBackground,
                                               fontSize: 20.0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                             ),
                                       ),
@@ -190,6 +195,7 @@ class _SubscriptionChoosePageWidgetState
                                               : FlutterFlowTheme.of(context)
                                                   .primaryBackground,
                                           fontSize: 22.0,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
                                         ),
                                   ),
@@ -208,6 +214,7 @@ class _SubscriptionChoosePageWidgetState
                                                 : FlutterFlowTheme.of(context)
                                                     .primaryBackground,
                                             fontSize: 18.0,
+                                            letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
                                           ),
                                     ),
@@ -266,6 +273,7 @@ class _SubscriptionChoosePageWidgetState
                                                   : FlutterFlowTheme.of(context)
                                                       .primaryBackground,
                                               fontSize: 20.0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                             ),
                                       ),
@@ -293,7 +301,7 @@ class _SubscriptionChoosePageWidgetState
                                     ],
                                   ),
                                   Text(
-                                    '249 €',
+                                    '199 €',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -304,6 +312,7 @@ class _SubscriptionChoosePageWidgetState
                                               : FlutterFlowTheme.of(context)
                                                   .primaryBackground,
                                           fontSize: 22.0,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
                                         ),
                                   ),
@@ -311,7 +320,7 @@ class _SubscriptionChoosePageWidgetState
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 36.0, 0.0, 0.0),
                                     child: Text(
-                                      'Billed Annually',
+                                      'Billed One Time',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -322,6 +331,7 @@ class _SubscriptionChoosePageWidgetState
                                                 : FlutterFlowTheme.of(context)
                                                     .primaryBackground,
                                             fontSize: 18.0,
+                                            letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
                                           ),
                                     ),
@@ -383,6 +393,7 @@ class _SubscriptionChoosePageWidgetState
                                                                 .of(context)
                                                             .primaryBackground,
                                                         fontSize: 18.0,
+                                                        letterSpacing: 0.0,
                                                       ),
                                             ),
                                           ),
@@ -417,6 +428,7 @@ class _SubscriptionChoosePageWidgetState
                                                                 .of(context)
                                                             .primaryBackground,
                                                         fontSize: 18.0,
+                                                        letterSpacing: 0.0,
                                                       ),
                                             ),
                                           ),
@@ -451,6 +463,7 @@ class _SubscriptionChoosePageWidgetState
                                                                 .of(context)
                                                             .primaryBackground,
                                                         fontSize: 18.0,
+                                                        letterSpacing: 0.0,
                                                       ),
                                             ),
                                           ),
@@ -485,6 +498,7 @@ class _SubscriptionChoosePageWidgetState
                                                                 .of(context)
                                                             .primaryBackground,
                                                         fontSize: 18.0,
+                                                        letterSpacing: 0.0,
                                                       ),
                                             ),
                                           ),
@@ -530,6 +544,7 @@ class _SubscriptionChoosePageWidgetState
                                                                 .of(context)
                                                             .primaryBackground,
                                                         fontSize: 18.0,
+                                                        letterSpacing: 0.0,
                                                       ),
                                             ),
                                           ),
@@ -564,6 +579,7 @@ class _SubscriptionChoosePageWidgetState
                                                                 .of(context)
                                                             .primaryBackground,
                                                         fontSize: 18.0,
+                                                        letterSpacing: 0.0,
                                                       ),
                                             ),
                                           ),
@@ -598,6 +614,7 @@ class _SubscriptionChoosePageWidgetState
                                                                 .of(context)
                                                             .primaryBackground,
                                                         fontSize: 18.0,
+                                                        letterSpacing: 0.0,
                                                       ),
                                             ),
                                           ),
@@ -632,6 +649,7 @@ class _SubscriptionChoosePageWidgetState
                                                                 .of(context)
                                                             .primaryBackground,
                                                         fontSize: 18.0,
+                                                        letterSpacing: 0.0,
                                                       ),
                                             ),
                                           ),
@@ -666,6 +684,7 @@ class _SubscriptionChoosePageWidgetState
                                                                 .of(context)
                                                             .primaryBackground,
                                                         fontSize: 18.0,
+                                                        letterSpacing: 0.0,
                                                       ),
                                             ),
                                           ),
@@ -700,6 +719,7 @@ class _SubscriptionChoosePageWidgetState
                                                                 .of(context)
                                                             .primaryBackground,
                                                         fontSize: 18.0,
+                                                        letterSpacing: 0.0,
                                                       ),
                                             ),
                                           ),
@@ -722,8 +742,36 @@ class _SubscriptionChoosePageWidgetState
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
                     child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        final paymentResponse = await processStripePayment(
+                          context,
+                          amount: () {
+                            if (_model.monthlyChosen == true) {
+                              return functions.stringToInteger('2900')!;
+                            } else if (_model.monthlyChosen == false) {
+                              return functions.stringToInteger('249000')!;
+                            } else {
+                              return functions.stringToInteger('0.50000')!;
+                            }
+                          }(),
+                          currency: 'EUR',
+                          customerEmail: currentUserEmail,
+                          customerName:
+                              '${valueOrDefault(currentUserDocument?.firstName, '')} ${valueOrDefault(currentUserDocument?.lastName, '')}',
+                          allowGooglePay: true,
+                          allowApplePay: false,
+                          themeStyle: ThemeMode.system,
+                        );
+                        if (paymentResponse.paymentId == null &&
+                            paymentResponse.errorMessage != null) {
+                          showSnackbar(
+                            context,
+                            'Error: ${paymentResponse.errorMessage}',
+                          );
+                        }
+                        _model.paymentId = paymentResponse.paymentId ?? '';
+
+                        setState(() {});
                       },
                       text: 'Subscribe Now',
                       options: FFButtonOptions(
@@ -739,6 +787,7 @@ class _SubscriptionChoosePageWidgetState
                                   fontFamily: 'Outfit',
                                   color: Colors.white,
                                   fontSize: 18.0,
+                                  letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
                         borderSide: const BorderSide(

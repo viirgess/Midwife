@@ -1,5 +1,5 @@
 import '/backend/backend.dart';
-import '/components/app_bar/app_bar_widget.dart';
+import '/components/back_app_bar/back_app_bar_widget.dart';
 import '/components/drawer_data/drawer_data_widget.dart';
 import '/components/f_a_q_card/f_a_q_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -57,120 +57,169 @@ class _FAQPageWidgetState extends State<FAQPageWidget> {
             ),
           ),
         ),
-        body: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            wrapWithModel(
-              model: _model.appBarModel,
-              updateCallback: () => setState(() {}),
-              child: const AppBarWidget(),
-            ),
-            Expanded(
-              child: ListView(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            32.0, 0.0, 32.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 8.0),
-                                  child: Text(
-                                    'Veelgestelde vragen',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Outfit',
-                                          fontSize: 30.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                ),
-                                Container(
-                                  width: 300.0,
-                                  decoration: const BoxDecoration(),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 12.0),
-                                    child: Text(
-                                      'Antwoorden op een rij: vind snel informatie in onze veelgestelde vragen',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Outfit',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            fontSize: 16.0,
+        body: NestedScrollView(
+          floatHeaderSlivers: true,
+          headerSliverBuilder: (context, _) => [
+            SliverAppBar(
+              expandedHeight: 100.0,
+              collapsedHeight: 100.0,
+              pinned: false,
+              floating: false,
+              backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+              iconTheme:
+                  IconThemeData(color: FlutterFlowTheme.of(context).secondary),
+              automaticallyImplyLeading: false,
+              actions: const [],
+              flexibleSpace: FlexibleSpaceBar(
+                title: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    wrapWithModel(
+                      model: _model.backAppBarModel,
+                      updateCallback: () => setState(() {}),
+                      child: const BackAppBarWidget(),
+                    ),
+                  ],
+                ),
+                centerTitle: true,
+                expandedTitleScale: 1.0,
+              ),
+              elevation: 0.0,
+            )
+          ],
+          body: Builder(
+            builder: (context) {
+              return Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Expanded(
+                      child: ListView(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        children: [
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    32.0, 0.0, 32.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 8.0),
+                                          child: Text(
+                                            'Veelgestelde vragen',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Outfit',
+                                                  fontSize: 30.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                           ),
+                                        ),
+                                        Container(
+                                          width: 300.0,
+                                          decoration: const BoxDecoration(),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 12.0),
+                                            child: Text(
+                                              'Antwoorden op een rij: vind snel informatie in onze veelgestelde vragen',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Outfit',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        fontSize: 16.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                      ),
-                      StreamBuilder<List<FaqRecord>>(
-                        stream: queryFaqRecord(),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50.0,
-                                height: 50.0,
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    FlutterFlowTheme.of(context).primary,
-                                  ),
+                                  ],
                                 ),
                               ),
-                            );
-                          }
-                          List<FaqRecord> columnFaqRecordList = snapshot.data!;
-                          return Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: List.generate(columnFaqRecordList.length,
-                                (columnIndex) {
-                              final columnFaqRecord =
-                                  columnFaqRecordList[columnIndex];
-                              return FAQCardWidget(
-                                key: Key(
-                                    'Keyq4x_${columnIndex}_of_${columnFaqRecordList.length}'),
-                                title: columnFaqRecord.title,
-                                subtitle: columnFaqRecord.subtitle,
-                                description: columnFaqRecord.description,
-                                footer: columnFaqRecord.footer,
-                              );
-                            }),
-                          );
-                        },
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                ),
+                              ),
+                              StreamBuilder<List<FaqRecord>>(
+                                stream: queryFaqRecord(),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        child: CircularProgressIndicator(
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  List<FaqRecord> columnFaqRecordList =
+                                      snapshot.data!;
+                                  return Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: List.generate(
+                                        columnFaqRecordList.length,
+                                        (columnIndex) {
+                                      final columnFaqRecord =
+                                          columnFaqRecordList[columnIndex];
+                                      return FAQCardWidget(
+                                        key: Key(
+                                            'Keyq4x_${columnIndex}_of_${columnFaqRecordList.length}'),
+                                        title: columnFaqRecord.title,
+                                        subtitle: columnFaqRecord.subtitle,
+                                        description:
+                                            columnFaqRecord.description,
+                                        footer: columnFaqRecord.footer,
+                                      );
+                                    }),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

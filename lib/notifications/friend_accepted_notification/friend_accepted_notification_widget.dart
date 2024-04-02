@@ -106,12 +106,20 @@ class _FriendAcceptedNotificationWidgetState
                             widget.userName,
                             '0',
                           ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Outfit',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                         Text(
                           'Accepted your Friendship request!',
                           maxLines: 2,
-                          style: FlutterFlowTheme.of(context).bodyMedium,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Outfit',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                       ],
                     ),

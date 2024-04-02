@@ -34,7 +34,8 @@ class CourseEditorPageModel extends FlutterFlowModel<CourseEditorPageWidget> {
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl = '';
 
-  /// Initialization and disposal methods.
+  // State field(s) for Switch widget.
+  bool? switchValue;
 
   @override
   void initState(BuildContext context) {}
@@ -48,8 +49,4 @@ class CourseEditorPageModel extends FlutterFlowModel<CourseEditorPageWidget> {
     textFieldFocusNode2?.dispose();
     textController2?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

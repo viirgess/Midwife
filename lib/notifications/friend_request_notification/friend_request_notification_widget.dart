@@ -91,11 +91,17 @@ class _FriendRequestNotificationWidgetState
                           widget.userName,
                           '0',
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Outfit',
+                              letterSpacing: 0.0,
+                            ),
                       ),
                       Text(
                         'Wants to be your friend!',
-                        style: FlutterFlowTheme.of(context).bodyMedium,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Outfit',
+                              letterSpacing: 0.0,
+                            ),
                       ),
                     ],
                   ),
@@ -127,6 +133,7 @@ class _FriendRequestNotificationWidgetState
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Outfit',
                                     color: Colors.white,
+                                    letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,
                           borderSide: const BorderSide(
@@ -208,6 +215,7 @@ class _FriendRequestNotificationWidgetState
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Outfit',
                                     color: Colors.white,
+                                    letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,
                           borderSide: const BorderSide(

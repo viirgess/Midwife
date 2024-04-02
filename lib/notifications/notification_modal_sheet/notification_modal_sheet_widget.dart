@@ -79,6 +79,7 @@ class _NotificationModalSheetWidgetState
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Outfit',
                                     fontSize: 24.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),

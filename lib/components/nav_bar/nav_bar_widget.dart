@@ -148,7 +148,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
               ),
               onPressed: () async {
                 context.goNamed(
-                  'BlogPage',
+                  'CommunityPage',
                   extra: <String, dynamic>{
                     kTransitionInfoKey: const TransitionInfo(
                       hasTransition: true,

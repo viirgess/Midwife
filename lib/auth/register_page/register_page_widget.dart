@@ -70,8 +70,8 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
-                      child: Image.network(
-                        'https://s3-alpha-sig.figma.com/img/8b82/6833/5a7bd14c2d7482ed63038cd08f6bc3fc?Expires=1709510400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mOTPjQv2-3pYij4FEYo7wIQy71N2~ibTxdQGQov6oNQCERjiNfDlVn3Exnjv0bWbLgPC7xJcaMdHjB-7qwJcp083~NEHSmtKXFk-JniJL-L2V6JFUECCMDoheaAAqelXvr4R6xYnbYsctbLUcySPm1fuB8LACV3ML~2OfJ8bweJpjprP4uYm4WwN2HOK~TYhRzm3exvF4--rWTWxX0uCqPIuVyPHm01cBa-6ZHIOUWCY~oXLDazCXBPgx~3oM~EoI0eHzLvVTVbsXZE4ZLvwoJR6rAl1vUBNgtQEeQcQDCTrXpWtIIJ0g8Ls7ggO8jdC3E3iiO9bGkn7uZNEjZp93g__',
+                      child: Image.asset(
+                        'assets/images/5a7bd14c2d7482ed63038cd08f6bc3fc.png',
                         width: 150.0,
                         height: 120.0,
                         fit: BoxFit.contain,
@@ -93,6 +93,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                             fontFamily: 'Outfit',
                             color: FlutterFlowTheme.of(context).primary,
                             fontSize: 25.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
@@ -104,6 +105,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Outfit',
                               fontSize: 16.0,
+                              letterSpacing: 0.0,
                             ),
                       ),
                     ),
@@ -115,18 +117,28 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Outfit',
                               fontSize: 16.0,
+                              letterSpacing: 0.0,
                             ),
                       ),
                     ),
                     TextFormField(
                       controller: _model.textController1,
                       focusNode: _model.textFieldFocusNode1,
+                      autofocus: false,
                       obscureText: false,
                       decoration: InputDecoration(
                         isDense: true,
-                        labelStyle: FlutterFlowTheme.of(context).labelMedium,
+                        labelStyle:
+                            FlutterFlowTheme.of(context).labelMedium.override(
+                                  fontFamily: 'Outfit',
+                                  letterSpacing: 0.0,
+                                ),
                         hintText: 'Voornaam',
-                        hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                        hintStyle:
+                            FlutterFlowTheme.of(context).labelMedium.override(
+                                  fontFamily: 'Outfit',
+                                  letterSpacing: 0.0,
+                                ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).secondaryText,
@@ -156,7 +168,11 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                           borderRadius: BorderRadius.circular(24.0),
                         ),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyMedium,
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Outfit',
+                            letterSpacing: 0.0,
+                          ),
+                      minLines: null,
                       validator:
                           _model.textController1Validator.asValidator(context),
                     ),
@@ -168,19 +184,29 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Outfit',
                               fontSize: 16.0,
+                              letterSpacing: 0.0,
                             ),
                       ),
                     ),
                     TextFormField(
                       controller: _model.textController2,
                       focusNode: _model.textFieldFocusNode2,
+                      autofocus: false,
                       textCapitalization: TextCapitalization.none,
                       obscureText: false,
                       decoration: InputDecoration(
                         isDense: true,
-                        labelStyle: FlutterFlowTheme.of(context).labelMedium,
+                        labelStyle:
+                            FlutterFlowTheme.of(context).labelMedium.override(
+                                  fontFamily: 'Outfit',
+                                  letterSpacing: 0.0,
+                                ),
                         hintText: 'Achternaam',
-                        hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                        hintStyle:
+                            FlutterFlowTheme.of(context).labelMedium.override(
+                                  fontFamily: 'Outfit',
+                                  letterSpacing: 0.0,
+                                ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).secondaryText,
@@ -210,7 +236,11 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                           borderRadius: BorderRadius.circular(24.0),
                         ),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyMedium,
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Outfit',
+                            letterSpacing: 0.0,
+                          ),
+                      minLines: null,
                       validator:
                           _model.textController2Validator.asValidator(context),
                     ),
@@ -222,6 +252,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Outfit',
                               fontSize: 16.0,
+                              letterSpacing: 0.0,
                             ),
                       ),
                     ),
@@ -234,8 +265,10 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         final datePickedDate = await showDatePicker(
                           context: context,
                           initialDate: getCurrentTimestamp,
-                          firstDate: getCurrentTimestamp,
-                          lastDate: DateTime(2050),
+                          firstDate: (functions
+                                  .calculateMinDateTime(getCurrentTimestamp) ??
+                              DateTime(1900)),
+                          lastDate: (getCurrentTimestamp ?? DateTime(2050)),
                           builder: (context, child) {
                             return wrapInMaterialDatePickerTheme(
                               context,
@@ -250,6 +283,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                   .override(
                                     fontFamily: 'Outfit',
                                     fontSize: 32.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                               pickerBackgroundColor:
@@ -306,6 +340,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
                                   fontSize: 16.0,
+                                  letterSpacing: 0.0,
                                 ),
                           ),
                         ),
@@ -319,18 +354,24 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Outfit',
                               fontSize: 16.0,
+                              letterSpacing: 0.0,
                             ),
                       ),
                     ),
                     TextFormField(
                       controller: _model.emailTextController,
                       focusNode: _model.textFieldFocusNode3,
+                      autofocus: false,
                       textCapitalization: TextCapitalization.none,
                       obscureText: false,
                       decoration: InputDecoration(
                         isDense: true,
                         hintText: 'E-mailadres',
-                        hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                        hintStyle:
+                            FlutterFlowTheme.of(context).labelMedium.override(
+                                  fontFamily: 'Outfit',
+                                  letterSpacing: 0.0,
+                                ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).secondaryText,
@@ -378,7 +419,11 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                           borderRadius: BorderRadius.circular(24.0),
                         ),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyMedium,
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Outfit',
+                            letterSpacing: 0.0,
+                          ),
+                      minLines: null,
                       validator: _model.emailTextControllerValidator
                           .asValidator(context),
                     ),
@@ -390,19 +435,29 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Outfit',
                               fontSize: 16.0,
+                              letterSpacing: 0.0,
                             ),
                       ),
                     ),
                     TextFormField(
                       controller: _model.passwordTextController,
                       focusNode: _model.textFieldFocusNode4,
+                      autofocus: false,
                       textCapitalization: TextCapitalization.none,
                       obscureText: !_model.passwordVisibility,
                       decoration: InputDecoration(
                         isDense: true,
-                        labelStyle: FlutterFlowTheme.of(context).labelMedium,
+                        labelStyle:
+                            FlutterFlowTheme.of(context).labelMedium.override(
+                                  fontFamily: 'Outfit',
+                                  letterSpacing: 0.0,
+                                ),
                         hintText: 'Wachtwoord',
-                        hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                        hintStyle:
+                            FlutterFlowTheme.of(context).labelMedium.override(
+                                  fontFamily: 'Outfit',
+                                  letterSpacing: 0.0,
+                                ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).secondaryText,
@@ -446,7 +501,11 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                           ),
                         ),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyMedium,
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Outfit',
+                            letterSpacing: 0.0,
+                          ),
+                      minLines: null,
                       validator: _model.passwordTextControllerValidator
                           .asValidator(context),
                     ),
@@ -484,7 +543,12 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                           ),
                           Text(
                             '  I agree with the Terms & Conditions',
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Outfit',
+                                  letterSpacing: 0.0,
+                                ),
                           ),
                         ],
                       ),
@@ -518,6 +582,11 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                 calculatedDate: _model.datePicked,
                                 photoUrl:
                                     'https://icons.iconarchive.com/icons/papirus-team/papirus-status/512/avatar-default-icon.png',
+                                aiRequests: 0,
+                                isPregnant: true,
+                                displayName:
+                                    '${_model.textController1.text} ${_model.textController2.text}',
+                                isAdmin: false,
                               ));
 
                           context.goNamedAuth('MainPage', context.mounted);
@@ -541,6 +610,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                     color: FlutterFlowTheme.of(context)
                                         .primaryBackground,
                                     fontSize: 16.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
                                   ),
                             ),
@@ -581,6 +651,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       fontSize: 16.0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
                                     ),
                               ),
@@ -594,7 +665,12 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                 ),
                               )
                             ],
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Outfit',
+                                  letterSpacing: 0.0,
+                                ),
                           ),
                         ),
                       ),

@@ -87,255 +87,386 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                 ),
               ),
             ),
-            appBar: AppBar(
-              backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-              automaticallyImplyLeading: false,
-              leading: FlutterFlowIconButton(
-                borderColor: Colors.transparent,
-                borderRadius: 30.0,
-                borderWidth: 1.0,
-                buttonSize: 60.0,
-                icon: Icon(
-                  Icons.arrow_back_rounded,
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  size: 30.0,
-                ),
-                onPressed: () async {
-                  context.pop();
-                },
-              ),
-              title: Text(
-                'Profiel',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Outfit',
+            appBar: PreferredSize(
+              preferredSize: const Size.fromHeight(100.0),
+              child: AppBar(
+                backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+                automaticallyImplyLeading: false,
+                leading: Align(
+                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  child: FlutterFlowIconButton(
+                    borderColor: Colors.transparent,
+                    borderRadius: 30.0,
+                    borderWidth: 1.0,
+                    buttonSize: 60.0,
+                    icon: Icon(
+                      Icons.arrow_back_rounded,
                       color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 26.0,
+                      size: 30.0,
                     ),
-              ),
-              actions: const [],
-              centerTitle: true,
-              elevation: 0.0,
-            ),
-            body: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(18.0, 18.0, 18.0, 18.0),
-                  child: ListView(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    children: [
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 18.0, 0.0),
-                              child: Container(
-                                width: 120.0,
-                                height: 120.0,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Image.network(
-                                  publicUserProfileUsersRecord.photoUrl,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '${publicUserProfileUsersRecord.firstName} ${publicUserProfileUsersRecord.lastName}',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Outfit',
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                                if (publicUserProfileUsersRecord
-                                        .calculatedDate !=
-                                    null)
-                                  Align(
-                                    alignment: const AlignmentDirectional(-1.0, 0.0),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 10.0, 0.0, 0.0),
-                                      child: Text(
-                                        '${valueOrDefault<String>(
-                                          functions
-                                              .calculateWeek(
-                                                  publicUserProfileUsersRecord
-                                                      .calculatedDate)
-                                              .toString(),
-                                          '0',
-                                        )}th Week of Pregnancy',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Outfit',
-                                              fontSize: 18.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    onPressed: () async {
+                      context.pop();
+                    },
                   ),
                 ),
-                if (currentUserReference !=
-                    publicUserProfileUsersRecord.reference)
-                  Flexible(
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                actions: const [],
+                flexibleSpace: FlexibleSpaceBar(
+                  title: Text(
+                    'Profiel',
+                    style: FlutterFlowTheme.of(context).headlineMedium.override(
+                          fontFamily: 'Outfit',
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          fontSize: 26.0,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                  centerTitle: true,
+                  expandedTitleScale: 1.0,
+                ),
+                elevation: 0.0,
+              ),
+            ),
+            body: SafeArea(
+              top: true,
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          18.0, 18.0, 18.0, 18.0),
+                      child: ListView(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
                         children: [
-                          Flexible(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 50.0, 0.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
                               children: [
-                                FFButtonWidget(
-                                  onPressed: () {
-                                    print('Button pressed ...');
-                                  },
-                                  text: 'Stuur bericht',
-                                  options: FFButtonOptions(
-                                    width:
-                                        MediaQuery.sizeOf(context).width * 0.5,
-                                    height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          fontFamily: 'Outfit',
-                                          color: Colors.white,
-                                        ),
-                                    elevation: 3.0,
-                                    borderSide: const BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1.0,
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 18.0, 0.0),
+                                  child: Container(
+                                    width: 120.0,
+                                    height: 120.0,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.network(
+                                      publicUserProfileUsersRecord.photoUrl,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
+                                ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '${publicUserProfileUsersRecord.firstName} ${publicUserProfileUsersRecord.lastName}',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Outfit',
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                    if (publicUserProfileUsersRecord
+                                            .calculatedDate !=
+                                        null)
+                                      Align(
+                                        alignment:
+                                            const AlignmentDirectional(-1.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 10.0, 0.0, 0.0),
+                                          child: Text(
+                                            '${valueOrDefault<String>(
+                                              functions
+                                                  .calculateWeek(
+                                                      publicUserProfileUsersRecord
+                                                          .calculatedDate)
+                                                  .toString(),
+                                              '0',
+                                            )}th Week of Pregnancy',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Outfit',
+                                                  fontSize: 18.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                  ],
                                 ),
                               ],
                             ),
                           ),
-                          Flexible(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Flexible(
-                                  child: Builder(
-                                    builder: (context) {
-                                      if ((currentUserDocument
-                                                  ?.friendRequestsPending
-                                                  .toList() ??
-                                              [])
-                                          .contains(publicUserProfileUsersRecord
-                                              .reference)) {
-                                        return Visibility(
-                                          visible: (currentUserDocument
-                                                          ?.friendRequestsPending
-                                                          .toList() ??
-                                                      [])
-                                                  .contains(
-                                                      publicUserProfileUsersRecord
-                                                          .reference) ==
-                                              true,
-                                          child: StreamBuilder<
-                                              List<NotificationsRecord>>(
-                                            stream: queryNotificationsRecord(
-                                              parent:
-                                                  publicUserProfileUsersRecord
-                                                      .reference,
-                                              queryBuilder:
-                                                  (notificationsRecord) =>
-                                                      notificationsRecord.where(
-                                                'user_sent_friend_request',
-                                                isEqualTo: currentUserReference,
-                                              ),
-                                              singleRecord: true,
+                        ],
+                      ),
+                    ),
+                    if (currentUserReference !=
+                        publicUserProfileUsersRecord.reference)
+                      Flexible(
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              8.0, 0.0, 8.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Flexible(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    FFButtonWidget(
+                                      onPressed: () {
+                                        print('Button pressed ...');
+                                      },
+                                      text: 'Stuur bericht',
+                                      options: FFButtonOptions(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.5,
+                                        height: 40.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 24.0, 0.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Outfit',
+                                              color: Colors.white,
+                                              letterSpacing: 0.0,
                                             ),
-                                            builder: (context, snapshot) {
-                                              // Customize what your widget looks like when it's loading.
-                                              if (!snapshot.hasData) {
-                                                return Center(
-                                                  child: SizedBox(
-                                                    width: 50.0,
-                                                    height: 50.0,
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      valueColor:
-                                                          AlwaysStoppedAnimation<
-                                                              Color>(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
+                                        elevation: 3.0,
+                                        borderSide: const BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Flexible(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Flexible(
+                                      child: Builder(
+                                        builder: (context) {
+                                          if ((currentUserDocument
+                                                      ?.friendRequestsPending
+                                                      .toList() ??
+                                                  [])
+                                              .contains(
+                                                  publicUserProfileUsersRecord
+                                                      .reference)) {
+                                            return Visibility(
+                                              visible: (currentUserDocument
+                                                              ?.friendRequestsPending
+                                                              .toList() ??
+                                                          [])
+                                                      .contains(
+                                                          publicUserProfileUsersRecord
+                                                              .reference) ==
+                                                  true,
+                                              child: StreamBuilder<
+                                                  List<NotificationsRecord>>(
+                                                stream:
+                                                    queryNotificationsRecord(
+                                                  parent:
+                                                      publicUserProfileUsersRecord
+                                                          .reference,
+                                                  queryBuilder:
+                                                      (notificationsRecord) =>
+                                                          notificationsRecord
+                                                              .where(
+                                                    'user_sent_friend_request',
+                                                    isEqualTo:
+                                                        currentUserReference,
+                                                  ),
+                                                  singleRecord: true,
+                                                ),
+                                                builder: (context, snapshot) {
+                                                  // Customize what your widget looks like when it's loading.
+                                                  if (!snapshot.hasData) {
+                                                    return Center(
+                                                      child: SizedBox(
+                                                        width: 50.0,
+                                                        height: 50.0,
+                                                        child:
+                                                            CircularProgressIndicator(
+                                                          valueColor:
+                                                              AlwaysStoppedAnimation<
+                                                                  Color>(
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }
+                                                  List<NotificationsRecord>
+                                                      containerNotificationsRecordList =
+                                                      snapshot.data!;
+                                                  // Return an empty Container when the item does not exist.
+                                                  if (snapshot.data!.isEmpty) {
+                                                    return Container();
+                                                  }
+                                                  final containerNotificationsRecord =
+                                                      containerNotificationsRecordList
+                                                              .isNotEmpty
+                                                          ? containerNotificationsRecordList
+                                                              .first
+                                                          : null;
+                                                  return Container(
+                                                    height: 40.0,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                    ),
+                                                    child: InkWell(
+                                                      splashColor:
+                                                          Colors.transparent,
+                                                      focusColor:
+                                                          Colors.transparent,
+                                                      hoverColor:
+                                                          Colors.transparent,
+                                                      highlightColor:
+                                                          Colors.transparent,
+                                                      onTap: () async {
+                                                        await containerNotificationsRecord!
+                                                            .reference
+                                                            .delete();
+
+                                                        await currentUserReference!
+                                                            .update({
+                                                          ...mapToFirestore(
+                                                            {
+                                                              'friend_requests_pending':
+                                                                  FieldValue
+                                                                      .arrayRemove([
+                                                                publicUserProfileUsersRecord
+                                                                    .reference
+                                                              ]),
+                                                            },
+                                                          ),
+                                                        });
+                                                      },
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          Icon(
+                                                            Icons.timer_sharp,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            size: 30.0,
+                                                          ),
+                                                          Text(
+                                                            'Request pending',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Outfit',
+                                                                  fontSize:
+                                                                      18.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ),
-                                                  ),
-                                                );
-                                              }
-                                              List<NotificationsRecord>
-                                                  containerNotificationsRecordList =
-                                                  snapshot.data!;
-                                              // Return an empty Container when the item does not exist.
-                                              if (snapshot.data!.isEmpty) {
-                                                return Container();
-                                              }
-                                              final containerNotificationsRecord =
-                                                  containerNotificationsRecordList
-                                                          .isNotEmpty
-                                                      ? containerNotificationsRecordList
-                                                          .first
-                                                      : null;
-                                              return Container(
-                                                height: 40.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                ),
-                                                child: InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    await containerNotificationsRecord!
-                                                        .reference
-                                                        .delete();
+                                                  );
+                                                },
+                                              ),
+                                            );
+                                          } else {
+                                            return Visibility(
+                                              visible: () {
+                                                if ((currentUserDocument
+                                                                ?.userFriends
+                                                                .toList() ??
+                                                            [])
+                                                        .contains(
+                                                            publicUserProfileUsersRecord
+                                                                .reference) ==
+                                                    true) {
+                                                  return false;
+                                                } else if ((currentUserDocument
+                                                                ?.friendRequestsPending
+                                                                .toList() ??
+                                                            [])
+                                                        .contains(
+                                                            publicUserProfileUsersRecord
+                                                                .reference) ==
+                                                    true) {
+                                                  return false;
+                                                } else {
+                                                  return true;
+                                                }
+                                              }(),
+                                              child: AuthUserStreamWidget(
+                                                builder: (context) =>
+                                                    FFButtonWidget(
+                                                  onPressed: () async {
+                                                    await NotificationsRecord
+                                                            .createDoc(
+                                                                publicUserProfileUsersRecord
+                                                                    .reference)
+                                                        .set(
+                                                            createNotificationsRecordData(
+                                                      userSentFriendRequest:
+                                                          currentUserReference,
+                                                      friendRequest: true,
+                                                      userDisplayName:
+                                                          '${valueOrDefault(currentUserDocument?.firstName, '')} ${valueOrDefault(currentUserDocument?.lastName, '')}',
+                                                      userPhotoUrl:
+                                                          currentUserPhoto,
+                                                    ));
+                                                    triggerPushNotification(
+                                                      notificationTitle:
+                                                          'New Friend Request',
+                                                      notificationText:
+                                                          'Hey! ${valueOrDefault(currentUserDocument?.firstName, '')} ${valueOrDefault(currentUserDocument?.lastName, '')} wants to be friends with you!',
+                                                      notificationSound:
+                                                          'default',
+                                                      userRefs: [
+                                                        widget.userRef!
+                                                      ],
+                                                      initialPageName:
+                                                          'MainPage',
+                                                      parameterData: {},
+                                                    );
 
                                                     await currentUserReference!
                                                         .update({
@@ -343,7 +474,7 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                                         {
                                                           'friend_requests_pending':
                                                               FieldValue
-                                                                  .arrayRemove([
+                                                                  .arrayUnion([
                                                             publicUserProfileUsersRecord
                                                                 .reference
                                                           ]),
@@ -351,151 +482,59 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                                       ),
                                                     });
                                                   },
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    children: [
-                                                      Icon(
-                                                        Icons.timer_sharp,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        size: 30.0,
-                                                      ),
-                                                      Text(
-                                                        'Request pending',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Outfit',
-                                                              fontSize: 18.0,
-                                                            ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        );
-                                      } else {
-                                        return Visibility(
-                                          visible: () {
-                                            if ((currentUserDocument
-                                                            ?.userFriends
-                                                            .toList() ??
-                                                        [])
-                                                    .contains(
-                                                        publicUserProfileUsersRecord
-                                                            .reference) ==
-                                                true) {
-                                              return false;
-                                            } else if ((currentUserDocument
-                                                            ?.friendRequestsPending
-                                                            .toList() ??
-                                                        [])
-                                                    .contains(
-                                                        publicUserProfileUsersRecord
-                                                            .reference) ==
-                                                true) {
-                                              return false;
-                                            } else {
-                                              return true;
-                                            }
-                                          }(),
-                                          child: AuthUserStreamWidget(
-                                            builder: (context) =>
-                                                FFButtonWidget(
-                                              onPressed: () async {
-                                                await NotificationsRecord.createDoc(
-                                                        publicUserProfileUsersRecord
-                                                            .reference)
-                                                    .set(
-                                                        createNotificationsRecordData(
-                                                  userSentFriendRequest:
-                                                      currentUserReference,
-                                                  friendRequest: true,
-                                                  userDisplayName:
-                                                      '${valueOrDefault(currentUserDocument?.firstName, '')} ${valueOrDefault(currentUserDocument?.lastName, '')}',
-                                                  userPhotoUrl:
-                                                      currentUserPhoto,
-                                                ));
-                                                triggerPushNotification(
-                                                  notificationTitle:
-                                                      'New Friend Request',
-                                                  notificationText:
-                                                      'Hey! ${valueOrDefault(currentUserDocument?.firstName, '')} ${valueOrDefault(currentUserDocument?.lastName, '')} wants to be friends with you!',
-                                                  notificationSound: 'default',
-                                                  userRefs: [widget.userRef!],
-                                                  initialPageName: 'MainPage',
-                                                  parameterData: {},
-                                                );
-
-                                                await currentUserReference!
-                                                    .update({
-                                                  ...mapToFirestore(
-                                                    {
-                                                      'friend_requests_pending':
-                                                          FieldValue
-                                                              .arrayUnion([
-                                                        publicUserProfileUsersRecord
-                                                            .reference
-                                                      ]),
-                                                    },
-                                                  ),
-                                                });
-                                              },
-                                              text:
-                                                  'Vriendschapsverzoek sturen',
-                                              options: FFButtonOptions(
-                                                width:
-                                                    MediaQuery.sizeOf(context)
+                                                  text:
+                                                      'Vriendschapsverzoek sturen',
+                                                  options: FFButtonOptions(
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
                                                             .width *
                                                         0.5,
-                                                height: 40.0,
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        24.0, 0.0, 24.0, 0.0),
-                                                iconPadding:
-                                                    const EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
+                                                    height: 40.0,
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(24.0, 0.0,
+                                                                24.0, 0.0),
+                                                    iconPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 0.0),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
                                                         .primary,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
                                                         .titleSmall
                                                         .override(
                                                           fontFamily: 'Outfit',
                                                           color: Colors.white,
+                                                          letterSpacing: 0.0,
                                                         ),
-                                                elevation: 3.0,
-                                                borderSide: const BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1.0,
+                                                    elevation: 3.0,
+                                                    borderSide: const BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
                                                 ),
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
                                               ),
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                    },
-                                  ),
+                                            );
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ].divide(const SizedBox(width: 8.0)),
                           ),
-                        ].divide(const SizedBox(width: 8.0)),
+                        ),
                       ),
-                    ),
-                  ),
-              ],
+                  ],
+                ),
+              ),
             ),
           ),
         );

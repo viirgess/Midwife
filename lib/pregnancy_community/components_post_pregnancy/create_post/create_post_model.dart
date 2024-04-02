@@ -10,8 +10,6 @@ class CreatePostModel extends FlutterFlowModel<CreatePostWidget> {
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
@@ -20,8 +18,4 @@ class CreatePostModel extends FlutterFlowModel<CreatePostWidget> {
     textFieldFocusNode?.dispose();
     textController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

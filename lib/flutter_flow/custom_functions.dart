@@ -70,3 +70,47 @@ String getNameFromEmail(String email) {
 int increment(int num) {
   return ++num;
 }
+
+int? stringToInteger(String? number) {
+  // convert string to integer
+  if (number == null) {
+    return null;
+  }
+  try {
+    return int.parse(number);
+  } catch (e) {
+    return null;
+  }
+}
+
+DateTime? calculateMinDateTime(DateTime now) {
+  return now.subtract(Duration(days: 10 * 30));
+}
+
+dynamic saveChatHistory(
+  dynamic chatHistory,
+  dynamic newChat,
+) {
+  if (chatHistory is List) {
+    chatHistory.add(newChat);
+    return chatHistory;
+  } else {
+    return [newChat];
+  }
+}
+
+dynamic convertToJSON(String prompt) {
+  return json.decode('{"role": "user", "content": "$prompt"}');
+}
+
+double numberToPercentage(int number) {
+  if (number < 0 || number > 30) {
+    return 0;
+  }
+
+  // Calculate the percentage as a double value (0.0 to 1.0)
+  final double percentage = number / 30.0;
+
+  // Format the percentage as a string with a "%" symbol
+  return double.parse(percentage.toStringAsFixed(2));
+}

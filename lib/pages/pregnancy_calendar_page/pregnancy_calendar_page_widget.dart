@@ -1,9 +1,8 @@
 import '/backend/backend.dart';
-import '/components/app_bar/app_bar_widget.dart';
+import '/components/back_app_bar/back_app_bar_widget.dart';
 import '/components/calendar_card/calendar_card_widget.dart';
 import '/components/drawer_data/drawer_data_widget.dart';
 import '/components/model3_d_card/model3_d_card_widget.dart';
-import '/components/nav_bar/nav_bar_widget.dart';
 import '/components/week_description_card/week_description_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -91,56 +90,134 @@ class _PregnancyCalendarPageWidgetState
                 ),
               ),
             ),
-            body: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                wrapWithModel(
-                  model: _model.appBarModel,
-                  updateCallback: () => setState(() {}),
-                  child: const AppBarWidget(),
-                ),
-                Expanded(
-                  child: ListView(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                32.0, 0.0, 32.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 8.0),
-                                      child: Text(
-                                        'Zwangerschapskalender',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Outfit',
-                                              fontSize: 28.0,
-                                              fontWeight: FontWeight.bold,
+            body: NestedScrollView(
+              floatHeaderSlivers: true,
+              headerSliverBuilder: (context, _) => [
+                SliverAppBar(
+                  expandedHeight: 100.0,
+                  collapsedHeight: 100.0,
+                  pinned: false,
+                  floating: false,
+                  backgroundColor:
+                      FlutterFlowTheme.of(context).primaryBackground,
+                  iconTheme: IconThemeData(
+                      color: FlutterFlowTheme.of(context).secondary),
+                  automaticallyImplyLeading: false,
+                  actions: const [],
+                  flexibleSpace: FlexibleSpaceBar(
+                    title: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        wrapWithModel(
+                          model: _model.backAppBarModel,
+                          updateCallback: () => setState(() {}),
+                          child: const BackAppBarWidget(),
+                        ),
+                      ],
+                    ),
+                    centerTitle: true,
+                    expandedTitleScale: 1.0,
+                  ),
+                  elevation: 0.0,
+                )
+              ],
+              body: Builder(
+                builder: (context) {
+                  return Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Expanded(
+                          child: ListView(
+                            padding: EdgeInsets.zero,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        32.0, 0.0, 32.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 8.0),
+                                              child: Text(
+                                                'Zwangerschapskalender',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Outfit',
+                                                          fontSize: 28.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                              ),
                                             ),
-                                      ),
+                                            Container(
+                                              width: 300.0,
+                                              decoration: const BoxDecoration(),
+                                              child: Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 12.0),
+                                                child: Text(
+                                                  'Volg je zwangerschap en ontvang wekelijkse inzichten',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Outfit',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        fontSize: 16.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
-                                    Container(
-                                      width: 300.0,
-                                      decoration: const BoxDecoration(),
-                                      child: Padding(
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                    ),
+                                  ),
+                                  Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      wrapWithModel(
+                                        model: _model.calendarCardModel,
+                                        updateCallback: () => setState(() {}),
+                                        child: const CalendarCardWidget(),
+                                      ),
+                                      Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 12.0),
                                         child: Text(
-                                          'Volg je zwangerschap en ontvang wekelijkse inzichten',
+                                          'Your baby looks like:\n\nYou can zoom it',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -149,166 +226,156 @@ class _PregnancyCalendarPageWidgetState
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryText,
                                                 fontSize: 16.0,
+                                                letterSpacing: 0.0,
                                               ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                            ),
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              wrapWithModel(
-                                model: _model.calendarCardModel,
-                                updateCallback: () => setState(() {}),
-                                child: const CalendarCardWidget(),
-                              ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 12.0),
-                                child: Text(
-                                  'Your baby looks like:\n\nYou can zoom it',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Outfit',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        fontSize: 16.0,
-                                      ),
-                                ),
-                              ),
-                              wrapWithModel(
-                                model: _model.model3DCardModel,
-                                updateCallback: () => setState(() {}),
-                                child: Model3DCardWidget(
-                                  parameter1:
-                                      pregnancyCalendarPageWeeksRecord?.model,
-                                ),
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        if (_model.week! >= 2)
-                                          InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              setState(() {
-                                                _model.week = _model.week! + -1;
-                                              });
-                                            },
-                                            child: Icon(
-                                              Icons.arrow_back,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .accent1,
-                                              size: 24.0,
-                                            ),
-                                          ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  12.0, 0.0, 12.0, 0.0),
-                                          child: Text(
-                                            valueOrDefault<String>(
+                                      wrapWithModel(
+                                        model: _model.model3DCardModel,
+                                        updateCallback: () => setState(() {}),
+                                        child: Model3DCardWidget(
+                                          parameter1:
                                               pregnancyCalendarPageWeeksRecord
-                                                  ?.title,
-                                              'title',
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
-                                          ),
-                                        ),
-                                        if (_model.week! <= 41)
-                                          InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              setState(() {
-                                                _model.week = _model.week! + 1;
-                                              });
-                                            },
-                                            child: Icon(
-                                              Icons.east,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .accent1,
-                                              size: 24.0,
-                                            ),
-                                          ),
-                                      ],
-                                    ),
-                                    wrapWithModel(
-                                      model: _model.weekDescriptionCardModel,
-                                      updateCallback: () => setState(() {}),
-                                      child: WeekDescriptionCardWidget(
-                                        parameter1: valueOrDefault<String>(
-                                          pregnancyCalendarPageWeeksRecord
-                                              ?.firstChapter,
-                                          'first',
-                                        ),
-                                        parameter2: valueOrDefault<String>(
-                                          pregnancyCalendarPageWeeksRecord
-                                              ?.secondChapter,
-                                          'second',
-                                        ),
-                                        parameter3: valueOrDefault<String>(
-                                          pregnancyCalendarPageWeeksRecord
-                                              ?.thirdChapter,
-                                          'third',
-                                        ),
-                                        parameter4: valueOrDefault<String>(
-                                          pregnancyCalendarPageWeeksRecord
-                                              ?.fourthChapter,
-                                          'fourth',
-                                        ),
-                                        parameter5: valueOrDefault<String>(
-                                          pregnancyCalendarPageWeeksRecord
-                                              ?.fifthChapter,
-                                          '0',
+                                                  ?.model,
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                if (_model.week! >= 2)
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      setState(() {
+                                                        _model.week =
+                                                            _model.week! + -1;
+                                                      });
+                                                    },
+                                                    child: Icon(
+                                                      Icons.arrow_back,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .accent1,
+                                                      size: 24.0,
+                                                    ),
+                                                  ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          12.0, 0.0, 12.0, 0.0),
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      pregnancyCalendarPageWeeksRecord
+                                                          ?.title,
+                                                      'title',
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Outfit',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                                if (_model.week! <= 41)
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      setState(() {
+                                                        _model.week =
+                                                            _model.week! + 1;
+                                                      });
+                                                    },
+                                                    child: Icon(
+                                                      Icons.east,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .accent1,
+                                                      size: 24.0,
+                                                    ),
+                                                  ),
+                                              ],
+                                            ),
+                                            wrapWithModel(
+                                              model: _model
+                                                  .weekDescriptionCardModel,
+                                              updateCallback: () =>
+                                                  setState(() {}),
+                                              child: WeekDescriptionCardWidget(
+                                                parameter1:
+                                                    valueOrDefault<String>(
+                                                  pregnancyCalendarPageWeeksRecord
+                                                      ?.firstChapter,
+                                                  'first',
+                                                ),
+                                                parameter2:
+                                                    valueOrDefault<String>(
+                                                  pregnancyCalendarPageWeeksRecord
+                                                      ?.secondChapter,
+                                                  'second',
+                                                ),
+                                                parameter3:
+                                                    valueOrDefault<String>(
+                                                  pregnancyCalendarPageWeeksRecord
+                                                      ?.thirdChapter,
+                                                  'third',
+                                                ),
+                                                parameter4:
+                                                    valueOrDefault<String>(
+                                                  pregnancyCalendarPageWeeksRecord
+                                                      ?.fourthChapter,
+                                                  'fourth',
+                                                ),
+                                                parameter5:
+                                                    valueOrDefault<String>(
+                                                  pregnancyCalendarPageWeeksRecord
+                                                      ?.fifthChapter,
+                                                  '0',
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                wrapWithModel(
-                  model: _model.navBarModel,
-                  updateCallback: () => setState(() {}),
-                  child: const NavBarWidget(),
-                ),
-              ],
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
           ),
         );

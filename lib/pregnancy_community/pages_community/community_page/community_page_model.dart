@@ -1,12 +1,11 @@
 import '/backend/backend.dart';
-import '/components/app_bar/app_bar_widget.dart';
+import '/components/back_app_bar/back_app_bar_widget.dart';
 import '/components/drawer_data/drawer_data_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'pregnancy_community_page_widget.dart' show PregnancyCommunityPageWidget;
+import 'community_page_widget.dart' show CommunityPageWidget;
 import 'package:flutter/material.dart';
 
-class PregnancyCommunityPageModel
-    extends FlutterFlowModel<PregnancyCommunityPageWidget> {
+class CommunityPageModel extends FlutterFlowModel<CommunityPageWidget> {
   ///  Local state fields for this page.
 
   bool? likedClicked = false;
@@ -26,30 +25,26 @@ class PregnancyCommunityPageModel
           int index, Function(PregnancyCommunityForumRecord) updateFn) =>
       listOfPosts[index] = updateFn(listOfPosts[index]);
 
+  bool isPregnant = true;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   // Model for drawerData component.
   late DrawerDataModel drawerDataModel;
-  // Model for AppBar component.
-  late AppBarModel appBarModel;
-
-  /// Initialization and disposal methods.
+  // Model for BackAppBar component.
+  late BackAppBarModel backAppBarModel;
 
   @override
   void initState(BuildContext context) {
     drawerDataModel = createModel(context, () => DrawerDataModel());
-    appBarModel = createModel(context, () => AppBarModel());
+    backAppBarModel = createModel(context, () => BackAppBarModel());
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
     drawerDataModel.dispose();
-    appBarModel.dispose();
+    backAppBarModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

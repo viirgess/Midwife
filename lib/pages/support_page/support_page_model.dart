@@ -1,4 +1,5 @@
-import '/components/app_bar/app_bar_widget.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/components/back_app_bar/back_app_bar_widget.dart';
 import '/components/drawer_data/drawer_data_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'support_page_widget.dart' show SupportPageWidget;
@@ -8,34 +9,44 @@ class SupportPageModel extends FlutterFlowModel<SupportPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Model for AppBar component.
-  late AppBarModel appBarModel;
+  final formKey = GlobalKey<FormState>();
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  String? _textControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    if (val.length < 5) {
+      return 'Message should contain at least 5 characters';
+    }
+
+    return null;
+  }
+
+  // Stores action output result for [Backend Call - API (SendEmail)] action in Container widget.
+  ApiCallResponse? apiResultlv1;
   // Model for drawerData component.
   late DrawerDataModel drawerDataModel;
-
-  /// Initialization and disposal methods.
+  // Model for BackAppBar component.
+  late BackAppBarModel backAppBarModel;
 
   @override
   void initState(BuildContext context) {
-    appBarModel = createModel(context, () => AppBarModel());
+    textControllerValidator = _textControllerValidator;
     drawerDataModel = createModel(context, () => DrawerDataModel());
+    backAppBarModel = createModel(context, () => BackAppBarModel());
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    appBarModel.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
 
     drawerDataModel.dispose();
+    backAppBarModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

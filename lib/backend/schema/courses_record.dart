@@ -45,6 +45,11 @@ class CoursesRecord extends FirestoreRecord {
   DateTime? get createdAt => _createdAt;
   bool hasCreatedAt() => _createdAt != null;
 
+  // "forPregnant" field.
+  bool? _forPregnant;
+  bool get forPregnant => _forPregnant ?? false;
+  bool hasForPregnant() => _forPregnant != null;
+
   void _initializeFields() {
     _title = snapshotData['title'] as String?;
     _description = snapshotData['description'] as String?;
@@ -52,6 +57,7 @@ class CoursesRecord extends FirestoreRecord {
     _price = castToType<double>(snapshotData['price']);
     _enrolledUsers = getDataList(snapshotData['enrolled_users']);
     _createdAt = snapshotData['createdAt'] as DateTime?;
+    _forPregnant = snapshotData['forPregnant'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -94,6 +100,7 @@ Map<String, dynamic> createCoursesRecordData({
   String? imageUrl,
   double? price,
   DateTime? createdAt,
+  bool? forPregnant,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -102,6 +109,7 @@ Map<String, dynamic> createCoursesRecordData({
       'imageUrl': imageUrl,
       'price': price,
       'createdAt': createdAt,
+      'forPregnant': forPregnant,
     }.withoutNulls,
   );
 
@@ -119,7 +127,8 @@ class CoursesRecordDocumentEquality implements Equality<CoursesRecord> {
         e1?.imageUrl == e2?.imageUrl &&
         e1?.price == e2?.price &&
         listEquality.equals(e1?.enrolledUsers, e2?.enrolledUsers) &&
-        e1?.createdAt == e2?.createdAt;
+        e1?.createdAt == e2?.createdAt &&
+        e1?.forPregnant == e2?.forPregnant;
   }
 
   @override
@@ -129,7 +138,8 @@ class CoursesRecordDocumentEquality implements Equality<CoursesRecord> {
         e?.imageUrl,
         e?.price,
         e?.enrolledUsers,
-        e?.createdAt
+        e?.createdAt,
+        e?.forPregnant
       ]);
 
   @override

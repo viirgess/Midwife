@@ -113,7 +113,10 @@ class _CommunityForumPostWidgetState extends State<CommunityForumPostWidget> {
                 StreamBuilder<List<PostPregnancyCommentsForumRecord>>(
                   stream: queryPostPregnancyCommentsForumRecord(
                     parent: widget.forumPost,
-                    limit: 3,
+                    queryBuilder: (postPregnancyCommentsForumRecord) =>
+                        postPregnancyCommentsForumRecord
+                            .orderBy('created_time'),
+                    limit: 4,
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.

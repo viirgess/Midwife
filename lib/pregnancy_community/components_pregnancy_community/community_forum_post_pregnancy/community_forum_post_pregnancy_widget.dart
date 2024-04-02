@@ -114,7 +114,9 @@ class _CommunityForumPostPregnancyWidgetState
                 StreamBuilder<List<PregnancyCommentsForumRecord>>(
                   stream: queryPregnancyCommentsForumRecord(
                     parent: widget.forumPost,
-                    limit: 3,
+                    queryBuilder: (pregnancyCommentsForumRecord) =>
+                        pregnancyCommentsForumRecord.orderBy('created_time'),
+                    limit: 4,
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.

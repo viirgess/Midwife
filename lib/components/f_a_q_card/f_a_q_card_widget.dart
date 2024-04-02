@@ -64,114 +64,130 @@ class _FAQCardWidgetState extends State<FAQCardWidget> {
           ),
           child: Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(18.0, 18.0, 18.0, 18.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  valueOrDefault<String>(
-                    widget.title,
-                    'title',
-                  ),
-                  textAlign: TextAlign.start,
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                if (_model.arrowClicked == false)
-                  InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      setState(() {
-                        _model.arrowClicked = true;
-                      });
-                    },
-                    child: Icon(
-                      Icons.arrow_drop_down_outlined,
-                      color: FlutterFlowTheme.of(context).accent2,
-                      size: 32.0,
+            child: InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () async {
+                setState(() {
+                  _model.arrowClicked = !_model.arrowClicked;
+                });
+              },
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    valueOrDefault<String>(
+                      widget.title,
+                      'title',
                     ),
-                  ),
-                if (_model.arrowClicked == true)
-                  InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      setState(() {
-                        _model.arrowClicked = false;
-                      });
-                    },
-                    child: Icon(
-                      Icons.arrow_drop_up_sharp,
-                      color: FlutterFlowTheme.of(context).accent2,
-                      size: 32.0,
-                    ),
-                  ),
-                if (_model.arrowClicked == true)
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (widget.subtitle != null && widget.subtitle != '')
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 8.0),
-                          child: Text(
-                            widget.subtitle!,
-                            textAlign: TextAlign.justify,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Outfit',
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                          ),
+                    textAlign: TextAlign.start,
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Outfit',
+                          fontSize: 16.0,
+                          letterSpacing: 0.0,
+                          fontWeight: FontWeight.bold,
                         ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
-                        child: Text(
-                          valueOrDefault<String>(
-                            widget.description,
-                            'description',
-                          ),
-                          textAlign: TextAlign.justify,
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
+                  ),
+                  if (_model.arrowClicked == false)
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        setState(() {
+                          _model.arrowClicked = true;
+                        });
+                      },
+                      child: Icon(
+                        Icons.arrow_drop_down_outlined,
+                        color: FlutterFlowTheme.of(context).accent2,
+                        size: 32.0,
+                      ),
+                    ),
+                  if (_model.arrowClicked == true)
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        setState(() {
+                          _model.arrowClicked = false;
+                        });
+                      },
+                      child: Icon(
+                        Icons.arrow_drop_up_sharp,
+                        color: FlutterFlowTheme.of(context).accent2,
+                        size: 32.0,
+                      ),
+                    ),
+                  if (_model.arrowClicked == true)
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (widget.subtitle != null && widget.subtitle != '')
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 8.0),
+                            child: Text(
+                              widget.subtitle!,
+                              textAlign: TextAlign.justify,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
                                     fontFamily: 'Outfit',
                                     fontSize: 16.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
-                        ),
-                      ),
-                      if (widget.footer != null && widget.footer != '')
+                            ),
+                          ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 8.0),
                           child: Text(
-                            widget.footer!,
+                            valueOrDefault<String>(
+                              widget.description,
+                              'description',
+                            ),
                             textAlign: TextAlign.justify,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Outfit',
                                   fontSize: 16.0,
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
                           ),
                         ),
-                    ],
-                  ),
-              ],
+                        if (widget.footer != null && widget.footer != '')
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 8.0),
+                            child: Text(
+                              widget.footer!,
+                              textAlign: TextAlign.justify,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Outfit',
+                                    fontSize: 16.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                            ),
+                          ),
+                      ],
+                    ),
+                ],
+              ),
             ),
           ),
         ),

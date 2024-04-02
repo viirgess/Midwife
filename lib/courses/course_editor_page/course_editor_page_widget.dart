@@ -57,34 +57,41 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 30.0,
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(100.0),
+          child: AppBar(
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            automaticallyImplyLeading: false,
+            leading: FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 30.0,
+              borderWidth: 1.0,
+              buttonSize: 60.0,
+              icon: Icon(
+                Icons.arrow_back_rounded,
+                color: FlutterFlowTheme.of(context).primaryText,
+                size: 30.0,
+              ),
+              onPressed: () async {
+                context.pop();
+              },
             ),
-            onPressed: () async {
-              context.pop();
-            },
+            actions: const [],
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text(
+                'Course Editor',
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      fontFamily: 'Outfit',
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      fontSize: 22.0,
+                      letterSpacing: 0.0,
+                    ),
+              ),
+              centerTitle: true,
+              expandedTitleScale: 1.0,
+            ),
+            elevation: 0.0,
           ),
-          title: Text(
-            'Course Editor',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 22.0,
-                ),
-          ),
-          actions: const [],
-          centerTitle: true,
-          elevation: 0.0,
         ),
         body: SafeArea(
           top: true,
@@ -123,8 +130,16 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                         obscureText: false,
                         decoration: InputDecoration(
                           labelText: 'Name',
-                          labelStyle: FlutterFlowTheme.of(context).labelMedium,
-                          hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                          labelStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Outfit',
+                                    letterSpacing: 0.0,
+                                  ),
+                          hintStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Outfit',
+                                    letterSpacing: 0.0,
+                                  ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -157,7 +172,9 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Outfit',
                               fontSize: 16.0,
+                              letterSpacing: 0.0,
                             ),
+                        minLines: null,
                         validator: _model.textController1Validator
                             .asValidator(context),
                       ),
@@ -175,8 +192,16 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                         obscureText: false,
                         decoration: InputDecoration(
                           labelText: 'Description',
-                          labelStyle: FlutterFlowTheme.of(context).labelMedium,
-                          hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                          labelStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Outfit',
+                                    letterSpacing: 0.0,
+                                  ),
+                          hintStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Outfit',
+                                    letterSpacing: 0.0,
+                                  ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -209,7 +234,9 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Outfit',
                               fontSize: 16.0,
+                              letterSpacing: 0.0,
                             ),
+                        minLines: null,
                         validator: _model.textController2Validator
                             .asValidator(context),
                       ),
@@ -312,6 +339,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                                           color: FlutterFlowTheme.of(context)
                                               .primaryBackground,
                                           fontSize: 18.0,
+                                          letterSpacing: 0.0,
                                         ),
                                   );
                                 }
@@ -336,6 +364,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                                   .override(
                                     fontFamily: 'Outfit',
                                     fontSize: 18.0,
+                                    letterSpacing: 0.0,
                                   ),
                             ),
                           ),
@@ -436,6 +465,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                                         .override(
                                           fontFamily: 'Outfit',
                                           color: Colors.white,
+                                          letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
                                     borderSide: const BorderSide(
@@ -452,6 +482,46 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                       ],
                     ),
                     Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 0.0, 0.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Align(
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: Switch.adaptive(
+                              value: _model.switchValue ??= true,
+                              onChanged: (newValue) async {
+                                setState(() => _model.switchValue = newValue);
+                              },
+                              activeColor:
+                                  FlutterFlowTheme.of(context).secondary,
+                              activeTrackColor:
+                                  FlutterFlowTheme.of(context).primaryText,
+                              inactiveTrackColor:
+                                  FlutterFlowTheme.of(context).primaryText,
+                              inactiveThumbColor:
+                                  FlutterFlowTheme.of(context).secondaryText,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                5.0, 0.0, 0.0, 0.0),
+                            child: Text(
+                              'For Pregnant',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Outfit',
+                                    fontSize: 18.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
                       padding: const EdgeInsetsDirectional.fromSTEB(
                           10.0, 15.0, 10.0, 10.0),
                       child: FFButtonWidget(
@@ -465,6 +535,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                                     description: _model.textController2.text,
                                     price: 20.0,
                                     createdAt: getCurrentTimestamp,
+                                    forPregnant: _model.switchValue,
                                   ),
                                   ...mapToFirestore(
                                     {
@@ -494,6 +565,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Outfit',
                                     color: Colors.white,
+                                    letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,
                           borderSide: const BorderSide(

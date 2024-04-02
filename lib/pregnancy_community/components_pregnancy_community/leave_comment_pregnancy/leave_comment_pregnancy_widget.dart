@@ -98,7 +98,10 @@ class _LeaveCommentPregnancyWidgetState
                 boxShadow: [
                   BoxShadow(
                     color: FlutterFlowTheme.of(context).primaryBackground,
-                    offset: const Offset(0.0, 2.0),
+                    offset: const Offset(
+                      0.0,
+                      2.0,
+                    ),
                   )
                 ],
                 borderRadius: const BorderRadius.only(
@@ -135,6 +138,7 @@ class _LeaveCommentPregnancyWidgetState
                                       .override(
                                         fontFamily: 'Outfit',
                                         fontSize: 16.0,
+                                        letterSpacing: 0.0,
                                       ),
                                   hintText: 'Leave your comment..',
                                   hintStyle: FlutterFlowTheme.of(context)
@@ -142,6 +146,7 @@ class _LeaveCommentPregnancyWidgetState
                                       .override(
                                         fontFamily: 'Outfit',
                                         fontSize: 16.0,
+                                        letterSpacing: 0.0,
                                       ),
                                   enabledBorder: InputBorder.none,
                                   focusedBorder: InputBorder.none,
@@ -156,9 +161,9 @@ class _LeaveCommentPregnancyWidgetState
                                     .override(
                                       fontFamily: 'Outfit',
                                       fontSize: 16.0,
+                                      letterSpacing: 0.0,
                                     ),
                                 maxLines: 5,
-                                minLines: 1,
                                 validator: _model.textControllerValidator
                                     .asValidator(context),
                               ),

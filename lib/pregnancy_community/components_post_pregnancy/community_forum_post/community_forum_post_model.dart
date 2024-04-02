@@ -10,8 +10,6 @@ class CommunityForumPostModel
   // Model for CommunityPost component.
   late CommunityPostModel communityPostModel;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     communityPostModel = createModel(context, () => CommunityPostModel());
@@ -21,8 +19,4 @@ class CommunityForumPostModel
   void dispose() {
     communityPostModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

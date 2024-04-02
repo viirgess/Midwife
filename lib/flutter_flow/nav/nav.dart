@@ -2,12 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
 import '/backend/push_notifications/push_notifications_handler.dart'
     show PushNotificationsHandler;
 import '/index.dart';
+import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
@@ -74,13 +77,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const MainPageWidget() : const LoginPageWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const MainPageWidget() : const LoginPageWidget(),
+              appStateNotifier.loggedIn ? const NavBarPage() : const LoginPageWidget(),
         ),
         FFRoute(
           name: 'LoginPage',
@@ -90,7 +93,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'MainPage',
           path: '/mainPage',
-          builder: (context, params) => const MainPageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'MainPage')
+              : const MainPageWidget(),
         ),
         FFRoute(
           name: 'RegisterPage',
@@ -105,17 +110,27 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'AIPage',
           path: '/aIPage',
-          builder: (context, params) => const AIPageWidget(),
+          builder: (context, params) => const NavBarPage(
+            initialPage: '',
+            page: AIPageWidget(),
+          ),
         ),
         FFRoute(
           name: 'PregnancyCalendarPage',
           path: '/pregnancyCalendarPage',
-          builder: (context, params) => const PregnancyCalendarPageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'PregnancyCalendarPage')
+              : const PregnancyCalendarPageWidget(),
         ),
         FFRoute(
-          name: 'PregnancyCommunityPage',
-          path: '/pregnancyCommunityPage',
-          builder: (context, params) => const PregnancyCommunityPageWidget(),
+          name: 'CommunityPage',
+          path: '/communityPage',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'CommunityPage')
+              : const NavBarPage(
+                  initialPage: 'CommunityPage',
+                  page: CommunityPageWidget(),
+                ),
         ),
         FFRoute(
           name: 'PostpartumCommunityPage',
@@ -125,12 +140,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'PrivateChatsPage',
           path: '/privateChatsPage',
-          builder: (context, params) => const PrivateChatsPageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'PrivateChatsPage')
+              : const NavBarPage(
+                  initialPage: 'PrivateChatsPage',
+                  page: PrivateChatsPageWidget(),
+                ),
         ),
         FFRoute(
           name: 'BlogPage',
           path: '/blogPage',
-          builder: (context, params) => const BlogPageWidget(),
+          builder: (context, params) => const NavBarPage(
+            initialPage: '',
+            page: BlogPageWidget(),
+          ),
         ),
         FFRoute(
           name: 'FreeEbookPage',
@@ -140,111 +163,265 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'OnlineCoachingPage',
           path: '/onlineCoachingPage',
-          builder: (context, params) => const OnlineCoachingPageWidget(),
+          builder: (context, params) => const NavBarPage(
+            initialPage: '',
+            page: OnlineCoachingPageWidget(),
+          ),
         ),
         FFRoute(
           name: 'PregnancyCoursePage',
           path: '/pregnancyCoursePage',
-          builder: (context, params) => const PregnancyCoursePageWidget(),
+          builder: (context, params) => const NavBarPage(
+            initialPage: '',
+            page: PregnancyCoursePageWidget(),
+          ),
         ),
         FFRoute(
           name: 'SupportPage',
           path: '/supportPage',
-          builder: (context, params) => const SupportPageWidget(),
+          builder: (context, params) => const NavBarPage(
+            initialPage: '',
+            page: SupportPageWidget(),
+          ),
         ),
         FFRoute(
           name: 'FAQPage',
           path: '/fAQPage',
-          builder: (context, params) => const FAQPageWidget(),
+          builder: (context, params) => const NavBarPage(
+            initialPage: '',
+            page: FAQPageWidget(),
+          ),
         ),
         FFRoute(
           name: 'CollaborationPage',
           path: '/collaborationPage',
-          builder: (context, params) => const CollaborationPageWidget(),
+          builder: (context, params) => const NavBarPage(
+            initialPage: '',
+            page: CollaborationPageWidget(),
+          ),
         ),
         FFRoute(
           name: 'BlogsTopicsList',
           path: '/blogsTopicsList',
-          builder: (context, params) => BlogsTopicsListWidget(
-            sectionReference: params.getParam('sectionReference',
-                ParamType.DocumentReference, false, ['blogs']),
-            title: params.getParam('title', ParamType.String),
-            description: params.getParam('description', ParamType.String),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: BlogsTopicsListWidget(
+              sectionReference: params.getParam(
+                'sectionReference',
+                ParamType.DocumentReference,
+                false,
+                ['blogs'],
+              ),
+              title: params.getParam(
+                'title',
+                ParamType.String,
+              ),
+              description: params.getParam(
+                'description',
+                ParamType.String,
+              ),
+            ),
           ),
         ),
         FFRoute(
           name: 'TopicDescription',
           path: '/topicDescription',
-          builder: (context, params) => TopicDescriptionWidget(
-            title: params.getParam('title', ParamType.String),
-            date: params.getParam('date', ParamType.DateTime),
-            image: params.getParam('image', ParamType.String),
-            topicOne: params.getParam('topicOne', ParamType.String),
-            oneDescription: params.getParam('oneDescription', ParamType.String),
-            topicTwo: params.getParam('topicTwo', ParamType.String),
-            twoDescription: params.getParam('twoDescription', ParamType.String),
-            topicThree: params.getParam('topicThree', ParamType.String),
-            threeDescription:
-                params.getParam('threeDescription', ParamType.String),
-            topicFour: params.getParam('topicFour', ParamType.String),
-            fourDescription:
-                params.getParam('fourDescription', ParamType.String),
-            topicFive: params.getParam('topicFive', ParamType.String),
-            fiveDescription:
-                params.getParam('fiveDescription', ParamType.String),
-            topicSix: params.getParam('topicSix', ParamType.String),
-            sixDescription: params.getParam('sixDescription', ParamType.String),
-            chapterTitle: params.getParam('chapterTitle', ParamType.String),
-            chapterOne: params.getParam('chapterOne', ParamType.String),
-            chapterTwo: params.getParam('chapterTwo', ParamType.String),
-            chapterThree: params.getParam('chapterThree', ParamType.String),
-            referenceSection: params.getParam('referenceSection',
-                ParamType.DocumentReference, false, ['blogs', 'topics']),
-            partOne: params.getParam('partOne', ParamType.String),
-            partOneDescription:
-                params.getParam('partOneDescription', ParamType.String),
-            partTwo: params.getParam('partTwo', ParamType.String),
-            partTwoDescription:
-                params.getParam('partTwoDescription', ParamType.String),
-            partThree: params.getParam('partThree', ParamType.String),
-            partThreeDescription:
-                params.getParam('partThreeDescription', ParamType.String),
-            partFour: params.getParam('partFour', ParamType.String),
-            partFourDescription:
-                params.getParam('partFourDescription', ParamType.String),
-            partFive: params.getParam('partFive', ParamType.String),
-            partFiveDescription:
-                params.getParam('partFiveDescription', ParamType.String),
-            partSix: params.getParam('partSix', ParamType.String),
-            partSixDescription:
-                params.getParam('partSixDescription', ParamType.String),
-            partSeven: params.getParam('partSeven', ParamType.String),
-            partSevenDescription:
-                params.getParam('partSevenDescription', ParamType.String),
-            partEight: params.getParam('partEight', ParamType.String),
-            partEightDescription:
-                params.getParam('partEightDescription', ParamType.String),
-            partNine: params.getParam('partNine', ParamType.String),
-            partNineDescription:
-                params.getParam('partNineDescription', ParamType.String),
-            partTen: params.getParam('partTen', ParamType.String),
-            partTenDescription:
-                params.getParam('partTenDescription', ParamType.String),
-            chapterFour: params.getParam('chapterFour', ParamType.String),
-            chapterFive: params.getParam('chapterFive', ParamType.String),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: TopicDescriptionWidget(
+              title: params.getParam(
+                'title',
+                ParamType.String,
+              ),
+              date: params.getParam(
+                'date',
+                ParamType.DateTime,
+              ),
+              image: params.getParam(
+                'image',
+                ParamType.String,
+              ),
+              topicOne: params.getParam(
+                'topicOne',
+                ParamType.String,
+              ),
+              oneDescription: params.getParam(
+                'oneDescription',
+                ParamType.String,
+              ),
+              topicTwo: params.getParam(
+                'topicTwo',
+                ParamType.String,
+              ),
+              twoDescription: params.getParam(
+                'twoDescription',
+                ParamType.String,
+              ),
+              topicThree: params.getParam(
+                'topicThree',
+                ParamType.String,
+              ),
+              threeDescription: params.getParam(
+                'threeDescription',
+                ParamType.String,
+              ),
+              topicFour: params.getParam(
+                'topicFour',
+                ParamType.String,
+              ),
+              fourDescription: params.getParam(
+                'fourDescription',
+                ParamType.String,
+              ),
+              topicFive: params.getParam(
+                'topicFive',
+                ParamType.String,
+              ),
+              fiveDescription: params.getParam(
+                'fiveDescription',
+                ParamType.String,
+              ),
+              topicSix: params.getParam(
+                'topicSix',
+                ParamType.String,
+              ),
+              sixDescription: params.getParam(
+                'sixDescription',
+                ParamType.String,
+              ),
+              chapterTitle: params.getParam(
+                'chapterTitle',
+                ParamType.String,
+              ),
+              chapterOne: params.getParam(
+                'chapterOne',
+                ParamType.String,
+              ),
+              chapterTwo: params.getParam(
+                'chapterTwo',
+                ParamType.String,
+              ),
+              chapterThree: params.getParam(
+                'chapterThree',
+                ParamType.String,
+              ),
+              referenceSection: params.getParam(
+                'referenceSection',
+                ParamType.DocumentReference,
+                false,
+                ['blogs', 'topics'],
+              ),
+              partOne: params.getParam(
+                'partOne',
+                ParamType.String,
+              ),
+              partOneDescription: params.getParam(
+                'partOneDescription',
+                ParamType.String,
+              ),
+              partTwo: params.getParam(
+                'partTwo',
+                ParamType.String,
+              ),
+              partTwoDescription: params.getParam(
+                'partTwoDescription',
+                ParamType.String,
+              ),
+              partThree: params.getParam(
+                'partThree',
+                ParamType.String,
+              ),
+              partThreeDescription: params.getParam(
+                'partThreeDescription',
+                ParamType.String,
+              ),
+              partFour: params.getParam(
+                'partFour',
+                ParamType.String,
+              ),
+              partFourDescription: params.getParam(
+                'partFourDescription',
+                ParamType.String,
+              ),
+              partFive: params.getParam(
+                'partFive',
+                ParamType.String,
+              ),
+              partFiveDescription: params.getParam(
+                'partFiveDescription',
+                ParamType.String,
+              ),
+              partSix: params.getParam(
+                'partSix',
+                ParamType.String,
+              ),
+              partSixDescription: params.getParam(
+                'partSixDescription',
+                ParamType.String,
+              ),
+              partSeven: params.getParam(
+                'partSeven',
+                ParamType.String,
+              ),
+              partSevenDescription: params.getParam(
+                'partSevenDescription',
+                ParamType.String,
+              ),
+              partEight: params.getParam(
+                'partEight',
+                ParamType.String,
+              ),
+              partEightDescription: params.getParam(
+                'partEightDescription',
+                ParamType.String,
+              ),
+              partNine: params.getParam(
+                'partNine',
+                ParamType.String,
+              ),
+              partNineDescription: params.getParam(
+                'partNineDescription',
+                ParamType.String,
+              ),
+              partTen: params.getParam(
+                'partTen',
+                ParamType.String,
+              ),
+              partTenDescription: params.getParam(
+                'partTenDescription',
+                ParamType.String,
+              ),
+              chapterFour: params.getParam(
+                'chapterFour',
+                ParamType.String,
+              ),
+              chapterFive: params.getParam(
+                'chapterFive',
+                ParamType.String,
+              ),
+            ),
           ),
         ),
         FFRoute(
           name: 'userProfile',
           path: '/userProfile',
-          builder: (context, params) => const UserProfileWidget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'userProfile')
+              : const UserProfileWidget(),
         ),
         FFRoute(
           name: 'PublicUserProfile',
           path: '/publicUserProfile',
-          builder: (context, params) => PublicUserProfileWidget(
-            userRef: params.getParam(
-                'userRef', ParamType.DocumentReference, false, ['users']),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: PublicUserProfileWidget(
+              userRef: params.getParam(
+                'userRef',
+                ParamType.DocumentReference,
+                false,
+                ['users'],
+              ),
+            ),
           ),
         ),
         FFRoute(
@@ -252,11 +429,25 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/chatMessages',
           builder: (context, params) => ChatMessagesWidget(
             chatUser: params.getParam(
-                'chatUser', ParamType.DocumentReference, false, ['chats']),
-            userName: params.getParam('userName', ParamType.String),
+              'chatUser',
+              ParamType.DocumentReference,
+              false,
+              ['chats'],
+            ),
+            userName: params.getParam(
+              'userName',
+              ParamType.String,
+            ),
             userRef: params.getParam(
-                'userRef', ParamType.DocumentReference, false, ['users']),
-            userimage: params.getParam('userimage', ParamType.String),
+              'userRef',
+              ParamType.DocumentReference,
+              false,
+              ['users'],
+            ),
+            userimage: params.getParam(
+              'userimage',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -272,17 +463,28 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'CoursePage',
           path: '/coursePage',
-          builder: (context, params) => CoursePageWidget(
-            courseRef: params.getParam(
-                'courseRef', ParamType.DocumentReference, false, ['courses']),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: CoursePageWidget(
+              courseRef: params.getParam(
+                'courseRef',
+                ParamType.DocumentReference,
+                false,
+                ['courses'],
+              ),
+            ),
           ),
         ),
         FFRoute(
           name: 'CourseEditorPage',
           path: '/courseEditorPage',
           builder: (context, params) => CourseEditorPageWidget(
-            newCourseRef: params.getParam('newCourseRef',
-                ParamType.DocumentReference, false, ['courses']),
+            newCourseRef: params.getParam(
+              'newCourseRef',
+              ParamType.DocumentReference,
+              false,
+              ['courses'],
+            ),
           ),
         ),
         FFRoute(
@@ -409,6 +611,7 @@ class FFParameters {
     ParamType type, [
     bool isList = false,
     List<String>? collectionNamePath,
+    StructBuilder<T>? structBuilder,
   ]) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -422,8 +625,13 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(param, type, isList,
-        collectionNamePath: collectionNamePath);
+    return deserializeParam<T>(
+      param,
+      type,
+      isList,
+      collectionNamePath: collectionNamePath,
+      structBuilder: structBuilder,
+    );
   }
 }
 

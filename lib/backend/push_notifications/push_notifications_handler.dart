@@ -114,7 +114,7 @@ final parametersBuilderMap =
   'ResetPassword': ParameterData.none(),
   'AIPage': ParameterData.none(),
   'PregnancyCalendarPage': ParameterData.none(),
-  'PregnancyCommunityPage': ParameterData.none(),
+  'CommunityPage': ParameterData.none(),
   'PostpartumCommunityPage': ParameterData.none(),
   'PrivateChatsPage': ParameterData.none(),
   'BlogPage': ParameterData.none(),

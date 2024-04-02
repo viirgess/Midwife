@@ -113,6 +113,7 @@ class _LikedPostNotificationWidgetState
                                 .override(
                                   fontFamily: 'Outfit',
                                   fontSize: 16.0,
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
                                 ),
                           ),
@@ -126,6 +127,7 @@ class _LikedPostNotificationWidgetState
                                   .override(
                                     fontFamily: 'Outfit',
                                     fontSize: 16.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w300,
                                   ),
                             ),

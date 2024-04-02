@@ -1,5 +1,5 @@
 import '/backend/backend.dart';
-import '/components/app_bar/app_bar_widget.dart';
+import '/components/back_app_bar/back_app_bar_widget.dart';
 import '/components/drawer_data/drawer_data_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -89,15 +89,37 @@ class _PostpartumCommunityPageWidgetState
             ),
           ),
         ),
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(100.0),
+          child: AppBar(
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            iconTheme:
+                IconThemeData(color: FlutterFlowTheme.of(context).secondary),
+            automaticallyImplyLeading: false,
+            actions: const [],
+            flexibleSpace: FlexibleSpaceBar(
+              title: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  wrapWithModel(
+                    model: _model.backAppBarModel,
+                    updateCallback: () => setState(() {}),
+                    child: const BackAppBarWidget(),
+                  ),
+                ],
+              ),
+              centerTitle: true,
+              expandedTitleScale: 1.0,
+            ),
+            elevation: 0.0,
+          ),
+        ),
         body: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            wrapWithModel(
-              model: _model.appBarModel,
-              updateCallback: () => setState(() {}),
-              child: const AppBarWidget(),
-            ),
             Expanded(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -135,6 +157,7 @@ class _PostpartumCommunityPageWidgetState
                                             .override(
                                               fontFamily: 'Outfit',
                                               fontSize: 26.0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.bold,
                                             ),
                                       ),
@@ -152,6 +175,7 @@ class _PostpartumCommunityPageWidgetState
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
                                             fontSize: 16.0,
+                                            letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),

@@ -54,14 +54,20 @@ class _EmptyListWidgetState extends State<EmptyListWidget> {
             padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
             child: Text(
               'No Lessons',
-              style: FlutterFlowTheme.of(context).headlineMedium,
+              style: FlutterFlowTheme.of(context).headlineMedium.override(
+                    fontFamily: 'Outfit',
+                    letterSpacing: 0.0,
+                  ),
             ),
           ),
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
             child: Text(
               'It seems that author has not added new lessons yet',
-              style: FlutterFlowTheme.of(context).labelMedium,
+              style: FlutterFlowTheme.of(context).labelMedium.override(
+                    fontFamily: 'Outfit',
+                    letterSpacing: 0.0,
+                  ),
             ),
           ),
         ],

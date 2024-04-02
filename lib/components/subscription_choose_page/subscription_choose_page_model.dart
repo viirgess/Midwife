@@ -11,8 +11,8 @@ class SubscriptionChoosePageModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-
-  /// Initialization and disposal methods.
+  // Stores action output result for [Stripe Payment] action in Button widget.
+  String? paymentId;
 
   @override
   void initState(BuildContext context) {}
@@ -21,8 +21,4 @@ class SubscriptionChoosePageModel
   void dispose() {
     unfocusNode.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

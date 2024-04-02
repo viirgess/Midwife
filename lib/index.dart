@@ -7,8 +7,8 @@ export '/auth/reset_password/reset_password_widget.dart'
 export '/pages/a_i_page/a_i_page_widget.dart' show AIPageWidget;
 export '/pages/pregnancy_calendar_page/pregnancy_calendar_page_widget.dart'
     show PregnancyCalendarPageWidget;
-export '/pregnancy_community/pages_community/pregnancy_community_page/pregnancy_community_page_widget.dart'
-    show PregnancyCommunityPageWidget;
+export '/pregnancy_community/pages_community/community_page/community_page_widget.dart'
+    show CommunityPageWidget;
 export '/pregnancy_community/pages_community/postpartum_community_page/postpartum_community_page_widget.dart'
     show PostpartumCommunityPageWidget;
 export '/chat/private_chats_page/private_chats_page_widget.dart'
@@ -37,5 +37,5 @@ export '/payment/payment_widget.dart' show PaymentWidget;
 export '/courses/course_page/course_page_widget.dart' show CoursePageWidget;
 export '/courses/course_editor_page/course_editor_page_widget.dart'
     show CourseEditorPageWidget;
-export '/subscription_choose_page/subscription_choose_page_widget.dart'
+export '/components/subscription_choose_page/subscription_choose_page_widget.dart'
     show SubscriptionChoosePageWidget;

@@ -3,15 +3,14 @@ import 'drawer_data_widget.dart' show DrawerDataWidget;
 import 'package:flutter/material.dart';
 
 class DrawerDataModel extends FlutterFlowModel<DrawerDataWidget> {
-  /// Initialization and disposal methods.
+  ///  State fields for stateful widgets in this component.
+
+  // State field(s) for Switch widget.
+  bool? switchValue;
 
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {}
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

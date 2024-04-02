@@ -1,7 +1,9 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'drawer_data_model.dart';
 export 'drawer_data_model.dart';
 
@@ -38,6 +40,8 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -103,6 +107,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                             fontFamily: 'Outfit',
                             color: FlutterFlowTheme.of(context).primary,
                             fontSize: 18.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
@@ -140,6 +145,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                         fontFamily: 'Outfit',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 16.0,
+                        letterSpacing: 0.0,
                       ),
                 ),
               ),
@@ -169,67 +175,77 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                         fontFamily: 'Outfit',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 16.0,
+                        letterSpacing: 0.0,
                       ),
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
-              child: InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  context.goNamed(
-                    'PregnancyCommunityPage',
-                    extra: <String, dynamic>{
-                      kTransitionInfoKey: const TransitionInfo(
-                        hasTransition: true,
-                        transitionType: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
+            Builder(
+              builder: (context) {
+                if (FFAppState().isPregnant) {
+                  return Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.goNamed(
+                          'CommunityPage',
+                          extra: <String, dynamic>{
+                            kTransitionInfoKey: const TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.fade,
+                              duration: Duration(milliseconds: 0),
+                            ),
+                          },
+                        );
+                      },
+                      child: Text(
+                        'Zwangerschapscommunity',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Outfit',
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              fontSize: 16.0,
+                              letterSpacing: 0.0,
+                            ),
                       ),
-                    },
+                    ),
                   );
-                },
-                child: Text(
-                  'Zwangerschapscommunity',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        fontSize: 16.0,
+                } else {
+                  return Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.goNamed(
+                          'PostpartumCommunityPage',
+                          extra: <String, dynamic>{
+                            kTransitionInfoKey: const TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.fade,
+                              duration: Duration(milliseconds: 0),
+                            ),
+                          },
+                        );
+                      },
+                      child: Text(
+                        'Post Partum Community',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Outfit',
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              fontSize: 16.0,
+                              letterSpacing: 0.0,
+                            ),
                       ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
-              child: InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  context.goNamed(
-                    'PostpartumCommunityPage',
-                    extra: <String, dynamic>{
-                      kTransitionInfoKey: const TransitionInfo(
-                        hasTransition: true,
-                        transitionType: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                      ),
-                    },
+                    ),
                   );
-                },
-                child: Text(
-                  'Post Partum Community',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        fontSize: 16.0,
-                      ),
-                ),
-              ),
+                }
+              },
             ),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
@@ -256,6 +272,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                         fontFamily: 'Outfit',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 16.0,
+                        letterSpacing: 0.0,
                       ),
                 ),
               ),
@@ -285,35 +302,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                         fontFamily: 'Outfit',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 16.0,
-                      ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
-              child: InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  context.goNamed(
-                    'FreeEbookPage',
-                    extra: <String, dynamic>{
-                      kTransitionInfoKey: const TransitionInfo(
-                        hasTransition: true,
-                        transitionType: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                      ),
-                    },
-                  );
-                },
-                child: Text(
-                  'Gratis ebooks',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        fontSize: 16.0,
+                        letterSpacing: 0.0,
                       ),
                 ),
               ),
@@ -343,6 +332,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                         fontFamily: 'Outfit',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 16.0,
+                        letterSpacing: 0.0,
                       ),
                 ),
               ),
@@ -372,6 +362,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                         fontFamily: 'Outfit',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 16.0,
+                        letterSpacing: 0.0,
                       ),
                 ),
               ),
@@ -401,6 +392,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                         fontFamily: 'Outfit',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 16.0,
+                        letterSpacing: 0.0,
                       ),
                 ),
               ),
@@ -430,6 +422,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                         fontFamily: 'Outfit',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 16.0,
+                        letterSpacing: 0.0,
                       ),
                 ),
               ),
@@ -459,8 +452,85 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                         fontFamily: 'Outfit',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 16.0,
+                        letterSpacing: 0.0,
                       ),
                 ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: AuthUserStreamWidget(
+                      builder: (context) => Switch.adaptive(
+                        value: _model.switchValue ??= valueOrDefault<bool>(
+                            currentUserDocument?.isPregnant, false),
+                        onChanged: (newValue) async {
+                          setState(() => _model.switchValue = newValue);
+                          if (newValue) {
+                            setState(() {
+                              FFAppState().isPregnant = true;
+                            });
+
+                            await currentUserReference!
+                                .update(createUsersRecordData(
+                              isPregnant: true,
+                            ));
+                          } else {
+                            setState(() {
+                              FFAppState().isPregnant = false;
+                            });
+
+                            await currentUserReference!
+                                .update(createUsersRecordData(
+                              isPregnant: false,
+                            ));
+                          }
+                        },
+                        activeColor: FlutterFlowTheme.of(context).secondary,
+                        activeTrackColor:
+                            FlutterFlowTheme.of(context).primaryText,
+                        inactiveTrackColor:
+                            FlutterFlowTheme.of(context).primaryText,
+                        inactiveThumbColor:
+                            FlutterFlowTheme.of(context).secondaryText,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                    child: Builder(
+                      builder: (context) {
+                        if (_model.switchValue ?? false) {
+                          return Text(
+                            'Pregnancy',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Outfit',
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
+                                ),
+                          );
+                        } else {
+                          return Text(
+                            'Post Pregnancy',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Outfit',
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
+                                ),
+                          );
+                        }
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
             Padding(
@@ -501,6 +571,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                             fontFamily: 'Outfit',
                             color: FlutterFlowTheme.of(context).primary,
                             fontSize: 18.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
@@ -541,6 +612,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                             fontFamily: 'Outfit',
                             color: FlutterFlowTheme.of(context).primary,
                             fontSize: 18.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
                           ),
                     ),

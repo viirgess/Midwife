@@ -11,8 +11,6 @@ class CommunityForumPostPregnancyModel
   // Model for CommunityPostPregnancy component.
   late CommunityPostPregnancyModel communityPostPregnancyModel;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     communityPostPregnancyModel =
@@ -23,8 +21,4 @@ class CommunityForumPostPregnancyModel
   void dispose() {
     communityPostPregnancyModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

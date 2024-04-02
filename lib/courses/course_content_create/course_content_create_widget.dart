@@ -120,14 +120,20 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                             ));
                           },
                         ),
+                        autofocus: false,
                         obscureText: false,
                         decoration: InputDecoration(
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Outfit',
                                     fontSize: 18.0,
+                                    letterSpacing: 0.0,
                                   ),
-                          hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                          hintStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Outfit',
+                                    letterSpacing: 0.0,
+                                  ),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
                               color: FlutterFlowTheme.of(context).accent1,
@@ -161,8 +167,10 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                               fontFamily: 'Outfit',
                               color: FlutterFlowTheme.of(context).accent1,
                               fontSize: 24.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
+                        minLines: null,
                         validator: _model.textFieldSectionControllerValidator
                             .asValidator(context),
                       ),
@@ -231,6 +239,7 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                                               .override(
                                                 fontFamily: 'Outfit',
                                                 fontSize: 20.0,
+                                                letterSpacing: 0.0,
                                               ),
                                         ),
                                       ),
@@ -283,6 +292,7 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                                                         .override(
                                                           fontFamily: 'Outfit',
                                                           fontSize: 20.0,
+                                                          letterSpacing: 0.0,
                                                         ),
                                               ),
                                             ),
@@ -465,12 +475,21 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                                   controller:
                                       _model.textFieldAddLessonController,
                                   focusNode: _model.textFieldAddLessonFocusNode,
+                                  autofocus: false,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium,
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'Outfit',
+                                          letterSpacing: 0.0,
+                                        ),
                                     hintStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium,
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'Outfit',
+                                          letterSpacing: 0.0,
+                                        ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: FlutterFlowTheme.of(context)
@@ -509,7 +528,9 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                                       .override(
                                         fontFamily: 'Outfit',
                                         fontSize: 20.0,
+                                        letterSpacing: 0.0,
                                       ),
+                                  minLines: null,
                                   validator: _model
                                       .textFieldAddLessonControllerValidator
                                       .asValidator(context),
@@ -658,6 +679,7 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                                 .override(
                                   fontFamily: 'Outfit',
                                   color: Colors.white,
+                                  letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
                             borderSide: const BorderSide(
