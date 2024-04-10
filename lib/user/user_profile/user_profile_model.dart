@@ -1,8 +1,20 @@
-import '/components/app_bar/app_bar_widget.dart';
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
+import '/backend/firebase_storage/storage.dart';
 import '/components/drawer_data/drawer_data_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
+import '/notifications/notification_modal_sheet/notification_modal_sheet_widget.dart';
 import 'user_profile_widget.dart' show UserProfileWidget;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 class UserProfileModel extends FlutterFlowModel<UserProfileWidget> {
   ///  State fields for stateful widgets in this page.
@@ -26,39 +38,12 @@ class UserProfileModel extends FlutterFlowModel<UserProfileWidget> {
   TextEditingController? textFieldEmailController;
   String? Function(BuildContext, String?)? textFieldEmailControllerValidator;
   DateTime? datePicked;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
-  TextEditingController? textController3;
-  late bool passwordVisibility1;
-  String? Function(BuildContext, String?)? textController3Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode4;
-  TextEditingController? textController4;
-  late bool passwordVisibility2;
-  String? Function(BuildContext, String?)? textController4Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode5;
-  TextEditingController? textController5;
-  late bool passwordVisibility3;
-  String? Function(BuildContext, String?)? textController5Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode6;
-  TextEditingController? textController6;
-  late bool passwordVisibility4;
-  String? Function(BuildContext, String?)? textController6Validator;
   // Model for drawerData component.
   late DrawerDataModel drawerDataModel;
-  // Model for AppBar component.
-  late AppBarModel appBarModel;
 
   @override
   void initState(BuildContext context) {
-    passwordVisibility1 = false;
-    passwordVisibility2 = false;
-    passwordVisibility3 = false;
-    passwordVisibility4 = false;
     drawerDataModel = createModel(context, () => DrawerDataModel());
-    appBarModel = createModel(context, () => AppBarModel());
   }
 
   @override
@@ -73,19 +58,6 @@ class UserProfileModel extends FlutterFlowModel<UserProfileWidget> {
     textFieldEmailFocusNode?.dispose();
     textFieldEmailController?.dispose();
 
-    textFieldFocusNode3?.dispose();
-    textController3?.dispose();
-
-    textFieldFocusNode4?.dispose();
-    textController4?.dispose();
-
-    textFieldFocusNode5?.dispose();
-    textController5?.dispose();
-
-    textFieldFocusNode6?.dispose();
-    textController6?.dispose();
-
     drawerDataModel.dispose();
-    appBarModel.dispose();
   }
 }

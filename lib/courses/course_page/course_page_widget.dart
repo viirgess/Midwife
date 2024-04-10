@@ -1,12 +1,17 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/courses/empty_list/empty_list_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'course_page_model.dart';
 export 'course_page_model.dart';
 
@@ -73,7 +78,7 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             appBar: PreferredSize(
-              preferredSize: const Size.fromHeight(100.0),
+              preferredSize: Size.fromHeight(100.0),
               child: AppBar(
                 backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
                 automaticallyImplyLeading: false,
@@ -91,7 +96,7 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
                     context.pop();
                   },
                 ),
-                actions: const [],
+                actions: [],
                 flexibleSpace: FlexibleSpaceBar(
                   title: Text(
                     valueOrDefault<String>(
@@ -114,7 +119,7 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
@@ -129,7 +134,7 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
                         allowPlaybackSpeedMenu: false,
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 10.0, 15.0, 10.0),
                         child: Text(
                           valueOrDefault<String>(
@@ -172,7 +177,7 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
                           List<SectionsRecord> listViewSectionsRecordList =
                               snapshot.data!;
                           if (listViewSectionsRecordList.isEmpty) {
-                            return const EmptyListWidget();
+                            return EmptyListWidget();
                           }
                           return ListView.builder(
                             padding: EdgeInsets.zero,
@@ -184,7 +189,7 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
                               final listViewSectionsRecord =
                                   listViewSectionsRecordList[listViewIndex];
                               return Container(
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Container(
                                   width: double.infinity,
                                   color: Colors.white,
@@ -192,7 +197,7 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
                                     initialExpanded: true,
                                     child: ExpandablePanel(
                                       header: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             15.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           listViewSectionsRecord.title,
@@ -246,7 +251,7 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
                                               snapshot.data!;
                                           if (listViewLessonsRecordList
                                               .isEmpty) {
-                                            return const EmptyListWidget();
+                                            return EmptyListWidget();
                                           }
                                           return ListView.builder(
                                             padding: EdgeInsets.zero,
@@ -261,7 +266,7 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
                                                   listViewLessonsRecordList[
                                                       listViewIndex];
                                               return Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 10.0),
                                                 child: InkWell(
@@ -335,6 +340,12 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
                                                               ));
                                                             }
                                                           },
+                                                          side: BorderSide(
+                                                            width: 2,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                          ),
                                                           activeColor:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -347,7 +358,7 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     15.0,
                                                                     0.0,
@@ -372,7 +383,7 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     10.0,
                                                                     0.0,
@@ -395,7 +406,7 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     10.0,
                                                                     0.0,
@@ -423,7 +434,7 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
                                           );
                                         },
                                       ),
-                                      theme: const ExpandableThemeData(
+                                      theme: ExpandableThemeData(
                                         tapHeaderToExpand: true,
                                         tapBodyToExpand: false,
                                         tapBodyToCollapse: false,

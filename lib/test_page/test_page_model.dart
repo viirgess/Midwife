@@ -1,8 +1,13 @@
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/pregnancy_community/components_pregnancy_community/community_forum_post/community_forum_post_widget.dart';
 import 'test_page_widget.dart' show TestPageWidget;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 
 class TestPageModel extends FlutterFlowModel<TestPageWidget> {
   ///  State fields for stateful widgets in this page.
@@ -21,9 +26,7 @@ class TestPageModel extends FlutterFlowModel<TestPageWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    for (var s in listViewStreamSubscriptions) {
-      s?.cancel();
-    }
+    listViewStreamSubscriptions.forEach((s) => s?.cancel());
     listViewPagingController?.dispose();
   }
 

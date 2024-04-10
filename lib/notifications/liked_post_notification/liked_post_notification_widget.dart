@@ -1,6 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'liked_post_notification_model.dart';
 export 'liked_post_notification_model.dart';
 
@@ -51,16 +54,16 @@ class _LikedPostNotificationWidgetState
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: const Color(0xFFF0F0F0),
+        color: Color(0xFFF0F0F0),
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+        padding: EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Align(
-              alignment: const AlignmentDirectional(1.0, 0.0),
+              alignment: AlignmentDirectional(1.0, 0.0),
               child: InkWell(
                 splashColor: Colors.transparent,
                 focusColor: Colors.transparent,
@@ -88,7 +91,7 @@ class _LikedPostNotificationWidgetState
                       width: 80.0,
                       height: 80.0,
                       clipBehavior: Clip.antiAlias,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         shape: BoxShape.circle,
                       ),
                       child: Image.network(
@@ -98,7 +101,7 @@ class _LikedPostNotificationWidgetState
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,7 +121,7 @@ class _LikedPostNotificationWidgetState
                                 ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 16.0, 0.0, 0.0),
                             child: Text(
                               'Liked your post!',
@@ -138,10 +141,10 @@ class _LikedPostNotificationWidgetState
                   ],
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 1.0),
+                  alignment: AlignmentDirectional(0.0, 1.0),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                     child: Icon(
                       Icons.favorite_rounded,
                       color: FlutterFlowTheme.of(context).accent2,

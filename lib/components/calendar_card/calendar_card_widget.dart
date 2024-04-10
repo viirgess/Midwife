@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'calendar_card_model.dart';
 export 'calendar_card_model.dart';
 
@@ -40,22 +42,22 @@ class _CalendarCardWidgetState extends State<CalendarCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 18.0, 18.0),
+      padding: EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 18.0, 18.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: const Color(0xFFF0F0F0),
+          color: Color(0xFFF0F0F0),
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(18.0, 18.0, 18.0, 18.0),
+          padding: EdgeInsetsDirectional.fromSTEB(18.0, 18.0, 18.0, 18.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                 child: Text(
                   'Jouw kalender',
                   textAlign: TextAlign.start,
@@ -68,7 +70,7 @@ class _CalendarCardWidgetState extends State<CalendarCardWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                 child: Text(
                   'Je bent nu in week:',
                   textAlign: TextAlign.start,
@@ -81,7 +83,7 @@ class _CalendarCardWidgetState extends State<CalendarCardWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                 child: AuthUserStreamWidget(
                   builder: (context) => Text(
                     functions
@@ -98,7 +100,7 @@ class _CalendarCardWidgetState extends State<CalendarCardWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                 child: Text(
                   'Nog:',
                   textAlign: TextAlign.start,
@@ -111,7 +113,7 @@ class _CalendarCardWidgetState extends State<CalendarCardWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                 child: AuthUserStreamWidget(
                   builder: (context) => Text(
                     '${functions.calculateDay(currentUserDocument?.calculatedDate)} dagen',
@@ -122,28 +124,6 @@ class _CalendarCardWidgetState extends State<CalendarCardWidget> {
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.normal,
                         ),
-                  ),
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                  border: Border.all(
-                    color: FlutterFlowTheme.of(context).secondaryText,
-                  ),
-                ),
-                child: Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(6.0, 12.0, 50.0, 12.0),
-                  child: AuthUserStreamWidget(
-                    builder: (context) => Text(
-                      dateTimeFormat(
-                          'd/M/y', currentUserDocument!.calculatedDate!),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
-                            letterSpacing: 0.0,
-                          ),
-                    ),
                   ),
                 ),
               ),

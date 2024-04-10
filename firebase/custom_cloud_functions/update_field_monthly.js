@@ -4,9 +4,6 @@ const admin = require("firebase-admin");
 
 exports.updateFieldMonthly = functions
   .region("europe-west3")
-  .runWith({
-    memory: "128MB",
-  })
   .https.onCall(async (data, context) => {
     if (!context.auth.uid) {
       return;

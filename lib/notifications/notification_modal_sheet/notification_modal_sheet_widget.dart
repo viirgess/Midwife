@@ -11,6 +11,8 @@ import '/notifications/liked_post_notification/liked_post_notification_widget.da
 import '/notifications/new_blog_is_posted_notification/new_blog_is_posted_notification_widget.dart';
 import '/notifications/new_message_received/new_message_received_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'notification_modal_sheet_model.dart';
 export 'notification_modal_sheet_model.dart';
 
@@ -50,11 +52,11 @@ class _NotificationModalSheetWidgetState
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, -1.0),
+      alignment: AlignmentDirectional(0.0, -1.0),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
+        padding: EdgeInsetsDirectional.fromSTEB(24.0, 56.0, 24.0, 24.0),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 450),
+          duration: Duration(milliseconds: 450),
           curve: Curves.easeIn,
           width: double.infinity,
           decoration: BoxDecoration(
@@ -62,7 +64,7 @@ class _NotificationModalSheetWidgetState
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+            padding: EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -72,7 +74,7 @@ class _NotificationModalSheetWidgetState
                   children: [
                     Flexible(
                       child: Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Text(
                           'Notification',
                           style:
@@ -128,7 +130,7 @@ class _NotificationModalSheetWidgetState
                       List<NotificationsRecord>
                           listViewNotificationsRecordList = snapshot.data!;
                       if (listViewNotificationsRecordList.isEmpty) {
-                        return const EmptyNotificationsWidget();
+                        return EmptyNotificationsWidget();
                       }
                       return ListView.builder(
                         padding: EdgeInsets.zero,
@@ -139,14 +141,14 @@ class _NotificationModalSheetWidgetState
                           final listViewNotificationsRecord =
                               listViewNotificationsRecordList[listViewIndex];
                           return Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 if (listViewNotificationsRecord.friendRequest ==
                                     true)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 12.0),
                                     child: FriendRequestNotificationWidget(
                                       key: Key(
@@ -165,7 +167,7 @@ class _NotificationModalSheetWidgetState
                                         .friendRequestAccepted ==
                                     true)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 12.0),
                                     child: FriendAcceptedNotificationWidget(
                                       key: Key(
@@ -185,7 +187,7 @@ class _NotificationModalSheetWidgetState
                                         .newBlogIsPosted ==
                                     true)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 12.0),
                                     child: NewBlogIsPostedNotificationWidget(
                                       key: Key(
@@ -200,7 +202,7 @@ class _NotificationModalSheetWidgetState
                                         .receivedMessage ==
                                     true)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 12.0),
                                     child: NewMessageReceivedWidget(
                                       key: Key(
@@ -213,7 +215,7 @@ class _NotificationModalSheetWidgetState
                                         .someoneHasCommented ==
                                     true)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 12.0),
                                     child: CommentOnPostInCommunityWidget(
                                       key: Key(
@@ -226,7 +228,7 @@ class _NotificationModalSheetWidgetState
                                         .someoneLikedPost ==
                                     true)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 12.0),
                                     child: LikedPostNotificationWidget(
                                       key: Key(
@@ -242,7 +244,7 @@ class _NotificationModalSheetWidgetState
                                 if (listViewNotificationsRecord.creditInfo ==
                                     true)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 12.0),
                                     child: CreditInfoNotificationWidget(
                                       key: Key(

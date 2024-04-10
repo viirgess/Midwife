@@ -7,7 +7,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'public_user_profile_model.dart';
 export 'public_user_profile_model.dart';
@@ -75,87 +79,78 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            drawer: SizedBox(
+            drawer: Container(
               width: MediaQuery.sizeOf(context).width * 0.66,
               child: Drawer(
                 child: WebViewAware(
                   child: wrapWithModel(
                     model: _model.drawerDataModel,
                     updateCallback: () => setState(() {}),
-                    child: const DrawerDataWidget(),
+                    child: DrawerDataWidget(),
                   ),
                 ),
               ),
             ),
-            appBar: PreferredSize(
-              preferredSize: const Size.fromHeight(100.0),
-              child: AppBar(
-                backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-                automaticallyImplyLeading: false,
-                leading: Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: FlutterFlowIconButton(
-                    borderColor: Colors.transparent,
-                    borderRadius: 30.0,
-                    borderWidth: 1.0,
-                    buttonSize: 60.0,
-                    icon: Icon(
-                      Icons.arrow_back_rounded,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      size: 30.0,
-                    ),
-                    onPressed: () async {
-                      context.pop();
-                    },
-                  ),
+            appBar: AppBar(
+              backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+              automaticallyImplyLeading: false,
+              leading: FlutterFlowIconButton(
+                borderColor: Colors.transparent,
+                borderRadius: 30.0,
+                borderWidth: 1.0,
+                buttonSize: 60.0,
+                icon: Icon(
+                  Icons.arrow_back_rounded,
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  size: 30.0,
                 ),
-                actions: const [],
-                flexibleSpace: FlexibleSpaceBar(
-                  title: Text(
-                    'Profiel',
-                    style: FlutterFlowTheme.of(context).headlineMedium.override(
-                          fontFamily: 'Outfit',
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          fontSize: 26.0,
-                          letterSpacing: 0.0,
-                        ),
-                  ),
-                  centerTitle: true,
-                  expandedTitleScale: 1.0,
-                ),
-                elevation: 0.0,
+                onPressed: () async {
+                  context.pop();
+                },
               ),
+              title: Text(
+                'Profiel',
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      fontFamily: 'Outfit',
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      fontSize: 26.0,
+                      letterSpacing: 0.0,
+                    ),
+              ),
+              actions: [],
+              centerTitle: true,
+              elevation: 0.0,
             ),
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 65.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
-                          18.0, 18.0, 18.0, 18.0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 18.0, 18.0),
                       child: ListView(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 50.0, 0.0, 0.0),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 32.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 18.0, 0.0),
                                   child: Container(
                                     width: 120.0,
                                     height: 120.0,
                                     clipBehavior: Clip.antiAlias,
-                                    decoration: const BoxDecoration(
+                                    decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                     ),
                                     child: Image.network(
@@ -168,26 +163,38 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      '${publicUserProfileUsersRecord.firstName} ${publicUserProfileUsersRecord.lastName}',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Outfit',
-                                            fontSize: 18.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.bold,
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Text(
+                                          '${publicUserProfileUsersRecord.firstName} ${publicUserProfileUsersRecord.lastName}',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Outfit',
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                        if (publicUserProfileUsersRecord
+                                            .isAdmin)
+                                          Icon(
+                                            Icons.verified,
+                                            color: Color(0xFF52A7FB),
+                                            size: 18.0,
                                           ),
+                                      ],
                                     ),
                                     if (publicUserProfileUsersRecord
                                             .calculatedDate !=
                                         null)
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(-1.0, 0.0),
+                                            AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 0.0, 0.0),
                                           child: Text(
                                             '${valueOrDefault<String>(
@@ -197,7 +204,7 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                                           .calculatedDate)
                                                   .toString(),
                                               '0',
-                                            )}th Week of Pregnancy',
+                                            )}e van de zwangerschapp',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -221,7 +228,7 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                         publicUserProfileUsersRecord.reference)
                       Flexible(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 8.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -233,39 +240,145 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    FFButtonWidget(
-                                      onPressed: () {
-                                        print('Button pressed ...');
-                                      },
-                                      text: 'Stuur bericht',
-                                      options: FFButtonOptions(
-                                        width:
-                                            MediaQuery.sizeOf(context).width *
-                                                0.5,
-                                        height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 24.0, 0.0),
-                                        iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Outfit',
-                                              color: Colors.white,
-                                              letterSpacing: 0.0,
-                                            ),
-                                        elevation: 3.0,
-                                        borderSide: const BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
+                                    if (publicUserProfileUsersRecord.userFriends
+                                            .contains(currentUserReference) ==
+                                        false)
+                                      FFButtonWidget(
+                                        onPressed: () async {
+                                          _model.chatExists2 =
+                                              await queryChatsRecordOnce(
+                                            queryBuilder: (chatsRecord) =>
+                                                chatsRecord
+                                                    .where(
+                                                      'user_a',
+                                                      isEqualTo:
+                                                          currentUserReference,
+                                                    )
+                                                    .where(
+                                                      'user_b',
+                                                      isEqualTo:
+                                                          publicUserProfileUsersRecord
+                                                              .reference,
+                                                    ),
+                                            singleRecord: true,
+                                          ).then((s) => s.firstOrNull);
+                                          if (_model.chatExists2?.reference !=
+                                              null) {
+                                            context.pushNamed(
+                                              'chatMessages',
+                                              queryParameters: {
+                                                'chatUser': serializeParam(
+                                                  _model.chatExists2?.reference,
+                                                  ParamType.DocumentReference,
+                                                ),
+                                                'userName': serializeParam(
+                                                  publicUserProfileUsersRecord
+                                                      .displayName,
+                                                  ParamType.String,
+                                                ),
+                                                'userRef': serializeParam(
+                                                  publicUserProfileUsersRecord
+                                                      .reference,
+                                                  ParamType.DocumentReference,
+                                                ),
+                                                'userimage': serializeParam(
+                                                  publicUserProfileUsersRecord
+                                                      .photoUrl,
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                            );
+                                          } else {
+                                            var chatsRecordReference =
+                                                ChatsRecord.collection.doc();
+                                            await chatsRecordReference
+                                                .set(createChatsRecordData(
+                                              user: currentUserReference,
+                                              userA: currentUserReference,
+                                              userB:
+                                                  publicUserProfileUsersRecord
+                                                      .reference,
+                                              image:
+                                                  publicUserProfileUsersRecord
+                                                      .photoUrl,
+                                            ));
+                                            _model.newChat2 =
+                                                ChatsRecord.getDocumentFromData(
+                                                    createChatsRecordData(
+                                                      user:
+                                                          currentUserReference,
+                                                      userA:
+                                                          currentUserReference,
+                                                      userB:
+                                                          publicUserProfileUsersRecord
+                                                              .reference,
+                                                      image:
+                                                          publicUserProfileUsersRecord
+                                                              .photoUrl,
+                                                    ),
+                                                    chatsRecordReference);
+
+                                            context.pushNamed(
+                                              'chatMessages',
+                                              queryParameters: {
+                                                'chatUser': serializeParam(
+                                                  _model.newChat2?.reference,
+                                                  ParamType.DocumentReference,
+                                                ),
+                                                'userName': serializeParam(
+                                                  publicUserProfileUsersRecord
+                                                      .displayName,
+                                                  ParamType.String,
+                                                ),
+                                                'userRef': serializeParam(
+                                                  publicUserProfileUsersRecord
+                                                      .reference,
+                                                  ParamType.DocumentReference,
+                                                ),
+                                                'userimage': serializeParam(
+                                                  publicUserProfileUsersRecord
+                                                      .photoUrl,
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                            );
+                                          }
+
+                                          Navigator.pop(context);
+
+                                          setState(() {});
+                                        },
+                                        text: 'Stuur bericht',
+                                        options: FFButtonOptions(
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.5,
+                                          height: 40.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 0.0, 24.0, 0.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Outfit',
+                                                    color: Colors.white,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          elevation: 3.0,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
                                       ),
-                                    ),
                                   ],
                                 ),
                               ),
@@ -279,7 +392,7 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                         builder: (context) {
                                           if ((currentUserDocument
                                                       ?.friendRequestsPending
-                                                      .toList() ??
+                                                      ?.toList() ??
                                                   [])
                                               .contains(
                                                   publicUserProfileUsersRecord
@@ -287,7 +400,7 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                             return Visibility(
                                               visible: (currentUserDocument
                                                               ?.friendRequestsPending
-                                                              .toList() ??
+                                                              ?.toList() ??
                                                           [])
                                                       .contains(
                                                           publicUserProfileUsersRecord
@@ -377,6 +490,10 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                                             },
                                                           ),
                                                         });
+                                                        setState(() {
+                                                          _model.requestHasSent =
+                                                              false;
+                                                        });
                                                       },
                                                       child: Row(
                                                         mainAxisSize:
@@ -390,7 +507,7 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                                             size: 30.0,
                                                           ),
                                                           Text(
-                                                            'Request pending',
+                                                            'In behandeling',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
@@ -415,7 +532,7 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                               visible: () {
                                                 if ((currentUserDocument
                                                                 ?.userFriends
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .contains(
                                                             publicUserProfileUsersRecord
@@ -424,7 +541,7 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                                   return false;
                                                 } else if ((currentUserDocument
                                                                 ?.friendRequestsPending
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .contains(
                                                             publicUserProfileUsersRecord
@@ -453,6 +570,10 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                                       userPhotoUrl:
                                                           currentUserPhoto,
                                                     ));
+                                                    setState(() {
+                                                      _model.requestHasSent =
+                                                          true;
+                                                    });
                                                     triggerPushNotification(
                                                       notificationTitle:
                                                           'New Friend Request',
@@ -491,11 +612,11 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                                         0.5,
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(24.0, 0.0,
                                                                 24.0, 0.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -510,7 +631,7 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                                     elevation: 3.0,
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Colors.transparent,
                                                       width: 1.0,
                                                     ),
@@ -528,7 +649,7 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                   ],
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 8.0)),
+                            ].divide(SizedBox(width: 8.0)),
                           ),
                         ),
                       ),

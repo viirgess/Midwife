@@ -1,15 +1,16 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
-import '/backend/custom_cloud_functions/custom_cloud_function_response_manager.dart';
-import '/components/back_app_bar/back_app_bar_widget.dart';
 import '/components/drawer_data/drawer_data_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/notifications/notification_modal_sheet/notification_modal_sheet_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_functions/cloud_functions.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -63,866 +64,569 @@ class _AIPageWidgetState extends State<AIPageWidget> {
             child: wrapWithModel(
               model: _model.drawerDataModel,
               updateCallback: () => setState(() {}),
-              child: const DrawerDataWidget(),
+              child: DrawerDataWidget(),
             ),
           ),
         ),
-        body: NestedScrollView(
-          floatHeaderSlivers: true,
-          headerSliverBuilder: (context, _) => [
-            SliverAppBar(
-              expandedHeight: 100.0,
-              collapsedHeight: 100.0,
-              pinned: false,
-              floating: false,
-              backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-              iconTheme:
-                  IconThemeData(color: FlutterFlowTheme.of(context).secondary),
-              automaticallyImplyLeading: false,
-              actions: const [],
-              flexibleSpace: FlexibleSpaceBar(
-                title: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    wrapWithModel(
-                      model: _model.backAppBarModel,
-                      updateCallback: () => setState(() {}),
-                      child: const BackAppBarWidget(),
+        appBar: AppBar(
+          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: Icon(
+              Icons.arrow_back_rounded,
+              color: FlutterFlowTheme.of(context).primaryText,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              context.pushNamed('MainPage');
+            },
+          ),
+          title: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Expanded(
+                child: Align(
+                  alignment: AlignmentDirectional(1.0, 0.0),
+                  child: InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      await showModalBottomSheet(
+                        isScrollControlled: true,
+                        backgroundColor: FlutterFlowTheme.of(context).alternate,
+                        barrierColor: Color(0x19C67AF5),
+                        context: context,
+                        builder: (context) {
+                          return WebViewAware(
+                            child: GestureDetector(
+                              onTap: () => _model.unfocusNode.canRequestFocus
+                                  ? FocusScope.of(context)
+                                      .requestFocus(_model.unfocusNode)
+                                  : FocusScope.of(context).unfocus(),
+                              child: Padding(
+                                padding: MediaQuery.viewInsetsOf(context),
+                                child: NotificationModalSheetWidget(),
+                              ),
+                            ),
+                          );
+                        },
+                      ).then((value) => safeSetState(() {}));
+                    },
+                    child: Icon(
+                      Icons.notifications_none,
+                      color: FlutterFlowTheme.of(context).primary,
+                      size: 32.0,
                     ),
-                  ],
+                  ),
                 ),
-                centerTitle: true,
-                expandedTitleScale: 1.0,
               ),
-              elevation: 0.0,
-            )
-          ],
-          body: Builder(
-            builder: (context) {
-              return Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 64.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
+            ],
+          ),
+          actions: [],
+          centerTitle: true,
+          elevation: 0.0,
+        ),
+        body: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 64.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Expanded(
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
                   children: [
-                    Expanded(
-                      child: ListView(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        controller: _model.listViewController1,
+                    Align(
+                      alignment: AlignmentDirectional(-1.0, 0.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                32.0, 0.0, 32.0, 0.0),
                             child: Column(
-                              mainAxisSize: MainAxisSize.min,
+                              mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      32.0, 0.0, 32.0, 0.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 8.0),
-                                        child: Text(
-                                          'Mama Mentor AI',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Outfit',
-                                                fontSize: 30.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
-                                              ),
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 8.0),
+                                  child: Text(
+                                    'Mama Mentor AI',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Outfit',
+                                          fontSize: 30.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
                                         ),
+                                  ),
+                                ),
+                                Container(
+                                  width: 200.0,
+                                  decoration: BoxDecoration(),
+                                ),
+                                Container(
+                                  width: 300.0,
+                                  decoration: BoxDecoration(),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 12.0),
+                                    child: Text(
+                                      'Je digitale mentor voor elke stap van de zwangerschap',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Outfit',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            fontSize: 16.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                                if (false)
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFF0F0F0),
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          24.0, 12.0, 24.0, 12.0),
+                                      child: Text(
+                                        _model.apiResultofu != null
+                                            ? getJsonField(
+                                                (_model.apiResultofu
+                                                        ?.jsonBody ??
+                                                    ''),
+                                                r'''$.choices[:].text''',
+                                              ).toString()
+                                            : 'Typ hier je vraag met vermelding van je huidige zwangerschapsweek (bv. \'Week 15: Mag ik nog joggen?',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Outfit',
+                                              color: () {
+                                                if (_model.apiResultofu !=
+                                                    null) {
+                                                  return FlutterFlowTheme.of(
+                                                          context)
+                                                      .accent1;
+                                                } else if (_model
+                                                        .apiResultofu ==
+                                                    null) {
+                                                  return FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText;
+                                                } else {
+                                                  return FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText;
+                                                }
+                                              }(),
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.normal,
+                                            ),
                                       ),
-                                      Container(
-                                        width: 200.0,
-                                        decoration: const BoxDecoration(),
-                                      ),
-                                      Container(
-                                        width: 300.0,
-                                        decoration: const BoxDecoration(),
-                                        child: Padding(
+                                    ),
+                                  ),
+                                if ((valueOrDefault<bool>(
+                                            currentUserDocument
+                                                ?.monthlySubscription,
+                                            false) ==
+                                        true) ||
+                                    (valueOrDefault<bool>(
+                                            currentUserDocument
+                                                ?.annualSubscription,
+                                            false) ==
+                                        true))
+                                  AuthUserStreamWidget(
+                                    builder: (context) => Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 12.0),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 0.0, 0.0, 0.0),
                                           child: Text(
-                                            'Je digitale mentor voor elke stap van de zwangerschap',
+                                            'Midwife Mentor AI tool',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Outfit',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  fontSize: 16.0,
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
                                         ),
-                                      ),
-                                      if (false)
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xFFF0F0F0),
-                                            borderRadius:
-                                                BorderRadius.circular(12.0),
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 12.0, 24.0, 12.0),
-                                            child: Text(
-                                              _model.apiResultofu != null
-                                                  ? getJsonField(
-                                                      (_model.apiResultofu
-                                                              ?.jsonBody ??
-                                                          ''),
-                                                      r'''$.choices[:].text''',
-                                                    ).toString()
-                                                  : 'Typ hier je vraag met vermelding van je huidige zwangerschapsweek (bv. \'Week 15: Mag ik nog joggen?',
+                                        Builder(
+                                          builder: (context) {
+                                            if (valueOrDefault<bool>(
+                                                    currentUserDocument
+                                                        ?.monthlySubscription,
+                                                    false) ||
+                                                valueOrDefault<bool>(
+                                                    currentUserDocument
+                                                        ?.annualSubscription,
+                                                    false)) {
+                                              return Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        16.0, 0.0, 0.0, 0.0),
+                                                child: Text(
+                                                  '${valueOrDefault(currentUserDocument?.aiRequests, 0).toString()} of 30 requests',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Outfit',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              );
+                                            } else {
+                                              return Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        16.0, 0.0, 0.0, 0.0),
+                                                child: Text(
+                                                  '${valueOrDefault(currentUserDocument?.aiRequests, 0).toString()} of 3 requests',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Outfit',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              );
+                                            }
+                                          },
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8.0, 12.0, 8.0, 12.0),
+                                          child: LinearPercentIndicator(
+                                            percent:
+                                                functions.numberToPercentage(
+                                                    valueOrDefault(
+                                                        currentUserDocument
+                                                            ?.aiRequests,
+                                                        0)),
+                                            lineHeight: 40.0,
+                                            animation: true,
+                                            animateFromLastPercent: true,
+                                            progressColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .tertiary,
+                                            center: Text(
+                                              '${formatNumber(
+                                                functions.numberToPercentage(
+                                                        valueOrDefault(
+                                                            currentUserDocument
+                                                                ?.aiRequests,
+                                                            0)) *
+                                                    1,
+                                                formatType: FormatType.percent,
+                                              )}',
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                      .headlineSmall
                                                       .override(
                                                         fontFamily: 'Outfit',
-                                                        color: () {
-                                                          if (_model
-                                                                  .apiResultofu !=
-                                                              null) {
-                                                            return FlutterFlowTheme
-                                                                    .of(context)
-                                                                .accent1;
-                                                          } else if (_model
-                                                                  .apiResultofu ==
-                                                              null) {
-                                                            return FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText;
-                                                          } else {
-                                                            return FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText;
-                                                          }
-                                                        }(),
-                                                        fontSize: 16.0,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
                                                         letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.normal,
                                                       ),
                                             ),
+                                            barRadius: Radius.circular(3.0),
+                                            padding: EdgeInsets.zero,
                                           ),
                                         ),
-                                      if ((valueOrDefault<bool>(
-                                                  currentUserDocument
-                                                      ?.monthlySubscription,
-                                                  false) ==
-                                              true) ||
-                                          (valueOrDefault<bool>(
-                                                  currentUserDocument
-                                                      ?.annualSubscription,
-                                                  false) ==
-                                              true))
-                                        AuthUserStreamWidget(
-                                          builder: (context) => Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        16.0, 0.0, 0.0, 0.0),
-                                                child: Text(
-                                                  'Midwife Mentor AI tool',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Outfit',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        16.0, 0.0, 0.0, 0.0),
-                                                child: Text(
-                                                  '0 van de 5000 woorden gebruikt',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Outfit',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        8.0, 0.0, 8.0, 0.0),
-                                                child: LinearPercentIndicator(
-                                                  percent: functions
-                                                      .numberToPercentage(
-                                                          valueOrDefault(
-                                                              currentUserDocument
-                                                                  ?.aiRequests,
-                                                              0)),
-                                                  lineHeight: 40.0,
-                                                  animation: true,
-                                                  animateFromLastPercent: true,
-                                                  progressColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .tertiary,
-                                                  center: Text(
-                                                    '${(functions.numberToPercentage(valueOrDefault(currentUserDocument?.aiRequests, 0)) * 100).toString()}%',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .headlineSmall
-                                                        .override(
-                                                          fontFamily: 'Outfit',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
-                                                  barRadius:
-                                                      const Radius.circular(3.0),
-                                                  padding: EdgeInsets.zero,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                    ],
-                                  ),
-                                ),
-                                if (FFAppState().AIChat.isNotEmpty)
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 10.0, 0.0, 0.0),
-                                    child: Builder(
-                                      builder: (context) {
-                                        final aIchat = FFAppState()
-                                            .AIChat
-                                            .map((e) => e)
-                                            .toList();
-                                        return ListView.builder(
-                                          padding: EdgeInsets.zero,
-                                          shrinkWrap: true,
-                                          scrollDirection: Axis.vertical,
-                                          itemCount: aIchat.length,
-                                          itemBuilder: (context, aIchatIndex) {
-                                            final aIchatItem =
-                                                aIchat[aIchatIndex];
-                                            return Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                if (aIchatIndex % 2 != 0)
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(10.0, 0.0,
-                                                                60.0, 0.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Flexible(
-                                                          child: Container(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondary,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          16.0),
-                                                            ),
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(
-                                                                          10.0),
-                                                              child: Text(
-                                                                aIchatItem,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Outfit',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryBackground,
-                                                                      fontSize:
-                                                                          16.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          60.0, 0.0, 10.0, 0.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    children: [
-                                                      if (aIchatIndex % 2 == 0)
-                                                        Flexible(
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        10.0),
-                                                            child: Container(
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .tertiary,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            16.0),
-                                                              ),
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                        .all(
-                                                                            10.0),
-                                                                child: Text(
-                                                                  aIchatItem,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Outfit',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                        fontSize:
-                                                                            16.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ].divide(const SizedBox(height: 10.0)),
-                                            );
-                                          },
-                                          controller:
-                                              _model.listViewController2,
-                                        );
-                                      },
+                                      ],
                                     ),
                                   ),
-                                Builder(
-                                  builder: (context) {
-                                    if (!((valueOrDefault(
-                                                currentUserDocument?.aiRequests,
-                                                0) >
-                                            2) &&
-                                        !valueOrDefault<bool>(
-                                            currentUserDocument
-                                                ?.monthlySubscription,
-                                            false) &&
-                                        !valueOrDefault<bool>(
-                                            currentUserDocument
-                                                ?.annualSubscription,
-                                            false))) {
-                                      return Builder(
-                                        builder: (context) {
-                                          if (valueOrDefault(
-                                                  currentUserDocument
-                                                      ?.aiRequests,
-                                                  0) <
-                                              30) {
-                                            return Visibility(
-                                              visible: valueOrDefault(
-                                                      currentUserDocument
-                                                          ?.aiRequests,
-                                                      0) <
-                                                  30,
-                                              child: Column(
+                              ],
+                            ),
+                          ),
+                          if (FFAppState().AIChat.isNotEmpty)
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 10.0, 0.0, 0.0),
+                              child: Builder(
+                                builder: (context) {
+                                  final aIchat = FFAppState()
+                                      .AIChat
+                                      .map((e) => e)
+                                      .toList();
+                                  return ListView.builder(
+                                    padding: EdgeInsets.zero,
+                                    primary: false,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: aIchat.length,
+                                    itemBuilder: (context, aIchatIndex) {
+                                      final aIchatItem = aIchat[aIchatIndex];
+                                      return Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          if (aIchatIndex % 2 != 0)
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 0.0, 60.0, 0.0),
+                                              child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                32.0,
-                                                                20.0,
-                                                                32.0,
-                                                                0.0),
-                                                    child: TextFormField(
-                                                      controller:
-                                                          _model.textController,
-                                                      focusNode: _model
-                                                          .textFieldFocusNode,
-                                                      autofocus: false,
-                                                      obscureText: false,
-                                                      decoration:
-                                                          InputDecoration(
-                                                        labelStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Outfit',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        hintText:
-                                                            'Stel hier je vraag..',
-                                                        hintStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Outfit',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        enabledBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primary,
-                                                            width: 1.0,
-                                                          ),
+                                                  Flexible(
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  10.0),
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondary,
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
-                                                                      8.0),
+                                                                      16.0),
                                                         ),
-                                                        focusedBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primary,
-                                                            width: 1.0,
+                                                        child: Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  -1.0, -1.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10.0,
+                                                                        10.0,
+                                                                        10.0,
+                                                                        10.0),
+                                                            child: Text(
+                                                              aIchatItem,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .start,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Outfit',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBackground,
+                                                                    fontSize:
+                                                                        16.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                            ),
                                                           ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        errorBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            width: 1.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        focusedErrorBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            width: 1.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
                                                         ),
                                                       ),
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Outfit',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                      maxLines: 4,
-                                                      minLines: null,
-                                                      validator: _model
-                                                          .textControllerValidator
-                                                          .asValidator(context),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 10.0,
-                                                                0.0, 0.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceAround,
-                                                      children: [
-                                                        if (FFAppState()
-                                                                .AIChat
-                                                                .length >
-                                                            1)
-                                                          FFButtonWidget(
-                                                            onPressed:
-                                                                () async {
-                                                              setState(() {
-                                                                FFAppState()
-                                                                    .deleteAIChat();
-                                                                FFAppState()
-                                                                    .AIChat = [];
-                                                              });
-                                                            },
-                                                            text: 'Clear Chat',
-                                                            options:
-                                                                FFButtonOptions(
-                                                              height: 40.0,
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          24.0,
-                                                                          0.0,
-                                                                          24.0,
-                                                                          0.0),
-                                                              iconPadding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primary,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Outfit',
-                                                                        color: Colors
-                                                                            .white,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
-                                                              elevation: 3.0,
-                                                              borderSide:
-                                                                  const BorderSide(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                width: 1.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8.0),
-                                                            ),
-                                                          ),
-                                                        Align(
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  1.0, 0.0),
-                                                          child: FFButtonWidget(
-                                                            onPressed: ((valueOrDefault(
-                                                                            currentUserDocument
-                                                                                ?.aiRequests,
-                                                                            0) >
-                                                                        2) &&
-                                                                    !valueOrDefault<
-                                                                            bool>(
-                                                                        currentUserDocument
-                                                                            ?.monthlySubscription,
-                                                                        false) &&
-                                                                    !valueOrDefault<
-                                                                            bool>(
-                                                                        currentUserDocument
-                                                                            ?.annualSubscription,
-                                                                        false))
-                                                                ? null
-                                                                : () async {
-                                                                    _model.apiResultofu =
-                                                                        await ChatGPTServiceCall
-                                                                            .call(
-                                                                      question: _model
-                                                                          .textController
-                                                                          .text,
-                                                                    );
-                                                                    if ((_model
-                                                                            .apiResultofu
-                                                                            ?.succeeded ??
-                                                                        true)) {
-                                                                      setState(
-                                                                          () {
-                                                                        FFAppState().addToAIChat(_model
-                                                                            .textController
-                                                                            .text);
-                                                                      });
-                                                                      setState(
-                                                                          () {
-                                                                        FFAppState()
-                                                                            .addToAIChat(getJsonField(
-                                                                          (_model.apiResultofu?.jsonBody ??
-                                                                              ''),
-                                                                          r'''$.choices[:].text''',
-                                                                        ).toString());
-                                                                      });
-                                                                      setState(
-                                                                          () {
-                                                                        _model
-                                                                            .textController
-                                                                            ?.clear();
-                                                                      });
-
-                                                                      await currentUserReference!
-                                                                          .update({
-                                                                        ...mapToFirestore(
-                                                                          {
-                                                                            'ai_requests':
-                                                                                FieldValue.increment(1),
-                                                                          },
-                                                                        ),
-                                                                      });
-                                                                    }
-                                                                    setState(
-                                                                        () {
-                                                                      _model.messages =
-                                                                          _model.messages +
-                                                                              1;
-                                                                    });
-                                                                    await _model
-                                                                        .listViewController1
-                                                                        ?.animateTo(
-                                                                      _model
-                                                                          .listViewController1!
-                                                                          .position
-                                                                          .maxScrollExtent,
-                                                                      duration: const Duration(
-                                                                          milliseconds:
-                                                                              300),
-                                                                      curve: Curves
-                                                                          .ease,
-                                                                    );
-
-                                                                    setState(
-                                                                        () {});
-                                                                  },
-                                                            text:
-                                                                'Antwoord genereren',
-                                                            options:
-                                                                FFButtonOptions(
-                                                              height: 40.0,
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          24.0,
-                                                                          0.0,
-                                                                          24.0,
-                                                                          0.0),
-                                                              iconPadding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .accent2,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Outfit',
-                                                                        color: Colors
-                                                                            .white,
-                                                                        fontSize:
-                                                                            18.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
-                                                              elevation: 3.0,
-                                                              borderSide:
-                                                                  const BorderSide(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                width: 1.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8.0),
-                                                              disabledColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                              disabledTextColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryBackground,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
                                                     ),
                                                   ),
                                                 ],
                                               ),
-                                            );
-                                          } else {
-                                            return Column(
+                                            ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    60.0, 0.0, 10.0, 0.0),
+                                            child: Row(
                                               mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
                                               children: [
-                                                Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(32.0, 0.0,
-                                                                32.0, 0.0),
-                                                    child: Text(
-                                                      'You can make only 30 requests per month!',
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Outfit',
-                                                            fontSize: 16.0,
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                FFButtonWidget(
-                                                  onPressed: () async {
-                                                    try {
-                                                      final result =
-                                                          await FirebaseFunctions
-                                                                  .instanceFor(
-                                                                      region:
-                                                                          'europe-west3')
-                                                              .httpsCallable(
-                                                                  'updateFieldMonthly')
-                                                              .call({
-                                                        "userRef":
-                                                            currentUserReference!
-                                                                .id,
-                                                      });
-                                                      _model.cloudFunctionvv4 =
-                                                          UpdateFieldMonthlyCloudFunctionCallResponse(
-                                                        succeeded: true,
-                                                      );
-                                                    } on FirebaseFunctionsException catch (error) {
-                                                      _model.cloudFunctionvv4 =
-                                                          UpdateFieldMonthlyCloudFunctionCallResponse(
-                                                        errorCode: error.code,
-                                                        succeeded: false,
-                                                      );
-                                                    }
-
-                                                    if (_model.cloudFunctionvv4!
-                                                        .succeeded!) {
-                                                      ScaffoldMessenger.of(
-                                                              context)
-                                                          .showSnackBar(
-                                                        SnackBar(
-                                                          content: Text(
-                                                            'Requests reset completed!',
-                                                            style: TextStyle(
-                                                              color: FlutterFlowTheme
+                                                if (aIchatIndex % 2 == 0)
+                                                  Flexible(
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  10.0),
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiary,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      16.0),
+                                                        ),
+                                                        child: Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  1.0, -1.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    10.0),
+                                                            child: Text(
+                                                              aIchatItem,
+                                                              textAlign:
+                                                                  TextAlign.end,
+                                                              style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .primaryText,
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Outfit',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                    fontSize:
+                                                                        16.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
                                                             ),
                                                           ),
-                                                          duration: const Duration(
-                                                              milliseconds:
-                                                                  4000),
-                                                          backgroundColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .secondary,
                                                         ),
-                                                      );
-                                                    }
-
-                                                    setState(() {});
-                                                  },
-                                                  text:
-                                                      'Reset number of requests',
-                                                  options: FFButtonOptions(
-                                                    height: 40.0,
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(24.0, 0.0,
-                                                                24.0, 0.0),
-                                                    iconPadding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily: 'Outfit',
-                                                          color: Colors.white,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                    elevation: 3.0,
-                                                    borderSide: const BorderSide(
-                                                      color: Colors.transparent,
+                                                      ),
+                                                    ),
+                                                  ),
+                                              ],
+                                            ),
+                                          ),
+                                        ].divide(SizedBox(height: 10.0)),
+                                      );
+                                    },
+                                    controller: _model.listViewController2,
+                                  );
+                                },
+                              ),
+                            ),
+                          Builder(
+                            builder: (context) {
+                              if (!((valueOrDefault(
+                                          currentUserDocument?.aiRequests, 0) >
+                                      2) &&
+                                  !valueOrDefault<bool>(
+                                      currentUserDocument?.monthlySubscription,
+                                      false) &&
+                                  !valueOrDefault<bool>(
+                                      currentUserDocument?.annualSubscription,
+                                      false))) {
+                                return Builder(
+                                  builder: (context) {
+                                    if (valueOrDefault(
+                                            currentUserDocument?.aiRequests,
+                                            0) <
+                                        30) {
+                                      return Visibility(
+                                        visible: valueOrDefault(
+                                                currentUserDocument?.aiRequests,
+                                                0) <
+                                            30,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      32.0, 20.0, 32.0, 0.0),
+                                              child: TextFormField(
+                                                controller:
+                                                    _model.textController,
+                                                focusNode:
+                                                    _model.textFieldFocusNode,
+                                                autofocus: false,
+                                                obscureText: false,
+                                                decoration: InputDecoration(
+                                                  labelStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily: 'Outfit',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  hintText:
+                                                      'Stel hier je vraag..',
+                                                  hintStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily: 'Outfit',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                  errorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                  focusedErrorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
                                                       width: 1.0,
                                                     ),
                                                     borderRadius:
@@ -930,25 +634,6 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                             8.0),
                                                   ),
                                                 ),
-                                              ],
-                                            );
-                                          }
-                                        },
-                                      );
-                                    } else {
-                                      return Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Align(
-                                            alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      32.0, 10.0, 32.0, 0.0),
-                                              child: Text(
-                                                'You have used your 3 free AI requests, please buy a subscription',
-                                                textAlign: TextAlign.center,
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -956,79 +641,355 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                           fontFamily: 'Outfit',
                                                           letterSpacing: 0.0,
                                                         ),
+                                                maxLines: 4,
+                                                minLines: null,
+                                                validator: _model
+                                                    .textControllerValidator
+                                                    .asValidator(context),
                                               ),
                                             ),
-                                          ),
-                                          Align(
-                                            alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 0.0),
-                                              child: FFButtonWidget(
-                                                onPressed: () async {
-                                                  context.pushNamed(
-                                                    'SubscriptionChoosePage',
-                                                    extra: <String, dynamic>{
-                                                      kTransitionInfoKey:
-                                                          const TransitionInfo(
-                                                        hasTransition: true,
-                                                        transitionType:
-                                                            PageTransitionType
-                                                                .bottomToTop,
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  if (FFAppState()
+                                                          .AIChat
+                                                          .length >
+                                                      1)
+                                                    FFButtonWidget(
+                                                      onPressed: () async {
+                                                        setState(() {
+                                                          FFAppState()
+                                                              .deleteAIChat();
+                                                          FFAppState().AIChat =
+                                                              [];
+                                                        });
+                                                      },
+                                                      text: 'Clear Chat',
+                                                      options: FFButtonOptions(
+                                                        height: 40.0,
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    24.0,
+                                                                    0.0,
+                                                                    24.0,
+                                                                    0.0),
+                                                        iconPadding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Outfit',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                        elevation: 3.0,
+                                                        borderSide: BorderSide(
+                                                          color: Colors
+                                                              .transparent,
+                                                          width: 1.0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
                                                       ),
-                                                    },
-                                                  );
-                                                },
-                                                text: 'Choose Subscription',
-                                                options: FFButtonOptions(
-                                                  height: 40.0,
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          24.0, 0.0, 24.0, 0.0),
-                                                  iconPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(0.0, 0.0,
-                                                              0.0, 0.0),
-                                                  color: FlutterFlowTheme.of(
+                                                    ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            1.0, 0.0),
+                                                    child: FFButtonWidget(
+                                                      onPressed: ((valueOrDefault(
+                                                                      currentUserDocument
+                                                                          ?.aiRequests,
+                                                                      0) >
+                                                                  2) &&
+                                                              !valueOrDefault<
+                                                                      bool>(
+                                                                  currentUserDocument
+                                                                      ?.monthlySubscription,
+                                                                  false) &&
+                                                              !valueOrDefault<
+                                                                      bool>(
+                                                                  currentUserDocument
+                                                                      ?.annualSubscription,
+                                                                  false))
+                                                          ? null
+                                                          : () async {
+                                                              _model.apiResultofu =
+                                                                  await ChatGPTServiceCall
+                                                                      .call(
+                                                                question: _model
+                                                                    .textController
+                                                                    .text,
+                                                              );
+                                                              if ((_model
+                                                                      .apiResultofu
+                                                                      ?.succeeded ??
+                                                                  true)) {
+                                                                setState(() {
+                                                                  FFAppState()
+                                                                      .addToAIChat(_model
+                                                                          .textController
+                                                                          .text);
+                                                                });
+                                                                setState(() {
+                                                                  FFAppState()
+                                                                      .addToAIChat(
+                                                                          getJsonField(
+                                                                    (_model.apiResultofu
+                                                                            ?.jsonBody ??
+                                                                        ''),
+                                                                    r'''$.choices[:].text''',
+                                                                  ).toString());
+                                                                });
+                                                                setState(() {
+                                                                  _model
+                                                                      .textController
+                                                                      ?.clear();
+                                                                });
+
+                                                                await currentUserReference!
+                                                                    .update({
+                                                                  ...mapToFirestore(
+                                                                    {
+                                                                      'ai_requests':
+                                                                          FieldValue.increment(
+                                                                              1),
+                                                                    },
+                                                                  ),
+                                                                });
+                                                              }
+                                                              setState(() {
+                                                                _model.messages =
+                                                                    _model.messages +
+                                                                        1;
+                                                              });
+                                                              await _model
+                                                                  .listViewController1
+                                                                  ?.animateTo(
+                                                                _model
+                                                                    .listViewController1!
+                                                                    .position
+                                                                    .maxScrollExtent,
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        300),
+                                                                curve:
+                                                                    Curves.ease,
+                                                              );
+
+                                                              setState(() {});
+                                                            },
+                                                      text:
+                                                          'Antwoord genereren',
+                                                      options: FFButtonOptions(
+                                                        height: 40.0,
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    24.0,
+                                                                    0.0,
+                                                                    24.0,
+                                                                    0.0),
+                                                        iconPadding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .accent2,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Outfit',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize:
+                                                                      18.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                        elevation: 3.0,
+                                                        borderSide: BorderSide(
+                                                          color: Colors
+                                                              .transparent,
+                                                          width: 1.0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                        disabledColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        disabledTextColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryBackground,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    } else {
+                                      return Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 8.0, 0.0, 0.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        32.0, 0.0, 32.0, 0.0),
+                                                child: Text(
+                                                  'Je kan 30 vragen stellen per maand',
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
                                                           context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Outfit',
+                                                        fontSize: 16.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    }
+                                  },
+                                );
+                              } else {
+                                return Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 55.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  32.0, 10.0, 32.0, 0.0),
+                                          child: Text(
+                                            'Je hebt 3 gratis verzoeken gebruikt. Join de family om meer verzoeken te kunnen doen.',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Outfit',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 10.0, 0.0, 0.0),
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              context.pushNamed(
+                                                'SubscriptionChoosePage',
+                                                extra: <String, dynamic>{
+                                                  kTransitionInfoKey:
+                                                      TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType
+                                                            .bottomToTop,
+                                                  ),
+                                                },
+                                              );
+                                            },
+                                            text: 'Join de Mama Mentor Family',
+                                            options: FFButtonOptions(
+                                              height: 40.0,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      24.0, 0.0, 24.0, 0.0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
                                                       .primary,
-                                                  textStyle: FlutterFlowTheme
-                                                          .of(context)
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
                                                       .titleSmall
                                                       .override(
                                                         fontFamily: 'Outfit',
                                                         color: Colors.white,
                                                         letterSpacing: 0.0,
                                                       ),
-                                                  elevation: 3.0,
-                                                  borderSide: const BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                ),
+                                              elevation: 3.0,
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1.0,
                                               ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
                                             ),
                                           ),
-                                        ],
-                                      );
-                                    }
-                                  },
-                                ),
-                              ],
-                            ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }
+                            },
                           ),
                         ],
                       ),
                     ),
                   ],
+                  controller: _model.listViewController1,
                 ),
-              );
-            },
+              ),
+            ],
           ),
         ),
       ),

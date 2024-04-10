@@ -2,8 +2,11 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'list_of_friends_model.dart';
 export 'list_of_friends_model.dart';
 
@@ -43,7 +46,7 @@ class _ListOfFriendsWidgetState extends State<ListOfFriendsWidget> {
     return Material(
       color: Colors.transparent,
       elevation: 5.0,
-      shape: const RoundedRectangleBorder(
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
@@ -55,7 +58,7 @@ class _ListOfFriendsWidgetState extends State<ListOfFriendsWidget> {
         width: double.infinity,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
-          borderRadius: const BorderRadius.only(
+          borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(16.0),
@@ -67,9 +70,9 @@ class _ListOfFriendsWidgetState extends State<ListOfFriendsWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Align(
-                alignment: const AlignmentDirectional(1.0, 0.0),
+                alignment: AlignmentDirectional(1.0, 0.0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 16.0, 0.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -87,7 +90,7 @@ class _ListOfFriendsWidgetState extends State<ListOfFriendsWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -103,12 +106,12 @@ class _ListOfFriendsWidgetState extends State<ListOfFriendsWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 32.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 32.0),
                 child: AuthUserStreamWidget(
                   builder: (context) => Builder(
                     builder: (context) {
                       final freindsList =
-                          (currentUserDocument?.userFriends.toList() ?? [])
+                          (currentUserDocument?.userFriends?.toList() ?? [])
                               .map((e) => e)
                               .toList();
                       return ListView.builder(
@@ -120,7 +123,7 @@ class _ListOfFriendsWidgetState extends State<ListOfFriendsWidget> {
                         itemBuilder: (context, freindsListIndex) {
                           final freindsListItem = freindsList[freindsListIndex];
                           return Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 12.0, 16.0, 0.0),
                             child: StreamBuilder<UsersRecord>(
                               stream: UsersRecord.getDocument(freindsListItem),
@@ -154,7 +157,7 @@ class _ListOfFriendsWidgetState extends State<ListOfFriendsWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 12.0, 8.0, 12.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -260,13 +263,13 @@ class _ListOfFriendsWidgetState extends State<ListOfFriendsWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 8.0, 0.0),
                                             child: Container(
                                               width: 50.0,
                                               height: 50.0,
                                               clipBehavior: Clip.antiAlias,
-                                              decoration: const BoxDecoration(
+                                              decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
                                               ),
                                               child: Image.network(
@@ -275,16 +278,28 @@ class _ListOfFriendsWidgetState extends State<ListOfFriendsWidget> {
                                               ),
                                             ),
                                           ),
-                                          Text(
-                                            '${containerUsersRecord.firstName} ${containerUsersRecord.lastName}',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyLarge
-                                                .override(
-                                                  fontFamily: 'Outfit',
-                                                  letterSpacing: 0.0,
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                '${containerUsersRecord.firstName} ${containerUsersRecord.lastName}',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLarge
+                                                        .override(
+                                                          fontFamily: 'Outfit',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                              if (containerUsersRecord.isAdmin)
+                                                Icon(
+                                                  Icons.verified,
+                                                  color: Color(0xFF52A7FB),
+                                                  size: 18.0,
                                                 ),
+                                            ],
                                           ),
-                                          const Expanded(
+                                          Expanded(
                                             child: Align(
                                               alignment: AlignmentDirectional(
                                                   1.0, 0.0),

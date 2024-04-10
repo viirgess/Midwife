@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:typed_data';
+import '../schema/structs/index.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
@@ -11,7 +13,7 @@ class ChatGPTServiceCall {
   static Future<ApiCallResponse> call({
     String? assistantId = 'asst_NloFw7Pdy26VtS7oNLIwaKvC',
     String? question = '',
-    String? aPIKey = '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',
+    String? aPIKey = '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',
     String? instruction =
         'You are assistant. Zwangerschapsmentor is a specialized tool for providing advice to pregnant women, based on the information from deverloskundige.nl. This GPT takes a balanced approach between formal and informal language, making the advice both accessible and authoritative. It emphasizes research information, ensuring accuracy and relevance in the advice. Crucially, Pregnancy Mentor does not diagnose or recommend medical treatments. This is the sole responsibility of qualified medical personnel. The GPT remains faithful to the content of deverloskundige.nl, to ensure consistency and reliability in supporting pregnancy-related questions and concerns. The GPT will expressly indicate that users must consult their medical provider for diagnoses and treatments. Here is your question',
     String? language =
@@ -20,7 +22,7 @@ class ChatGPTServiceCall {
     final ffApiRequestBody = '''
 {
   "model": "gpt-3.5-turbo-instruct",
-  "prompt": "<$language> <$instruction> <$question>",
+  "prompt": "<${language}> <${instruction}> <${question}>",
   "temperature": 0.3,
   "max_tokens": 1000,
   "top_p": 1,
@@ -33,7 +35,7 @@ class ChatGPTServiceCall {
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer $aPIKey',
+        'Authorization': 'Bearer ${aPIKey}',
         'OpenAI-Beta': 'assistants=v1',
       },
       params: {},
@@ -65,16 +67,16 @@ class SendEmailCall {
     {
       "to": [
         {
-          "email": "$toEmail"
+          "email": "${toEmail}"
         }
       ],
-      "subject": "$subject"
+      "subject": "${subject}"
     }
   ],
   "content": [
     {
       "type": "text/plain",
-      "value": "$body"
+      "value": "${body}"
     }
   ],
   "from": {

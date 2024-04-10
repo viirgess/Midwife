@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'nav_bar_model.dart';
 export 'nav_bar_model.dart';
 
@@ -43,7 +45,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
       width: double.infinity,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(0.0),
@@ -54,7 +56,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
+        padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -75,7 +77,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                 context.goNamed(
                   'MainPage',
                   extra: <String, dynamic>{
-                    kTransitionInfoKey: const TransitionInfo(
+                    kTransitionInfoKey: TransitionInfo(
                       hasTransition: true,
                       transitionType: PageTransitionType.fade,
                       duration: Duration(milliseconds: 0),
@@ -99,7 +101,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                 context.goNamed(
                   'PregnancyCalendarPage',
                   extra: <String, dynamic>{
-                    kTransitionInfoKey: const TransitionInfo(
+                    kTransitionInfoKey: TransitionInfo(
                       hasTransition: true,
                       transitionType: PageTransitionType.fade,
                       duration: Duration(milliseconds: 0),
@@ -109,7 +111,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
               },
             ),
             Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: FlutterFlowIconButton(
                 borderColor: FlutterFlowTheme.of(context).alternate,
                 borderRadius: 100.0,
@@ -125,7 +127,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                   context.goNamed(
                     'PrivateChatsPage',
                     extra: <String, dynamic>{
-                      kTransitionInfoKey: const TransitionInfo(
+                      kTransitionInfoKey: TransitionInfo(
                         hasTransition: true,
                         transitionType: PageTransitionType.fade,
                         duration: Duration(milliseconds: 0),
@@ -150,7 +152,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                 context.goNamed(
                   'CommunityPage',
                   extra: <String, dynamic>{
-                    kTransitionInfoKey: const TransitionInfo(
+                    kTransitionInfoKey: TransitionInfo(
                       hasTransition: true,
                       transitionType: PageTransitionType.fade,
                       duration: Duration(milliseconds: 0),
@@ -174,7 +176,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                 context.goNamed(
                   'userProfile',
                   extra: <String, dynamic>{
-                    kTransitionInfoKey: const TransitionInfo(
+                    kTransitionInfoKey: TransitionInfo(
                       hasTransition: true,
                       transitionType: PageTransitionType.fade,
                       duration: Duration(milliseconds: 0),

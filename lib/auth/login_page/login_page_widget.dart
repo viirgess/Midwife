@@ -1,8 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'login_page_model.dart';
 export 'login_page_model.dart';
 
@@ -49,13 +52,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(16.0, 48.0, 16.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(16.0, 48.0, 16.0, 0.0),
           child: ListView(
             padding: EdgeInsets.zero,
             scrollDirection: Axis.vertical,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,14 +70,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         width: 150.0,
                         height: 120.0,
                         fit: BoxFit.contain,
-                        alignment: const Alignment(-1.0, 0.0),
+                        alignment: Alignment(-1.0, 0.0),
                       ),
                     ),
                   ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(48.0, 36.0, 48.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(48.0, 36.0, 48.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +94,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 18.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 18.0),
                       child: Text(
                         'Log in om toegang te krijgen tot gezamenlijke verbinding en groei',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -103,7 +106,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 12.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 12.0),
                       child: Text(
                         'E-mailadres*',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -170,7 +173,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 12.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 12.0),
                       child: Text(
                         'Wachtwoord*',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -252,7 +255,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -262,7 +265,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                           context.goNamed(
                             'ResetPassword',
                             extra: <String, dynamic>{
-                              kTransitionInfoKey: const TransitionInfo(
+                              kTransitionInfoKey: TransitionInfo(
                                 hasTransition: true,
                                 transitionType: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
@@ -309,7 +312,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -336,7 +339,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             borderRadius: BorderRadius.circular(24.0),
                           ),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 10.0),
                             child: Text(
                               'Login',
@@ -358,7 +361,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -368,7 +371,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                           context.goNamed(
                             'RegisterPage',
                             extra: <String, dynamic>{
-                              kTransitionInfoKey: const TransitionInfo(
+                              kTransitionInfoKey: TransitionInfo(
                                 hasTransition: true,
                                 transitionType: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),

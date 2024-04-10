@@ -2,9 +2,13 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'register_page_model.dart';
 export 'register_page_model.dart';
 
@@ -57,13 +61,13 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(16.0, 48.0, 16.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(16.0, 48.0, 16.0, 0.0),
           child: ListView(
             padding: EdgeInsets.zero,
             scrollDirection: Axis.vertical,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,14 +79,14 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         width: 150.0,
                         height: 120.0,
                         fit: BoxFit.contain,
-                        alignment: const Alignment(-1.0, 0.0),
+                        alignment: Alignment(-1.0, 0.0),
                       ),
                     ),
                   ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(48.0, 36.0, 48.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(48.0, 36.0, 48.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,7 +103,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 18.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 18.0),
                       child: Text(
                         'Welkom!',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -111,7 +115,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 6.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 6.0),
                       child: Text(
                         'Voornaam*',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -178,7 +182,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 6.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 6.0),
                       child: Text(
                         'Achternaam*',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -246,7 +250,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 6.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 6.0),
                       child: Text(
                         'Uitgerekende datum',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -262,7 +266,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        final datePickedDate = await showDatePicker(
+                        final _datePickedDate = await showDatePicker(
                           context: context,
                           initialDate: getCurrentTimestamp,
                           firstDate: (functions
@@ -303,12 +307,12 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                           },
                         );
 
-                        if (datePickedDate != null) {
+                        if (_datePickedDate != null) {
                           safeSetState(() {
                             _model.datePicked = DateTime(
-                              datePickedDate.year,
-                              datePickedDate.month,
-                              datePickedDate.day,
+                              _datePickedDate.year,
+                              _datePickedDate.month,
+                              _datePickedDate.day,
                             );
                           });
                         }
@@ -325,10 +329,12 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 8.0, 8.0, 8.0),
                           child: Text(
-                            dateTimeFormat(
+                            dateTimeFormat('d/M/y', _model.datePicked) !=
+                                        null &&
+                                    dateTimeFormat(
                                             'd/M/y', _model.datePicked) !=
                                         ''
                                 ? dateTimeFormat('yMd', _model.datePicked)
@@ -348,7 +354,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 6.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 6.0),
                       child: Text(
                         'E-mailadres*',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -429,7 +435,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 6.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 6.0),
                       child: Text(
                         'Wachtwoord*',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -511,7 +517,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -536,6 +542,11 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                 setState(
                                     () => _model.checkboxValue = newValue!);
                               },
+                              side: BorderSide(
+                                width: 2,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                              ),
                               activeColor: FlutterFlowTheme.of(context).primary,
                               checkColor: FlutterFlowTheme.of(context)
                                   .primaryBackground,
@@ -555,7 +566,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -581,7 +592,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                 lastName: _model.textController2.text,
                                 calculatedDate: _model.datePicked,
                                 photoUrl:
-                                    'https://icons.iconarchive.com/icons/papirus-team/papirus-status/512/avatar-default-icon.png',
+                                    'https://firebasestorage.googleapis.com/v0/b/midwifementor-a515e.appspot.com/o/user.png?alt=media&token=7395eb14-c473-4005-947a-61236bc12b52',
                                 aiRequests: 0,
                                 isPregnant: true,
                                 displayName:
@@ -598,7 +609,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                             borderRadius: BorderRadius.circular(24.0),
                           ),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 10.0),
                             child: Text(
                               'Aanmelden',
@@ -620,7 +631,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 56.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 56.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -630,7 +641,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                           context.goNamed(
                             'LoginPage',
                             extra: <String, dynamic>{
-                              kTransitionInfoKey: const TransitionInfo(
+                              kTransitionInfoKey: TransitionInfo(
                                 hasTransition: true,
                                 transitionType: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),

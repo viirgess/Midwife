@@ -1,6 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'comment_on_post_in_community_model.dart';
 export 'comment_on_post_in_community_model.dart';
 
@@ -47,16 +50,16 @@ class _CommentOnPostInCommunityWidgetState
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: const Color(0xFFF0F0F0),
+        color: Color(0xFFF0F0F0),
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+        padding: EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Align(
-              alignment: const AlignmentDirectional(1.0, 0.0),
+              alignment: AlignmentDirectional(1.0, 0.0),
               child: InkWell(
                 splashColor: Colors.transparent,
                 focusColor: Colors.transparent,
@@ -84,7 +87,7 @@ class _CommentOnPostInCommunityWidgetState
                 Flexible(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,7 +103,7 @@ class _CommentOnPostInCommunityWidgetState
                                   ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 12.0, 0.0, 0.0),
                           child: Text(
                             'Hurry up to check it!',

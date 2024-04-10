@@ -3,15 +3,17 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+import '/backend/schema/enums/enums.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 class PregnancyCommunityForumRecord extends FirestoreRecord {
   PregnancyCommunityForumRecord._(
-    super.reference,
-    super.data,
-  ) {
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
     _initializeFields();
   }
 
@@ -40,12 +42,30 @@ class PregnancyCommunityForumRecord extends FirestoreRecord {
   List<DocumentReference> get postLikes => _postLikes ?? const [];
   bool hasPostLikes() => _postLikes != null;
 
+  // "isPregnant" field.
+  bool? _isPregnant;
+  bool get isPregnant => _isPregnant ?? false;
+  bool hasIsPregnant() => _isPregnant != null;
+
+  // "picturePath" field.
+  String? _picturePath;
+  String get picturePath => _picturePath ?? '';
+  bool hasPicturePath() => _picturePath != null;
+
+  // "videoPath" field.
+  String? _videoPath;
+  String get videoPath => _videoPath ?? '';
+  bool hasVideoPath() => _videoPath != null;
+
   void _initializeFields() {
     _authorRef = snapshotData['author_ref'] as DocumentReference?;
     _createdTime = snapshotData['created_time'] as DateTime?;
     _likes = castToType<int>(snapshotData['likes']);
     _text = snapshotData['text'] as String?;
     _postLikes = getDataList(snapshotData['postLikes']);
+    _isPregnant = snapshotData['isPregnant'] as bool?;
+    _picturePath = snapshotData['picturePath'] as String?;
+    _videoPath = snapshotData['videoPath'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -90,6 +110,9 @@ Map<String, dynamic> createPregnancyCommunityForumRecordData({
   DateTime? createdTime,
   int? likes,
   String? text,
+  bool? isPregnant,
+  String? picturePath,
+  String? videoPath,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -97,6 +120,9 @@ Map<String, dynamic> createPregnancyCommunityForumRecordData({
       'created_time': createdTime,
       'likes': likes,
       'text': text,
+      'isPregnant': isPregnant,
+      'picturePath': picturePath,
+      'videoPath': videoPath,
     }.withoutNulls,
   );
 
@@ -115,12 +141,23 @@ class PregnancyCommunityForumRecordDocumentEquality
         e1?.createdTime == e2?.createdTime &&
         e1?.likes == e2?.likes &&
         e1?.text == e2?.text &&
-        listEquality.equals(e1?.postLikes, e2?.postLikes);
+        listEquality.equals(e1?.postLikes, e2?.postLikes) &&
+        e1?.isPregnant == e2?.isPregnant &&
+        e1?.picturePath == e2?.picturePath &&
+        e1?.videoPath == e2?.videoPath;
   }
 
   @override
-  int hash(PregnancyCommunityForumRecord? e) => const ListEquality()
-      .hash([e?.authorRef, e?.createdTime, e?.likes, e?.text, e?.postLikes]);
+  int hash(PregnancyCommunityForumRecord? e) => const ListEquality().hash([
+        e?.authorRef,
+        e?.createdTime,
+        e?.likes,
+        e?.text,
+        e?.postLikes,
+        e?.isPregnant,
+        e?.picturePath,
+        e?.videoPath
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is PregnancyCommunityForumRecord;

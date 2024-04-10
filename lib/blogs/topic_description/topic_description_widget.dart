@@ -1,6 +1,10 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'topic_description_model.dart';
 export 'topic_description_model.dart';
 
@@ -128,12 +132,12 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Color(0xFFF0F0F0),
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(8.0),
@@ -144,7 +148,7 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 30.0, 6.0, 10.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 30.0, 6.0, 10.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -180,7 +184,7 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -192,7 +196,7 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                                   .secondaryBackground,
                             ),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Text(
                                 valueOrDefault<String>(
@@ -212,7 +216,7 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 12.0),
                             child: Text(
                               dateTimeFormat('yMMMd', widget.date),
@@ -228,9 +232,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 12.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -244,9 +248,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 3.0),
                               child: Text(
                                 valueOrDefault<String>(
@@ -264,9 +268,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 16.0),
                               child: Text(
                                 valueOrDefault<String>(
@@ -284,9 +288,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           ),
                           if (widget.topicTwo != null && widget.topicTwo != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 3.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -306,9 +310,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.twoDescription != null &&
                               widget.twoDescription != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -327,9 +331,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.topicThree != null &&
                               widget.topicThree != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 3.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -349,9 +353,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.threeDescription != null &&
                               widget.threeDescription != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -370,9 +374,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.topicFour != null &&
                               widget.topicFour != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 3.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -392,9 +396,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.fourDescription != null &&
                               widget.fourDescription != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -413,9 +417,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.topicFive != null &&
                               widget.topicFive != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 3.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -435,9 +439,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.fiveDescription != null &&
                               widget.fiveDescription != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -456,9 +460,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.chapterTitle != null &&
                               widget.chapterTitle != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 3.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -476,13 +480,13 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                               ),
                             ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 8.0, 0.0),
                                   child: Container(
                                     width: 5.0,
@@ -497,7 +501,7 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                                 if (widget.chapterOne != null &&
                                     widget.chapterOne != '')
                                   Align(
-                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
                                         widget.chapterOne,
@@ -515,13 +519,13 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 8.0, 0.0),
                                   child: Container(
                                     width: 5.0,
@@ -536,7 +540,7 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                                 if (widget.chapterTwo != null &&
                                     widget.chapterTwo != '')
                                   Align(
-                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
                                         widget.chapterTwo,
@@ -554,13 +558,13 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 8.0, 0.0),
                                   child: Container(
                                     width: 5.0,
@@ -575,7 +579,7 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                                 if (widget.chapterThree != null &&
                                     widget.chapterThree != '')
                                   Align(
-                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
                                         widget.chapterThree,
@@ -593,13 +597,13 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 8.0, 0.0),
                                   child: Container(
                                     width: 5.0,
@@ -614,7 +618,7 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                                 if (widget.chapterFour != null &&
                                     widget.chapterFour != '')
                                   Align(
-                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
                                         widget.chapterFour,
@@ -632,13 +636,13 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 12.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 8.0, 0.0),
                                   child: Container(
                                     width: 5.0,
@@ -653,7 +657,7 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                                 if (widget.chapterFive != null &&
                                     widget.chapterFive != '')
                                   Align(
-                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
                                         widget.chapterFive,
@@ -672,9 +676,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           ),
                           if (widget.partOne != null && widget.partOne != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 3.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -694,9 +698,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.partOneDescription != null &&
                               widget.partOneDescription != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -714,9 +718,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                             ),
                           if (widget.partTwo != null && widget.partTwo != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 3.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -736,9 +740,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.chapterThree != null &&
                               widget.chapterThree != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -757,9 +761,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.partThree != null &&
                               widget.partThree != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 3.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -779,9 +783,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.partThreeDescription != null &&
                               widget.partThreeDescription != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -799,9 +803,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                             ),
                           if (widget.partFour != null && widget.partFour != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 3.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -821,9 +825,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.chapterThree != null &&
                               widget.chapterThree != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -841,9 +845,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                             ),
                           if (widget.partFive != null && widget.partFive != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 3.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -863,9 +867,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.partFiveDescription != null &&
                               widget.partFiveDescription != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -883,9 +887,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                             ),
                           if (widget.partSix != null && widget.partSix != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 3.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -905,9 +909,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.partSixDescription != null &&
                               widget.partSixDescription != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -926,9 +930,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.partSeven != null &&
                               widget.partSeven != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 3.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -948,9 +952,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.partSevenDescription != null &&
                               widget.partSevenDescription != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -969,9 +973,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.partEight != null &&
                               widget.partEight != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 3.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -991,9 +995,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.partEightDescription != null &&
                               widget.partEightDescription != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -1011,9 +1015,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                             ),
                           if (widget.partNine != null && widget.partNine != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 3.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -1033,9 +1037,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.partNineDescription != null &&
                               widget.partNineDescription != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -1053,9 +1057,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                             ),
                           if (widget.partTen != null && widget.partTen != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 3.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -1075,9 +1079,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                           if (widget.partTenDescription != null &&
                               widget.partTenDescription != '')
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -1094,9 +1098,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                               ),
                             ),
                           Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 3.0),
                               child: Text(
                                 valueOrDefault<String>(
@@ -1114,9 +1118,9 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 16.0),
                               child: Text(
                                 valueOrDefault<String>(
@@ -1133,7 +1137,7 @@ class _TopicDescriptionWidgetState extends State<TopicDescriptionWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Text(
                               'Disclaimer: De informatie in deze blog is bedoeld voor algemene informatiedoeleinden en mag niet worden beschouwd als medisch advies. Hoewel de inhoud met zorg is samengesteld, kunnen wij niet garanderen dat deze volledig, actueel of van toepassing is op uw persoonlijke situatie. Wij adviseren lezers altijd om voor medische vragen en adviezen contact op te nemen met een gekwalificeerde zorgverlener. De auteurs en uitgevers van deze blog zijn niet verantwoordelijk voor eventuele onjuistheden of het gebruik van de informatie.',
                               textAlign: TextAlign.center,

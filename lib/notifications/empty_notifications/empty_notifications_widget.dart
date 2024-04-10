@@ -1,7 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'empty_notifications_model.dart';
 export 'empty_notifications_model.dart';
 
@@ -42,11 +44,11 @@ class _EmptyNotificationsWidgetState extends State<EmptyNotificationsWidget> {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: const Color(0xFFF0F0F0),
+        color: Color(0xFFF0F0F0),
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(12.0, 22.0, 12.0, 22.0),
+        padding: EdgeInsetsDirectional.fromSTEB(12.0, 22.0, 12.0, 22.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -68,7 +70,7 @@ class _EmptyNotificationsWidgetState extends State<EmptyNotificationsWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                       child: Text(
                         'Start exploring our application!',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -80,10 +82,10 @@ class _EmptyNotificationsWidgetState extends State<EmptyNotificationsWidget> {
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                         child: Lottie.asset(
                           'assets/lottie_animations/Animation_-_1709654101893.json',
                           width: 150.0,

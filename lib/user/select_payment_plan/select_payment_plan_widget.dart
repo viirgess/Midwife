@@ -1,7 +1,10 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'select_payment_plan_model.dart';
 export 'select_payment_plan_model.dart';
 
@@ -40,11 +43,11 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+        padding: EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 450),
+          duration: Duration(milliseconds: 450),
           curve: Curves.easeIn,
           width: double.infinity,
           decoration: BoxDecoration(
@@ -52,7 +55,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+            padding: EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -78,10 +81,10 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                     ],
                   ),
                   Align(
-                    alignment: const AlignmentDirectional(0.0, -1.0),
+                    alignment: AlignmentDirectional(0.0, -1.0),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
                       child: Text(
                         'Word lid van Midwife Mentor!',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -95,7 +98,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                     ),
                   ),
                   Align(
-                    alignment: const AlignmentDirectional(0.0, -1.0),
+                    alignment: AlignmentDirectional(0.0, -1.0),
                     child: Text(
                       'Begin je reis door ons plan hieronder te kiezen.',
                       textAlign: TextAlign.center,
@@ -111,7 +114,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                   Flexible(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
@@ -119,13 +122,13 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 20.0, 16.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Text(
                                   'Midwife Mentor Premium',
                                   textAlign: TextAlign.center,
@@ -142,9 +145,9 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: Text(
                                     'Gebruik nu 1 week voor €1,-',
@@ -162,9 +165,9 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 20.0),
                                   child: Text(
                                     'Daarna €19 per 30 dagen. Opzeggen kan elk moment.',
@@ -186,7 +189,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                 scrollDirection: Axis.vertical,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 7.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -195,7 +198,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 5.0, 0.0),
                                           child: Theme(
                                             data: ThemeData(
@@ -223,6 +226,12 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                     _model.checkboxValue1 =
                                                         newValue!);
                                               },
+                                              side: BorderSide(
+                                                width: 2,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                              ),
                                               activeColor:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
@@ -266,7 +275,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                     fontSize: 15.0,
                                                   ),
                                                 ),
-                                                const TextSpan(
+                                                TextSpan(
                                                   text:
                                                       'Directe toegang tot onze Midwife Mentor AI voor deskundig advies.',
                                                   style: TextStyle(
@@ -289,7 +298,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 7.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -298,7 +307,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 5.0, 0.0),
                                           child: Theme(
                                             data: ThemeData(
@@ -326,6 +335,12 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                     _model.checkboxValue2 =
                                                         newValue!);
                                               },
+                                              side: BorderSide(
+                                                width: 2,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                              ),
                                               activeColor:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
@@ -369,7 +384,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                     fontSize: 15.0,
                                                   ),
                                                 ),
-                                                const TextSpan(
+                                                TextSpan(
                                                   text:
                                                       'Directe toegang tot onze Midwife Mentor AI voor deskundig advies.',
                                                   style: TextStyle(
@@ -392,7 +407,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 7.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -401,7 +416,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 5.0, 0.0),
                                           child: Theme(
                                             data: ThemeData(
@@ -429,6 +444,12 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                     _model.checkboxValue3 =
                                                         newValue!);
                                               },
+                                              side: BorderSide(
+                                                width: 2,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                              ),
                                               activeColor:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
@@ -472,7 +493,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                     fontSize: 15.0,
                                                   ),
                                                 ),
-                                                const TextSpan(
+                                                TextSpan(
                                                   text:
                                                       'Directe toegang tot onze Midwife Mentor AI voor deskundig advies.',
                                                   style: TextStyle(
@@ -495,7 +516,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 7.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -504,7 +525,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 5.0, 0.0),
                                           child: Theme(
                                             data: ThemeData(
@@ -532,6 +553,12 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                     _model.checkboxValue4 =
                                                         newValue!);
                                               },
+                                              side: BorderSide(
+                                                width: 2,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                              ),
                                               activeColor:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
@@ -575,7 +602,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                     fontSize: 15.0,
                                                   ),
                                                 ),
-                                                const TextSpan(
+                                                TextSpan(
                                                   text:
                                                       'Directe toegang tot onze Midwife Mentor AI voor deskundig advies.',
                                                   style: TextStyle(
@@ -598,7 +625,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 7.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -607,7 +634,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 5.0, 0.0),
                                           child: Theme(
                                             data: ThemeData(
@@ -635,6 +662,12 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                     _model.checkboxValue5 =
                                                         newValue!);
                                               },
+                                              side: BorderSide(
+                                                width: 2,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                              ),
                                               activeColor:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
@@ -678,7 +711,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                     fontSize: 15.0,
                                                   ),
                                                 ),
-                                                const TextSpan(
+                                                TextSpan(
                                                   text:
                                                       'Directe toegang tot onze Midwife Mentor AI voor deskundig advies.',
                                                   style: TextStyle(
@@ -701,7 +734,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 7.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -710,7 +743,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 5.0, 0.0),
                                           child: Theme(
                                             data: ThemeData(
@@ -738,6 +771,12 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                     _model.checkboxValue6 =
                                                         newValue!);
                                               },
+                                              side: BorderSide(
+                                                width: 2,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                              ),
                                               activeColor:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
@@ -781,7 +820,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                     fontSize: 15.0,
                                                   ),
                                                 ),
-                                                const TextSpan(
+                                                TextSpan(
                                                   text:
                                                       'Directe toegang tot onze Midwife Mentor AI voor deskundig advies.',
                                                   style: TextStyle(
@@ -804,7 +843,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 7.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -813,7 +852,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 5.0, 0.0),
                                           child: Theme(
                                             data: ThemeData(
@@ -841,6 +880,12 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                     _model.checkboxValue7 =
                                                         newValue!);
                                               },
+                                              side: BorderSide(
+                                                width: 2,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                              ),
                                               activeColor:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
@@ -884,7 +929,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                     fontSize: 15.0,
                                                   ),
                                                 ),
-                                                const TextSpan(
+                                                TextSpan(
                                                   text:
                                                       'Directe toegang tot onze Midwife Mentor AI voor deskundig advies.',
                                                   style: TextStyle(
@@ -909,7 +954,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () {
@@ -918,9 +963,9 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                   text: 'Word Lid en Begin Je Reis',
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         30.0, 0.0, 30.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color:
                                         FlutterFlowTheme.of(context).secondary,
@@ -932,7 +977,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -941,7 +986,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 16.0, 0.0, 12.0),
                                 child: Text(
                                   'Ervaar de volledige begeleiding en ondersteuning tijdens je bijzondere reis naar het moederschap.',

@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/courses/edit_lesson_name/edit_lesson_name_widget.dart';
@@ -6,9 +7,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'course_content_create_model.dart';
 export 'course_content_create_model.dart';
@@ -66,7 +70,7 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
       stream: SectionsRecord.getDocument(widget.parameter2!)
         ..listen((containerSectionsRecord) async {
           if (_model.containerPreviousSnapshot != null &&
-              !const SectionsRecordDocumentEquality().equals(
+              !SectionsRecordDocumentEquality().equals(
                   containerSectionsRecord, _model.containerPreviousSnapshot)) {
             setState(() {});
 
@@ -91,7 +95,7 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
         }
         final containerSectionsRecord = snapshot.data!;
         return Container(
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: Container(
             width: double.infinity,
             color: Colors.white,
@@ -103,7 +107,7 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                       child: TextFormField(
                         controller: _model.textFieldSectionController ??=
                             TextEditingController(
@@ -112,7 +116,7 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                         focusNode: _model.textFieldSectionFocusNode,
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.textFieldSectionController',
-                          const Duration(milliseconds: 2000),
+                          Duration(milliseconds: 2000),
                           () async {
                             await widget.parameter2!
                                 .update(createSectionsRecordData(
@@ -222,13 +226,13 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 10.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             15.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           functions
@@ -245,10 +249,10 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                                       ),
                                       Expanded(
                                         child: Container(
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 8.0, 0.0),
                                             child: InkWell(
                                               splashColor: Colors.transparent,
@@ -300,7 +304,7 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 4.0, 0.0),
                                         child: InkWell(
                                           splashColor: Colors.transparent,
@@ -379,7 +383,9 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                                               }
                                             }
 
-                                            if (_model.uploadedFileUrl1 != '') {
+                                            if (_model.uploadedFileUrl1 !=
+                                                    null &&
+                                                _model.uploadedFileUrl1 != '') {
                                               await listViewLessonsRecord
                                                   .reference
                                                   .update(
@@ -400,12 +406,17 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                                           },
                                           child: Container(
                                             height: 50.0,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Builder(
                                               builder: (context) {
                                                 if ((_model.uploadedFileUrl1 ==
+                                                            null ||
+                                                        _model.uploadedFileUrl1 ==
                                                             '') &&
                                                     (listViewLessonsRecord
+                                                                .videoPath ==
+                                                            null ||
+                                                        listViewLessonsRecord
                                                                 .videoPath ==
                                                             '')) {
                                                   return Icon(
@@ -430,7 +441,7 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 8.0, 0.0),
                                         child: InkWell(
                                           splashColor: Colors.transparent,
@@ -461,15 +472,15 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Expanded(
                             child: Container(
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
                                 child: TextFormField(
                                   controller:
@@ -539,7 +550,7 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 8.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -603,7 +614,8 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                                   }
                                 }
 
-                                if (_model.uploadedFileUrl2 != '') {
+                                if (_model.uploadedFileUrl2 != null &&
+                                    _model.uploadedFileUrl2 != '') {
                                   await LessonsRecord.createDoc(
                                           widget.parameter1!)
                                       .set(createLessonsRecordData(
@@ -631,10 +643,11 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                               },
                               child: Container(
                                 height: 50.0,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Builder(
                                   builder: (context) {
-                                    if (_model.uploadedFileUrl2 == '') {
+                                    if (_model.uploadedFileUrl2 == null ||
+                                        _model.uploadedFileUrl2 == '') {
                                       return Icon(
                                         Icons.add_to_queue_rounded,
                                         color: FlutterFlowTheme.of(context)
@@ -658,10 +671,10 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(1.0, 0.0),
+                      alignment: AlignmentDirectional(1.0, 0.0),
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 15.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 15.0),
                         child: FFButtonWidget(
                           onPressed: () async {
                             await widget.parameter2!.delete();
@@ -669,9 +682,9 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                           text: 'Delete ${containerSectionsRecord.title}',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).error,
                             textStyle: FlutterFlowTheme.of(context)
@@ -682,7 +695,7 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -693,7 +706,7 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                     ),
                   ],
                 ),
-                theme: const ExpandableThemeData(
+                theme: ExpandableThemeData(
                   tapHeaderToExpand: true,
                   tapBodyToExpand: false,
                   tapBodyToCollapse: false,

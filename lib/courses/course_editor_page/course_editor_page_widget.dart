@@ -8,7 +8,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'course_editor_page_model.dart';
 export 'course_editor_page_model.dart';
 
@@ -58,7 +61,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(100.0),
+          preferredSize: Size.fromHeight(100.0),
           child: AppBar(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             automaticallyImplyLeading: false,
@@ -76,7 +79,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                 context.pop();
               },
             ),
-            actions: const [],
+            actions: [],
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
                 'Course Editor',
@@ -119,7 +122,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 20.0, 8.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 20.0, 8.0, 0.0),
                       child: TextFormField(
                         controller: _model.textController1 ??=
                             TextEditingController(
@@ -181,7 +184,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 10.0, 8.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 10.0, 8.0, 0.0),
                       child: TextFormField(
                         controller: _model.textController2 ??=
                             TextEditingController(
@@ -243,7 +246,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -306,10 +309,11 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                             color: FlutterFlowTheme.of(context).secondaryText,
                           ),
                           child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Builder(
                               builder: (context) {
-                                if (_model.uploadedFileUrl != '') {
+                                if (_model.uploadedFileUrl != null &&
+                                    _model.uploadedFileUrl != '') {
                                   return ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Image.network(
@@ -319,7 +323,9 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                                       fit: BoxFit.cover,
                                     ),
                                   );
-                                } else if (columnCoursesRecord.imageUrl != '') {
+                                } else if (columnCoursesRecord.imageUrl !=
+                                        null &&
+                                    columnCoursesRecord.imageUrl != '') {
                                   return ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Image.network(
@@ -353,9 +359,9 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Align(
-                          alignment: const AlignmentDirectional(-1.0, 0.0),
+                          alignment: AlignmentDirectional(-1.0, 0.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 20.0, 0.0, 0.0),
                             child: Text(
                               'Add content to your course:',
@@ -412,9 +418,9 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                           },
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(-1.0, 0.0),
+                          alignment: AlignmentDirectional(-1.0, 0.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 10.0, 10.0, 0.0, 0.0),
                             child: FutureBuilder<int>(
                               future: querySectionsRecordCount(
@@ -455,9 +461,9 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                                   text: 'Add section',
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -468,7 +474,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -483,16 +489,16 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Switch.adaptive(
                               value: _model.switchValue ??= true,
                               onChanged: (newValue) async {
-                                setState(() => _model.switchValue = newValue);
+                                setState(() => _model.switchValue = newValue!);
                               },
                               activeColor:
                                   FlutterFlowTheme.of(context).secondary,
@@ -505,7 +511,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 5.0, 0.0, 0.0, 0.0),
                             child: Text(
                               'For Pregnant',
@@ -522,11 +528,13 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
+                      padding: EdgeInsetsDirectional.fromSTEB(
                           10.0, 15.0, 10.0, 10.0),
                       child: FFButtonWidget(
-                        onPressed: !((_model.textController1.text != '') &&
-                                (_model.textController2.text != ''))
+                        onPressed: !((_model.textController1.text != null &&
+                                    _model.textController1.text != '') &&
+                                (_model.textController2.text != null &&
+                                    _model.textController2.text != ''))
                             ? null
                             : () async {
                                 await widget.newCourseRef!.update({
@@ -544,7 +552,8 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                                     },
                                   ),
                                 });
-                                if (_model.uploadedFileUrl != '') {
+                                if (_model.uploadedFileUrl != null &&
+                                    _model.uploadedFileUrl != '') {
                                   await columnCoursesRecord.reference
                                       .update(createCoursesRecordData(
                                     imageUrl: _model.uploadedFileUrl,
@@ -556,9 +565,9 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 40.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -568,7 +577,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),

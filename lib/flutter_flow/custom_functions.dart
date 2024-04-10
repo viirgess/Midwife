@@ -23,15 +23,18 @@ bool? verifyEmail(String? email) {
 
 int? calculateWeek(DateTime? calculatedDate) {
   if (calculatedDate == null) {
-    return null;
+    return 1;
   }
 
   DateTime now = DateTime.now();
-  Duration difference = now.difference(calculatedDate);
-  int days = difference.inDays;
 
-  int weeks = (days / 7).floor();
-  return weeks;
+  DateTime conceptionDate = calculatedDate.subtract(Duration(days: 294));
+
+  if (now.isBefore(conceptionDate)) {
+    return 0;
+  }
+  int weeksSinceConception = now.difference(conceptionDate).inDays ~/ 7;
+  return weeksSinceConception > 42 ? 42 : weeksSinceConception;
 }
 
 String? calculateDay(DateTime? date) {
@@ -111,6 +114,5 @@ double numberToPercentage(int number) {
   // Calculate the percentage as a double value (0.0 to 1.0)
   final double percentage = number / 30.0;
 
-  // Format the percentage as a string with a "%" symbol
-  return double.parse(percentage.toStringAsFixed(2));
+  return double.parse(percentage.toStringAsPrecision(2));
 }

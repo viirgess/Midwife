@@ -1,9 +1,12 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pregnancy_community/components_pregnancy_community/community_forum_post_pregnancy/community_forum_post_pregnancy_widget.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/pregnancy_community/components_pregnancy_community/community_forum_post/community_forum_post_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'test_page_model.dart';
 export 'test_page_model.dart';
 
@@ -85,7 +88,7 @@ class _TestPageWidgetState extends State<TestPageWidget> {
               itemBuilder: (context, _, listViewIndex) {
                 final listViewPregnancyCommunityForumRecord =
                     _model.listViewPagingController!.itemList![listViewIndex];
-                return CommunityForumPostPregnancyWidget(
+                return CommunityForumPostWidget(
                   key: Key(
                       'Key44i_${listViewIndex}_of_${_model.listViewPagingController!.itemList!.length}'),
                   forumPost: listViewPregnancyCommunityForumRecord.reference,

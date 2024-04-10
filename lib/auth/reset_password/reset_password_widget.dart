@@ -1,8 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'reset_password_model.dart';
 export 'reset_password_model.dart';
 
@@ -46,13 +49,13 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(16.0, 48.0, 16.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(16.0, 48.0, 16.0, 0.0),
           child: ListView(
             padding: EdgeInsets.zero,
             scrollDirection: Axis.vertical,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,14 +67,14 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
                         width: 150.0,
                         height: 120.0,
                         fit: BoxFit.contain,
-                        alignment: const Alignment(-1.0, 0.0),
+                        alignment: Alignment(-1.0, 0.0),
                       ),
                     ),
                   ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(48.0, 36.0, 48.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(48.0, 36.0, 48.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,9 +91,9 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 18.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 18.0),
                       child: Text(
-                        'Meld je aan om toegang te krijgen tot gezamenlijke verbinding en groei',
+                        'Meld je aan om toegang te krijgen tot Mama Mentor',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Outfit',
                               fontSize: 16.0,
@@ -100,7 +103,7 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 12.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 12.0),
                       child: Text(
                         'E-mailadres*',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -167,7 +170,7 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -176,7 +179,7 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
                         onTap: () async {
                           if (_model.emailTextController.text.isEmpty) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
+                              SnackBar(
                                 content: Text(
                                   'Email required!',
                                 ),
@@ -196,7 +199,7 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
                             borderRadius: BorderRadius.circular(24.0),
                           ),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 10.0),
                             child: Text(
                               'Wachtwoord resetten',
@@ -218,7 +221,7 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -228,7 +231,7 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
                           context.goNamed(
                             'RegisterPage',
                             extra: <String, dynamic>{
-                              kTransitionInfoKey: const TransitionInfo(
+                              kTransitionInfoKey: TransitionInfo(
                                 hasTransition: true,
                                 transitionType: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),

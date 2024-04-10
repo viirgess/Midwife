@@ -3,15 +3,17 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+import '/backend/schema/enums/enums.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 class PregnancyCommentsForumRecord extends FirestoreRecord {
   PregnancyCommentsForumRecord._(
-    super.reference,
-    super.data,
-  ) {
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
     _initializeFields();
   }
 
@@ -45,6 +47,16 @@ class PregnancyCommentsForumRecord extends FirestoreRecord {
   List<DocumentReference> get commentLikes => _commentLikes ?? const [];
   bool hasCommentLikes() => _commentLikes != null;
 
+  // "picturePath" field.
+  String? _picturePath;
+  String get picturePath => _picturePath ?? '';
+  bool hasPicturePath() => _picturePath != null;
+
+  // "videoPath" field.
+  String? _videoPath;
+  String get videoPath => _videoPath ?? '';
+  bool hasVideoPath() => _videoPath != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
@@ -54,6 +66,8 @@ class PregnancyCommentsForumRecord extends FirestoreRecord {
     _likes = castToType<int>(snapshotData['likes']);
     _text = snapshotData['text'] as String?;
     _commentLikes = getDataList(snapshotData['commentLikes']);
+    _picturePath = snapshotData['picturePath'] as String?;
+    _videoPath = snapshotData['videoPath'] as String?;
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -104,6 +118,8 @@ Map<String, dynamic> createPregnancyCommentsForumRecordData({
   DateTime? createdTime,
   int? likes,
   String? text,
+  String? picturePath,
+  String? videoPath,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -112,6 +128,8 @@ Map<String, dynamic> createPregnancyCommentsForumRecordData({
       'created_time': createdTime,
       'likes': likes,
       'text': text,
+      'picturePath': picturePath,
+      'videoPath': videoPath,
     }.withoutNulls,
   );
 
@@ -131,7 +149,9 @@ class PregnancyCommentsForumRecordDocumentEquality
         e1?.createdTime == e2?.createdTime &&
         e1?.likes == e2?.likes &&
         e1?.text == e2?.text &&
-        listEquality.equals(e1?.commentLikes, e2?.commentLikes);
+        listEquality.equals(e1?.commentLikes, e2?.commentLikes) &&
+        e1?.picturePath == e2?.picturePath &&
+        e1?.videoPath == e2?.videoPath;
   }
 
   @override
@@ -141,7 +161,9 @@ class PregnancyCommentsForumRecordDocumentEquality
         e?.createdTime,
         e?.likes,
         e?.text,
-        e?.commentLikes
+        e?.commentLikes,
+        e?.picturePath,
+        e?.videoPath
       ]);
 
   @override
