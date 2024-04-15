@@ -59,6 +59,7 @@ dependencies:
   flutter_animate: 4.1.1+1
   flutter_cache_manager: 3.3.1
   flutter_plugin_android_lifecycle: 2.0.17
+  flutter_rating_bar: 4.0.1
   flutter_secure_storage: 8.0.0
   flutter_stripe: 9.4.0
   flutter_stripe_web: 4.4.0
@@ -77,7 +78,6 @@ dependencies:
   image_picker_for_web: 3.0.1
   image_picker_ios: 0.8.8+2
   image_picker_platform_interface: 2.9.1
-  infinite_scroll_pagination: 4.0.0
   intl: 0.18.1
   json_path: 0.6.2
   lottie: 2.7.0
@@ -102,11 +102,13 @@ dependencies:
   sign_in_with_apple_platform_interface: 1.0.0
   sign_in_with_apple_web: 1.0.1
   sqflite: 2.2.6
+  stop_watch_timer: 3.0.2
   stream_transform: 2.1.0
   stripe_android: 9.4.0
   stripe_ios: 9.4.1
   stripe_js: 3.2.0
   stripe_platform_interface: 9.4.0
+  syncfusion_flutter_calendar:
   synchronized: 3.1.0
   timeago: 3.2.2
   url_launcher: 6.2.5

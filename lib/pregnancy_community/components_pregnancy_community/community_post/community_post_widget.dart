@@ -8,11 +8,7 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/pregnancy_community/components_pregnancy_community/leave_comment/leave_comment_widget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'community_post_model.dart';
 export 'community_post_model.dart';
@@ -102,7 +98,7 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                   Container(
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).tertiary,
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(0.0),
                         bottomRight: Radius.circular(0.0),
                         topLeft: Radius.circular(8.0),
@@ -110,7 +106,7 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -138,7 +134,7 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                                   width: 55.0,
                                   height: 55.0,
                                   clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
                                   child: Image.network(
@@ -150,9 +146,9 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 0.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -176,7 +172,7 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                                                       ),
                                             ),
                                             if (columnUsersRecord.isAdmin)
-                                              Icon(
+                                              const Icon(
                                                 Icons.verified,
                                                 color: Color(0xFF52A7FB),
                                                 size: 18.0,
@@ -185,7 +181,7 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                                         ),
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
+                                              const AlignmentDirectional(-1.0, 0.0),
                                           child: Text(
                                             dateTimeFormat(
                                                 'relative',
@@ -206,12 +202,12 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                               ],
                             ),
                           ),
-                          if ((currentUserDocument?.userFriends?.toList() ?? [])
+                          if ((currentUserDocument?.userFriends.toList() ?? [])
                                   .contains(columnUsersRecord.reference) ==
                               true)
                             Expanded(
                               child: Align(
-                                alignment: AlignmentDirectional(1.0, 0.0),
+                                alignment: const AlignmentDirectional(1.0, 0.0),
                                 child: AuthUserStreamWidget(
                                   builder: (context) => Container(
                                     width: 100.0,
@@ -221,7 +217,7 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                                           .secondary,
                                       borderRadius: BorderRadius.circular(16.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       'Vrienden',
                                       style: FlutterFlowTheme.of(context)
@@ -248,14 +244,14 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
                     child: Padding(
-                      padding: EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(10.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 8.0, 0.0, 8.0),
                               child: Text(
                                 containerPregnancyCommunityForumRecord.text,
@@ -271,9 +267,6 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                             ),
                           ),
                           if (containerPregnancyCommunityForumRecord
-                                      .picturePath !=
-                                  null &&
-                              containerPregnancyCommunityForumRecord
                                       .picturePath !=
                                   '')
                             InkWell(
@@ -319,9 +312,6 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                             ),
                           if (containerPregnancyCommunityForumRecord
                                       .videoPath !=
-                                  null &&
-                              containerPregnancyCommunityForumRecord
-                                      .videoPath !=
                                   '')
                             FlutterFlowVideoPlayer(
                               path: containerPregnancyCommunityForumRecord
@@ -335,14 +325,14 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                               allowPlaybackSpeedMenu: false,
                             ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 16.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: ToggleIcon(
                                     onPressed: () async {
                                       final postLikesElement =
@@ -436,7 +426,7 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 7.0, 0.0, 0.0),
                                   child: FlutterFlowIconButton(
                                     borderColor: FlutterFlowTheme.of(context)
@@ -473,16 +463,16 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                                     },
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 10.0)),
+                              ].divide(const SizedBox(width: 10.0)),
                             ),
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 6.0, 10.0),
                                   child: Text(
                                     valueOrDefault<String>(
@@ -503,7 +493,7 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 10.0),
                                 child: Text(
                                   'Vind-ik-leuks',

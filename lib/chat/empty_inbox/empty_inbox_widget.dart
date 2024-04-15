@@ -1,8 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'empty_inbox_model.dart';
 export 'empty_inbox_model.dart';
 
@@ -45,12 +43,12 @@ class _EmptyInboxWidgetState extends State<EmptyInboxWidget> {
         color: FlutterFlowTheme.of(context).primaryBackground,
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
               child: Icon(
                 Icons.chat_bubble_outline,
                 color: FlutterFlowTheme.of(context).secondaryText,
@@ -58,7 +56,7 @@ class _EmptyInboxWidgetState extends State<EmptyInboxWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
               child: Text(
                 'No Chats',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -68,7 +66,7 @@ class _EmptyInboxWidgetState extends State<EmptyInboxWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
               child: Text(
                 'It seems that you don\'t have any chats',
                 style: FlutterFlowTheme.of(context).labelMedium.override(

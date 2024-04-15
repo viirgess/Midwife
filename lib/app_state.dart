@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'flutter_flow/request_manager.dart';
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
-import '/backend/schema/enums/enums.dart';
-import 'backend/api_requests/api_manager.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:csv/csv.dart';
 import 'package:synchronized/synchronized.dart';
@@ -23,7 +20,7 @@ class FFAppState extends ChangeNotifier {
   }
 
   Future initializePersistedState() async {
-    secureStorage = FlutterSecureStorage();
+    secureStorage = const FlutterSecureStorage();
     await _safeInitAsync(() async {
       _isMainPage = await secureStorage.getBool('ff_isMainPage') ?? _isMainPage;
     });
@@ -48,9 +45,9 @@ class FFAppState extends ChangeNotifier {
 
   bool _isMainPage = false;
   bool get isMainPage => _isMainPage;
-  set isMainPage(bool _value) {
-    _isMainPage = _value;
-    secureStorage.setBool('ff_isMainPage', _value);
+  set isMainPage(bool value) {
+    _isMainPage = value;
+    secureStorage.setBool('ff_isMainPage', value);
   }
 
   void deleteIsMainPage() {
@@ -59,9 +56,9 @@ class FFAppState extends ChangeNotifier {
 
   bool _isPregnant = true;
   bool get isPregnant => _isPregnant;
-  set isPregnant(bool _value) {
-    _isPregnant = _value;
-    secureStorage.setBool('ff_isPregnant', _value);
+  set isPregnant(bool value) {
+    _isPregnant = value;
+    secureStorage.setBool('ff_isPregnant', value);
   }
 
   void deleteIsPregnant() {
@@ -70,50 +67,50 @@ class FFAppState extends ChangeNotifier {
 
   List<String> _AIChat = [];
   List<String> get AIChat => _AIChat;
-  set AIChat(List<String> _value) {
-    _AIChat = _value;
-    secureStorage.setStringList('ff_AIChat', _value);
+  set AIChat(List<String> value) {
+    _AIChat = value;
+    secureStorage.setStringList('ff_AIChat', value);
   }
 
   void deleteAIChat() {
     secureStorage.delete(key: 'ff_AIChat');
   }
 
-  void addToAIChat(String _value) {
-    _AIChat.add(_value);
+  void addToAIChat(String value) {
+    _AIChat.add(value);
     secureStorage.setStringList('ff_AIChat', _AIChat);
   }
 
-  void removeFromAIChat(String _value) {
-    _AIChat.remove(_value);
+  void removeFromAIChat(String value) {
+    _AIChat.remove(value);
     secureStorage.setStringList('ff_AIChat', _AIChat);
   }
 
-  void removeAtIndexFromAIChat(int _index) {
-    _AIChat.removeAt(_index);
+  void removeAtIndexFromAIChat(int index) {
+    _AIChat.removeAt(index);
     secureStorage.setStringList('ff_AIChat', _AIChat);
   }
 
   void updateAIChatAtIndex(
-    int _index,
+    int index,
     String Function(String) updateFn,
   ) {
-    _AIChat[_index] = updateFn(_AIChat[_index]);
+    _AIChat[index] = updateFn(_AIChat[index]);
     secureStorage.setStringList('ff_AIChat', _AIChat);
   }
 
-  void insertAtIndexInAIChat(int _index, String _value) {
-    _AIChat.insert(_index, _value);
+  void insertAtIndexInAIChat(int index, String value) {
+    _AIChat.insert(index, value);
     secureStorage.setStringList('ff_AIChat', _AIChat);
   }
 
   DocumentReference? _midwifeRef =
       FirebaseFirestore.instance.doc('/users/BfL7gWodPzOmLe16xIf0JptGNO93');
   DocumentReference? get midwifeRef => _midwifeRef;
-  set midwifeRef(DocumentReference? _value) {
-    _midwifeRef = _value;
-    _value != null
-        ? secureStorage.setString('ff_midwifeRef', _value.path)
+  set midwifeRef(DocumentReference? value) {
+    _midwifeRef = value;
+    value != null
+        ? secureStorage.setString('ff_midwifeRef', value.path)
         : secureStorage.remove('ff_midwifeRef');
   }
 
@@ -199,12 +196,12 @@ extension FlutterSecureStorageExtensions on FlutterSecureStorage {
         if (result == null || result.isEmpty) {
           return null;
         }
-        return CsvToListConverter()
+        return const CsvToListConverter()
             .convert(result)
             .first
             .map((e) => e.toString())
             .toList();
       });
   Future<void> setStringList(String key, List<String> value) async =>
-      await writeSync(key: key, value: ListToCsvConverter().convert([value]));
+      await writeSync(key: key, value: const ListToCsvConverter().convert([value]));
 }

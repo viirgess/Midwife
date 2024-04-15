@@ -116,3 +116,25 @@ double numberToPercentage(int number) {
 
   return double.parse(percentage.toStringAsPrecision(2));
 }
+
+List<String>? mixTwoLists(
+  List<String>? girls,
+  List<String>? boys,
+) {
+  // mix values of two list
+  if (girls == null || boys == null) {
+    return null;
+  }
+  final mixedList = <String>[];
+  final maxLength = math.max(girls.length, boys.length);
+  for (var i = 0; i < maxLength; i++) {
+    if (i < girls.length) {
+      mixedList.add(girls[i]);
+    }
+    if (i < boys.length) {
+      mixedList.add(boys[i]);
+    }
+  }
+
+  return mixedList;
+}

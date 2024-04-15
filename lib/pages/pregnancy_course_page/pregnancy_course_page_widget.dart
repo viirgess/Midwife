@@ -6,10 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/notifications/notification_modal_sheet/notification_modal_sheet_widget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'pregnancy_course_page_model.dart';
 export 'pregnancy_course_page_model.dart';
@@ -57,7 +54,7 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
             child: wrapWithModel(
               model: _model.drawerDataModel,
               updateCallback: () => setState(() {}),
-              child: DrawerDataWidget(),
+              child: const DrawerDataWidget(),
             ),
           ),
         ),
@@ -83,7 +80,7 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
             children: [
               Expanded(
                 child: Align(
-                  alignment: AlignmentDirectional(1.0, 0.0),
+                  alignment: const AlignmentDirectional(1.0, 0.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -93,7 +90,7 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
                       await showModalBottomSheet(
                         isScrollControlled: true,
                         backgroundColor: FlutterFlowTheme.of(context).alternate,
-                        barrierColor: Color(0x19C67AF5),
+                        barrierColor: const Color(0x19C67AF5),
                         context: context,
                         builder: (context) {
                           return WebViewAware(
@@ -104,7 +101,7 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
                                   : FocusScope.of(context).unfocus(),
                               child: Padding(
                                 padding: MediaQuery.viewInsetsOf(context),
-                                child: NotificationModalSheetWidget(),
+                                child: const NotificationModalSheetWidget(),
                               ),
                             ),
                           );
@@ -121,12 +118,12 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
               ),
             ],
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 0.0,
         ),
         body: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -141,7 +138,7 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               32.0, 0.0, 32.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -152,7 +149,7 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 8.0),
                                     child: Text(
                                       'Zwangerschapscursus',
@@ -168,9 +165,9 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
                                   ),
                                   Container(
                                     width: 300.0,
-                                    decoration: BoxDecoration(),
+                                    decoration: const BoxDecoration(),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 12.0),
                                       child: Text(
                                         'Leer en groei: volg een zwangerschapscursus voor (aanstaande) ouders',
@@ -205,9 +202,9 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
                               text: 'For Pregnant',
                               options: FFButtonOptions(
                                 height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -218,7 +215,7 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -234,9 +231,9 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
                               text: 'For Post Pregnant',
                               options: FFButtonOptions(
                                 height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -247,7 +244,7 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -265,7 +262,7 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
                         if (valueOrDefault<bool>(
                             currentUserDocument?.isAdmin, false))
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 15.0),
                             child: AuthUserStreamWidget(
                               builder: (context) => FFButtonWidget(
@@ -294,9 +291,9 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
                                 text: 'Create Course',
                                 options: FFButtonOptions(
                                   height: 40.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
@@ -308,7 +305,7 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 3.0,
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
@@ -352,16 +349,16 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
                                 final listViewCoursesRecord =
                                     listViewCoursesRecordList[listViewIndex];
                                 return Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       18.0, 0.0, 18.0, 18.0),
                                   child: Container(
                                     width: double.infinity,
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFF0F0F0),
+                                      color: const Color(0xFFF0F0F0),
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           18.0, 18.0, 18.0, 18.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
@@ -382,7 +379,7 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 8.0),
                                             child: Text(
                                               listViewCoursesRecord.title,
@@ -401,7 +398,7 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 8.0),
                                             child: Text(
                                               listViewCoursesRecord.description,
@@ -461,7 +458,7 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(11.0, 6.0,
                                                                 11.0, 6.0),
                                                     child: Text(
@@ -497,7 +494,7 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 1.0, 0.0),
                                                         child: InkWell(
                                                           splashColor: Colors
@@ -545,7 +542,7 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
                                                               .reference
                                                               .delete();
                                                         },
-                                                        child: Icon(
+                                                        child: const Icon(
                                                           Icons.delete,
                                                           color:
                                                               Color(0xFFC85757),
@@ -553,7 +550,7 @@ class _PregnancyCoursePageWidgetState extends State<PregnancyCoursePageWidget> {
                                                         ),
                                                       ),
                                                     ].divide(
-                                                        SizedBox(width: 10.0)),
+                                                        const SizedBox(width: 10.0)),
                                                   ),
                                                 ),
                                             ],

@@ -3,8 +3,6 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'list_of_users_model.dart';
 export 'list_of_users_model.dart';
 
@@ -44,7 +42,7 @@ class _ListOfUsersWidgetState extends State<ListOfUsersWidget> {
     return Material(
       color: Colors.transparent,
       elevation: 5.0,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
@@ -56,7 +54,7 @@ class _ListOfUsersWidgetState extends State<ListOfUsersWidget> {
         width: double.infinity,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(16.0),
@@ -68,9 +66,9 @@ class _ListOfUsersWidgetState extends State<ListOfUsersWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Align(
-                alignment: AlignmentDirectional(1.0, 0.0),
+                alignment: const AlignmentDirectional(1.0, 0.0),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 16.0, 0.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -88,7 +86,7 @@ class _ListOfUsersWidgetState extends State<ListOfUsersWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -104,7 +102,7 @@ class _ListOfUsersWidgetState extends State<ListOfUsersWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 32.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 32.0),
                 child: StreamBuilder<List<UsersRecord>>(
                   stream: queryUsersRecord(
                     limit: 8,
@@ -138,7 +136,7 @@ class _ListOfUsersWidgetState extends State<ListOfUsersWidget> {
                           visible: listViewUsersRecord.reference !=
                               currentUserReference,
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 12.0, 16.0, 0.0),
                             child: Container(
                               width: double.infinity,
@@ -152,7 +150,7 @@ class _ListOfUsersWidgetState extends State<ListOfUsersWidget> {
                                 ),
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 12.0, 8.0, 12.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -180,13 +178,13 @@ class _ListOfUsersWidgetState extends State<ListOfUsersWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 8.0, 0.0),
                                               child: Container(
                                                 width: 50.0,
                                                 height: 50.0,
                                                 clipBehavior: Clip.antiAlias,
-                                                decoration: BoxDecoration(
+                                                decoration: const BoxDecoration(
                                                   shape: BoxShape.circle,
                                                 ),
                                                 child: Image.network(
@@ -210,7 +208,7 @@ class _ListOfUsersWidgetState extends State<ListOfUsersWidget> {
                                                       ),
                                                 ),
                                                 if (listViewUsersRecord.isAdmin)
-                                                  Icon(
+                                                  const Icon(
                                                     Icons.verified,
                                                     color: Color(0xFF52A7FB),
                                                     size: 18.0,
@@ -219,17 +217,17 @@ class _ListOfUsersWidgetState extends State<ListOfUsersWidget> {
                                             ),
                                             if ((currentUserDocument
                                                             ?.userFriends
-                                                            ?.toList() ??
+                                                            .toList() ??
                                                         [])
                                                     .contains(
                                                         listViewUsersRecord
                                                             .reference) ==
                                                 true)
                                               Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           5.0, 0.0, 0.0, 0.0),
                                                   child: AuthUserStreamWidget(
@@ -247,7 +245,7 @@ class _ListOfUsersWidgetState extends State<ListOfUsersWidget> {
                                                                 .circular(16.0),
                                                       ),
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Text(
                                                         'Vrienden',
@@ -274,7 +272,7 @@ class _ListOfUsersWidgetState extends State<ListOfUsersWidget> {
                                           ],
                                         ),
                                       ),
-                                      Align(
+                                      const Align(
                                         alignment:
                                             AlignmentDirectional(1.0, 0.0),
                                         child: Icon(

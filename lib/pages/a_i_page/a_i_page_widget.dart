@@ -8,9 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/notifications/notification_modal_sheet/notification_modal_sheet_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -64,7 +62,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
             child: wrapWithModel(
               model: _model.drawerDataModel,
               updateCallback: () => setState(() {}),
-              child: DrawerDataWidget(),
+              child: const DrawerDataWidget(),
             ),
           ),
         ),
@@ -90,7 +88,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
             children: [
               Expanded(
                 child: Align(
-                  alignment: AlignmentDirectional(1.0, 0.0),
+                  alignment: const AlignmentDirectional(1.0, 0.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -100,7 +98,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                       await showModalBottomSheet(
                         isScrollControlled: true,
                         backgroundColor: FlutterFlowTheme.of(context).alternate,
-                        barrierColor: Color(0x19C67AF5),
+                        barrierColor: const Color(0x19C67AF5),
                         context: context,
                         builder: (context) {
                           return WebViewAware(
@@ -111,7 +109,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                   : FocusScope.of(context).unfocus(),
                               child: Padding(
                                 padding: MediaQuery.viewInsetsOf(context),
-                                child: NotificationModalSheetWidget(),
+                                child: const NotificationModalSheetWidget(),
                               ),
                             ),
                           );
@@ -128,12 +126,12 @@ class _AIPageWidgetState extends State<AIPageWidget> {
               ),
             ],
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 0.0,
         ),
         body: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 64.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 64.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -142,22 +140,23 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                   padding: EdgeInsets.zero,
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
+                  controller: _model.listViewController1,
                   children: [
                     Align(
-                      alignment: AlignmentDirectional(-1.0, 0.0),
+                      alignment: const AlignmentDirectional(-1.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 32.0, 0.0, 32.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: Text(
                                     'Mama Mentor AI',
@@ -173,13 +172,13 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                 ),
                                 Container(
                                   width: 200.0,
-                                  decoration: BoxDecoration(),
+                                  decoration: const BoxDecoration(),
                                 ),
                                 Container(
                                   width: 300.0,
-                                  decoration: BoxDecoration(),
+                                  decoration: const BoxDecoration(),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 12.0),
                                     child: Text(
                                       'Je digitale mentor voor elke stap van de zwangerschap',
@@ -198,11 +197,11 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                 if (false)
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFF0F0F0),
+                                      color: const Color(0xFFF0F0F0),
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           24.0, 12.0, 24.0, 12.0),
                                       child: Text(
                                         _model.apiResultofu != null
@@ -258,7 +257,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Midwife Mentor AI tool',
@@ -281,7 +280,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                         ?.annualSubscription,
                                                     false)) {
                                               return Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -297,7 +296,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                               );
                                             } else {
                                               return Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -316,7 +315,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 12.0, 8.0, 12.0),
                                           child: LinearPercentIndicator(
                                             percent:
@@ -335,7 +334,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .tertiary,
                                             center: Text(
-                                              '${formatNumber(
+                                              formatNumber(
                                                 functions.numberToPercentage(
                                                         valueOrDefault(
                                                             currentUserDocument
@@ -343,7 +342,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                             0)) *
                                                     1,
                                                 formatType: FormatType.percent,
-                                              )}',
+                                              ),
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .headlineSmall
@@ -356,7 +355,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
-                                            barRadius: Radius.circular(3.0),
+                                            barRadius: const Radius.circular(3.0),
                                             padding: EdgeInsets.zero,
                                           ),
                                         ),
@@ -368,7 +367,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                           ),
                           if (FFAppState().AIChat.isNotEmpty)
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: Builder(
                                 builder: (context) {
@@ -387,9 +386,11 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                       return Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          if (aIchatIndex % 2 != 0)
+                                          if ((int index) {
+                                            return index % 2 != 0;
+                                          }(aIchatIndex))
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       10.0, 0.0, 60.0, 0.0),
                                               child: Row(
@@ -398,7 +399,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                   Flexible(
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -417,11 +418,11 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                         ),
                                                         child: Align(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   -1.0, -1.0),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         10.0,
@@ -457,7 +458,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                             ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     60.0, 0.0, 10.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -468,7 +469,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                   Flexible(
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -487,11 +488,11 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                         ),
                                                         child: Align(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   1.0, -1.0),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsets.all(
+                                                                const EdgeInsets.all(
                                                                     10.0),
                                                             child: Text(
                                                               aIchatItem,
@@ -520,7 +521,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                               ],
                                             ),
                                           ),
-                                        ].divide(SizedBox(height: 10.0)),
+                                        ].divide(const SizedBox(height: 10.0)),
                                       );
                                     },
                                     controller: _model.listViewController2,
@@ -554,7 +555,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       32.0, 20.0, 32.0, 0.0),
                                               child: TextFormField(
@@ -642,14 +643,13 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                                 maxLines: 4,
-                                                minLines: null,
                                                 validator: _model
                                                     .textControllerValidator
                                                     .asValidator(context),
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 0.0),
                                               child: Row(
@@ -675,14 +675,14 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                       options: FFButtonOptions(
                                                         height: 40.0,
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     24.0,
                                                                     0.0,
                                                                     24.0,
                                                                     0.0),
                                                         iconPadding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -705,7 +705,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                                       0.0,
                                                                 ),
                                                         elevation: 3.0,
-                                                        borderSide: BorderSide(
+                                                        borderSide: const BorderSide(
                                                           color: Colors
                                                               .transparent,
                                                           width: 1.0,
@@ -717,7 +717,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                     ),
                                                   Align(
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                             1.0, 0.0),
                                                     child: FFButtonWidget(
                                                       onPressed: ((valueOrDefault(
@@ -793,7 +793,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                                     .listViewController1!
                                                                     .position
                                                                     .maxScrollExtent,
-                                                                duration: Duration(
+                                                                duration: const Duration(
                                                                     milliseconds:
                                                                         300),
                                                                 curve:
@@ -807,14 +807,14 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                       options: FFButtonOptions(
                                                         height: 40.0,
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     24.0,
                                                                     0.0,
                                                                     24.0,
                                                                     0.0),
                                                         iconPadding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -839,7 +839,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                                       0.0,
                                                                 ),
                                                         elevation: 3.0,
-                                                        borderSide: BorderSide(
+                                                        borderSide: const BorderSide(
                                                           color: Colors
                                                               .transparent,
                                                           width: 1.0,
@@ -866,16 +866,16 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                       );
                                     } else {
                                       return Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 8.0, 0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         32.0, 0.0, 32.0, 0.0),
                                                 child: Text(
@@ -900,17 +900,17 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                 );
                               } else {
                                 return Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 55.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   32.0, 10.0, 32.0, 0.0),
                                           child: Text(
                                             'Je hebt 3 gratis verzoeken gebruikt. Join de family om meer verzoeken te kunnen doen.',
@@ -926,10 +926,10 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 0.0, 0.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
@@ -937,7 +937,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                 'SubscriptionChoosePage',
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      TransitionInfo(
+                                                      const TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType
@@ -949,10 +949,10 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                             text: 'Join de Mama Mentor Family',
                                             options: FFButtonOptions(
                                               height: 40.0,
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
+                                              iconPadding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -966,7 +966,7 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                         letterSpacing: 0.0,
                                                       ),
                                               elevation: 3.0,
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -986,7 +986,6 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                       ),
                     ),
                   ],
-                  controller: _model.listViewController1,
                 ),
               ),
             ],

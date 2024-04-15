@@ -8,8 +8,6 @@ import '/notifications/notification_modal_sheet/notification_modal_sheet_widget.
 import '/pregnancy_community/components_pregnancy_community/community_forum_post/community_forum_post_widget.dart';
 import '/pregnancy_community/components_pregnancy_community/create_post/create_post_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'community_page_model.dart';
 export 'community_page_model.dart';
@@ -51,7 +49,7 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         floatingActionButton: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 80.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 80.0),
           child: FloatingActionButton(
             onPressed: () async {
               await showModalBottomSheet(
@@ -92,7 +90,7 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
             child: wrapWithModel(
               model: _model.drawerDataModel,
               updateCallback: () => setState(() {}),
-              child: DrawerDataWidget(),
+              child: const DrawerDataWidget(),
             ),
           ),
         ),
@@ -118,7 +116,7 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
             children: [
               Expanded(
                 child: Align(
-                  alignment: AlignmentDirectional(1.0, 0.0),
+                  alignment: const AlignmentDirectional(1.0, 0.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -128,7 +126,7 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                       await showModalBottomSheet(
                         isScrollControlled: true,
                         backgroundColor: FlutterFlowTheme.of(context).alternate,
-                        barrierColor: Color(0x19C67AF5),
+                        barrierColor: const Color(0x19C67AF5),
                         context: context,
                         builder: (context) {
                           return WebViewAware(
@@ -139,7 +137,7 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                                   : FocusScope.of(context).unfocus(),
                               child: Padding(
                                 padding: MediaQuery.viewInsetsOf(context),
-                                child: NotificationModalSheetWidget(),
+                                child: const NotificationModalSheetWidget(),
                               ),
                             ),
                           );
@@ -156,21 +154,21 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
               ),
             ],
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 0.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 65.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 65.0),
             child: ListView(
               padding: EdgeInsets.zero,
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                   child: Container(
                     width: 100.0,
                     decoration: BoxDecoration(
@@ -180,9 +178,9 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Align(
-                          alignment: AlignmentDirectional(-1.0, 0.0),
+                          alignment: const AlignmentDirectional(-1.0, 0.0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 32.0, 0.0, 0.0, 0.0),
                             child: Text(
                               'Community',
@@ -198,7 +196,7 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               32.0, 12.0, 0.0, 0.0),
                           child: Text(
                             'Maak vriendinnen en deel je ervaringen in de Mama Mentor Community',
@@ -214,7 +212,7 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -230,9 +228,9 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                                   text: 'For Pregnant',
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -243,7 +241,7 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -261,9 +259,9 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                                   text: 'For Post Pregnant',
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -274,7 +272,7 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),

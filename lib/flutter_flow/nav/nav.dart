@@ -1,12 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
-import '/backend/schema/enums/enums.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -15,10 +12,7 @@ import '/backend/push_notifications/push_notifications_handler.dart'
 import '/index.dart';
 import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/lat_lng.dart';
-import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -83,40 +77,40 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+              appStateNotifier.loggedIn ? const NavBarPage() : const LoginPageWidget(),
         ),
         FFRoute(
           name: 'LoginPage',
           path: '/loginPage',
-          builder: (context, params) => LoginPageWidget(),
+          builder: (context, params) => const LoginPageWidget(),
         ),
         FFRoute(
           name: 'MainPage',
           path: '/mainPage',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'MainPage')
-              : MainPageWidget(),
+              ? const NavBarPage(initialPage: 'MainPage')
+              : const MainPageWidget(),
         ),
         FFRoute(
           name: 'RegisterPage',
           path: '/registerPage',
-          builder: (context, params) => RegisterPageWidget(),
+          builder: (context, params) => const RegisterPageWidget(),
         ),
         FFRoute(
           name: 'ResetPassword',
           path: '/resetPassword',
-          builder: (context, params) => ResetPasswordWidget(),
+          builder: (context, params) => const ResetPasswordWidget(),
         ),
         FFRoute(
           name: 'AIPage',
           path: '/aIPage',
-          builder: (context, params) => NavBarPage(
+          builder: (context, params) => const NavBarPage(
             initialPage: '',
             page: AIPageWidget(),
           ),
@@ -125,15 +119,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'PregnancyCalendarPage',
           path: '/pregnancyCalendarPage',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'PregnancyCalendarPage')
-              : PregnancyCalendarPageWidget(),
+              ? const NavBarPage(initialPage: 'PregnancyCalendarPage')
+              : const PregnancyCalendarPageWidget(),
         ),
         FFRoute(
           name: 'CommunityPage',
           path: '/communityPage',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'CommunityPage')
-              : NavBarPage(
+              ? const NavBarPage(initialPage: 'CommunityPage')
+              : const NavBarPage(
                   initialPage: 'CommunityPage',
                   page: CommunityPageWidget(),
                 ),
@@ -142,8 +136,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'PrivateChatsPage',
           path: '/privateChatsPage',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'PrivateChatsPage')
-              : NavBarPage(
+              ? const NavBarPage(initialPage: 'PrivateChatsPage')
+              : const NavBarPage(
                   initialPage: 'PrivateChatsPage',
                   page: PrivateChatsPageWidget(),
                 ),
@@ -151,7 +145,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'BlogPage',
           path: '/blogPage',
-          builder: (context, params) => NavBarPage(
+          builder: (context, params) => const NavBarPage(
             initialPage: '',
             page: BlogPageWidget(),
           ),
@@ -159,12 +153,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'FreeEbookPage',
           path: '/freeEbookPage',
-          builder: (context, params) => FreeEbookPageWidget(),
+          builder: (context, params) => const FreeEbookPageWidget(),
         ),
         FFRoute(
           name: 'OnlineCoachingPage',
           path: '/onlineCoachingPage',
-          builder: (context, params) => NavBarPage(
+          builder: (context, params) => const NavBarPage(
             initialPage: '',
             page: OnlineCoachingPageWidget(),
           ),
@@ -172,7 +166,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'PregnancyCoursePage',
           path: '/pregnancyCoursePage',
-          builder: (context, params) => NavBarPage(
+          builder: (context, params) => const NavBarPage(
             initialPage: '',
             page: PregnancyCoursePageWidget(),
           ),
@@ -180,7 +174,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'SupportPage',
           path: '/supportPage',
-          builder: (context, params) => NavBarPage(
+          builder: (context, params) => const NavBarPage(
             initialPage: '',
             page: SupportPageWidget(),
           ),
@@ -188,7 +182,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'FAQPage',
           path: '/fAQPage',
-          builder: (context, params) => NavBarPage(
+          builder: (context, params) => const NavBarPage(
             initialPage: '',
             page: FAQPageWidget(),
           ),
@@ -196,7 +190,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'CollaborationPage',
           path: '/collaborationPage',
-          builder: (context, params) => NavBarPage(
+          builder: (context, params) => const NavBarPage(
             initialPage: '',
             page: CollaborationPageWidget(),
           ),
@@ -407,8 +401,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'userProfile',
           path: '/userProfile',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'userProfile')
-              : UserProfileWidget(),
+              ? const NavBarPage(initialPage: 'userProfile')
+              : const UserProfileWidget(),
         ),
         FFRoute(
           name: 'PublicUserProfile',
@@ -454,12 +448,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'testPage',
           path: '/testPage',
-          builder: (context, params) => TestPageWidget(),
+          builder: (context, params) => const TestPageWidget(),
         ),
         FFRoute(
           name: 'payment',
           path: '/payment',
-          builder: (context, params) => PaymentWidget(),
+          builder: (context, params) => const PaymentWidget(),
         ),
         FFRoute(
           name: 'CoursePage',
@@ -491,7 +485,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'SubscriptionChoosePage',
           path: '/subscriptionChoosePage',
-          builder: (context, params) => SubscriptionChoosePageWidget(),
+          builder: (context, params) => const SubscriptionChoosePageWidget(),
+        ),
+        FFRoute(
+          name: 'nameListPage',
+          path: '/nameListPage',
+          builder: (context, params) => const NameListPageWidget(),
+        ),
+        FFRoute(
+          name: 'ContractionsPage',
+          path: '/contractionsPage',
+          builder: (context, params) => const ContractionsPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
@@ -732,7 +736,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

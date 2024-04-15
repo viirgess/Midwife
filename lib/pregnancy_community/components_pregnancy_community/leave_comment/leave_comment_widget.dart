@@ -8,10 +8,7 @@ import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/flutter_flow/random_data_util.dart' as random_data;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'leave_comment_model.dart';
 export 'leave_comment_model.dart';
 
@@ -104,13 +101,13 @@ class _LeaveCommentWidgetState extends State<LeaveCommentWidget> {
                 boxShadow: [
                   BoxShadow(
                     color: FlutterFlowTheme.of(context).primaryBackground,
-                    offset: Offset(
+                    offset: const Offset(
                       0.0,
                       2.0,
                     ),
                   )
                 ],
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(0.0),
                   bottomRight: Radius.circular(0.0),
                   topLeft: Radius.circular(16.0),
@@ -118,13 +115,13 @@ class _LeaveCommentWidgetState extends State<LeaveCommentWidget> {
                 ),
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           16.0, 16.0, 16.0, 16.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -132,7 +129,7 @@ class _LeaveCommentWidgetState extends State<LeaveCommentWidget> {
                         children: [
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 8.0, 8.0, 8.0),
                               child: TextFormField(
                                 controller: _model.textController,
@@ -185,7 +182,7 @@ class _LeaveCommentWidgetState extends State<LeaveCommentWidget> {
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  contentPadding: EdgeInsets.all(12.0),
+                                  contentPadding: const EdgeInsets.all(12.0),
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -364,28 +361,24 @@ class _LeaveCommentWidgetState extends State<LeaveCommentWidget> {
                     ),
                     Flexible(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            if (_model.uploadedFileUrl1 != null &&
-                                    _model.uploadedFileUrl1 != ''
+                            if (_model.uploadedFileUrl1 != ''
                                 ? true
                                 : false)
                               Expanded(
                                 child: Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Image.network(
                                       () {
-                                        if (_model.uploadedFileUrl1 != null &&
-                                            _model.uploadedFileUrl1 != '') {
+                                        if (_model.uploadedFileUrl1 != '') {
                                           return _model.uploadedFileUrl1;
-                                        } else if (_model.uploadedFileUrl2 !=
-                                                null &&
-                                            _model.uploadedFileUrl2 != '') {
+                                        } else if (_model.uploadedFileUrl2 != '') {
                                           return _model.uploadedFileUrl2;
                                         } else {
                                           return random_data.randomImageUrl(
@@ -400,13 +393,12 @@ class _LeaveCommentWidgetState extends State<LeaveCommentWidget> {
                                   ),
                                 ),
                               ),
-                            if (_model.uploadedFileUrl2 != null &&
-                                    _model.uploadedFileUrl2 != ''
+                            if (_model.uploadedFileUrl2 != ''
                                 ? true
                                 : false)
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 16.0, 0.0),
                                   child: FlutterFlowVideoPlayer(
                                     path: _model.uploadedFileUrl2,
@@ -421,10 +413,8 @@ class _LeaveCommentWidgetState extends State<LeaveCommentWidget> {
                                   ),
                                 ),
                               ),
-                            if (!((_model.uploadedFileUrl1 != null &&
-                                    _model.uploadedFileUrl1 != '') ||
-                                (_model.uploadedFileUrl2 != null &&
-                                    _model.uploadedFileUrl2 != '')))
+                            if (!((_model.uploadedFileUrl1 != '') ||
+                                (_model.uploadedFileUrl2 != '')))
                               Expanded(
                                 child: Container(
                                   width: double.infinity,
@@ -447,9 +437,9 @@ class _LeaveCommentWidgetState extends State<LeaveCommentWidget> {
                     ),
                     Expanded(
                       child: Align(
-                        alignment: AlignmentDirectional(1.0, 1.0),
+                        alignment: const AlignmentDirectional(1.0, 1.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 16.0, 16.0, 16.0),
                           child: FFButtonWidget(
                             onPressed: () async {
@@ -495,9 +485,9 @@ class _LeaveCommentWidgetState extends State<LeaveCommentWidget> {
                             text: 'Comment',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -509,7 +499,7 @@ class _LeaveCommentWidgetState extends State<LeaveCommentWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

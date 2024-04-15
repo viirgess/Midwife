@@ -4,11 +4,8 @@ import '/components/drawer_data/drawer_data_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/notifications/notification_modal_sheet/notification_modal_sheet_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'support_page_model.dart';
 export 'support_page_model.dart';
@@ -52,14 +49,14 @@ class _SupportPageWidgetState extends State<SupportPageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        drawer: Container(
+        drawer: SizedBox(
           width: MediaQuery.sizeOf(context).width * 0.66,
           child: Drawer(
             child: WebViewAware(
               child: wrapWithModel(
                 model: _model.drawerDataModel,
                 updateCallback: () => setState(() {}),
-                child: DrawerDataWidget(),
+                child: const DrawerDataWidget(),
               ),
             ),
           ),
@@ -86,7 +83,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget> {
             children: [
               Expanded(
                 child: Align(
-                  alignment: AlignmentDirectional(1.0, 0.0),
+                  alignment: const AlignmentDirectional(1.0, 0.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -96,7 +93,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget> {
                       await showModalBottomSheet(
                         isScrollControlled: true,
                         backgroundColor: FlutterFlowTheme.of(context).alternate,
-                        barrierColor: Color(0x19C67AF5),
+                        barrierColor: const Color(0x19C67AF5),
                         context: context,
                         builder: (context) {
                           return WebViewAware(
@@ -107,7 +104,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget> {
                                   : FocusScope.of(context).unfocus(),
                               child: Padding(
                                 padding: MediaQuery.viewInsetsOf(context),
-                                child: NotificationModalSheetWidget(),
+                                child: const NotificationModalSheetWidget(),
                               ),
                             ),
                           );
@@ -124,12 +121,12 @@ class _SupportPageWidgetState extends State<SupportPageWidget> {
               ),
             ],
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 0.0,
         ),
         body: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -140,13 +137,13 @@ class _SupportPageWidgetState extends State<SupportPageWidget> {
                   scrollDirection: Axis.vertical,
                   children: [
                     Align(
-                      alignment: AlignmentDirectional(-1.0, 0.0),
+                      alignment: const AlignmentDirectional(-1.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 32.0, 0.0, 32.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -157,7 +154,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 8.0),
                                       child: Text(
                                         'Contact',
@@ -176,9 +173,9 @@ class _SupportPageWidgetState extends State<SupportPageWidget> {
                                     ),
                                     Container(
                                       width: 300.0,
-                                      decoration: BoxDecoration(),
+                                      decoration: const BoxDecoration(),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 12.0),
                                         child: Text(
                                           'Altijd bereikbaar: neem contact op voor al je zwangerschapsvragen',
@@ -207,7 +204,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       32.0, 0.0, 32.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.textController,
@@ -272,15 +269,14 @@ class _SupportPageWidgetState extends State<SupportPageWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                     maxLines: 19,
-                                    minLines: null,
                                     validator: _model.textControllerValidator
                                         .asValidator(context),
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(1.0, 0.0),
+                                  alignment: const AlignmentDirectional(1.0, 0.0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 32.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -299,7 +295,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget> {
                                           toEmail: 'maikbiemans@hotmail.com',
                                           subject: 'Problem',
                                           body:
-                                              '${currentUserEmail}  ${_model.textController.text}',
+                                              '$currentUserEmail  ${_model.textController.text}',
                                         );
                                         if ((_model.apiResultlv1?.succeeded ??
                                             true)) {
@@ -315,7 +311,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget> {
                                                 ),
                                               ),
                                               duration:
-                                                  Duration(milliseconds: 4000),
+                                                  const Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
@@ -337,7 +333,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget> {
                                         ),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 10.0, 20.0, 10.0),
                                           child: Text(
                                             'Verzenden',

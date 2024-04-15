@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
-import '../schema/structs/index.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
@@ -22,7 +20,7 @@ class ChatGPTServiceCall {
     final ffApiRequestBody = '''
 {
   "model": "gpt-3.5-turbo-instruct",
-  "prompt": "<${language}> <${instruction}> <${question}>",
+  "prompt": "<$language> <$instruction> <$question>",
   "temperature": 0.3,
   "max_tokens": 1000,
   "top_p": 1,
@@ -35,7 +33,7 @@ class ChatGPTServiceCall {
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${aPIKey}',
+        'Authorization': 'Bearer $aPIKey',
         'OpenAI-Beta': 'assistants=v1',
       },
       params: {},
@@ -67,16 +65,16 @@ class SendEmailCall {
     {
       "to": [
         {
-          "email": "${toEmail}"
+          "email": "$toEmail"
         }
       ],
-      "subject": "${subject}"
+      "subject": "$subject"
     }
   ],
   "content": [
     {
       "type": "text/plain",
-      "value": "${body}"
+      "value": "$body"
     }
   ],
   "from": {

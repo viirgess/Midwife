@@ -7,13 +7,10 @@ import '/components/week_description_card/week_description_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/notifications/notification_modal_sheet/notification_modal_sheet_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'pregnancy_calendar_page_model.dart';
 export 'pregnancy_calendar_page_model.dart';
@@ -101,7 +98,7 @@ class _PregnancyCalendarPageWidgetState
                 child: wrapWithModel(
                   model: _model.drawerDataModel,
                   updateCallback: () => setState(() {}),
-                  child: DrawerDataWidget(),
+                  child: const DrawerDataWidget(),
                 ),
               ),
             ),
@@ -127,7 +124,7 @@ class _PregnancyCalendarPageWidgetState
                 children: [
                   Expanded(
                     child: Align(
-                      alignment: AlignmentDirectional(1.0, 0.0),
+                      alignment: const AlignmentDirectional(1.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -138,7 +135,7 @@ class _PregnancyCalendarPageWidgetState
                             isScrollControlled: true,
                             backgroundColor:
                                 FlutterFlowTheme.of(context).alternate,
-                            barrierColor: Color(0x19C67AF5),
+                            barrierColor: const Color(0x19C67AF5),
                             context: context,
                             builder: (context) {
                               return WebViewAware(
@@ -150,7 +147,7 @@ class _PregnancyCalendarPageWidgetState
                                           : FocusScope.of(context).unfocus(),
                                   child: Padding(
                                     padding: MediaQuery.viewInsetsOf(context),
-                                    child: NotificationModalSheetWidget(),
+                                    child: const NotificationModalSheetWidget(),
                                   ),
                                 ),
                               );
@@ -167,12 +164,12 @@ class _PregnancyCalendarPageWidgetState
                   ),
                 ],
               ),
-              actions: [],
+              actions: const [],
               centerTitle: true,
               elevation: 0.0,
             ),
             body: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -186,7 +183,7 @@ class _PregnancyCalendarPageWidgetState
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   32.0, 0.0, 32.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -199,7 +196,7 @@ class _PregnancyCalendarPageWidgetState
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 8.0),
                                         child: Text(
                                           'Zwangerschapskalender',
@@ -215,10 +212,10 @@ class _PregnancyCalendarPageWidgetState
                                       ),
                                       Container(
                                         width: 300.0,
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 12.0),
                                           child: Text(
                                             'Volg je zwangerschap in 3D en ontvang wekelijkse inzichten',
@@ -252,10 +249,10 @@ class _PregnancyCalendarPageWidgetState
                                 wrapWithModel(
                                   model: _model.calendarCardModel,
                                   updateCallback: () => setState(() {}),
-                                  child: CalendarCardWidget(),
+                                  child: const CalendarCardWidget(),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 12.0),
                                   child: Text(
                                     'Your baby looks like:\n\nYou can zoom it',
@@ -314,7 +311,7 @@ class _PregnancyCalendarPageWidgetState
                                             ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 0.0, 12.0, 0.0),
                                             child: Text(
                                               valueOrDefault<String>(

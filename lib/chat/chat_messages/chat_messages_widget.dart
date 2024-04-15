@@ -4,13 +4,8 @@ import '/backend/firebase_storage/storage.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'chat_messages_model.dart';
 export 'chat_messages_model.dart';
 
@@ -91,7 +86,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 0.0),
                         child: Text(
                           'Chat',
                           style:
@@ -104,7 +99,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             18.0, 0.0, 18.0, 0.0),
                         child: Text(
                           'Privégesprekken met vriendinnen uit de community',
@@ -117,7 +112,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 12.0, 0.0, 0.0),
                           child: Container(
                             width: double.infinity,
@@ -157,7 +152,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .tertiary,
-                                        borderRadius: BorderRadius.only(
+                                        borderRadius: const BorderRadius.only(
                                           bottomLeft: Radius.circular(0.0),
                                           bottomRight: Radius.circular(0.0),
                                           topLeft: Radius.circular(12.0),
@@ -165,7 +160,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             12.0, 12.0, 12.0, 12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -237,7 +232,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             0.0,
@@ -250,7 +245,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                                   clipBehavior:
                                                                       Clip.antiAlias,
                                                                   decoration:
-                                                                      BoxDecoration(
+                                                                      const BoxDecoration(
                                                                     shape: BoxShape
                                                                         .circle,
                                                                   ),
@@ -278,7 +273,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                               ),
                                                               if (columnUsersRecord
                                                                   .isAdmin)
-                                                                Padding(
+                                                                const Padding(
                                                                   padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           2.0,
@@ -335,7 +330,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             0.0,
@@ -348,7 +343,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                                   clipBehavior:
                                                                       Clip.antiAlias,
                                                                   decoration:
-                                                                      BoxDecoration(
+                                                                      const BoxDecoration(
                                                                     shape: BoxShape
                                                                         .circle,
                                                                   ),
@@ -376,7 +371,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                               ),
                                                               if (rowUsersRecord
                                                                   .isAdmin)
-                                                                Padding(
+                                                                const Padding(
                                                                   padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           2.0,
@@ -432,7 +427,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                 _model.listViewController!
                                                     .position.maxScrollExtent,
                                                 duration:
-                                                    Duration(milliseconds: 200),
+                                                    const Duration(milliseconds: 200),
                                                 curve: Curves.ease,
                                               );
 
@@ -476,7 +471,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                   listViewChatMessagesRecordList[
                                                       listViewIndex];
                                               return Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         20.0, 8.0, 20.0, 0.0),
                                                 child: Column(
@@ -488,19 +483,13 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                             currentUserReference) &&
                                                         ((listViewChatMessagesRecord
                                                                         .text !=
-                                                                    null &&
-                                                                listViewChatMessagesRecord
-                                                                        .text !=
                                                                     '') ||
                                                             (listViewChatMessagesRecord
-                                                                        .image !=
-                                                                    null &&
-                                                                listViewChatMessagesRecord
                                                                         .image !=
                                                                     '')))
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -515,12 +504,12 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       -1.0,
                                                                       1.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -533,7 +522,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                                   clipBehavior:
                                                                       Clip.antiAlias,
                                                                   decoration:
-                                                                      BoxDecoration(
+                                                                      const BoxDecoration(
                                                                     shape: BoxShape
                                                                         .circle,
                                                                   ),
@@ -549,19 +538,19 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       -1.0,
                                                                       0.0),
                                                               child: Container(
                                                                 width: 200.0,
                                                                 constraints:
-                                                                    BoxConstraints(
+                                                                    const BoxConstraints(
                                                                   minHeight:
                                                                       0.0,
                                                                 ),
                                                                 decoration:
                                                                     BoxDecoration(
-                                                                  color: Color(
+                                                                  color: const Color(
                                                                       0x34685CE1),
                                                                   borderRadius:
                                                                       BorderRadius
@@ -574,7 +563,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                                           .min,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           10.0,
                                                                           10.0,
                                                                           10.0,
@@ -586,10 +575,10 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                                         children: [
                                                                           Align(
                                                                             alignment:
-                                                                                AlignmentDirectional(-1.0, 1.0),
+                                                                                const AlignmentDirectional(-1.0, 1.0),
                                                                             child:
                                                                                 Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                               child: Text(
                                                                                 listViewChatMessagesRecord.text,
                                                                                 textAlign: TextAlign.start,
@@ -600,8 +589,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                                               ),
                                                                             ),
                                                                           ),
-                                                                          if (listViewChatMessagesRecord.image != null &&
-                                                                              listViewChatMessagesRecord.image != '')
+                                                                          if (listViewChatMessagesRecord.image != '')
                                                                             ClipRRect(
                                                                               borderRadius: BorderRadius.circular(8.0),
                                                                               child: Image.network(
@@ -616,12 +604,12 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                                     ),
                                                                     Align(
                                                                       alignment:
-                                                                          AlignmentDirectional(
+                                                                          const AlignmentDirectional(
                                                                               1.0,
                                                                               0.0),
                                                                       child:
                                                                           Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             8.0,
@@ -652,23 +640,17 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                             currentUserReference) &&
                                                         ((listViewChatMessagesRecord
                                                                         .text !=
-                                                                    null &&
-                                                                listViewChatMessagesRecord
-                                                                        .text !=
                                                                     '') ||
                                                             (listViewChatMessagesRecord
-                                                                        .image !=
-                                                                    null &&
-                                                                listViewChatMessagesRecord
                                                                         .image !=
                                                                     '')))
                                                       Align(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 1.0, 0.0),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -678,7 +660,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                             width: 200.0,
                                                             decoration:
                                                                 BoxDecoration(
-                                                              color: Color(
+                                                              color: const Color(
                                                                   0x1A1B3851),
                                                               borderRadius:
                                                                   BorderRadius
@@ -691,7 +673,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                                       .min,
                                                               children: [
                                                                 Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           10.0,
                                                                           10.0,
@@ -703,12 +685,12 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                                             .min,
                                                                     children: [
                                                                       Align(
-                                                                        alignment: AlignmentDirectional(
+                                                                        alignment: const AlignmentDirectional(
                                                                             -1.0,
                                                                             0.0),
                                                                         child:
                                                                             Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               0.0,
@@ -726,11 +708,9 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                                         ),
                                                                       ),
                                                                       if (listViewChatMessagesRecord.image !=
-                                                                              null &&
-                                                                          listViewChatMessagesRecord.image !=
                                                                               '')
                                                                         Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               0.0,
@@ -753,12 +733,12 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                                 ),
                                                                 Align(
                                                                   alignment:
-                                                                      AlignmentDirectional(
+                                                                      const AlignmentDirectional(
                                                                           1.0,
                                                                           0.0),
                                                                   child:
                                                                       Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -801,376 +781,384 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                         color: FlutterFlowTheme.of(context)
                                             .tertiary,
                                       ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          if (_model.uploadedFileUrl != null &&
-                                              _model.uploadedFileUrl != '')
-                                            Align(
-                                              alignment: AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Container(
-                                                width: 100.0,
-                                                child: Stack(
-                                                  children: [
-                                                    ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                      child: Image.network(
-                                                        _model.uploadedFileUrl,
-                                                        width: 100.0,
-                                                        fit: BoxFit.cover,
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 35.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            if (_model.uploadedFileUrl != '')
+                                              Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: SizedBox(
+                                                  width: 100.0,
+                                                  child: Stack(
+                                                    children: [
+                                                      ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                        child: Image.network(
+                                                          _model
+                                                              .uploadedFileUrl,
+                                                          width: 100.0,
+                                                          fit: BoxFit.cover,
+                                                        ),
                                                       ),
-                                                    ),
-                                                    Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              1.0, -1.0),
-                                                      child: InkWell(
-                                                        splashColor:
-                                                            Colors.transparent,
-                                                        focusColor:
-                                                            Colors.transparent,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        highlightColor:
-                                                            Colors.transparent,
-                                                        onTap: () async {
-                                                          setState(() {
-                                                            _model.isDataUploading =
-                                                                false;
-                                                            _model.uploadedLocalFile =
-                                                                FFUploadedFile(
-                                                                    bytes: Uint8List
-                                                                        .fromList(
-                                                                            []));
-                                                            _model.uploadedFileUrl =
-                                                                '';
-                                                          });
-                                                        },
-                                                        child: Icon(
-                                                          Icons.close_sharp,
+                                                      Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                1.0, -1.0),
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            setState(() {
+                                                              _model.isDataUploading =
+                                                                  false;
+                                                              _model.uploadedLocalFile =
+                                                                  FFUploadedFile(
+                                                                      bytes: Uint8List
+                                                                          .fromList(
+                                                                              []));
+                                                              _model.uploadedFileUrl =
+                                                                  '';
+                                                            });
+                                                          },
+                                                          child: Icon(
+                                                            Icons.close_sharp,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .error,
+                                                            size: 24.0,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Expanded(
+                                                  child: TextFormField(
+                                                    controller:
+                                                        _model.textController,
+                                                    focusNode: _model
+                                                        .textFieldFocusNode,
+                                                    autofocus: true,
+                                                    obscureText: false,
+                                                    decoration: InputDecoration(
+                                                      labelStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Outfit',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                      hintText: 'Type text',
+                                                      hintStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Outfit',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                      enabledBorder:
+                                                          OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiary,
+                                                          width: 2.0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      focusedBorder:
+                                                          OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          width: 2.0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      errorBorder:
+                                                          OutlineInputBorder(
+                                                        borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .error,
-                                                          size: 24.0,
+                                                          width: 2.0,
                                                         ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
                                                       ),
+                                                      focusedErrorBorder:
+                                                          OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .error,
+                                                          width: 2.0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      filled: true,
+                                                      fillColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .tertiary,
                                                     ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Expanded(
-                                                child: TextFormField(
-                                                  controller:
-                                                      _model.textController,
-                                                  focusNode:
-                                                      _model.textFieldFocusNode,
-                                                  autofocus: true,
-                                                  obscureText: false,
-                                                  decoration: InputDecoration(
-                                                    labelStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .labelMedium
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
                                                         .override(
                                                           fontFamily: 'Outfit',
                                                           letterSpacing: 0.0,
                                                         ),
-                                                    hintText: 'Type text',
-                                                    hintStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily: 'Outfit',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                    enabledBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .tertiary,
-                                                        width: 2.0,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                    focusedBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        width: 2.0,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                    errorBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .error,
-                                                        width: 2.0,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                    focusedErrorBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .error,
-                                                        width: 2.0,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                    filled: true,
-                                                    fillColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .tertiary,
+                                                    validator: _model
+                                                        .textControllerValidator
+                                                        .asValidator(context),
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Outfit',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                  minLines: null,
-                                                  validator: _model
-                                                      .textControllerValidator
-                                                      .asValidator(context),
                                                 ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        8.0, 0.0, 0.0, 0.0),
-                                                child: InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    final selectedMedia =
-                                                        await selectMediaWithSourceBottomSheet(
-                                                      context: context,
-                                                      allowPhoto: true,
-                                                    );
-                                                    if (selectedMedia != null &&
-                                                        selectedMedia.every((m) =>
-                                                            validateFileFormat(
-                                                                m.storagePath,
-                                                                context))) {
-                                                      setState(() => _model
-                                                              .isDataUploading =
-                                                          true);
-                                                      var selectedUploadedFiles =
-                                                          <FFUploadedFile>[];
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          8.0, 0.0, 0.0, 0.0),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      final selectedMedia =
+                                                          await selectMediaWithSourceBottomSheet(
+                                                        context: context,
+                                                        allowPhoto: true,
+                                                      );
+                                                      if (selectedMedia !=
+                                                              null &&
+                                                          selectedMedia.every((m) =>
+                                                              validateFileFormat(
+                                                                  m.storagePath,
+                                                                  context))) {
+                                                        setState(() => _model
+                                                                .isDataUploading =
+                                                            true);
+                                                        var selectedUploadedFiles =
+                                                            <FFUploadedFile>[];
 
-                                                      var downloadUrls =
-                                                          <String>[];
-                                                      try {
-                                                        selectedUploadedFiles =
-                                                            selectedMedia
-                                                                .map((m) =>
-                                                                    FFUploadedFile(
-                                                                      name: m
-                                                                          .storagePath
-                                                                          .split(
-                                                                              '/')
-                                                                          .last,
-                                                                      bytes: m
-                                                                          .bytes,
-                                                                      height: m
-                                                                          .dimensions
-                                                                          ?.height,
-                                                                      width: m
-                                                                          .dimensions
-                                                                          ?.width,
-                                                                      blurHash:
-                                                                          m.blurHash,
-                                                                    ))
-                                                                .toList();
+                                                        var downloadUrls =
+                                                            <String>[];
+                                                        try {
+                                                          selectedUploadedFiles =
+                                                              selectedMedia
+                                                                  .map((m) =>
+                                                                      FFUploadedFile(
+                                                                        name: m
+                                                                            .storagePath
+                                                                            .split('/')
+                                                                            .last,
+                                                                        bytes: m
+                                                                            .bytes,
+                                                                        height: m
+                                                                            .dimensions
+                                                                            ?.height,
+                                                                        width: m
+                                                                            .dimensions
+                                                                            ?.width,
+                                                                        blurHash:
+                                                                            m.blurHash,
+                                                                      ))
+                                                                  .toList();
 
-                                                        downloadUrls =
-                                                            (await Future.wait(
-                                                          selectedMedia.map(
-                                                            (m) async =>
-                                                                await uploadData(
-                                                                    m.storagePath,
-                                                                    m.bytes),
-                                                          ),
-                                                        ))
-                                                                .where((u) =>
-                                                                    u != null)
-                                                                .map((u) => u!)
-                                                                .toList();
-                                                      } finally {
+                                                          downloadUrls =
+                                                              (await Future
+                                                                      .wait(
+                                                            selectedMedia.map(
+                                                              (m) async =>
+                                                                  await uploadData(
+                                                                      m.storagePath,
+                                                                      m.bytes),
+                                                            ),
+                                                          ))
+                                                                  .where((u) =>
+                                                                      u != null)
+                                                                  .map(
+                                                                      (u) => u!)
+                                                                  .toList();
+                                                        } finally {
+                                                          _model.isDataUploading =
+                                                              false;
+                                                        }
+                                                        if (selectedUploadedFiles
+                                                                    .length ==
+                                                                selectedMedia
+                                                                    .length &&
+                                                            downloadUrls
+                                                                    .length ==
+                                                                selectedMedia
+                                                                    .length) {
+                                                          setState(() {
+                                                            _model.uploadedLocalFile =
+                                                                selectedUploadedFiles
+                                                                    .first;
+                                                            _model.uploadedFileUrl =
+                                                                downloadUrls
+                                                                    .first;
+                                                          });
+                                                        } else {
+                                                          setState(() {});
+                                                          return;
+                                                        }
+                                                      }
+                                                    },
+                                                    child: Icon(
+                                                      Icons.image_outlined,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      size: 24.0,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          8.0, 0.0, 8.0, 0.0),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      await ChatMessagesRecord
+                                                          .collection
+                                                          .doc()
+                                                          .set(
+                                                              createChatMessagesRecordData(
+                                                            user:
+                                                                currentUserReference,
+                                                            chatUser:
+                                                                widget.chatUser,
+                                                            text: _model.textController
+                                                                            .text !=
+                                                                        ''
+                                                                ? _model
+                                                                    .textController
+                                                                    .text
+                                                                : '',
+                                                            image: _model
+                                                                .uploadedFileUrl,
+                                                            timeStamp:
+                                                                getCurrentTimestamp,
+                                                          ));
+
+                                                      await widget.chatUser!.update(
+                                                          createChatsRecordData(
+                                                        lastMessage: _model
+                                                            .textController
+                                                            .text,
+                                                        lastMessageTime:
+                                                            getCurrentTimestamp,
+                                                        isSeen: false,
+                                                        isSeenByUser: false,
+                                                      ));
+                                                      triggerPushNotification(
+                                                        notificationTitle:
+                                                            'New message!',
+                                                        notificationText:
+                                                            '${'${valueOrDefault(currentUserDocument?.firstName, '')} ${valueOrDefault(currentUserDocument?.lastName, '')}'} Has sent you a new message!',
+                                                        userRefs: [
+                                                          widget.userRef!
+                                                        ],
+                                                        initialPageName:
+                                                            'chatMessages',
+                                                        parameterData: {
+                                                          'chatUser':
+                                                              widget.chatUser,
+                                                          'userName':
+                                                              '${valueOrDefault(currentUserDocument?.firstName, '')} ${valueOrDefault(currentUserDocument?.lastName, '')}',
+                                                          'userRef':
+                                                              currentUserReference,
+                                                          'userimage':
+                                                              currentUserPhoto,
+                                                        },
+                                                      );
+                                                      setState(() {
+                                                        _model.textController
+                                                            ?.clear();
+                                                      });
+                                                      setState(() {
                                                         _model.isDataUploading =
                                                             false;
-                                                      }
-                                                      if (selectedUploadedFiles
-                                                                  .length ==
-                                                              selectedMedia
-                                                                  .length &&
-                                                          downloadUrls.length ==
-                                                              selectedMedia
-                                                                  .length) {
-                                                        setState(() {
-                                                          _model.uploadedLocalFile =
-                                                              selectedUploadedFiles
-                                                                  .first;
-                                                          _model.uploadedFileUrl =
-                                                              downloadUrls
-                                                                  .first;
-                                                        });
-                                                      } else {
-                                                        setState(() {});
-                                                        return;
-                                                      }
-                                                    }
-                                                  },
-                                                  child: Icon(
-                                                    Icons.image_outlined,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    size: 24.0,
+                                                        _model.uploadedLocalFile =
+                                                            FFUploadedFile(
+                                                                bytes: Uint8List
+                                                                    .fromList(
+                                                                        []));
+                                                        _model.uploadedFileUrl =
+                                                            '';
+                                                      });
+
+                                                      await _model
+                                                          .listViewController
+                                                          ?.animateTo(
+                                                        _model
+                                                            .listViewController!
+                                                            .position
+                                                            .maxScrollExtent,
+                                                        duration: const Duration(
+                                                            milliseconds: 200),
+                                                        curve: Curves.ease,
+                                                      );
+                                                    },
+                                                    child: Icon(
+                                                      Icons.send_sharp,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      size: 24.0,
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        8.0, 0.0, 8.0, 0.0),
-                                                child: InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    await ChatMessagesRecord
-                                                        .collection
-                                                        .doc()
-                                                        .set(
-                                                            createChatMessagesRecordData(
-                                                          user:
-                                                              currentUserReference,
-                                                          chatUser:
-                                                              widget.chatUser,
-                                                          text: _model.textController
-                                                                          .text !=
-                                                                      null &&
-                                                                  _model.textController
-                                                                          .text !=
-                                                                      ''
-                                                              ? _model
-                                                                  .textController
-                                                                  .text
-                                                              : '',
-                                                          image: _model
-                                                              .uploadedFileUrl,
-                                                          timeStamp:
-                                                              getCurrentTimestamp,
-                                                        ));
-
-                                                    await widget.chatUser!.update(
-                                                        createChatsRecordData(
-                                                      lastMessage: _model
-                                                          .textController.text,
-                                                      lastMessageTime:
-                                                          getCurrentTimestamp,
-                                                      isSeen: false,
-                                                      isSeenByUser: false,
-                                                    ));
-                                                    triggerPushNotification(
-                                                      notificationTitle:
-                                                          'New message!',
-                                                      notificationText:
-                                                          '${'${valueOrDefault(currentUserDocument?.firstName, '')} ${valueOrDefault(currentUserDocument?.lastName, '')}'} Has sent you a new message!',
-                                                      userRefs: [
-                                                        widget.userRef!
-                                                      ],
-                                                      initialPageName:
-                                                          'chatMessages',
-                                                      parameterData: {
-                                                        'chatUser':
-                                                            widget.chatUser,
-                                                        'userName':
-                                                            '${valueOrDefault(currentUserDocument?.firstName, '')} ${valueOrDefault(currentUserDocument?.lastName, '')}',
-                                                        'userRef':
-                                                            currentUserReference,
-                                                        'userimage':
-                                                            currentUserPhoto,
-                                                      },
-                                                    );
-                                                    setState(() {
-                                                      _model.textController
-                                                          ?.clear();
-                                                    });
-                                                    setState(() {
-                                                      _model.isDataUploading =
-                                                          false;
-                                                      _model.uploadedLocalFile =
-                                                          FFUploadedFile(
-                                                              bytes: Uint8List
-                                                                  .fromList(
-                                                                      []));
-                                                      _model.uploadedFileUrl =
-                                                          '';
-                                                    });
-
-                                                    await _model
-                                                        .listViewController
-                                                        ?.animateTo(
-                                                      _model
-                                                          .listViewController!
-                                                          .position
-                                                          .maxScrollExtent,
-                                                      duration: Duration(
-                                                          milliseconds: 200),
-                                                      curve: Curves.ease,
-                                                    );
-                                                  },
-                                                  child: Icon(
-                                                    Icons.send_sharp,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    size: 24.0,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ],

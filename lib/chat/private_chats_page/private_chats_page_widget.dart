@@ -8,10 +8,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/notifications/notification_modal_sheet/notification_modal_sheet_widget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'private_chats_page_model.dart';
@@ -55,14 +53,14 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        drawer: Container(
+        drawer: SizedBox(
           width: MediaQuery.sizeOf(context).width * 0.66,
           child: Drawer(
             child: WebViewAware(
               child: wrapWithModel(
                 model: _model.drawerDataModel,
                 updateCallback: () => setState(() {}),
-                child: DrawerDataWidget(),
+                child: const DrawerDataWidget(),
               ),
             ),
           ),
@@ -89,7 +87,7 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
             children: [
               Expanded(
                 child: Align(
-                  alignment: AlignmentDirectional(1.0, 0.0),
+                  alignment: const AlignmentDirectional(1.0, 0.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -99,7 +97,7 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                       await showModalBottomSheet(
                         isScrollControlled: true,
                         backgroundColor: FlutterFlowTheme.of(context).alternate,
-                        barrierColor: Color(0x19C67AF5),
+                        barrierColor: const Color(0x19C67AF5),
                         context: context,
                         builder: (context) {
                           return WebViewAware(
@@ -110,7 +108,7 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                                   : FocusScope.of(context).unfocus(),
                               child: Padding(
                                 padding: MediaQuery.viewInsetsOf(context),
-                                child: NotificationModalSheetWidget(),
+                                child: const NotificationModalSheetWidget(),
                               ),
                             ),
                           );
@@ -127,20 +125,20 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
               ),
             ],
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 0.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: EdgeInsets.all(18.0),
+                  padding: const EdgeInsets.all(18.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -161,7 +159,7 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                             ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 12.0, 0.0, 12.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -183,9 +181,9 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                       ),
                       if (currentUserReference != FFAppState().midwifeRef)
                         Align(
-                          alignment: AlignmentDirectional(1.0, 0.0),
+                          alignment: const AlignmentDirectional(1.0, 0.0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 5.0),
                             child: FFButtonWidget(
                               onPressed: () async {
@@ -273,9 +271,9 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                               text: 'Chat met een verloskundige',
                               options: FFButtonOptions(
                                 height: 35.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
@@ -288,7 +286,7 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -298,9 +296,9 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                           ),
                         ),
                       Align(
-                        alignment: AlignmentDirectional(1.0, 0.0),
+                        alignment: const AlignmentDirectional(1.0, 0.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 5.0),
                           child: FFButtonWidget(
                             onPressed: () async {
@@ -320,7 +318,7 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                                       child: Padding(
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
-                                        child: Container(
+                                        child: const SizedBox(
                                           height: 500.0,
                                           child: ListOfFriendsWidget(),
                                         ),
@@ -333,9 +331,9 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                             text: 'Chat met vrienden',
                             options: FFButtonOptions(
                               height: 35.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).accent2,
                               textStyle: FlutterFlowTheme.of(context)
@@ -348,7 +346,7 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                                     fontWeight: FontWeight.w500,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -358,9 +356,9 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(1.0, 0.0),
+                        alignment: const AlignmentDirectional(1.0, 0.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 5.0),
                           child: FFButtonWidget(
                             onPressed: () async {
@@ -380,7 +378,7 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                                       child: Padding(
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
-                                        child: Container(
+                                        child: const SizedBox(
                                           height: 500.0,
                                           child: ListOfUsersWidget(),
                                         ),
@@ -391,15 +389,15 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                               ).then((value) => safeSetState(() {}));
                             },
                             text: 'Zoek vrienden ',
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.search_sharp,
                               size: 20.0,
                             ),
                             options: FFButtonOptions(
                               height: 35.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).accent2,
                               textStyle: FlutterFlowTheme.of(context)
@@ -412,7 +410,7 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                                     fontWeight: FontWeight.w500,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -435,7 +433,7 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                             ),
                           ),
                           child: Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: StreamBuilder<List<ChatsRecord>>(
                               stream: queryChatsRecord(
                                 queryBuilder: (chatsRecord) => chatsRecord
@@ -559,7 +557,7 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                                                           context)
                                                       .tertiary,
                                                   borderRadius:
-                                                      BorderRadius.only(
+                                                      const BorderRadius.only(
                                                     bottomLeft:
                                                         Radius.circular(0.0),
                                                     bottomRight:
@@ -571,7 +569,7 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(12.0),
+                                                  padding: const EdgeInsets.all(12.0),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -620,7 +618,7 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                                                               clipBehavior: Clip
                                                                   .antiAlias,
                                                               decoration:
-                                                                  BoxDecoration(
+                                                                  const BoxDecoration(
                                                                 shape: BoxShape
                                                                     .circle,
                                                               ),
@@ -673,7 +671,7 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                                                               clipBehavior: Clip
                                                                   .antiAlias,
                                                               decoration:
-                                                                  BoxDecoration(
+                                                                  const BoxDecoration(
                                                                 shape: BoxShape
                                                                     .circle,
                                                               ),
@@ -689,7 +687,7 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                                                         ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     8.0,
                                                                     0.0,
@@ -807,7 +805,7 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                                                                   AuthUserStreamWidget(
                                                                     builder:
                                                                         (context) =>
-                                                                            Icon(
+                                                                            const Icon(
                                                                       Icons
                                                                           .verified,
                                                                       color: Color(
@@ -824,7 +822,7 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                                                                       .max,
                                                               children: [
                                                                 Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,

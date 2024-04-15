@@ -1,12 +1,8 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'edit_lesson_name_model.dart';
 export 'edit_lesson_name_model.dart';
 
@@ -82,13 +78,13 @@ class _EditLessonNameWidgetState extends State<EditLessonNameWidget> {
             boxShadow: [
               BoxShadow(
                 color: FlutterFlowTheme.of(context).primaryBackground,
-                offset: Offset(
+                offset: const Offset(
                   0.0,
                   2.0,
                 ),
               )
             ],
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(0.0),
               bottomRight: Radius.circular(0.0),
               topLeft: Radius.circular(16.0),
@@ -96,20 +92,20 @@ class _EditLessonNameWidgetState extends State<EditLessonNameWidget> {
             ),
           ),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 8.0, 0.0),
                           child: TextFormField(
                             controller: _model.textController,
@@ -135,7 +131,7 @@ class _EditLessonNameWidgetState extends State<EditLessonNameWidget> {
                               focusedBorder: InputBorder.none,
                               errorBorder: InputBorder.none,
                               focusedErrorBorder: InputBorder.none,
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 0.0, 0.0),
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -146,13 +142,14 @@ class _EditLessonNameWidgetState extends State<EditLessonNameWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             maxLines: 5,
+                            minLines: 1,
                             validator: _model.textControllerValidator
                                 .asValidator(context),
                           ),
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: FlutterFlowIconButton(
                           borderColor: FlutterFlowTheme.of(context).secondary,
                           borderRadius: 100.0,

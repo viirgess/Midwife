@@ -4,11 +4,8 @@ import '/components/f_a_q_card/f_a_q_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/notifications/notification_modal_sheet/notification_modal_sheet_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'f_a_q_page_model.dart';
 export 'f_a_q_page_model.dart';
@@ -49,14 +46,14 @@ class _FAQPageWidgetState extends State<FAQPageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        drawer: Container(
+        drawer: SizedBox(
           width: MediaQuery.sizeOf(context).width * 0.65,
           child: Drawer(
             child: WebViewAware(
               child: wrapWithModel(
                 model: _model.drawerDataModel,
                 updateCallback: () => setState(() {}),
-                child: DrawerDataWidget(),
+                child: const DrawerDataWidget(),
               ),
             ),
           ),
@@ -83,7 +80,7 @@ class _FAQPageWidgetState extends State<FAQPageWidget> {
             children: [
               Expanded(
                 child: Align(
-                  alignment: AlignmentDirectional(1.0, 0.0),
+                  alignment: const AlignmentDirectional(1.0, 0.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -93,7 +90,7 @@ class _FAQPageWidgetState extends State<FAQPageWidget> {
                       await showModalBottomSheet(
                         isScrollControlled: true,
                         backgroundColor: FlutterFlowTheme.of(context).alternate,
-                        barrierColor: Color(0x19C67AF5),
+                        barrierColor: const Color(0x19C67AF5),
                         context: context,
                         builder: (context) {
                           return WebViewAware(
@@ -104,7 +101,7 @@ class _FAQPageWidgetState extends State<FAQPageWidget> {
                                   : FocusScope.of(context).unfocus(),
                               child: Padding(
                                 padding: MediaQuery.viewInsetsOf(context),
-                                child: NotificationModalSheetWidget(),
+                                child: const NotificationModalSheetWidget(),
                               ),
                             ),
                           );
@@ -121,12 +118,12 @@ class _FAQPageWidgetState extends State<FAQPageWidget> {
               ),
             ],
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 0.0,
         ),
         body: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -140,7 +137,7 @@ class _FAQPageWidgetState extends State<FAQPageWidget> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               32.0, 0.0, 32.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -151,7 +148,7 @@ class _FAQPageWidgetState extends State<FAQPageWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 8.0),
                                     child: Text(
                                       'Veelgestelde vragen',
@@ -167,9 +164,9 @@ class _FAQPageWidgetState extends State<FAQPageWidget> {
                                   ),
                                   Container(
                                     width: 300.0,
-                                    decoration: BoxDecoration(),
+                                    decoration: const BoxDecoration(),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 12.0),
                                       child: Text(
                                         'Antwoorden op een rij: vind snel informatie in onze veelgestelde vragen',

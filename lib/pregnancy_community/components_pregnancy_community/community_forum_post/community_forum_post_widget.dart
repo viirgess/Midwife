@@ -3,10 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pregnancy_community/components_pregnancy_community/comment/comment_widget.dart';
 import '/pregnancy_community/components_pregnancy_community/community_post/community_post_widget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'community_forum_post_model.dart';
 export 'community_forum_post_model.dart';
 
@@ -52,7 +49,7 @@ class _CommunityForumPostWidgetState extends State<CommunityForumPostWidget> {
     return Material(
       color: Colors.transparent,
       elevation: 3.0,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
@@ -63,7 +60,7 @@ class _CommunityForumPostWidgetState extends State<CommunityForumPostWidget> {
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(8.0),
@@ -101,7 +98,7 @@ class _CommunityForumPostWidgetState extends State<CommunityForumPostWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -138,9 +135,9 @@ class _CommunityForumPostWidgetState extends State<CommunityForumPostWidget> {
                             children: [
                               if (rowCount != 0)
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 8.0, 0.0, 16.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -211,7 +208,7 @@ class _CommunityForumPostWidgetState extends State<CommunityForumPostWidget> {
                               columnPregnancyCommentsForumRecordList[
                                   columnIndex];
                           return Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: CommentWidget(
                               key: Key(
                                   'Key1qc_${columnIndex}_of_${columnPregnancyCommentsForumRecordList.length}'),

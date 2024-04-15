@@ -4,10 +4,7 @@ import '/components/drawer_data/drawer_data_widget.dart';
 import '/components/ebook_card/ebook_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'free_ebook_page_model.dart';
 export 'free_ebook_page_model.dart';
@@ -48,24 +45,24 @@ class _FreeEbookPageWidgetState extends State<FreeEbookPageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        drawer: Container(
+        drawer: SizedBox(
           width: MediaQuery.sizeOf(context).width * 0.65,
           child: Drawer(
             child: WebViewAware(
               child: wrapWithModel(
                 model: _model.drawerDataModel,
                 updateCallback: () => setState(() {}),
-                child: DrawerDataWidget(),
+                child: const DrawerDataWidget(),
               ),
             ),
           ),
         ),
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(100.0),
+          preferredSize: const Size.fromHeight(100.0),
           child: AppBar(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             automaticallyImplyLeading: false,
-            actions: [],
+            actions: const [],
             flexibleSpace: FlexibleSpaceBar(
               title: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -75,7 +72,7 @@ class _FreeEbookPageWidgetState extends State<FreeEbookPageWidget> {
                   wrapWithModel(
                     model: _model.appBarModel,
                     updateCallback: () => setState(() {}),
-                    child: AppBarWidget(),
+                    child: const AppBarWidget(),
                   ),
                 ],
               ),
@@ -98,7 +95,7 @@ class _FreeEbookPageWidgetState extends State<FreeEbookPageWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             32.0, 0.0, 32.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -109,7 +106,7 @@ class _FreeEbookPageWidgetState extends State<FreeEbookPageWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: Text(
                                     'Gratis e-Books',
@@ -125,9 +122,9 @@ class _FreeEbookPageWidgetState extends State<FreeEbookPageWidget> {
                                 ),
                                 Container(
                                   width: 300.0,
-                                  decoration: BoxDecoration(),
+                                  decoration: const BoxDecoration(),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 12.0),
                                     child: Text(
                                       'Ontdek en lees: jouw bibliotheek van gratis zwangerschapsebooks',
@@ -193,7 +190,7 @@ class _FreeEbookPageWidgetState extends State<FreeEbookPageWidget> {
                         },
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             18.0, 18.0, 18.0, 32.0),
                         child: Text(
                           'De ebooks aangeboden door Midwife Mentor zijn bedoeld als algemene informatieve bronnen over verschillende aspecten van de zwangerschap. Deze publicaties vervangen niet het professioneel medisch advies, de diagnose of behandeling van een gekwalificeerde gezondheidswerker. Raadpleeg altijd uw arts of verloskundige voor persoonlijke adviezen en behandelingen met betrekking tot uw zwangerschap. Het gebruik van de ebooks van Midwife Mentor impliceert uw begrip en acceptatie dat er geen arts-patiënt relatie wordt gevormd door het gebruik van deze materialen.',

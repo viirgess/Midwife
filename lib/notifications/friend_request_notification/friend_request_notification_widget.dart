@@ -4,10 +4,7 @@ import '/backend/push_notifications/push_notifications_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'friend_request_notification_model.dart';
 export 'friend_request_notification_model.dart';
 
@@ -60,11 +57,11 @@ class _FriendRequestNotificationWidgetState
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Color(0xFFF0F0F0),
+        color: const Color(0xFFF0F0F0),
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -75,7 +72,7 @@ class _FriendRequestNotificationWidgetState
                   width: 80.0,
                   height: 80.0,
                   clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                   ),
                   child: Image.network(
@@ -84,7 +81,7 @@ class _FriendRequestNotificationWidgetState
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,14 +109,14 @@ class _FriendRequestNotificationWidgetState
               ],
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Expanded(
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           await widget.notificationRef!.delete();
@@ -127,9 +124,9 @@ class _FriendRequestNotificationWidgetState
                         },
                         text: 'Decline',
                         options: FFButtonOptions(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).error,
                           textStyle:
@@ -139,7 +136,7 @@ class _FriendRequestNotificationWidgetState
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -151,7 +148,7 @@ class _FriendRequestNotificationWidgetState
                   Expanded(
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           await currentUserReference!.update({
@@ -209,9 +206,9 @@ class _FriendRequestNotificationWidgetState
                         },
                         text: 'Accept',
                         options: FFButtonOptions(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).success,
                           textStyle:
@@ -221,7 +218,7 @@ class _FriendRequestNotificationWidgetState
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),

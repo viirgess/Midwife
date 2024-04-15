@@ -1,11 +1,7 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'blogs_topics_list_model.dart';
 export 'blogs_topics_list_model.dart';
 
@@ -55,12 +51,12 @@ class _BlogsTopicsListWidgetState extends State<BlogsTopicsListWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color(0xFFF0F0F0),
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(8.0),
@@ -71,7 +67,7 @@ class _BlogsTopicsListWidgetState extends State<BlogsTopicsListWidget> {
                 ),
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 30.0, 6.0, 10.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 30.0, 6.0, 10.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -85,7 +81,7 @@ class _BlogsTopicsListWidgetState extends State<BlogsTopicsListWidget> {
                           context.goNamed(
                             'BlogPage',
                             extra: <String, dynamic>{
-                              kTransitionInfoKey: TransitionInfo(
+                              kTransitionInfoKey: const TransitionInfo(
                                 hasTransition: true,
                                 transitionType: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
@@ -118,7 +114,7 @@ class _BlogsTopicsListWidgetState extends State<BlogsTopicsListWidget> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               32.0, 0.0, 32.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -131,7 +127,7 @@ class _BlogsTopicsListWidgetState extends State<BlogsTopicsListWidget> {
                                   if (widget.title != null &&
                                       widget.title != '')
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 8.0),
                                       child: Text(
                                         valueOrDefault<String>(
@@ -150,12 +146,12 @@ class _BlogsTopicsListWidgetState extends State<BlogsTopicsListWidget> {
                                     ),
                                   Container(
                                     width: 300.0,
-                                    decoration: BoxDecoration(),
+                                    decoration: const BoxDecoration(),
                                     child: Visibility(
                                       visible: widget.description != null &&
                                           widget.description != '',
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 12.0),
                                         child: Text(
                                           valueOrDefault<String>(
@@ -209,16 +205,16 @@ class _BlogsTopicsListWidgetState extends State<BlogsTopicsListWidget> {
                                 final columnTopicsRecord =
                                     columnTopicsRecordList[columnIndex];
                                 return Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       18.0, 0.0, 18.0, 18.0),
                                   child: Container(
                                     width: double.infinity,
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFF0F0F0),
+                                      color: const Color(0xFFF0F0F0),
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           18.0, 18.0, 18.0, 18.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
@@ -227,14 +223,12 @@ class _BlogsTopicsListWidgetState extends State<BlogsTopicsListWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          if (columnTopicsRecord.image !=
-                                                  null &&
-                                              columnTopicsRecord.image != '')
+                                          if (columnTopicsRecord.image != '')
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 12.0),
                                                 child: ClipRRect(
@@ -245,14 +239,14 @@ class _BlogsTopicsListWidgetState extends State<BlogsTopicsListWidget> {
                                                     columnTopicsRecord.image,
                                                     fit: BoxFit.contain,
                                                     alignment:
-                                                        Alignment(0.0, 0.0),
+                                                        const Alignment(0.0, 0.0),
                                                   ),
                                                 ),
                                               ),
                                             ),
                                           if (columnTopicsRecord.date != null)
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 8.0),
                                               child: Text(
                                                 dateTimeFormat('yMMMd',
@@ -273,7 +267,7 @@ class _BlogsTopicsListWidgetState extends State<BlogsTopicsListWidget> {
                                           if (widget.title != null &&
                                               widget.title != '')
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 8.0),
                                               child: Text(
                                                 columnTopicsRecord.title,
@@ -292,12 +286,9 @@ class _BlogsTopicsListWidgetState extends State<BlogsTopicsListWidget> {
                                             ),
                                           if (columnTopicsRecord
                                                       .shortDescription !=
-                                                  null &&
-                                              columnTopicsRecord
-                                                      .shortDescription !=
                                                   '')
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 8.0),
                                               child: Text(
                                                 columnTopicsRecord
@@ -543,7 +534,7 @@ class _BlogsTopicsListWidgetState extends State<BlogsTopicsListWidget> {
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      TransitionInfo(
+                                                      const TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType.fade,
@@ -561,11 +552,11 @@ class _BlogsTopicsListWidgetState extends State<BlogsTopicsListWidget> {
                                                 borderRadius:
                                                     BorderRadius.circular(6.0),
                                                 border: Border.all(
-                                                  color: Color(0xFF1B1B1B),
+                                                  color: const Color(0xFF1B1B1B),
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         10.0, 5.0, 10.0, 5.0),
                                                 child: Text(

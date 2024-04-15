@@ -3,17 +3,15 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
-import '/backend/schema/enums/enums.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 class UsersRecord extends FirestoreRecord {
   UsersRecord._(
-    DocumentReference reference,
-    Map<String, dynamic> data,
-  ) : super(reference, data) {
+    super.reference,
+    super.data,
+  ) {
     _initializeFields();
   }
 
@@ -98,6 +96,11 @@ class UsersRecord extends FirestoreRecord {
   bool get isAdmin => _isAdmin ?? false;
   bool hasIsAdmin() => _isAdmin != null;
 
+  // "liked_names" field.
+  List<String>? _likedNames;
+  List<String> get likedNames => _likedNames ?? const [];
+  bool hasLikedNames() => _likedNames != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -116,6 +119,7 @@ class UsersRecord extends FirestoreRecord {
     _aiRequests = castToType<int>(snapshotData['ai_requests']);
     _isPregnant = snapshotData['is_pregnant'] as bool?;
     _isAdmin = snapshotData['is_admin'] as bool?;
+    _likedNames = getDataList(snapshotData['liked_names']);
   }
 
   static CollectionReference get collection =>
@@ -211,7 +215,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.annualSubscription == e2?.annualSubscription &&
         e1?.aiRequests == e2?.aiRequests &&
         e1?.isPregnant == e2?.isPregnant &&
-        e1?.isAdmin == e2?.isAdmin;
+        e1?.isAdmin == e2?.isAdmin &&
+        listEquality.equals(e1?.likedNames, e2?.likedNames);
   }
 
   @override
@@ -231,7 +236,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.annualSubscription,
         e?.aiRequests,
         e?.isPregnant,
-        e?.isAdmin
+        e?.isAdmin,
+        e?.likedNames
       ]);
 
   @override

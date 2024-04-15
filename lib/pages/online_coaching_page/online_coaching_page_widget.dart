@@ -3,11 +3,8 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_web_view.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/notifications/notification_modal_sheet/notification_modal_sheet_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'online_coaching_page_model.dart';
 export 'online_coaching_page_model.dart';
@@ -49,14 +46,14 @@ class _OnlineCoachingPageWidgetState extends State<OnlineCoachingPageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        drawer: Container(
+        drawer: SizedBox(
           width: MediaQuery.sizeOf(context).width * 0.65,
           child: Drawer(
             child: WebViewAware(
               child: wrapWithModel(
                 model: _model.drawerDataModel,
                 updateCallback: () => setState(() {}),
-                child: DrawerDataWidget(),
+                child: const DrawerDataWidget(),
               ),
             ),
           ),
@@ -83,7 +80,7 @@ class _OnlineCoachingPageWidgetState extends State<OnlineCoachingPageWidget> {
             children: [
               Expanded(
                 child: Align(
-                  alignment: AlignmentDirectional(1.0, 0.0),
+                  alignment: const AlignmentDirectional(1.0, 0.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -93,7 +90,7 @@ class _OnlineCoachingPageWidgetState extends State<OnlineCoachingPageWidget> {
                       await showModalBottomSheet(
                         isScrollControlled: true,
                         backgroundColor: FlutterFlowTheme.of(context).alternate,
-                        barrierColor: Color(0x19C67AF5),
+                        barrierColor: const Color(0x19C67AF5),
                         context: context,
                         builder: (context) {
                           return WebViewAware(
@@ -104,7 +101,7 @@ class _OnlineCoachingPageWidgetState extends State<OnlineCoachingPageWidget> {
                                   : FocusScope.of(context).unfocus(),
                               child: Padding(
                                 padding: MediaQuery.viewInsetsOf(context),
-                                child: NotificationModalSheetWidget(),
+                                child: const NotificationModalSheetWidget(),
                               ),
                             ),
                           );
@@ -121,7 +118,7 @@ class _OnlineCoachingPageWidgetState extends State<OnlineCoachingPageWidget> {
               ),
             ],
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 0.0,
         ),
@@ -129,9 +126,9 @@ class _OnlineCoachingPageWidgetState extends State<OnlineCoachingPageWidget> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Align(
-              alignment: AlignmentDirectional(-1.0, 0.0),
+              alignment: const AlignmentDirectional(-1.0, 0.0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(32.0, 16.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(32.0, 16.0, 0.0, 0.0),
                 child: Text(
                   'Online coaching',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -144,9 +141,9 @@ class _OnlineCoachingPageWidgetState extends State<OnlineCoachingPageWidget> {
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(-1.0, 0.0),
+              alignment: const AlignmentDirectional(-1.0, 0.0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(32.0, 12.0, 16.0, 12.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(32.0, 12.0, 16.0, 12.0),
                 child: Text(
                   'Persoonlijke begeleiding op afstand: plan je 1:1 sessies met een verloskundige',
                   textAlign: TextAlign.start,

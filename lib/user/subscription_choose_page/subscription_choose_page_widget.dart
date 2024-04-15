@@ -5,8 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'subscription_choose_page_model.dart';
 export 'subscription_choose_page_model.dart';
 
@@ -55,21 +53,21 @@ class _SubscriptionChoosePageWidgetState
                 FlutterFlowTheme.of(context).primary,
                 FlutterFlowTheme.of(context).secondary
               ],
-              stops: [0.0, 1.0],
-              begin: AlignmentDirectional(0.0, -1.0),
-              end: AlignmentDirectional(0, 1.0),
+              stops: const [0.0, 1.0],
+              begin: const AlignmentDirectional(0.0, -1.0),
+              end: const AlignmentDirectional(0, 1.0),
             ),
           ),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Align(
-                  alignment: AlignmentDirectional(1.0, 0.0),
+                  alignment: const AlignmentDirectional(1.0, 0.0),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -87,10 +85,10 @@ class _SubscriptionChoosePageWidgetState
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(0.0, 0.0),
+                  alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
                     child: Text(
                       'Subscribe to Premium',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -105,7 +103,7 @@ class _SubscriptionChoosePageWidgetState
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -136,7 +134,7 @@ class _SubscriptionChoosePageWidgetState
                               ),
                             ),
                             child: Padding(
-                              padding: EdgeInsets.all(12.0),
+                              padding: const EdgeInsets.all(12.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,9 +169,9 @@ class _SubscriptionChoosePageWidgetState
                                                 BorderRadius.circular(100.0),
                                           ),
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
-                                            padding: EdgeInsets.all(3.0),
+                                            padding: const EdgeInsets.all(3.0),
                                             child: Icon(
                                               Icons.check_sharp,
                                               color:
@@ -202,7 +200,7 @@ class _SubscriptionChoosePageWidgetState
                                         ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 36.0, 0.0, 0.0),
                                     child: Text(
                                       'Billed Monthly',
@@ -244,7 +242,7 @@ class _SubscriptionChoosePageWidgetState
                               color: !_model.monthlyChosen
                                   ? FlutterFlowTheme.of(context)
                                       .primaryBackground
-                                  : Color(0x00000000),
+                                  : const Color(0x00000000),
                               borderRadius: BorderRadius.circular(20.0),
                               border: Border.all(
                                 color: FlutterFlowTheme.of(context)
@@ -253,7 +251,7 @@ class _SubscriptionChoosePageWidgetState
                               ),
                             ),
                             child: Padding(
-                              padding: EdgeInsets.all(12.0),
+                              padding: const EdgeInsets.all(12.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -288,9 +286,9 @@ class _SubscriptionChoosePageWidgetState
                                                 BorderRadius.circular(100.0),
                                           ),
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
-                                            padding: EdgeInsets.all(3.0),
+                                            padding: const EdgeInsets.all(3.0),
                                             child: Icon(
                                               Icons.check_sharp,
                                               color:
@@ -319,7 +317,7 @@ class _SubscriptionChoosePageWidgetState
                                         ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 36.0, 0.0, 0.0),
                                     child: Text(
                                       'Billed One Time',
@@ -344,13 +342,13 @@ class _SubscriptionChoosePageWidgetState
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(width: 10.0)),
+                    ].divide(const SizedBox(width: 10.0)),
                   ),
                 ),
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -360,7 +358,7 @@ class _SubscriptionChoosePageWidgetState
                             builder: (context) {
                               if (_model.monthlyChosen) {
                                 return Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 20.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -373,7 +371,7 @@ class _SubscriptionChoosePageWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               Icons.check,
@@ -408,7 +406,7 @@ class _SubscriptionChoosePageWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               Icons.check,
@@ -443,7 +441,7 @@ class _SubscriptionChoosePageWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               Icons.check,
@@ -478,7 +476,7 @@ class _SubscriptionChoosePageWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               Icons.check,
@@ -506,12 +504,12 @@ class _SubscriptionChoosePageWidgetState
                                           ),
                                         ],
                                       ),
-                                    ].divide(SizedBox(height: 10.0)),
+                                    ].divide(const SizedBox(height: 10.0)),
                                   ),
                                 );
                               } else {
                                 return Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 20.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -524,7 +522,7 @@ class _SubscriptionChoosePageWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               Icons.check,
@@ -559,7 +557,7 @@ class _SubscriptionChoosePageWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               Icons.check,
@@ -594,7 +592,7 @@ class _SubscriptionChoosePageWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               Icons.check,
@@ -629,7 +627,7 @@ class _SubscriptionChoosePageWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               Icons.check,
@@ -664,7 +662,7 @@ class _SubscriptionChoosePageWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               Icons.check,
@@ -699,7 +697,7 @@ class _SubscriptionChoosePageWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               Icons.check,
@@ -727,7 +725,7 @@ class _SubscriptionChoosePageWidgetState
                                           ),
                                         ],
                                       ),
-                                    ].divide(SizedBox(height: 10.0)),
+                                    ].divide(const SizedBox(height: 10.0)),
                                   ),
                                 );
                               }
@@ -739,10 +737,10 @@ class _SubscriptionChoosePageWidgetState
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(0.0, 1.0),
+                  alignment: const AlignmentDirectional(0.0, 1.0),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         final paymentResponse = await processStripePayment(
@@ -779,10 +777,10 @@ class _SubscriptionChoosePageWidgetState
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 50.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).accent1,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -792,7 +790,7 @@ class _SubscriptionChoosePageWidgetState
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),

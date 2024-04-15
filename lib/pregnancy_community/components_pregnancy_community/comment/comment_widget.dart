@@ -5,11 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/pregnancy_community/components_pregnancy_community/leave_reply/leave_reply_widget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'comment_model.dart';
 export 'comment_model.dart';
@@ -53,7 +49,7 @@ class _CommentWidgetState extends State<CommentWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: StreamBuilder<PregnancyCommentsForumRecord>(
         stream: PregnancyCommentsForumRecord.getDocument(widget.comment!),
         builder: (context, snapshot) {
@@ -80,7 +76,7 @@ class _CommentWidgetState extends State<CommentWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
                   child: StreamBuilder<UsersRecord>(
                     stream: UsersRecord.getDocument(
                         containerPregnancyCommentsForumRecord.createdBy!),
@@ -105,12 +101,12 @@ class _CommentWidgetState extends State<CommentWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Align(
-                            alignment: AlignmentDirectional(0.0, -1.0),
+                            alignment: const AlignmentDirectional(0.0, -1.0),
                             child: Container(
                               width: 40.0,
                               height: 40.0,
                               clipBehavior: Clip.antiAlias,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                               ),
                               child: Image.network(
@@ -128,7 +124,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 12.0, 0.0),
                                   child: Container(
                                     width: 100.0,
@@ -138,7 +134,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                       borderRadius: BorderRadius.circular(24.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 0.0, 16.0, 16.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -147,7 +143,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 12.0, 0.0, 0.0),
                                             child: Text(
                                               rowUsersRecord.displayName,
@@ -165,7 +161,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 6.0, 12.0, 12.0),
                                             child: Text(
                                               containerPregnancyCommentsForumRecord
@@ -182,9 +178,6 @@ class _CommentWidgetState extends State<CommentWidget> {
                                             ),
                                           ),
                                           if (containerPregnancyCommentsForumRecord
-                                                      .picturePath !=
-                                                  null &&
-                                              containerPregnancyCommentsForumRecord
                                                       .picturePath !=
                                                   '')
                                             InkWell(
@@ -236,9 +229,6 @@ class _CommentWidgetState extends State<CommentWidget> {
                                             ),
                                           if (containerPregnancyCommentsForumRecord
                                                       .videoPath !=
-                                                  null &&
-                                              containerPregnancyCommentsForumRecord
-                                                      .videoPath !=
                                                   '')
                                             FlutterFlowVideoPlayer(
                                               path:
@@ -258,13 +248,13 @@ class _CommentWidgetState extends State<CommentWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 8.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             12.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           dateTimeFormat(
@@ -385,13 +375,12 @@ class _CommentWidgetState extends State<CommentWidget> {
                                         ),
                                       ),
                                       if (containerPregnancyCommentsForumRecord
-                                              .commentLikes.length !=
-                                          0)
+                                              .commentLikes.isNotEmpty)
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 3.0, 0.0),
                                               child: Icon(
                                                 Icons.favorite,
@@ -418,7 +407,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                             ),
                                           ],
                                         ),
-                                    ].divide(SizedBox(width: 16.0)),
+                                    ].divide(const SizedBox(width: 16.0)),
                                   ),
                                 ),
                               ],
@@ -462,9 +451,9 @@ class _CommentWidgetState extends State<CommentWidget> {
                       children: [
                         if (rowCount != 0)
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   64.0, 0.0, 0.0, 16.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -498,7 +487,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                 if (_model.showReplies)
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 0.0, 0.0),
                     child: StreamBuilder<List<PregnancyRepliesRecord>>(
                       stream: queryPregnancyRepliesRecord(
                         parent: containerPregnancyCommentsForumRecord
@@ -537,7 +526,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                             final columnPregnancyRepliesRecord =
                                 columnPregnancyRepliesRecordList[columnIndex];
                             return Padding(
-                              padding: EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(8.0),
                               child: StreamBuilder<UsersRecord>(
                                 stream: UsersRecord.getDocument(
                                     columnPregnancyRepliesRecord.createdBy!),
@@ -566,12 +555,12 @@ class _CommentWidgetState extends State<CommentWidget> {
                                     children: [
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, -1.0),
+                                            const AlignmentDirectional(0.0, -1.0),
                                         child: Container(
                                           width: 40.0,
                                           height: 40.0,
                                           clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             shape: BoxShape.circle,
                                           ),
                                           child: Image.network(
@@ -590,7 +579,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                               CrossAxisAlignment.stretch,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 12.0, 0.0),
                                               child: Container(
@@ -604,7 +593,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                                           24.0),
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(16.0, 0.0, 16.0,
                                                           16.0),
                                                   child: Column(
@@ -616,7 +605,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     12.0,
@@ -642,7 +631,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     6.0,
@@ -666,9 +655,6 @@ class _CommentWidgetState extends State<CommentWidget> {
                                                         ),
                                                       ),
                                                       if (columnPregnancyRepliesRecord
-                                                                  .picturePath !=
-                                                              null &&
-                                                          columnPregnancyRepliesRecord
                                                                   .picturePath !=
                                                               '')
                                                         InkWell(
@@ -731,9 +717,6 @@ class _CommentWidgetState extends State<CommentWidget> {
                                                         ),
                                                       if (columnPregnancyRepliesRecord
                                                                   .videoPath !=
-                                                              null &&
-                                                          columnPregnancyRepliesRecord
-                                                                  .videoPath !=
                                                               '')
                                                         FlutterFlowVideoPlayer(
                                                           path:
@@ -755,14 +738,14 @@ class _CommentWidgetState extends State<CommentWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 8.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(12.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -904,16 +887,14 @@ class _CommentWidgetState extends State<CommentWidget> {
                                                     ),
                                                   ),
                                                   if (columnPregnancyRepliesRecord
-                                                          .commentLikes
-                                                          .length !=
-                                                      0)
+                                                          .commentLikes.isNotEmpty)
                                                     Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -944,7 +925,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                                         ),
                                                       ],
                                                     ),
-                                                ].divide(SizedBox(width: 16.0)),
+                                                ].divide(const SizedBox(width: 16.0)),
                                               ),
                                             ),
                                           ],

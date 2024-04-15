@@ -36,3 +36,7 @@ export '/courses/course_editor_page/course_editor_page_widget.dart'
     show CourseEditorPageWidget;
 export '/user/subscription_choose_page/subscription_choose_page_widget.dart'
     show SubscriptionChoosePageWidget;
+export '/name_list/name_list_page/name_list_page_widget.dart'
+    show NameListPageWidget;
+export '/contractions/contractions_page/contractions_page_widget.dart'
+    show ContractionsPageWidget;

@@ -1,8 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'f_a_q_card_model.dart';
 export 'f_a_q_card_model.dart';
 
@@ -51,7 +49,7 @@ class _FAQCardWidgetState extends State<FAQCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 18.0, 18.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 18.0, 18.0),
       child: Material(
         color: Colors.transparent,
         elevation: 5.0,
@@ -65,7 +63,7 @@ class _FAQCardWidgetState extends State<FAQCardWidget> {
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(18.0, 18.0, 18.0, 18.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(18.0, 18.0, 18.0, 18.0),
             child: InkWell(
               splashColor: Colors.transparent,
               focusColor: Colors.transparent,
@@ -96,7 +94,7 @@ class _FAQCardWidgetState extends State<FAQCardWidget> {
                   ),
                   if (_model.arrowClicked == false)
                     Align(
-                      alignment: AlignmentDirectional(1.0, 0.0),
+                      alignment: const AlignmentDirectional(1.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -116,7 +114,7 @@ class _FAQCardWidgetState extends State<FAQCardWidget> {
                     ),
                   if (_model.arrowClicked == true)
                     Align(
-                      alignment: AlignmentDirectional(1.0, 0.0),
+                      alignment: const AlignmentDirectional(1.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -141,7 +139,7 @@ class _FAQCardWidgetState extends State<FAQCardWidget> {
                       children: [
                         if (widget.subtitle != null && widget.subtitle != '')
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
                             child: Text(
                               widget.subtitle!,
@@ -157,7 +155,7 @@ class _FAQCardWidgetState extends State<FAQCardWidget> {
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 8.0),
                           child: Text(
                             valueOrDefault<String>(
@@ -177,7 +175,7 @@ class _FAQCardWidgetState extends State<FAQCardWidget> {
                         ),
                         if (widget.footer != null && widget.footer != '')
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
                             child: Text(
                               widget.footer!,

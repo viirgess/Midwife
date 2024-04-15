@@ -1,16 +1,8 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/components/drawer_data/drawer_data_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/notifications/notification_modal_sheet/notification_modal_sheet_widget.dart';
 import 'support_page_widget.dart' show SupportPageWidget;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class SupportPageModel extends FlutterFlowModel<SupportPageWidget> {
   ///  State fields for stateful widgets in this page.

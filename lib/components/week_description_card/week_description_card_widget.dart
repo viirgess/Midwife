@@ -1,8 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'week_description_card_model.dart';
 export 'week_description_card_model.dart';
 
@@ -54,22 +52,22 @@ class _WeekDescriptionCardWidgetState extends State<WeekDescriptionCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 18.0, 18.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 18.0, 18.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Color(0xFFF0F0F0),
+          color: const Color(0xFFF0F0F0),
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(18.0, 18.0, 18.0, 18.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(18.0, 18.0, 18.0, 18.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                 child: Text(
                   'Ontwikkeling van de baby:',
                   textAlign: TextAlign.start,
@@ -82,7 +80,7 @@ class _WeekDescriptionCardWidgetState extends State<WeekDescriptionCardWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                 child: Text(
                   widget.parameter1!,
                   textAlign: TextAlign.start,
@@ -95,7 +93,7 @@ class _WeekDescriptionCardWidgetState extends State<WeekDescriptionCardWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                 child: Text(
                   'Lichamelijke veranderingen van de moder:',
                   textAlign: TextAlign.start,
@@ -108,7 +106,7 @@ class _WeekDescriptionCardWidgetState extends State<WeekDescriptionCardWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                 child: Text(
                   widget.parameter2!,
                   textAlign: TextAlign.start,
@@ -121,7 +119,7 @@ class _WeekDescriptionCardWidgetState extends State<WeekDescriptionCardWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                 child: Text(
                   'Gezondheidsadviezen:',
                   textAlign: TextAlign.start,
@@ -134,7 +132,7 @@ class _WeekDescriptionCardWidgetState extends State<WeekDescriptionCardWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                 child: Text(
                   widget.parameter3!,
                   textAlign: TextAlign.start,
@@ -147,7 +145,7 @@ class _WeekDescriptionCardWidgetState extends State<WeekDescriptionCardWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                 child: Text(
                   'Checklist voor deze week:',
                   textAlign: TextAlign.start,
@@ -160,7 +158,7 @@ class _WeekDescriptionCardWidgetState extends State<WeekDescriptionCardWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                 child: Text(
                   widget.parameter4!,
                   textAlign: TextAlign.start,
@@ -173,7 +171,7 @@ class _WeekDescriptionCardWidgetState extends State<WeekDescriptionCardWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                 child: Text(
                   'Medische Check-ups:',
                   textAlign: TextAlign.start,
@@ -186,7 +184,7 @@ class _WeekDescriptionCardWidgetState extends State<WeekDescriptionCardWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                 child: Text(
                   widget.parameter5!,
                   textAlign: TextAlign.start,
