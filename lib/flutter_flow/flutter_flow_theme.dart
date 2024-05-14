@@ -32,6 +32,9 @@ abstract class FlutterFlowTheme {
   late Color error;
   late Color info;
 
+  late Color textColor;
+  late Color customColor1;
+
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
   @Deprecated('Use displaySmall instead')
@@ -103,22 +106,25 @@ class LightModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFFA020F0);
-  late Color secondary = const Color(0xFFC67AF5);
-  late Color tertiary = const Color(0xFFF0F0F0);
-  late Color alternate = const Color(0x00FFFFFF);
-  late Color primaryText = const Color(0xFF434343);
-  late Color secondaryText = const Color(0xFF878787);
+  late Color primary = const Color(0xFF9446F6);
+  late Color secondary = const Color(0xFFA07EFF);
+  late Color tertiary = const Color(0xFFF6EAFF);
+  late Color alternate = const Color(0xFF242224);
+  late Color primaryText = const Color(0xFF9183A3);
+  late Color secondaryText = const Color(0xFF100F17);
   late Color primaryBackground = const Color(0xFFFFFFFF);
-  late Color secondaryBackground = const Color(0x00FFFFFF);
-  late Color accent1 = const Color(0xFF1B1B1B);
-  late Color accent2 = const Color(0xFF9E00FF);
-  late Color accent3 = const Color(0xFFE63EE9);
-  late Color accent4 = const Color(0x00FFFFFF);
+  late Color secondaryBackground = const Color(0xFFBCBAD0);
+  late Color accent1 = const Color(0xFFF6F1FF);
+  late Color accent2 = const Color(0xFF300960);
+  late Color accent3 = const Color(0xFFFFFFFF);
+  late Color accent4 = const Color(0xFFECEDEE);
   late Color success = const Color(0xFF6DD58A);
   late Color warning = const Color(0xFFEFEA75);
   late Color error = const Color(0xFFFF4F4F);
   late Color info = const Color(0x00FFFFFF);
+
+  late Color textColor = const Color(0xFF300A61);
+  late Color customColor1 = const Color(0xFFF6F1FF);
 }
 
 abstract class Typography {
@@ -159,107 +165,107 @@ class ThemeTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'Outfit';
+  String get displayLargeFamily => 'Figtree';
   TextStyle get displayLarge => GoogleFonts.getFont(
-        'Outfit',
+        'Figtree',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 64.0,
       );
-  String get displayMediumFamily => 'Outfit';
+  String get displayMediumFamily => 'Figtree';
   TextStyle get displayMedium => GoogleFonts.getFont(
-        'Outfit',
+        'Figtree',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 44.0,
       );
-  String get displaySmallFamily => 'Outfit';
+  String get displaySmallFamily => 'Figtree';
   TextStyle get displaySmall => GoogleFonts.getFont(
-        'Outfit',
+        'Figtree',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 36.0,
       );
-  String get headlineLargeFamily => 'Outfit';
+  String get headlineLargeFamily => 'Figtree';
   TextStyle get headlineLarge => GoogleFonts.getFont(
-        'Outfit',
+        'Figtree',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 32.0,
       );
-  String get headlineMediumFamily => 'Outfit';
+  String get headlineMediumFamily => 'Figtree';
   TextStyle get headlineMedium => GoogleFonts.getFont(
-        'Outfit',
+        'Figtree',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 24.0,
       );
-  String get headlineSmallFamily => 'Outfit';
+  String get headlineSmallFamily => 'Figtree';
   TextStyle get headlineSmall => GoogleFonts.getFont(
-        'Outfit',
+        'Figtree',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 24.0,
       );
-  String get titleLargeFamily => 'Outfit';
+  String get titleLargeFamily => 'Figtree';
   TextStyle get titleLarge => GoogleFonts.getFont(
-        'Outfit',
+        'Figtree',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 22.0,
       );
-  String get titleMediumFamily => 'Outfit';
+  String get titleMediumFamily => 'Figtree';
   TextStyle get titleMedium => GoogleFonts.getFont(
-        'Outfit',
+        'Figtree',
         color: theme.info,
         fontWeight: FontWeight.normal,
         fontSize: 18.0,
       );
-  String get titleSmallFamily => 'Outfit';
+  String get titleSmallFamily => 'Figtree';
   TextStyle get titleSmall => GoogleFonts.getFont(
-        'Outfit',
+        'Figtree',
         color: theme.info,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
-  String get labelLargeFamily => 'Outfit';
+  String get labelLargeFamily => 'Figtree';
   TextStyle get labelLarge => GoogleFonts.getFont(
-        'Outfit',
+        'Figtree',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get labelMediumFamily => 'Outfit';
+  String get labelMediumFamily => 'Figtree';
   TextStyle get labelMedium => GoogleFonts.getFont(
-        'Outfit',
+        'Figtree',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get labelSmallFamily => 'Outfit';
+  String get labelSmallFamily => 'Figtree';
   TextStyle get labelSmall => GoogleFonts.getFont(
-        'Outfit',
+        'Figtree',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
       );
-  String get bodyLargeFamily => 'Outfit';
+  String get bodyLargeFamily => 'Figtree';
   TextStyle get bodyLarge => GoogleFonts.getFont(
-        'Outfit',
+        'Figtree',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get bodyMediumFamily => 'Outfit';
+  String get bodyMediumFamily => 'Figtree';
   TextStyle get bodyMedium => GoogleFonts.getFont(
-        'Outfit',
+        'Figtree',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get bodySmallFamily => 'Outfit';
+  String get bodySmallFamily => 'Figtree';
   TextStyle get bodySmall => GoogleFonts.getFont(
-        'Outfit',
+        'Figtree',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,

@@ -42,11 +42,12 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
     super.initState();
     _model = createModel(context, () => CourseContentCreateModel());
 
-    _model.expandableController = ExpandableController(initialExpanded: true);
+    _model.expandableExpandableController =
+        ExpandableController(initialExpanded: true);
 
     _model.textFieldSectionFocusNode ??= FocusNode();
 
-    _model.textFieldAddLessonController ??=
+    _model.textFieldAddLessonTextController ??=
         TextEditingController(text: 'Lesson ${_model.lessonNum.toString()}');
     _model.textFieldAddLessonFocusNode ??= FocusNode();
 
@@ -96,7 +97,7 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
             width: double.infinity,
             color: Colors.white,
             child: ExpandableNotifier(
-              controller: _model.expandableController,
+              controller: _model.expandableExpandableController,
               child: ExpandablePanel(
                 header: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -105,18 +106,18 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                       child: TextFormField(
-                        controller: _model.textFieldSectionController ??=
+                        controller: _model.textFieldSectionTextController ??=
                             TextEditingController(
                           text: containerSectionsRecord.title,
                         ),
                         focusNode: _model.textFieldSectionFocusNode,
                         onChanged: (_) => EasyDebounce.debounce(
-                          '_model.textFieldSectionController',
+                          '_model.textFieldSectionTextController',
                           const Duration(milliseconds: 2000),
                           () async {
                             await widget.parameter2!
                                 .update(createSectionsRecordData(
-                              title: _model.textFieldSectionController.text,
+                              title: _model.textFieldSectionTextController.text,
                             ));
                           },
                         ),
@@ -125,13 +126,13 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                         decoration: InputDecoration(
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     fontSize: 18.0,
                                     letterSpacing: 0.0,
                                   ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: UnderlineInputBorder(
@@ -164,13 +165,14 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                           ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               color: FlutterFlowTheme.of(context).accent1,
                               fontSize: 24.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
-                        validator: _model.textFieldSectionControllerValidator
+                        validator: _model
+                            .textFieldSectionTextControllerValidator
                             .asValidator(context),
                       ),
                     ),
@@ -236,7 +238,7 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Outfit',
+                                                fontFamily: 'Figtree',
                                                 fontSize: 20.0,
                                                 letterSpacing: 0.0,
                                               ),
@@ -289,7 +291,7 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Outfit',
+                                                          fontFamily: 'Figtree',
                                                           fontSize: 20.0,
                                                           letterSpacing: 0.0,
                                                         ),
@@ -472,7 +474,7 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                                     8.0, 0.0, 8.0, 0.0),
                                 child: TextFormField(
                                   controller:
-                                      _model.textFieldAddLessonController,
+                                      _model.textFieldAddLessonTextController,
                                   focusNode: _model.textFieldAddLessonFocusNode,
                                   autofocus: false,
                                   obscureText: false,
@@ -480,13 +482,13 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Outfit',
+                                          fontFamily: 'Figtree',
                                           letterSpacing: 0.0,
                                         ),
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Outfit',
+                                          fontFamily: 'Figtree',
                                           letterSpacing: 0.0,
                                         ),
                                     enabledBorder: UnderlineInputBorder(
@@ -525,12 +527,12 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Outfit',
+                                        fontFamily: 'Figtree',
                                         fontSize: 20.0,
                                         letterSpacing: 0.0,
                                       ),
                                   validator: _model
-                                      .textFieldAddLessonControllerValidator
+                                      .textFieldAddLessonTextControllerValidator
                                       .asValidator(context),
                                 ),
                               ),
@@ -606,7 +608,7 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                                           widget.parameter1!)
                                       .set(createLessonsRecordData(
                                     title: _model
-                                        .textFieldAddLessonController.text,
+                                        .textFieldAddLessonTextController.text,
                                     videoPath: _model.uploadedFileUrl2,
                                     isSeen: false,
                                     sectionRef: widget.parameter2,
@@ -616,7 +618,8 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                                     _model.lessonNum = _model.lessonNum + 1;
                                   });
                                   setState(() {
-                                    _model.textFieldAddLessonController?.text =
+                                    _model.textFieldAddLessonTextController
+                                            ?.text =
                                         'Lesson ${_model.lessonNum.toString()}';
                                   });
                                   setState(() {
@@ -675,7 +678,7 @@ class _CourseContentCreateWidgetState extends State<CourseContentCreateWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   color: Colors.white,
                                   letterSpacing: 0.0,
                                 ),

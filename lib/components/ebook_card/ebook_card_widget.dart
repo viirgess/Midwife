@@ -85,7 +85,7 @@ class _EbookCardWidgetState extends State<EbookCardWidget> {
                   widget.parameter2!,
                   textAlign: TextAlign.start,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Figtree',
                         fontSize: 20.0,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.w500,
@@ -98,7 +98,7 @@ class _EbookCardWidgetState extends State<EbookCardWidget> {
                   widget.parameter3!,
                   textAlign: TextAlign.start,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Figtree',
                         fontSize: 15.0,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.w600,
@@ -111,7 +111,7 @@ class _EbookCardWidgetState extends State<EbookCardWidget> {
                   widget.parameter4!,
                   textAlign: TextAlign.start,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Figtree',
                         fontSize: 14.0,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.normal,
@@ -141,7 +141,7 @@ class _EbookCardWidgetState extends State<EbookCardWidget> {
                     child: Text(
                       'Open PDF',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Figtree',
                             color: FlutterFlowTheme.of(context).primary,
                             fontSize: 16.0,
                             letterSpacing: 0.0,

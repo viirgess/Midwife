@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'empty_notifications_model.dart';
 export 'empty_notifications_model.dart';
 
@@ -60,7 +59,7 @@ class _EmptyNotificationsWidgetState extends State<EmptyNotificationsWidget> {
                     Text(
                       'You do not have notifications!',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Figtree',
                             fontSize: 22.0,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
@@ -72,25 +71,11 @@ class _EmptyNotificationsWidgetState extends State<EmptyNotificationsWidget> {
                       child: Text(
                         'Start exploring our application!',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               color: FlutterFlowTheme.of(context).accent2,
                               fontSize: 16.0,
                               letterSpacing: 0.0,
                             ),
-                      ),
-                    ),
-                    Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-                        child: Lottie.asset(
-                          'assets/lottie_animations/Animation_-_1709654101893.json',
-                          width: 150.0,
-                          height: 130.0,
-                          fit: BoxFit.cover,
-                          animate: true,
-                        ),
                       ),
                     ),
                   ],

@@ -11,7 +11,7 @@ class ChatGPTServiceCall {
   static Future<ApiCallResponse> call({
     String? assistantId = 'asst_NloFw7Pdy26VtS7oNLIwaKvC',
     String? question = '',
-    String? aPIKey = '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',
+    String? aPIKey = 'sk-proj-fldWLxDH9SsDa9rHfnMKT3BlbkFJAZ7e7iuDSXezp5i9ov8C',
     String? instruction =
         'You are assistant. Zwangerschapsmentor is a specialized tool for providing advice to pregnant women, based on the information from deverloskundige.nl. This GPT takes a balanced approach between formal and informal language, making the advice both accessible and authoritative. It emphasizes research information, ensuring accuracy and relevance in the advice. Crucially, Pregnancy Mentor does not diagnose or recommend medical treatments. This is the sole responsibility of qualified medical personnel. The GPT remains faithful to the content of deverloskundige.nl, to ensure consistency and reliability in supporting pregnancy-related questions and concerns. The GPT will expressly indicate that users must consult their medical provider for diagnoses and treatments. Here is your question',
     String? language =

@@ -151,7 +151,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         fontSize: 15.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
@@ -171,7 +171,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         fontSize: 16.0,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -264,7 +264,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Outfit',
+                                                fontFamily: 'Figtree',
                                                 fontSize: 15.0,
                                                 letterSpacing: 0.0,
                                               ),
@@ -313,7 +313,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Outfit',
+                                                fontFamily: 'Figtree',
                                                 color: containerPregnancyCommentsForumRecord
                                                             .commentLikes
                                                             .contains(
@@ -367,7 +367,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Outfit',
+                                                fontFamily: 'Figtree',
                                                 fontSize: 15.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
@@ -401,7 +401,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -472,7 +472,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Outfit',
+                                        fontFamily: 'Figtree',
                                         fontSize: 18.0,
                                         letterSpacing: 0.0,
                                       ),
@@ -619,7 +619,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Outfit',
+                                                                    'Figtree',
                                                                 fontSize: 15.0,
                                                                 letterSpacing:
                                                                     0.0,
@@ -647,7 +647,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Outfit',
+                                                                    'Figtree',
                                                                 fontSize: 16.0,
                                                                 letterSpacing:
                                                                     0.0,
@@ -758,7 +758,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Outfit',
+                                                                'Figtree',
                                                             fontSize: 15.0,
                                                             letterSpacing: 0.0,
                                                           ),
@@ -815,7 +815,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Outfit',
+                                                                'Figtree',
                                                             color: columnPregnancyRepliesRecord.commentLikes
                                                                         .contains(
                                                                             currentUserReference) ==
@@ -878,7 +878,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Outfit',
+                                                                'Figtree',
                                                             fontSize: 15.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
@@ -918,7 +918,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Outfit',
+                                                                    'Figtree',
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),

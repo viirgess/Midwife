@@ -138,3 +138,63 @@ List<String>? mixTwoLists(
 
   return mixedList;
 }
+
+String? calculateTrimester(DateTime? expectedDate) {
+  if (expectedDate == null) {
+    return null;
+  }
+
+  DateTime currentDate = DateTime.now();
+
+  int daysDifference = expectedDate.difference(currentDate).inDays;
+
+  if (daysDifference > 196) {
+    return '1';
+  } else if (daysDifference > 140) {
+    return '2';
+  } else if (daysDifference > 84) {
+    return '3';
+  } else {
+    return '3';
+  }
+}
+
+int calculateLeftQuestions(int aiRequests) {
+  return 30 - aiRequests;
+}
+
+String getNextMonthFirstDay(DateTime date) {
+  final nextMonth = DateTime(date.year, date.month + 1, 1);
+  return "${nextMonth.day}.${nextMonth.month}.${nextMonth.year}";
+}
+
+List<BabyNameStruct> parseBabyNames(
+  List<String> boys,
+  List<String> girls,
+) {
+  List<BabyNameStruct> listOfNames = [];
+  for (var name in boys) {
+    listOfNames.add(
+      BabyNameStruct(name: name, sex: 'Boy'),
+    );
+  }
+  for (var name in girls) {
+    listOfNames.add(
+      BabyNameStruct(name: name, sex: 'Girl'),
+    );
+  }
+  listOfNames.shuffle();
+
+  return listOfNames;
+}
+
+int? getNumberOfBabyNamesBySex(
+  List<BabyNameStruct> list,
+  String sex,
+) {
+  return list.where((e) => e.sex == sex).length;
+}
+
+String? widgetStateLog(List<String>? widgetState) {
+  return widgetState.toString();
+}

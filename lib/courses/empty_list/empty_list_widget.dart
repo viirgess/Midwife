@@ -55,7 +55,7 @@ class _EmptyListWidgetState extends State<EmptyListWidget> {
             child: Text(
               'No Lessons',
               style: FlutterFlowTheme.of(context).headlineMedium.override(
-                    fontFamily: 'Outfit',
+                    fontFamily: 'Figtree',
                     letterSpacing: 0.0,
                   ),
             ),
@@ -65,7 +65,7 @@ class _EmptyListWidgetState extends State<EmptyListWidget> {
             child: Text(
               'It seems that author has not added new lessons yet',
               style: FlutterFlowTheme.of(context).labelMedium.override(
-                    fontFamily: 'Outfit',
+                    fontFamily: 'Figtree',
                     letterSpacing: 0.0,
                   ),
             ),

@@ -90,7 +90,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                     Text(
                       'Aanmelden',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Figtree',
                             color: FlutterFlowTheme.of(context).primary,
                             fontSize: 25.0,
                             letterSpacing: 0.0,
@@ -103,7 +103,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                       child: Text(
                         'Welkom!',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               fontSize: 16.0,
                               letterSpacing: 0.0,
                             ),
@@ -115,7 +115,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                       child: Text(
                         'Voornaam*',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               fontSize: 16.0,
                               letterSpacing: 0.0,
                             ),
@@ -130,13 +130,13 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         isDense: true,
                         labelStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                         hintText: 'Voornaam',
                         hintStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                         enabledBorder: OutlineInputBorder(
@@ -169,7 +169,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         ),
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Figtree',
                             letterSpacing: 0.0,
                           ),
                       validator:
@@ -181,7 +181,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                       child: Text(
                         'Achternaam*',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               fontSize: 16.0,
                               letterSpacing: 0.0,
                             ),
@@ -197,13 +197,13 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         isDense: true,
                         labelStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                         hintText: 'Achternaam',
                         hintStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                         enabledBorder: OutlineInputBorder(
@@ -236,7 +236,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         ),
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Figtree',
                             letterSpacing: 0.0,
                           ),
                       validator:
@@ -248,7 +248,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                       child: Text(
                         'Uitgerekende datum',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               fontSize: 16.0,
                               letterSpacing: 0.0,
                             ),
@@ -279,7 +279,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                               headerTextStyle: FlutterFlowTheme.of(context)
                                   .headlineLarge
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     fontSize: 32.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
@@ -334,7 +334,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
                                   fontSize: 16.0,
@@ -350,7 +350,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                       child: Text(
                         'E-mailadres*',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               fontSize: 16.0,
                               letterSpacing: 0.0,
                             ),
@@ -367,7 +367,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         hintText: 'E-mailadres',
                         hintStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                         enabledBorder: OutlineInputBorder(
@@ -418,7 +418,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         ),
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Figtree',
                             letterSpacing: 0.0,
                           ),
                       validator: _model.emailTextControllerValidator
@@ -430,7 +430,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                       child: Text(
                         'Wachtwoord*',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               fontSize: 16.0,
                               letterSpacing: 0.0,
                             ),
@@ -446,13 +446,13 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         isDense: true,
                         labelStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                         hintText: 'Wachtwoord',
                         hintStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                         enabledBorder: OutlineInputBorder(
@@ -499,7 +499,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         ),
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Figtree',
                             letterSpacing: 0.0,
                           ),
                       validator: _model.passwordTextControllerValidator
@@ -547,7 +547,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                           ),
@@ -669,7 +669,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                           ),

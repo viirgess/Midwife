@@ -81,7 +81,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
               title: Text(
                 'Course Editor',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Outfit',
+                      fontFamily: 'Figtree',
                       color: FlutterFlowTheme.of(context).primaryText,
                       fontSize: 22.0,
                       letterSpacing: 0.0,
@@ -132,12 +132,12 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                           labelText: 'Name',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     letterSpacing: 0.0,
                                   ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
@@ -170,7 +170,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                           ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               fontSize: 16.0,
                               letterSpacing: 0.0,
                             ),
@@ -193,12 +193,12 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                           labelText: 'Description',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     letterSpacing: 0.0,
                                   ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     letterSpacing: 0.0,
                                   ),
                           enabledBorder: OutlineInputBorder(
@@ -231,7 +231,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                           ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               fontSize: 16.0,
                               letterSpacing: 0.0,
                             ),
@@ -333,7 +333,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Outfit',
+                                          fontFamily: 'Figtree',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryBackground,
                                           fontSize: 18.0,
@@ -360,7 +360,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     fontSize: 18.0,
                                     letterSpacing: 0.0,
                                   ),
@@ -461,7 +461,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
-                                          fontFamily: 'Outfit',
+                                          fontFamily: 'Figtree',
                                           color: Colors.white,
                                           letterSpacing: 0.0,
                                         ),
@@ -510,7 +510,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     fontSize: 18.0,
                                     letterSpacing: 0.0,
                                   ),
@@ -561,7 +561,7 @@ class _CourseEditorPageWidgetState extends State<CourseEditorPageWidget> {
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     color: Colors.white,
                                     letterSpacing: 0.0,
                                   ),

@@ -69,7 +69,7 @@ class _VideoCourseCardWidgetState extends State<VideoCourseCardWidget> {
                   'Harmonie in Ouderschap: Emotioneel Sterk en Verbonden',
                   textAlign: TextAlign.start,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Figtree',
                         fontSize: 20.0,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.w500,
@@ -82,7 +82,7 @@ class _VideoCourseCardWidgetState extends State<VideoCourseCardWidget> {
                   'Ontdek de kunst van emotionele veerkracht en diepe verbinding met je partner terwijl je je voorbereidt op de uitdagende en vreugdevolle reis van ouderschap en bevalling.',
                   textAlign: TextAlign.start,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Figtree',
                         fontSize: 14.0,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.normal,
@@ -103,7 +103,7 @@ class _VideoCourseCardWidgetState extends State<VideoCourseCardWidget> {
                   child: Text(
                     'Binnenkort beschikbaar',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Outfit',
+                          fontFamily: 'Figtree',
                           color: FlutterFlowTheme.of(context).primary,
                           fontSize: 16.0,
                           letterSpacing: 0.0,

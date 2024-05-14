@@ -86,7 +86,7 @@ class _FAQCardWidgetState extends State<FAQCardWidget> {
                     ),
                     textAlign: TextAlign.start,
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Outfit',
+                          fontFamily: 'Figtree',
                           fontSize: 16.0,
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.bold,
@@ -147,7 +147,7 @@ class _FAQCardWidgetState extends State<FAQCardWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
@@ -166,7 +166,7 @@ class _FAQCardWidgetState extends State<FAQCardWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   fontSize: 16.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
@@ -183,7 +183,7 @@ class _FAQCardWidgetState extends State<FAQCardWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,

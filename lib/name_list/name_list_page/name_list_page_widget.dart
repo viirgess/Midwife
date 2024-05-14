@@ -1,7 +1,5 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/back_app_bar/back_app_bar_widget.dart';
-import '/components/nav_bar/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -79,7 +77,7 @@ class _NameListPageWidgetState extends State<NameListPageWidget> {
                       child: Text(
                         'boys',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               letterSpacing: 0.0,
                             ),
                       ),
@@ -97,7 +95,7 @@ class _NameListPageWidgetState extends State<NameListPageWidget> {
                       child: Text(
                         'girls ',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               letterSpacing: 0.0,
                             ),
                       ),
@@ -200,7 +198,7 @@ class _NameListPageWidgetState extends State<NameListPageWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   color: FlutterFlowTheme.of(context).tertiary,
                                   letterSpacing: 0.0,
                                 ),
@@ -215,6 +213,60 @@ class _NameListPageWidgetState extends State<NameListPageWidget> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  FlutterFlowIconButton(
+                    borderColor: FlutterFlowTheme.of(context).primary,
+                    borderRadius: 20.0,
+                    borderWidth: 1.0,
+                    buttonSize: 40.0,
+                    fillColor: FlutterFlowTheme.of(context).primary,
+                    icon: Icon(
+                      Icons.close_outlined,
+                      color: FlutterFlowTheme.of(context).tertiary,
+                      size: 24.0,
+                    ),
+                    onPressed: () async {
+                      if (_model.girlChosen == true) {
+                        setState(() {
+                          _model.loopGirl = _model.loopGirl + 1;
+                        });
+                      } else if (_model.girlChosen == false) {
+                        setState(() {
+                          _model.loopBoy = _model.loopBoy + 1;
+                        });
+                      } else {
+                        setState(() {
+                          _model.loopCommon = _model.loopCommon + 1;
+                        });
+                      }
+                    },
+                  ),
+                  FlutterFlowIconButton(
+                    borderColor: FlutterFlowTheme.of(context).primary,
+                    borderRadius: 20.0,
+                    borderWidth: 1.0,
+                    buttonSize: 40.0,
+                    fillColor: FlutterFlowTheme.of(context).accent1,
+                    icon: Icon(
+                      Icons.redo_outlined,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 24.0,
+                    ),
+                    onPressed: () async {
+                      if (_model.girlChosen == true) {
+                        setState(() {
+                          _model.loopGirl = _model.loopGirl + -1;
+                        });
+                      } else if (_model.girlChosen == false) {
+                        setState(() {
+                          _model.loopBoy = _model.loopBoy + -1;
+                        });
+                      } else {
+                        setState(() {
+                          _model.loopCommon = _model.loopCommon + -1;
+                        });
+                      }
+                    },
+                  ),
                   StreamBuilder<List<NameListRecord>>(
                     stream: queryNameListRecord(),
                     builder: (context, snapshot) {
@@ -246,26 +298,6 @@ class _NameListPageWidgetState extends State<NameListPageWidget> {
                           size: 24.0,
                         ),
                         onPressed: () async {
-                          await currentUserReference!.update({
-                            ...mapToFirestore(
-                              {
-                                'liked_names': FieldValue.arrayUnion([
-                                  () {
-                                    if (_model.girlChosen == true) {
-                                      return iconButtonNameListRecordList[0]
-                                          .girls[_model.loopGirl];
-                                    } else if (_model.girlChosen == false) {
-                                      return iconButtonNameListRecordList[0]
-                                          .boys[_model.loopBoy];
-                                    } else {
-                                      return iconButtonNameListRecordList[0]
-                                          .boys[_model.loopGirl];
-                                    }
-                                  }()
-                                ]),
-                              },
-                            ),
-                          });
                           if (_model.girlChosen == true) {
                             setState(() {
                               _model.loopGirl = _model.loopGirl + 1;
@@ -283,66 +315,7 @@ class _NameListPageWidgetState extends State<NameListPageWidget> {
                       );
                     },
                   ),
-                  FlutterFlowIconButton(
-                    borderColor: FlutterFlowTheme.of(context).primary,
-                    borderRadius: 20.0,
-                    borderWidth: 1.0,
-                    buttonSize: 40.0,
-                    fillColor: FlutterFlowTheme.of(context).accent1,
-                    icon: Icon(
-                      Icons.redo_outlined,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      size: 24.0,
-                    ),
-                    onPressed: () async {
-                      if (_model.girlChosen == true) {
-                        setState(() {
-                          _model.loopGirl = _model.loopGirl + -1;
-                        });
-                      } else if (_model.girlChosen == false) {
-                        setState(() {
-                          _model.loopBoy = _model.loopBoy + -1;
-                        });
-                      } else {
-                        setState(() {
-                          _model.loopCommon = _model.loopCommon + -1;
-                        });
-                      }
-                    },
-                  ),
-                  FlutterFlowIconButton(
-                    borderColor: FlutterFlowTheme.of(context).primary,
-                    borderRadius: 20.0,
-                    borderWidth: 1.0,
-                    buttonSize: 40.0,
-                    fillColor: FlutterFlowTheme.of(context).primary,
-                    icon: Icon(
-                      Icons.close_outlined,
-                      color: FlutterFlowTheme.of(context).tertiary,
-                      size: 24.0,
-                    ),
-                    onPressed: () async {
-                      if (_model.girlChosen == true) {
-                        setState(() {
-                          _model.loopGirl = _model.loopGirl + 1;
-                        });
-                      } else if (_model.girlChosen == false) {
-                        setState(() {
-                          _model.loopBoy = _model.loopBoy + 1;
-                        });
-                      } else {
-                        setState(() {
-                          _model.loopCommon = _model.loopCommon + 1;
-                        });
-                      }
-                    },
-                  ),
                 ],
-              ),
-              wrapWithModel(
-                model: _model.navBarModel,
-                updateCallback: () => setState(() {}),
-                child: const NavBarWidget(),
               ),
             ],
           ),

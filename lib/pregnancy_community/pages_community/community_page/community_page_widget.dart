@@ -1,4 +1,5 @@
 import '/backend/backend.dart';
+import '/components/bottom_nav_bar/bottom_nav_bar_widget.dart';
 import '/components/drawer_data/drawer_data_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -8,6 +9,8 @@ import '/notifications/notification_modal_sheet/notification_modal_sheet_widget.
 import '/pregnancy_community/components_pregnancy_community/community_forum_post/community_forum_post_widget.dart';
 import '/pregnancy_community/components_pregnancy_community/create_post/create_post_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'community_page_model.dart';
 export 'community_page_model.dart';
@@ -29,6 +32,13 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
     super.initState();
     _model = createModel(context, () => CommunityPageModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setState(() {
+        FFAppState().selectedindex = 4;
+      });
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -41,6 +51,8 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -160,238 +172,267 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 65.0),
-            child: ListView(
-              padding: EdgeInsets.zero,
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
-                  child: Container(
-                    width: 100.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Align(
-                          alignment: const AlignmentDirectional(-1.0, 0.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                32.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              'Community',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Outfit',
-                                    fontSize: 26.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 65.0),
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                      child: Container(
+                        width: 100.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Align(
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    32.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  'Community',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Figtree',
+                                        fontSize: 26.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              32.0, 12.0, 0.0, 0.0),
-                          child: Text(
-                            'Maak vriendinnen en deel je ervaringen in de Mama Mentor Community',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Outfit',
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  fontSize: 16.0,
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 10.0, 0.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Flexible(
-                                child: FFButtonWidget(
-                                  onPressed: () async {
-                                    setState(() {
-                                      _model.isPregnant = true;
-                                    });
-                                  },
-                                  text: 'For Pregnant',
-                                  options: FFButtonOptions(
-                                    height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          fontFamily: 'Outfit',
-                                          color: Colors.white,
-                                          letterSpacing: 0.0,
-                                        ),
-                                    elevation: 3.0,
-                                    borderSide: const BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1.0,
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  32.0, 12.0, 0.0, 0.0),
+                              child: Text(
+                                'Maak vriendinnen en deel je ervaringen in de Mama Mentor Community',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Figtree',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      fontSize: 16.0,
+                                      letterSpacing: 0.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                ),
                               ),
-                              Flexible(
-                                child: FFButtonWidget(
-                                  onPressed: () async {
-                                    setState(() {
-                                      _model.isPregnant = false;
-                                    });
-                                  },
-                                  text: 'For Post Pregnant',
-                                  options: FFButtonOptions(
-                                    height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          fontFamily: 'Outfit',
-                                          color: Colors.white,
-                                          letterSpacing: 0.0,
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 10.0, 0.0, 0.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Flexible(
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        setState(() {
+                                          _model.isPregnant = true;
+                                        });
+                                      },
+                                      text: 'For Pregnant',
+                                      options: FFButtonOptions(
+                                        height: 40.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 24.0, 0.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Figtree',
+                                              color: Colors.white,
+                                              letterSpacing: 0.0,
+                                            ),
+                                        elevation: 3.0,
+                                        borderSide: const BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
                                         ),
-                                    elevation: 3.0,
-                                    borderSide: const BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1.0,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                ),
+                                  Flexible(
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        setState(() {
+                                          _model.isPregnant = false;
+                                        });
+                                      },
+                                      text: 'For Post Pregnant',
+                                      options: FFButtonOptions(
+                                        height: 40.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 24.0, 0.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Figtree',
+                                              color: Colors.white,
+                                              letterSpacing: 0.0,
+                                            ),
+                                        elevation: 3.0,
+                                        borderSide: const BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ].addToEnd(const SizedBox(height: 85.0)),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                Builder(
-                  builder: (context) {
-                    if (_model.isPregnant) {
-                      return StreamBuilder<List<PregnancyCommunityForumRecord>>(
-                        stream: FFAppState().pregnancyForum(
-                          requestFn: () => queryPregnancyCommunityForumRecord(
-                            queryBuilder: (pregnancyCommunityForumRecord) =>
-                                pregnancyCommunityForumRecord
-                                    .where(
-                                      'isPregnant',
-                                      isEqualTo: true,
-                                    )
-                                    .orderBy('created_time', descending: true),
-                          ),
-                        ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50.0,
-                                height: 50.0,
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    FlutterFlowTheme.of(context).primary,
-                                  ),
-                                ),
+                    Builder(
+                      builder: (context) {
+                        if (_model.isPregnant) {
+                          return StreamBuilder<
+                              List<PregnancyCommunityForumRecord>>(
+                            stream: FFAppState().pregnancyForum(
+                              requestFn: () =>
+                                  queryPregnancyCommunityForumRecord(
+                                queryBuilder: (pregnancyCommunityForumRecord) =>
+                                    pregnancyCommunityForumRecord
+                                        .where(
+                                          'isPregnant',
+                                          isEqualTo: true,
+                                        )
+                                        .orderBy('created_time',
+                                            descending: true),
                               ),
-                            );
-                          }
-                          List<PregnancyCommunityForumRecord>
-                              columnPregnancyCommunityForumRecordList =
-                              snapshot.data!;
-                          return Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: List.generate(
-                                columnPregnancyCommunityForumRecordList.length,
-                                (columnIndex) {
-                              final columnPregnancyCommunityForumRecord =
-                                  columnPregnancyCommunityForumRecordList[
-                                      columnIndex];
-                              return CommunityForumPostWidget(
-                                key: Key(
-                                    'Keyr9v_${columnIndex}_of_${columnPregnancyCommunityForumRecordList.length}'),
-                                forumPost: columnPregnancyCommunityForumRecord
-                                    .reference,
-                              );
-                            }),
-                          );
-                        },
-                      );
-                    } else {
-                      return StreamBuilder<List<PregnancyCommunityForumRecord>>(
-                        stream: FFAppState().postPregnantForum(
-                          requestFn: () => queryPregnancyCommunityForumRecord(
-                            queryBuilder: (pregnancyCommunityForumRecord) =>
-                                pregnancyCommunityForumRecord
-                                    .where(
-                                      'isPregnant',
-                                      isEqualTo: false,
-                                    )
-                                    .orderBy('created_time', descending: true),
-                          ),
-                        ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50.0,
-                                height: 50.0,
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    FlutterFlowTheme.of(context).primary,
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50.0,
+                                    height: 50.0,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        FlutterFlowTheme.of(context).primary,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            );
-                          }
-                          List<PregnancyCommunityForumRecord>
-                              columnPregnancyCommunityForumRecordList =
-                              snapshot.data!;
-                          return Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: List.generate(
-                                columnPregnancyCommunityForumRecordList.length,
-                                (columnIndex) {
-                              final columnPregnancyCommunityForumRecord =
-                                  columnPregnancyCommunityForumRecordList[
-                                      columnIndex];
-                              return CommunityForumPostWidget(
-                                key: Key(
-                                    'Keylui_${columnIndex}_of_${columnPregnancyCommunityForumRecordList.length}'),
-                                forumPost: columnPregnancyCommunityForumRecord
-                                    .reference,
+                                );
+                              }
+                              List<PregnancyCommunityForumRecord>
+                                  columnPregnancyCommunityForumRecordList =
+                                  snapshot.data!;
+                              return Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: List.generate(
+                                    columnPregnancyCommunityForumRecordList
+                                        .length, (columnIndex) {
+                                  final columnPregnancyCommunityForumRecord =
+                                      columnPregnancyCommunityForumRecordList[
+                                          columnIndex];
+                                  return CommunityForumPostWidget(
+                                    key: Key(
+                                        'Keyr9v_${columnIndex}_of_${columnPregnancyCommunityForumRecordList.length}'),
+                                    forumPost:
+                                        columnPregnancyCommunityForumRecord
+                                            .reference,
+                                  );
+                                }),
                               );
-                            }),
+                            },
                           );
-                        },
-                      );
-                    }
-                  },
+                        } else {
+                          return StreamBuilder<
+                              List<PregnancyCommunityForumRecord>>(
+                            stream: FFAppState().postPregnantForum(
+                              requestFn: () =>
+                                  queryPregnancyCommunityForumRecord(
+                                queryBuilder: (pregnancyCommunityForumRecord) =>
+                                    pregnancyCommunityForumRecord
+                                        .where(
+                                          'isPregnant',
+                                          isEqualTo: false,
+                                        )
+                                        .orderBy('created_time',
+                                            descending: true),
+                              ),
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50.0,
+                                    height: 50.0,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        FlutterFlowTheme.of(context).primary,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                              List<PregnancyCommunityForumRecord>
+                                  columnPregnancyCommunityForumRecordList =
+                                  snapshot.data!;
+                              return Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: List.generate(
+                                    columnPregnancyCommunityForumRecordList
+                                        .length, (columnIndex) {
+                                  final columnPregnancyCommunityForumRecord =
+                                      columnPregnancyCommunityForumRecordList[
+                                          columnIndex];
+                                  return CommunityForumPostWidget(
+                                    key: Key(
+                                        'Keylui_${columnIndex}_of_${columnPregnancyCommunityForumRecordList.length}'),
+                                    forumPost:
+                                        columnPregnancyCommunityForumRecord
+                                            .reference,
+                                  );
+                                }),
+                              );
+                            },
+                          );
+                        }
+                      },
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              Align(
+                alignment: const AlignmentDirectional(0.0, 1.0),
+                child: wrapWithModel(
+                  model: _model.bottomNavBarModel,
+                  updateCallback: () => setState(() {}),
+                  child: const BottomNavBarWidget(),
+                ),
+              ),
+            ],
           ),
         ),
       ),

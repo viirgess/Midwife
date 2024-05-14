@@ -55,17 +55,25 @@ dependencies:
   firebase_storage: 11.6.8
   firebase_storage_platform_interface: 5.1.11
   firebase_storage_web: 3.7.2
-  floating_bottom_navigation_bar: 1.5.2
   flutter_animate: 4.1.1+1
   flutter_cache_manager: 3.3.1
+  flutter_card_swiper: 6.0.0
+  flutter_chat_bubble:
+  flutter_keyboard_visibility: 5.4.1
   flutter_plugin_android_lifecycle: 2.0.17
-  flutter_rating_bar: 4.0.1
   flutter_secure_storage: 8.0.0
+  flutter_secure_storage_linux: 1.2.0
+  flutter_secure_storage_macos: 3.0.1
+  flutter_secure_storage_platform_interface: 1.0.2
+  flutter_secure_storage_web: 1.1.2
+  flutter_secure_storage_windows: 2.1.1
+  flutter_slidable:
   flutter_stripe: 9.4.0
   flutter_stripe_web: 4.4.0
+  flutter_svg: 2.0.9
   font_awesome_flutter: 10.6.0
   from_css_color: 2.0.0
-  go_router: 7.1.1
+  go_router: 12.1.3
   google_fonts: 6.1.0
   google_sign_in: 6.1.5
   google_sign_in_android: 6.1.20
@@ -80,7 +88,6 @@ dependencies:
   image_picker_platform_interface: 2.9.1
   intl: 0.18.1
   json_path: 0.6.2
-  lottie: 2.7.0
   mime_type: 1.0.0
   page_transition: 2.1.0
   path_provider: 2.0.14
@@ -102,7 +109,6 @@ dependencies:
   sign_in_with_apple_platform_interface: 1.0.0
   sign_in_with_apple_web: 1.0.1
   sqflite: 2.2.6
-  stop_watch_timer: 3.0.2
   stream_transform: 2.1.0
   stripe_android: 9.4.0
   stripe_ios: 9.4.1
@@ -110,6 +116,7 @@ dependencies:
   stripe_platform_interface: 9.4.0
   syncfusion_flutter_calendar:
   synchronized: 3.1.0
+  text_search: 1.0.1
   timeago: 3.2.2
   url_launcher: 6.2.5
   url_launcher_android: 6.3.0

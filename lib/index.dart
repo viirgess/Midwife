@@ -4,8 +4,8 @@ export '/pages/main_page/main_page_widget.dart' show MainPageWidget;
 export '/auth/register_page/register_page_widget.dart' show RegisterPageWidget;
 export '/auth/reset_password/reset_password_widget.dart'
     show ResetPasswordWidget;
-export '/pages/a_i_page/a_i_page_widget.dart' show AIPageWidget;
-export '/pages/pregnancy_calendar_page/pregnancy_calendar_page_widget.dart'
+export '/ai/a_i_page/a_i_page_widget.dart' show AIPageWidget;
+export '/pregnancy_calendar_weeks/pregnancy_calendar_page/pregnancy_calendar_page_widget.dart'
     show PregnancyCalendarPageWidget;
 export '/pregnancy_community/pages_community/community_page/community_page_widget.dart'
     show CommunityPageWidget;
@@ -40,3 +40,5 @@ export '/name_list/name_list_page/name_list_page_widget.dart'
     show NameListPageWidget;
 export '/contractions/contractions_page/contractions_page_widget.dart'
     show ContractionsPageWidget;
+export '/baby_names/baby_names/baby_names_widget.dart' show BabyNamesWidget;
+export '/baby_names/favorites/favorites_widget.dart' show FavoritesWidget;

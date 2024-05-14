@@ -14,12 +14,13 @@ class CourseContentCreateModel
 
   SectionsRecord? containerPreviousSnapshot;
   // State field(s) for Expandable widget.
-  late ExpandableController expandableController;
+  late ExpandableController expandableExpandableController;
 
   // State field(s) for TextFieldSection widget.
   FocusNode? textFieldSectionFocusNode;
-  TextEditingController? textFieldSectionController;
-  String? Function(BuildContext, String?)? textFieldSectionControllerValidator;
+  TextEditingController? textFieldSectionTextController;
+  String? Function(BuildContext, String?)?
+      textFieldSectionTextControllerValidator;
   bool isDataUploading1 = false;
   FFUploadedFile uploadedLocalFile1 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -27,9 +28,9 @@ class CourseContentCreateModel
 
   // State field(s) for TextFieldAddLesson widget.
   FocusNode? textFieldAddLessonFocusNode;
-  TextEditingController? textFieldAddLessonController;
+  TextEditingController? textFieldAddLessonTextController;
   String? Function(BuildContext, String?)?
-      textFieldAddLessonControllerValidator;
+      textFieldAddLessonTextControllerValidator;
   bool isDataUploading2 = false;
   FFUploadedFile uploadedLocalFile2 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -40,11 +41,11 @@ class CourseContentCreateModel
 
   @override
   void dispose() {
-    expandableController.dispose();
+    expandableExpandableController.dispose();
     textFieldSectionFocusNode?.dispose();
-    textFieldSectionController?.dispose();
+    textFieldSectionTextController?.dispose();
 
     textFieldAddLessonFocusNode?.dispose();
-    textFieldAddLessonController?.dispose();
+    textFieldAddLessonTextController?.dispose();
   }
 }

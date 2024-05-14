@@ -217,6 +217,8 @@ final parametersBuilderMap =
   'SubscriptionChoosePage': ParameterData.none(),
   'nameListPage': ParameterData.none(),
   'ContractionsPage': ParameterData.none(),
+  'BabyNames': ParameterData.none(),
+  'Favorites': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

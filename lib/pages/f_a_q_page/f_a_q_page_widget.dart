@@ -122,122 +122,117 @@ class _FAQPageWidgetState extends State<FAQPageWidget> {
           centerTitle: true,
           elevation: 0.0,
         ),
-        body: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Expanded(
-                child: ListView(
-                  padding: EdgeInsets.zero,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              32.0, 0.0, 32.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
+        body: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            32.0, 0.0, 32.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 8.0),
+                                  child: Text(
+                                    'Veelgestelde vragen',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Figtree',
+                                          fontSize: 30.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                ),
+                                Container(
+                                  width: 300.0,
+                                  decoration: const BoxDecoration(),
+                                  child: Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 8.0),
+                                        0.0, 0.0, 0.0, 12.0),
                                     child: Text(
-                                      'Veelgestelde vragen',
+                                      'Antwoorden op een rij: vind snel informatie in onze veelgestelde vragen',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Outfit',
-                                            fontSize: 30.0,
+                                            fontFamily: 'Figtree',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
-                                            fontWeight: FontWeight.bold,
                                           ),
                                     ),
                                   ),
-                                  Container(
-                                    width: 300.0,
-                                    decoration: const BoxDecoration(),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 12.0),
-                                      child: Text(
-                                        'Antwoorden op een rij: vind snel informatie in onze veelgestelde vragen',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Outfit',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              fontSize: 16.0,
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                          ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
                         ),
-                        StreamBuilder<List<FaqRecord>>(
-                          stream: queryFaqRecord(),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  child: CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                      FlutterFlowTheme.of(context).primary,
-                                    ),
+                      ),
+                      StreamBuilder<List<FaqRecord>>(
+                        stream: queryFaqRecord(),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
                                   ),
                                 ),
-                              );
-                            }
-                            List<FaqRecord> columnFaqRecordList =
-                                snapshot.data!;
-                            return Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: List.generate(
-                                  columnFaqRecordList.length, (columnIndex) {
-                                final columnFaqRecord =
-                                    columnFaqRecordList[columnIndex];
-                                return FAQCardWidget(
-                                  key: Key(
-                                      'Keyq4x_${columnIndex}_of_${columnFaqRecordList.length}'),
-                                  title: columnFaqRecord.title,
-                                  subtitle: columnFaqRecord.subtitle,
-                                  description: columnFaqRecord.description,
-                                  footer: columnFaqRecord.footer,
-                                );
-                              }),
+                              ),
                             );
-                          },
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                          }
+                          List<FaqRecord> columnFaqRecordList = snapshot.data!;
+                          return Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: List.generate(columnFaqRecordList.length,
+                                (columnIndex) {
+                              final columnFaqRecord =
+                                  columnFaqRecordList[columnIndex];
+                              return FAQCardWidget(
+                                key: Key(
+                                    'Keyq4x_${columnIndex}_of_${columnFaqRecordList.length}'),
+                                title: columnFaqRecord.title,
+                                subtitle: columnFaqRecord.subtitle,
+                                description: columnFaqRecord.description,
+                                footer: columnFaqRecord.footer,
+                              );
+                            }),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

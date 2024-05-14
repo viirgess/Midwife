@@ -142,7 +142,7 @@ class _LeaveReplyWidgetState extends State<LeaveReplyWidget> {
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Outfit',
+                                        fontFamily: 'Figtree',
                                         fontSize: 16.0,
                                         letterSpacing: 0.0,
                                       ),
@@ -150,7 +150,7 @@ class _LeaveReplyWidgetState extends State<LeaveReplyWidget> {
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Outfit',
+                                        fontFamily: 'Figtree',
                                         fontSize: 16.0,
                                         letterSpacing: 0.0,
                                       ),
@@ -189,7 +189,7 @@ class _LeaveReplyWidgetState extends State<LeaveReplyWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Outfit',
+                                      fontFamily: 'Figtree',
                                       fontSize: 16.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -495,7 +495,7 @@ class _LeaveReplyWidgetState extends State<LeaveReplyWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     color: Colors.white,
                                     fontSize: 18.0,
                                     letterSpacing: 0.0,

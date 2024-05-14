@@ -99,7 +99,7 @@ class _NewBlogIsPostedNotificationWidgetState
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     fontSize: 18.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
@@ -113,7 +113,7 @@ class _NewBlogIsPostedNotificationWidgetState
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                           ),

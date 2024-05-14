@@ -108,7 +108,7 @@ class _FriendAcceptedNotificationWidgetState
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     letterSpacing: 0.0,
                                   ),
                         ),
@@ -117,7 +117,7 @@ class _FriendAcceptedNotificationWidgetState
                           maxLines: 2,
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     letterSpacing: 0.0,
                                   ),
                         ),

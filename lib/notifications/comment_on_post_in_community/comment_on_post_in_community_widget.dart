@@ -93,7 +93,7 @@ class _CommentOnPostInCommunityWidgetState
                           'Someone just has commented your post!',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
@@ -107,7 +107,7 @@ class _CommentOnPostInCommunityWidgetState
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                           ),

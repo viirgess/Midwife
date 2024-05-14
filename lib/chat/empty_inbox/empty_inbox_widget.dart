@@ -47,32 +47,48 @@ class _EmptyInboxWidgetState extends State<EmptyInboxWidget> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-              child: Icon(
-                Icons.chat_bubble_outline,
-                color: FlutterFlowTheme.of(context).secondaryText,
-                size: 72.0,
+            Container(
+              width: 80.0,
+              height: 80.0,
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).tertiary,
+                borderRadius: BorderRadius.circular(100.0),
+              ),
+              alignment: const AlignmentDirectional(0.0, 0.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.asset(
+                  'assets/images/no_inbox.png',
+                  width: 40.0,
+                  height: 40.0,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 14.0, 0.0, 0.0),
               child: Text(
-                'No Chats',
+                'No messages yet',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Outfit',
+                      fontFamily: 'Figtree',
+                      fontSize: 20.0,
                       letterSpacing: 0.0,
+                      fontWeight: FontWeight.w600,
                     ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
-              child: Text(
-                'It seems that you don\'t have any chats',
-                style: FlutterFlowTheme.of(context).labelMedium.override(
-                      fontFamily: 'Outfit',
-                      letterSpacing: 0.0,
-                    ),
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                child: Text(
+                  'Meet friends from the community to start \nan interesting private conversation',
+                  textAlign: TextAlign.center,
+                  style: FlutterFlowTheme.of(context).labelMedium.override(
+                        fontFamily: 'Figtree',
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
             ),
           ],

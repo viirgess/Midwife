@@ -91,7 +91,7 @@ class _NewMessageReceivedWidgetState extends State<NewMessageReceivedWidget> {
                       Text(
                         'You received new message!',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               fontSize: 16.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
@@ -104,7 +104,7 @@ class _NewMessageReceivedWidgetState extends State<NewMessageReceivedWidget> {
                           'Hurry up to check it!',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     letterSpacing: 0.0,
                                   ),
                         ),

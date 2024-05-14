@@ -1,13 +1,22 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/notifications/notification_modal_sheet/notification_modal_sheet_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'app_bar_model.dart';
 export 'app_bar_model.dart';
 
 class AppBarWidget extends StatefulWidget {
-  const AppBarWidget({super.key});
+  const AppBarWidget({
+    super.key,
+    required this.text,
+    bool? arrowBack,
+  }) : arrowBack = arrowBack ?? true;
+
+  final String? text;
+  final bool arrowBack;
 
   @override
   State<AppBarWidget> createState() => _AppBarWidgetState();
@@ -55,10 +64,98 @@ class _AppBarWidgetState extends State<AppBarWidget> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              child: Align(
-                alignment: const AlignmentDirectional(1.0, 0.0),
-                child: InkWell(
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                if (widget.arrowBack == true)
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 6.0, 0.0),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.safePop();
+                      },
+                      child: Icon(
+                        Icons.chevron_left_outlined,
+                        color: FlutterFlowTheme.of(context).secondaryText,
+                        size: 24.0,
+                      ),
+                    ),
+                  ),
+                Align(
+                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                  child: Text(
+                    valueOrDefault<String>(
+                      widget.text,
+                      'ttile',
+                    ),
+                    style: FlutterFlowTheme.of(context).headlineLarge.override(
+                          fontFamily: 'Figtree',
+                          color: FlutterFlowTheme.of(context).alternate,
+                          fontSize: 22.0,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (currentUserPhoto == '')
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+                    child: AuthUserStreamWidget(
+                      builder: (context) => InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed('userProfile');
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.asset(
+                            'assets/images/avatar.png',
+                            width: 40.0,
+                            height: 40.0,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                if (currentUserPhoto != '')
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+                    child: AuthUserStreamWidget(
+                      builder: (context) => InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed('userProfile');
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.network(
+                            currentUserPhoto,
+                            width: 40.0,
+                            height: 40.0,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
                   hoverColor: Colors.transparent,
@@ -79,13 +176,17 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                       },
                     ).then((value) => safeSetState(() {}));
                   },
-                  child: Icon(
-                    Icons.notifications_none,
-                    color: FlutterFlowTheme.of(context).primary,
-                    size: 32.0,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: SvgPicture.asset(
+                      'assets/images/notifications.svg',
+                      width: 40.0,
+                      height: 40.0,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
           ],
         ),

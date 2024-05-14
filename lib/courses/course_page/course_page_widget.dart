@@ -99,7 +99,7 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
                       'Course Title',
                     ),
                     style: FlutterFlowTheme.of(context).headlineMedium.override(
-                          fontFamily: 'Outfit',
+                          fontFamily: 'Figtree',
                           color: FlutterFlowTheme.of(context).primaryText,
                           fontSize: 22.0,
                           letterSpacing: 0.0,
@@ -138,7 +138,7 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     fontSize: 22.0,
                                     letterSpacing: 0.0,
                                   ),
@@ -199,7 +199,7 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .displaySmall
                                               .override(
-                                                fontFamily: 'Outfit',
+                                                fontFamily: 'Figtree',
                                                 color: Colors.black,
                                                 fontSize: 24.0,
                                                 letterSpacing: 0.0,
@@ -369,7 +369,7 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Outfit',
+                                                                    'Figtree',
                                                                 fontSize: 20.0,
                                                                 letterSpacing:
                                                                     0.0,
@@ -392,7 +392,7 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Outfit',
+                                                                    'Figtree',
                                                                 fontSize: 20.0,
                                                                 letterSpacing:
                                                                     0.0,
@@ -414,7 +414,7 @@ class _CoursePageWidgetState extends State<CoursePageWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Outfit',
+                                                                    'Figtree',
                                                                 fontSize: 20.0,
                                                                 letterSpacing:
                                                                     0.0,

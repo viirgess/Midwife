@@ -72,7 +72,9 @@ class _FreeEbookPageWidgetState extends State<FreeEbookPageWidget> {
                   wrapWithModel(
                     model: _model.appBarModel,
                     updateCallback: () => setState(() {}),
-                    child: const AppBarWidget(),
+                    child: const AppBarWidget(
+                      text: 'Books',
+                    ),
                   ),
                 ],
               ),
@@ -113,7 +115,7 @@ class _FreeEbookPageWidgetState extends State<FreeEbookPageWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Outfit',
+                                          fontFamily: 'Figtree',
                                           fontSize: 30.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
@@ -131,7 +133,7 @@ class _FreeEbookPageWidgetState extends State<FreeEbookPageWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Outfit',
+                                            fontFamily: 'Figtree',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
                                             fontSize: 16.0,
@@ -198,7 +200,7 @@ class _FreeEbookPageWidgetState extends State<FreeEbookPageWidget> {
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                fontFamily: 'Outfit',
+                                fontFamily: 'Figtree',
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
                                 fontSize: 12.0,

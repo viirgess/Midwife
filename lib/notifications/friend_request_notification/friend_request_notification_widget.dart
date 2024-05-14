@@ -92,14 +92,14 @@ class _FriendRequestNotificationWidgetState
                           '0',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               letterSpacing: 0.0,
                             ),
                       ),
                       Text(
                         'Wants to be your friend!',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               letterSpacing: 0.0,
                             ),
                       ),
@@ -131,7 +131,7 @@ class _FriendRequestNotificationWidgetState
                           color: FlutterFlowTheme.of(context).error,
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     color: Colors.white,
                                     letterSpacing: 0.0,
                                   ),
@@ -213,7 +213,7 @@ class _FriendRequestNotificationWidgetState
                           color: FlutterFlowTheme.of(context).success,
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     color: Colors.white,
                                     letterSpacing: 0.0,
                                   ),

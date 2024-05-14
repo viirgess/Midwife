@@ -1,6 +1,5 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'test_page_model.dart';
 export 'test_page_model.dart';
@@ -43,13 +42,9 @@ class _TestPageWidgetState extends State<TestPageWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: const SafeArea(
           top: true,
-          child: SizedBox(
-            width: double.infinity,
-            height: 500.0,
-            child: custom_widgets.Calendar(
-              width: double.infinity,
-              height: 500.0,
-            ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [],
           ),
         ),
       ),

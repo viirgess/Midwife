@@ -74,7 +74,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                 child: Text(
                   'Abonnement / Betaling',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Figtree',
                         letterSpacing: 0.0,
                       ),
                 ),
@@ -84,7 +84,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                 child: Text(
                   'Jouw abonnement',
                   style: FlutterFlowTheme.of(context).labelMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Figtree',
                         letterSpacing: 0.0,
                       ),
                 ),
@@ -103,7 +103,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                           'Maand abonnement\n',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     letterSpacing: 0.0,
                                   ),
                         ),
@@ -111,7 +111,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                           '9 maanden abonnement',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     letterSpacing: 0.0,
                                   ),
                         ),
@@ -132,7 +132,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
                                   letterSpacing: 0.0,

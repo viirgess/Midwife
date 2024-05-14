@@ -96,10 +96,15 @@ class UsersRecord extends FirestoreRecord {
   bool get isAdmin => _isAdmin ?? false;
   bool hasIsAdmin() => _isAdmin != null;
 
-  // "liked_names" field.
-  List<String>? _likedNames;
-  List<String> get likedNames => _likedNames ?? const [];
-  bool hasLikedNames() => _likedNames != null;
+  // "liked_names_boy" field.
+  List<BabyNameStruct>? _likedNamesBoy;
+  List<BabyNameStruct> get likedNamesBoy => _likedNamesBoy ?? const [];
+  bool hasLikedNamesBoy() => _likedNamesBoy != null;
+
+  // "liked_names_girl" field.
+  List<BabyNameStruct>? _likedNamesGirl;
+  List<BabyNameStruct> get likedNamesGirl => _likedNamesGirl ?? const [];
+  bool hasLikedNamesGirl() => _likedNamesGirl != null;
 
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
@@ -119,7 +124,14 @@ class UsersRecord extends FirestoreRecord {
     _aiRequests = castToType<int>(snapshotData['ai_requests']);
     _isPregnant = snapshotData['is_pregnant'] as bool?;
     _isAdmin = snapshotData['is_admin'] as bool?;
-    _likedNames = getDataList(snapshotData['liked_names']);
+    _likedNamesBoy = getStructList(
+      snapshotData['liked_names_boy'],
+      BabyNameStruct.fromMap,
+    );
+    _likedNamesGirl = getStructList(
+      snapshotData['liked_names_girl'],
+      BabyNameStruct.fromMap,
+    );
   }
 
   static CollectionReference get collection =>
@@ -216,7 +228,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.aiRequests == e2?.aiRequests &&
         e1?.isPregnant == e2?.isPregnant &&
         e1?.isAdmin == e2?.isAdmin &&
-        listEquality.equals(e1?.likedNames, e2?.likedNames);
+        listEquality.equals(e1?.likedNamesBoy, e2?.likedNamesBoy) &&
+        listEquality.equals(e1?.likedNamesGirl, e2?.likedNamesGirl);
   }
 
   @override
@@ -237,7 +250,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.aiRequests,
         e?.isPregnant,
         e?.isAdmin,
-        e?.likedNames
+        e?.likedNamesBoy,
+        e?.likedNamesGirl
       ]);
 
   @override

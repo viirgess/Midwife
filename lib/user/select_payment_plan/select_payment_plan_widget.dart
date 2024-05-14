@@ -85,7 +85,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                       child: Text(
                         'Word lid van Midwife Mentor!',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               color: FlutterFlowTheme.of(context).primary,
                               fontSize: 25.0,
                               letterSpacing: 0.0,
@@ -100,7 +100,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                       'Begin je reis door ons plan hieronder te kiezen.',
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Figtree',
                             color: FlutterFlowTheme.of(context).primaryText,
                             fontSize: 16.0,
                             letterSpacing: 0.0,
@@ -132,7 +132,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Outfit',
+                                        fontFamily: 'Figtree',
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
                                         fontSize: 18.0,
@@ -151,7 +151,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Outfit',
+                                          fontFamily: 'Figtree',
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
                                           fontSize: 24.0,
@@ -171,7 +171,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Outfit',
+                                          fontFamily: 'Figtree',
                                           color: FlutterFlowTheme.of(context)
                                               .secondary,
                                           letterSpacing: 0.0,
@@ -251,7 +251,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -284,7 +284,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -360,7 +360,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -393,7 +393,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -469,7 +469,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -502,7 +502,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -578,7 +578,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -611,7 +611,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -687,7 +687,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -720,7 +720,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -796,7 +796,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -829,7 +829,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -905,7 +905,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -938,7 +938,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
@@ -969,7 +969,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
-                                          fontFamily: 'Outfit',
+                                          fontFamily: 'Figtree',
                                           color: Colors.white,
                                           letterSpacing: 0.0,
                                         ),
@@ -991,7 +991,7 @@ class _SelectPaymentPlanWidgetState extends State<SelectPaymentPlanWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Outfit',
+                                        fontFamily: 'Figtree',
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryText,
                                         fontSize: 13.0,

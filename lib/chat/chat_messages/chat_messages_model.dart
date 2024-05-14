@@ -4,31 +4,41 @@ import 'chat_messages_widget.dart' show ChatMessagesWidget;
 import 'package:flutter/material.dart';
 
 class ChatMessagesModel extends FlutterFlowModel<ChatMessagesWidget> {
+  ///  Local state fields for this page.
+
+  bool showSend = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for ListView widget.
-  ScrollController? listViewController;
-  List<ChatMessagesRecord>? listViewPreviousSnapshot;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
+  // State field(s) for ChatListView widget.
+  ScrollController? chatListView;
+  List<ChatMessagesRecord>? chatListViewPreviousSnapshot;
+  bool isDataUploading1 = false;
+  FFUploadedFile uploadedLocalFile1 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl = '';
+  String uploadedFileUrl1 = '';
+
+  // State field(s) for MessageTextField widget.
+  FocusNode? messageTextFieldFocusNode;
+  TextEditingController? messageTextFieldTextController;
+  String? Function(BuildContext, String?)?
+      messageTextFieldTextControllerValidator;
+  bool isDataUploading2 = false;
+  FFUploadedFile uploadedLocalFile2 =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl2 = '';
 
   @override
   void initState(BuildContext context) {
-    listViewController = ScrollController();
+    chatListView = ScrollController();
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    listViewController?.dispose();
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
+    chatListView?.dispose();
+    messageTextFieldFocusNode?.dispose();
+    messageTextFieldTextController?.dispose();
   }
 }

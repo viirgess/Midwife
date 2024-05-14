@@ -55,6 +55,31 @@ class WeeksRecord extends FirestoreRecord {
   String get model => _model ?? '';
   bool hasModel() => _model != null;
 
+  // "trimester" field.
+  String? _trimester;
+  String get trimester => _trimester ?? '';
+  bool hasTrimester() => _trimester != null;
+
+  // "tip_one" field.
+  String? _tipOne;
+  String get tipOne => _tipOne ?? '';
+  bool hasTipOne() => _tipOne != null;
+
+  // "tip_two" field.
+  String? _tipTwo;
+  String get tipTwo => _tipTwo ?? '';
+  bool hasTipTwo() => _tipTwo != null;
+
+  // "tip_three" field.
+  String? _tipThree;
+  String get tipThree => _tipThree ?? '';
+  bool hasTipThree() => _tipThree != null;
+
+  // "tip_four" field.
+  String? _tipFour;
+  String get tipFour => _tipFour ?? '';
+  bool hasTipFour() => _tipFour != null;
+
   void _initializeFields() {
     _title = snapshotData['title'] as String?;
     _firstChapter = snapshotData['first_chapter'] as String?;
@@ -64,6 +89,11 @@ class WeeksRecord extends FirestoreRecord {
     _fifthChapter = snapshotData['fifth_chapter'] as String?;
     _id = castToType<int>(snapshotData['id']);
     _model = snapshotData['model'] as String?;
+    _trimester = snapshotData['trimester'] as String?;
+    _tipOne = snapshotData['tip_one'] as String?;
+    _tipTwo = snapshotData['tip_two'] as String?;
+    _tipThree = snapshotData['tip_three'] as String?;
+    _tipFour = snapshotData['tip_four'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -108,6 +138,11 @@ Map<String, dynamic> createWeeksRecordData({
   String? fifthChapter,
   int? id,
   String? model,
+  String? trimester,
+  String? tipOne,
+  String? tipTwo,
+  String? tipThree,
+  String? tipFour,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -119,6 +154,11 @@ Map<String, dynamic> createWeeksRecordData({
       'fifth_chapter': fifthChapter,
       'id': id,
       'model': model,
+      'trimester': trimester,
+      'tip_one': tipOne,
+      'tip_two': tipTwo,
+      'tip_three': tipThree,
+      'tip_four': tipFour,
     }.withoutNulls,
   );
 
@@ -137,7 +177,12 @@ class WeeksRecordDocumentEquality implements Equality<WeeksRecord> {
         e1?.fourthChapter == e2?.fourthChapter &&
         e1?.fifthChapter == e2?.fifthChapter &&
         e1?.id == e2?.id &&
-        e1?.model == e2?.model;
+        e1?.model == e2?.model &&
+        e1?.trimester == e2?.trimester &&
+        e1?.tipOne == e2?.tipOne &&
+        e1?.tipTwo == e2?.tipTwo &&
+        e1?.tipThree == e2?.tipThree &&
+        e1?.tipFour == e2?.tipFour;
   }
 
   @override
@@ -149,7 +194,12 @@ class WeeksRecordDocumentEquality implements Equality<WeeksRecord> {
         e?.fourthChapter,
         e?.fifthChapter,
         e?.id,
-        e?.model
+        e?.model,
+        e?.trimester,
+        e?.tipOne,
+        e?.tipTwo,
+        e?.tipThree,
+        e?.tipFour
       ]);
 
   @override

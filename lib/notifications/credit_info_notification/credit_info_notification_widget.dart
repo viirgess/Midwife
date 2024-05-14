@@ -75,7 +75,7 @@ class _CreditInfoNotificationWidgetState
             Text(
               'Please update your credit info!',
               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: 'Outfit',
+                    fontFamily: 'Figtree',
                     letterSpacing: 0.0,
                   ),
             ),

@@ -178,7 +178,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                   ),
@@ -186,7 +186,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                   ),
@@ -224,7 +224,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   fontSize: 16.0,
                                   letterSpacing: 0.0,
                                 ),
@@ -414,7 +414,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   color: Colors.white,
                                   fontSize: 18.0,
                                   letterSpacing: 0.0,

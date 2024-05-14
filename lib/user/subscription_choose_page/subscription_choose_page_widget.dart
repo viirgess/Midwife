@@ -92,7 +92,7 @@ class _SubscriptionChoosePageWidgetState
                     child: Text(
                       'Subscribe to Premium',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Figtree',
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
                             fontSize: 28.0,
@@ -149,7 +149,7 @@ class _SubscriptionChoosePageWidgetState
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Outfit',
+                                              fontFamily: 'Figtree',
                                               color: _model.monthlyChosen
                                                   ? FlutterFlowTheme.of(context)
                                                       .accent1
@@ -188,7 +188,7 @@ class _SubscriptionChoosePageWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Outfit',
+                                          fontFamily: 'Figtree',
                                           color: _model.monthlyChosen
                                               ? FlutterFlowTheme.of(context)
                                                   .accent1
@@ -207,7 +207,7 @@ class _SubscriptionChoosePageWidgetState
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Outfit',
+                                            fontFamily: 'Figtree',
                                             color: _model.monthlyChosen
                                                 ? FlutterFlowTheme.of(context)
                                                     .accent1
@@ -266,7 +266,7 @@ class _SubscriptionChoosePageWidgetState
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Outfit',
+                                              fontFamily: 'Figtree',
                                               color: !_model.monthlyChosen
                                                   ? FlutterFlowTheme.of(context)
                                                       .accent1
@@ -305,7 +305,7 @@ class _SubscriptionChoosePageWidgetState
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Outfit',
+                                          fontFamily: 'Figtree',
                                           color: !_model.monthlyChosen
                                               ? FlutterFlowTheme.of(context)
                                                   .accent1
@@ -324,7 +324,7 @@ class _SubscriptionChoosePageWidgetState
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Outfit',
+                                            fontFamily: 'Figtree',
                                             color: !_model.monthlyChosen
                                                 ? FlutterFlowTheme.of(context)
                                                     .accent1
@@ -388,7 +388,7 @@ class _SubscriptionChoosePageWidgetState
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .primaryBackground,
@@ -423,7 +423,7 @@ class _SubscriptionChoosePageWidgetState
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .primaryBackground,
@@ -458,7 +458,7 @@ class _SubscriptionChoosePageWidgetState
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .primaryBackground,
@@ -493,7 +493,7 @@ class _SubscriptionChoosePageWidgetState
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .primaryBackground,
@@ -539,7 +539,7 @@ class _SubscriptionChoosePageWidgetState
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .primaryBackground,
@@ -574,7 +574,7 @@ class _SubscriptionChoosePageWidgetState
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .primaryBackground,
@@ -609,7 +609,7 @@ class _SubscriptionChoosePageWidgetState
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .primaryBackground,
@@ -644,7 +644,7 @@ class _SubscriptionChoosePageWidgetState
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .primaryBackground,
@@ -679,7 +679,7 @@ class _SubscriptionChoosePageWidgetState
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .primaryBackground,
@@ -714,7 +714,7 @@ class _SubscriptionChoosePageWidgetState
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .primaryBackground,
@@ -784,7 +784,7 @@ class _SubscriptionChoosePageWidgetState
                         color: FlutterFlowTheme.of(context).accent1,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   color: Colors.white,
                                   fontSize: 18.0,
                                   letterSpacing: 0.0,

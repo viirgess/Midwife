@@ -132,7 +132,7 @@ class _OnlineCoachingPageWidgetState extends State<OnlineCoachingPageWidget> {
                 child: Text(
                   'Online coaching',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Figtree',
                         fontSize: 30.0,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.bold,
@@ -148,7 +148,7 @@ class _OnlineCoachingPageWidgetState extends State<OnlineCoachingPageWidget> {
                   'Persoonlijke begeleiding op afstand: plan je 1:1 sessies met een verloskundige',
                   textAlign: TextAlign.start,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Figtree',
                         color: FlutterFlowTheme.of(context).secondaryText,
                         fontSize: 20.0,
                         letterSpacing: 0.0,

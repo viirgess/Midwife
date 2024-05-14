@@ -1,8 +1,5 @@
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'test_component_model.dart';
 export 'test_component_model.dart';
@@ -45,27 +42,27 @@ class _TestComponentWidgetState extends State<TestComponentWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return FFButtonWidget(
-      onPressed: () async {
-        await actions.stripePayment();
-      },
-      text: 'Button',
-      options: FFButtonOptions(
-        height: 40.0,
-        padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-        iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-        color: FlutterFlowTheme.of(context).primary,
-        textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-              fontFamily: 'Outfit',
-              color: Colors.white,
-              letterSpacing: 0.0,
+    return Container(
+      width: double.infinity,
+      height: 500.0,
+      decoration: const BoxDecoration(
+        color: Color(0xFFF6EAFF),
+      ),
+      child: Stack(
+        children: [
+          Align(
+            alignment: const AlignmentDirectional(0.0, 0.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.asset(
+                'assets/images/Baby.png',
+                width: 300.0,
+                height: 200.0,
+                fit: BoxFit.contain,
+              ),
             ),
-        elevation: 3.0,
-        borderSide: const BorderSide(
-          color: Colors.transparent,
-          width: 1.0,
-        ),
-        borderRadius: BorderRadius.circular(8.0),
+          ),
+        ],
       ),
     );
   }

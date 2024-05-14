@@ -157,7 +157,7 @@ class _CommunityForumPostWidgetState extends State<CommunityForumPostWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Outfit',
+                                              fontFamily: 'Figtree',
                                               fontSize: 18.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.normal,

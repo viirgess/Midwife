@@ -22,8 +22,9 @@ class UserProfileModel extends FlutterFlowModel<UserProfileWidget> {
   String? Function(BuildContext, String?)? textController2Validator;
   // State field(s) for TextFieldEmail widget.
   FocusNode? textFieldEmailFocusNode;
-  TextEditingController? textFieldEmailController;
-  String? Function(BuildContext, String?)? textFieldEmailControllerValidator;
+  TextEditingController? textFieldEmailTextController;
+  String? Function(BuildContext, String?)?
+      textFieldEmailTextControllerValidator;
   DateTime? datePicked;
   // Model for drawerData component.
   late DrawerDataModel drawerDataModel;
@@ -43,7 +44,7 @@ class UserProfileModel extends FlutterFlowModel<UserProfileWidget> {
     textController2?.dispose();
 
     textFieldEmailFocusNode?.dispose();
-    textFieldEmailController?.dispose();
+    textFieldEmailTextController?.dispose();
 
     drawerDataModel.dispose();
   }

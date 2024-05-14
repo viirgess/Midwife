@@ -118,6 +118,12 @@ class FFAppState extends ChangeNotifier {
     secureStorage.delete(key: 'ff_midwifeRef');
   }
 
+  int _selectedindex = 1;
+  int get selectedindex => _selectedindex;
+  set selectedindex(int value) {
+    _selectedindex = value;
+  }
+
   final _pregnancyForumManager =
       StreamRequestManager<List<PregnancyCommunityForumRecord>>();
   Stream<List<PregnancyCommunityForumRecord>> pregnancyForum({

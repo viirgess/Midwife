@@ -140,7 +140,7 @@ class _LeaveCommentWidgetState extends State<LeaveCommentWidget> {
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Outfit',
+                                        fontFamily: 'Figtree',
                                         fontSize: 16.0,
                                         letterSpacing: 0.0,
                                       ),
@@ -148,7 +148,7 @@ class _LeaveCommentWidgetState extends State<LeaveCommentWidget> {
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'Outfit',
+                                        fontFamily: 'Figtree',
                                         fontSize: 16.0,
                                         letterSpacing: 0.0,
                                       ),
@@ -187,7 +187,7 @@ class _LeaveCommentWidgetState extends State<LeaveCommentWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Outfit',
+                                      fontFamily: 'Figtree',
                                       fontSize: 16.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -493,7 +493,7 @@ class _LeaveCommentWidgetState extends State<LeaveCommentWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     color: Colors.white,
                                     fontSize: 18.0,
                                     letterSpacing: 0.0,

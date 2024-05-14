@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -58,30 +57,17 @@ class _LikedNamesWidgetState extends State<LikedNamesWidget> {
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).primaryBackground,
                 ),
-                child: AuthUserStreamWidget(
-                  builder: (context) => Builder(
-                    builder: (context) {
-                      final likedNames =
-                          (currentUserDocument?.likedNames.toList() ?? [])
-                              .toList();
-                      return Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children:
-                            List.generate(likedNames.length, (likedNamesIndex) {
-                          final likedNamesItem = likedNames[likedNamesIndex];
-                          return Text(
-                            likedNamesItem,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Outfit',
-                                  letterSpacing: 0.0,
-                                ),
-                          );
-                        }),
-                      );
-                    },
-                  ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      'Hello World',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Figtree',
+                            letterSpacing: 0.0,
+                          ),
+                    ),
+                  ],
                 ),
               ),
             ),

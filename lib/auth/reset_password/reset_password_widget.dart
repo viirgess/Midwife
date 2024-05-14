@@ -79,7 +79,7 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
                     Text(
                       'Reset wachtwoord',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Figtree',
                             color: FlutterFlowTheme.of(context).primary,
                             fontSize: 25.0,
                             letterSpacing: 0.0,
@@ -92,7 +92,7 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
                       child: Text(
                         'Meld je aan om toegang te krijgen tot Mama Mentor',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               fontSize: 16.0,
                               letterSpacing: 0.0,
                             ),
@@ -104,7 +104,7 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
                       child: Text(
                         'E-mailadres*',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               fontSize: 16.0,
                               letterSpacing: 0.0,
                             ),
@@ -119,13 +119,13 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
                         isDense: true,
                         labelStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                         hintText: 'E-mailadres invullen',
                         hintStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                         enabledBorder: OutlineInputBorder(
@@ -158,7 +158,7 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
                         ),
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Figtree',
                             letterSpacing: 0.0,
                           ),
                       validator: _model.emailTextControllerValidator
@@ -265,7 +265,7 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                           ),

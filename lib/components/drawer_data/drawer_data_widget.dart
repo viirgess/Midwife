@@ -104,7 +104,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                     Text(
                       'Dashboard',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Figtree',
                             color: FlutterFlowTheme.of(context).primary,
                             fontSize: 18.0,
                             letterSpacing: 0.0,
@@ -142,7 +142,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                 child: Text(
                   'Midwife Mentor AI',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Figtree',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 16.0,
                         letterSpacing: 0.0,
@@ -172,7 +172,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                 child: Text(
                   'Zwangerschapskalender',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Figtree',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 16.0,
                         letterSpacing: 0.0,
@@ -205,7 +205,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                       child: Text(
                         'Zwangerschapscommunity',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               color: FlutterFlowTheme.of(context).primaryText,
                               fontSize: 16.0,
                               letterSpacing: 0.0,
@@ -219,7 +219,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                     child: Text(
                       'Post Partum Community',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Figtree',
                             color: FlutterFlowTheme.of(context).primaryText,
                             fontSize: 16.0,
                             letterSpacing: 0.0,
@@ -251,7 +251,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                 child: Text(
                   'Privé chats',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Figtree',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 16.0,
                         letterSpacing: 0.0,
@@ -281,7 +281,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                 child: Text(
                   'Blogs',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Figtree',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 16.0,
                         letterSpacing: 0.0,
@@ -311,7 +311,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                 child: Text(
                   'Online coaching',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Figtree',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 16.0,
                         letterSpacing: 0.0,
@@ -341,7 +341,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                 child: Text(
                   'Zwangerschapscursus',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Figtree',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 16.0,
                         letterSpacing: 0.0,
@@ -371,7 +371,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                 child: Text(
                   'Samenwerkingen',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Figtree',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 16.0,
                         letterSpacing: 0.0,
@@ -401,7 +401,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                 child: Text(
                   'Veelgestelde vragen',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Figtree',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 16.0,
                         letterSpacing: 0.0,
@@ -431,7 +431,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                 child: Text(
                   'Contact',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Figtree',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 16.0,
                         letterSpacing: 0.0,
@@ -492,7 +492,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   fontSize: 18.0,
                                   letterSpacing: 0.0,
                                 ),
@@ -503,7 +503,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   fontSize: 18.0,
                                   letterSpacing: 0.0,
                                 ),
@@ -550,7 +550,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                     Text(
                       'Account',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Figtree',
                             color: FlutterFlowTheme.of(context).primary,
                             fontSize: 18.0,
                             letterSpacing: 0.0,
@@ -591,7 +591,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                     Text(
                       'Log Out',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Figtree',
                             color: FlutterFlowTheme.of(context).primary,
                             fontSize: 18.0,
                             letterSpacing: 0.0,

@@ -164,7 +164,7 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Figtree',
                                                         fontSize: 18.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
@@ -190,7 +190,7 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Outfit',
+                                                  fontFamily: 'Figtree',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -223,7 +223,7 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Outfit',
+                                            fontFamily: 'Figtree',
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryBackground,
                                             fontSize: 16.0,
@@ -259,7 +259,7 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Outfit',
+                                      fontFamily: 'Figtree',
                                       fontSize: 16.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -484,7 +484,7 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Outfit',
+                                          fontFamily: 'Figtree',
                                           fontSize: 16.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w500,
@@ -500,7 +500,7 @@ class _CommunityPostWidgetState extends State<CommunityPostWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Outfit',
+                                        fontFamily: 'Figtree',
                                         fontSize: 16.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,

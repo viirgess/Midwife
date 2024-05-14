@@ -82,7 +82,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     Text(
                       'Login',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Figtree',
                             color: FlutterFlowTheme.of(context).primary,
                             fontSize: 25.0,
                             letterSpacing: 0.0,
@@ -95,7 +95,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                       child: Text(
                         'Log in om toegang te krijgen tot gezamenlijke verbinding en groei',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               fontSize: 16.0,
                               letterSpacing: 0.0,
                             ),
@@ -107,7 +107,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                       child: Text(
                         'E-mailadres*',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               fontSize: 16.0,
                               letterSpacing: 0.0,
                             ),
@@ -122,13 +122,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         isDense: true,
                         labelStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                         hintText: 'E-mailadres',
                         hintStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                         enabledBorder: OutlineInputBorder(
@@ -161,7 +161,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         ),
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Figtree',
                             letterSpacing: 0.0,
                           ),
                       validator: _model.emailTextControllerValidator
@@ -173,7 +173,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                       child: Text(
                         'Wachtwoord*',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
+                              fontFamily: 'Figtree',
                               fontSize: 16.0,
                               letterSpacing: 0.0,
                             ),
@@ -189,13 +189,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         isDense: true,
                         labelStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                         hintText: 'Wachtwoord',
                         hintStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                         enabledBorder: OutlineInputBorder(
@@ -242,7 +242,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         ),
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Figtree',
                             letterSpacing: 0.0,
                           ),
                       validator: _model.passwordTextControllerValidator
@@ -298,7 +298,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                           ),
@@ -404,7 +404,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   letterSpacing: 0.0,
                                 ),
                           ),

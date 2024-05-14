@@ -116,14 +116,14 @@ class _EditLessonNameWidgetState extends State<EditLessonNameWidget> {
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                   ),
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Figtree',
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                   ),
@@ -137,7 +137,7 @@ class _EditLessonNameWidgetState extends State<EditLessonNameWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Outfit',
+                                  fontFamily: 'Figtree',
                                   fontSize: 16.0,
                                   letterSpacing: 0.0,
                                 ),

@@ -1,15 +1,19 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/chat/delete_chat/delete_chat_widget.dart';
+import '/chat/empty_inbox/empty_inbox_widget.dart';
 import '/chat/list_of_friends/list_of_friends_widget.dart';
-import '/chat/list_of_users/list_of_users_widget.dart';
+import '/chat/list_of_members/list_of_members_widget.dart';
+import '/components/app_bar/app_bar_widget.dart';
+import '/components/bottom_nav_bar/bottom_nav_bar_widget.dart';
 import '/components/drawer_data/drawer_data_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/notifications/notification_modal_sheet/notification_modal_sheet_widget.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'private_chats_page_model.dart';
@@ -31,6 +35,34 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => PrivateChatsPageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setState(() {
+        FFAppState().selectedindex = 3;
+      });
+      _model.chatWithMidwife = await queryChatsRecordOnce(
+        queryBuilder: (chatsRecord) => chatsRecord
+            .where(
+              'user_a',
+              isEqualTo: currentUserReference,
+            )
+            .where(
+              'user_b',
+              isEqualTo: FFAppState().midwifeRef,
+            ),
+        singleRecord: true,
+      ).then((s) => s.firstOrNull);
+      if (_model.chatWithMidwife?.reference != null) {
+        setState(() {
+          _model.chatWithRenske = true;
+        });
+      } else {
+        setState(() {
+          _model.chatWithRenske = false;
+        });
+      }
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -68,62 +100,12 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 30.0,
+          title: wrapWithModel(
+            model: _model.appBarModel,
+            updateCallback: () => setState(() {}),
+            child: const AppBarWidget(
+              text: 'Private chats',
             ),
-            onPressed: () async {
-              context.pushNamed('MainPage');
-            },
-          ),
-          title: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Expanded(
-                child: Align(
-                  alignment: const AlignmentDirectional(1.0, 0.0),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      await showModalBottomSheet(
-                        isScrollControlled: true,
-                        backgroundColor: FlutterFlowTheme.of(context).alternate,
-                        barrierColor: const Color(0x19C67AF5),
-                        context: context,
-                        builder: (context) {
-                          return WebViewAware(
-                            child: GestureDetector(
-                              onTap: () => _model.unfocusNode.canRequestFocus
-                                  ? FocusScope.of(context)
-                                      .requestFocus(_model.unfocusNode)
-                                  : FocusScope.of(context).unfocus(),
-                              child: Padding(
-                                padding: MediaQuery.viewInsetsOf(context),
-                                child: const NotificationModalSheetWidget(),
-                              ),
-                            ),
-                          );
-                        },
-                      ).then((value) => safeSetState(() {}));
-                    },
-                    child: Icon(
-                      Icons.notifications_none,
-                      color: FlutterFlowTheme.of(context).primary,
-                      size: 32.0,
-                    ),
-                  ),
-                ),
-              ),
-            ],
           ),
           actions: const [],
           centerTitle: true,
@@ -131,760 +113,807 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 58.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: Column(
+          child: Stack(
+            children: [
+              ListView(
+                padding: EdgeInsets.zero,
+                scrollDirection: Axis.vertical,
+                children: [
+                  Column(
                     mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'Privé chats',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
-                              fontSize: 22.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                      Text(
-                        'Privégesprekken met vriendinnen uit de community',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Outfit',
-                              letterSpacing: 0.0,
-                            ),
-                      ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            0.0, 12.0, 0.0, 12.0),
-                        child: Row(
+                        padding: const EdgeInsets.all(18.0),
+                        child: Column(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              'Inbox',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Outfit',
-                                    fontSize: 18.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 12.0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          context: context,
+                                          builder: (context) {
+                                            return WebViewAware(
+                                              child: GestureDetector(
+                                                onTap: () => _model.unfocusNode
+                                                        .canRequestFocus
+                                                    ? FocusScope.of(context)
+                                                        .requestFocus(
+                                                            _model.unfocusNode)
+                                                    : FocusScope.of(context)
+                                                        .unfocus(),
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child: SizedBox(
+                                                    height: MediaQuery.sizeOf(
+                                                                context)
+                                                            .height *
+                                                        0.9,
+                                                    child:
+                                                        const ListOfFriendsWidget(),
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => safeSetState(() {}));
+                                      },
+                                      text: 'Select a friend',
+                                      icon: const Icon(
+                                        Icons.chevron_right,
+                                        size: 20.0,
+                                      ),
+                                      options: FFButtonOptions(
+                                        width: double.infinity,
+                                        height: 48.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 14.0, 24.0, 14.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .accent1,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Figtree',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                        elevation: 0.0,
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(16.0),
+                                      ),
+                                    ),
                                   ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 12.0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          context: context,
+                                          builder: (context) {
+                                            return WebViewAware(
+                                              child: GestureDetector(
+                                                onTap: () => _model.unfocusNode
+                                                        .canRequestFocus
+                                                    ? FocusScope.of(context)
+                                                        .requestFocus(
+                                                            _model.unfocusNode)
+                                                    : FocusScope.of(context)
+                                                        .unfocus(),
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child: SizedBox(
+                                                    height: MediaQuery.sizeOf(
+                                                                context)
+                                                            .height *
+                                                        0.9,
+                                                    child:
+                                                        const ListOfMembersWidget(),
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => safeSetState(() {}));
+                                      },
+                                      text: 'Find a member',
+                                      icon: const Icon(
+                                        Icons.person_search_rounded,
+                                        size: 20.0,
+                                      ),
+                                      options: FFButtonOptions(
+                                        width: double.infinity,
+                                        height: 48.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 14.0, 24.0, 14.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .accent1,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Figtree',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                        elevation: 0.0,
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(16.0),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ].divide(const SizedBox(width: 8.0)),
                             ),
-                          ],
-                        ),
-                      ),
-                      if (currentUserReference != FFAppState().midwifeRef)
-                        Align(
-                          alignment: const AlignmentDirectional(1.0, 0.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 5.0),
-                            child: FFButtonWidget(
-                              onPressed: () async {
-                                _model.chatExists = await queryChatsRecordOnce(
-                                  queryBuilder: (chatsRecord) => chatsRecord
-                                      .where(
-                                        'user_a',
-                                        isEqualTo: currentUserReference,
-                                      )
-                                      .where(
-                                        'user_b',
-                                        isEqualTo: FFAppState().midwifeRef,
+                            if (false)
+                              Align(
+                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 5.0),
+                                  child: FFButtonWidget(
+                                    onPressed: () {
+                                      print('Button pressed ...');
+                                    },
+                                    text: 'Zoek vrienden ',
+                                    icon: const Icon(
+                                      Icons.search_sharp,
+                                      size: 20.0,
+                                    ),
+                                    options: FFButtonOptions(
+                                      height: 35.0,
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          24.0, 0.0, 24.0, 0.0),
+                                      iconPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color:
+                                          FlutterFlowTheme.of(context).accent2,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Figtree',
+                                            color: Colors.white,
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                      elevation: 3.0,
+                                      borderSide: const BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
                                       ),
-                                  singleRecord: true,
-                                ).then((s) => s.firstOrNull);
-                                if (_model.chatExists?.reference != null) {
-                                  context.pushNamed(
-                                    'chatMessages',
-                                    queryParameters: {
-                                      'chatUser': serializeParam(
-                                        _model.chatExists?.reference,
-                                        ParamType.DocumentReference,
-                                      ),
-                                      'userName': serializeParam(
-                                        'Renske Midwife',
-                                        ParamType.String,
-                                      ),
-                                      'userRef': serializeParam(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            Builder(
+                              builder: (context) {
+                                if (!_model.chatWithRenske) {
+                                  return Visibility(
+                                    visible: currentUserReference !=
                                         FFAppState().midwifeRef,
-                                        ParamType.DocumentReference,
-                                      ),
-                                      'userimage': serializeParam(
-                                        'https://static.vecteezy.com/system/resources/thumbnails/006/895/899/small/illustration-for-midwife-day-nurse-or-midwife-with-mask-holding-a-newborn-by-hands-vector.jpg',
-                                        ParamType.String,
-                                      ),
-                                    }.withoutNulls,
-                                  );
-                                } else {
-                                  var chatsRecordReference =
-                                      ChatsRecord.collection.doc();
-                                  await chatsRecordReference
-                                      .set(createChatsRecordData(
-                                    user: currentUserReference,
-                                    userA: currentUserReference,
-                                    userB: FFAppState().midwifeRef,
-                                    image:
-                                        'https://static.vecteezy.com/system/resources/thumbnails/006/895/899/small/illustration-for-midwife-day-nurse-or-midwife-with-mask-holding-a-newborn-by-hands-vector.jpg',
-                                  ));
-                                  _model.newChat =
-                                      ChatsRecord.getDocumentFromData(
-                                          createChatsRecordData(
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        _model.chatExists =
+                                            await queryChatsRecordOnce(
+                                          queryBuilder: (chatsRecord) =>
+                                              chatsRecord
+                                                  .where(
+                                                    'user_a',
+                                                    isEqualTo:
+                                                        currentUserReference,
+                                                  )
+                                                  .where(
+                                                    'user_b',
+                                                    isEqualTo:
+                                                        FFAppState().midwifeRef,
+                                                  ),
+                                          singleRecord: true,
+                                        ).then((s) => s.firstOrNull);
+                                        if (_model.chatExists?.reference !=
+                                            null) {
+                                          context.pushNamed(
+                                            'chatMessages',
+                                            queryParameters: {
+                                              'chatUser': serializeParam(
+                                                _model.chatExists?.reference,
+                                                ParamType.DocumentReference,
+                                              ),
+                                              'userName': serializeParam(
+                                                'Renske Midwife',
+                                                ParamType.String,
+                                              ),
+                                              'userRef': serializeParam(
+                                                FFAppState().midwifeRef,
+                                                ParamType.DocumentReference,
+                                              ),
+                                              'userimage': serializeParam(
+                                                'https://static.vecteezy.com/system/resources/thumbnails/006/895/899/small/illustration-for-midwife-day-nurse-or-midwife-with-mask-holding-a-newborn-by-hands-vector.jpg',
+                                                ParamType.String,
+                                              ),
+                                            }.withoutNulls,
+                                          );
+                                        } else {
+                                          var chatsRecordReference =
+                                              ChatsRecord.collection.doc();
+                                          await chatsRecordReference
+                                              .set(createChatsRecordData(
                                             user: currentUserReference,
                                             userA: currentUserReference,
                                             userB: FFAppState().midwifeRef,
                                             image:
                                                 'https://static.vecteezy.com/system/resources/thumbnails/006/895/899/small/illustration-for-midwife-day-nurse-or-midwife-with-mask-holding-a-newborn-by-hands-vector.jpg',
-                                          ),
-                                          chatsRecordReference);
+                                          ));
+                                          _model.newChat =
+                                              ChatsRecord.getDocumentFromData(
+                                                  createChatsRecordData(
+                                                    user: currentUserReference,
+                                                    userA: currentUserReference,
+                                                    userB:
+                                                        FFAppState().midwifeRef,
+                                                    image:
+                                                        'https://static.vecteezy.com/system/resources/thumbnails/006/895/899/small/illustration-for-midwife-day-nurse-or-midwife-with-mask-holding-a-newborn-by-hands-vector.jpg',
+                                                  ),
+                                                  chatsRecordReference);
 
-                                  context.pushNamed(
-                                    'chatMessages',
-                                    queryParameters: {
-                                      'chatUser': serializeParam(
-                                        _model.newChat?.reference,
-                                        ParamType.DocumentReference,
-                                      ),
-                                      'userName': serializeParam(
-                                        'Renske Midwife',
-                                        ParamType.String,
-                                      ),
-                                      'userRef': serializeParam(
-                                        FFAppState().midwifeRef,
-                                        ParamType.DocumentReference,
-                                      ),
-                                      'userimage': serializeParam(
-                                        'https://static.vecteezy.com/system/resources/thumbnails/006/895/899/small/illustration-for-midwife-day-nurse-or-midwife-with-mask-holding-a-newborn-by-hands-vector.jpg',
-                                        ParamType.String,
-                                      ),
-                                    }.withoutNulls,
-                                  );
-                                }
+                                          context.pushNamed(
+                                            'chatMessages',
+                                            queryParameters: {
+                                              'chatUser': serializeParam(
+                                                _model.newChat?.reference,
+                                                ParamType.DocumentReference,
+                                              ),
+                                              'userName': serializeParam(
+                                                'Renske Midwife',
+                                                ParamType.String,
+                                              ),
+                                              'userRef': serializeParam(
+                                                FFAppState().midwifeRef,
+                                                ParamType.DocumentReference,
+                                              ),
+                                              'userimage': serializeParam(
+                                                'https://static.vecteezy.com/system/resources/thumbnails/006/895/899/small/illustration-for-midwife-day-nurse-or-midwife-with-mask-holding-a-newborn-by-hands-vector.jpg',
+                                                ParamType.String,
+                                              ),
+                                            }.withoutNulls,
+                                          );
 
-                                setState(() {});
-                              },
-                              text: 'Chat met een verloskundige',
-                              options: FFButtonOptions(
-                                height: 35.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Outfit',
-                                      color: Colors.white,
-                                      fontSize: 14.0,
-                                      letterSpacing: 0.0,
+                                          setState(() {
+                                            _model.chatWithRenske = true;
+                                          });
+                                        }
+
+                                        setState(() {});
+                                      },
+                                      text: 'Start a chat with midwife',
+                                      options: FFButtonOptions(
+                                        width: double.infinity,
+                                        height: 48.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 14.0, 24.0, 14.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Figtree',
+                                              color: Colors.white,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                        elevation: 0.0,
+                                        borderSide: const BorderSide(
+                                          color: Colors.transparent,
+                                          width: 0.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(16.0),
+                                      ),
                                     ),
-                                elevation: 3.0,
-                                borderSide: const BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                            ),
-                          ),
-                        ),
-                      Align(
-                        alignment: const AlignmentDirectional(1.0, 0.0),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 5.0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              await showModalBottomSheet(
-                                isScrollControlled: true,
-                                backgroundColor: Colors.transparent,
-                                enableDrag: false,
-                                context: context,
-                                builder: (context) {
-                                  return WebViewAware(
-                                    child: GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
+                                  );
+                                } else {
+                                  return InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      _model.chatExists2 =
+                                          await queryChatsRecordOnce(
+                                        queryBuilder: (chatsRecord) =>
+                                            chatsRecord
+                                                .where(
+                                                  'user_a',
+                                                  isEqualTo:
+                                                      currentUserReference,
+                                                )
+                                                .where(
+                                                  'user_b',
+                                                  isEqualTo:
+                                                      FFAppState().midwifeRef,
+                                                ),
+                                        singleRecord: true,
+                                      ).then((s) => s.firstOrNull);
+                                      if (_model.chatExists2?.reference !=
+                                          null) {
+                                        context.pushNamed(
+                                          'chatMessages',
+                                          queryParameters: {
+                                            'chatUser': serializeParam(
+                                              _model.chatExists2?.reference,
+                                              ParamType.DocumentReference,
+                                            ),
+                                            'userName': serializeParam(
+                                              'Renske Midwife',
+                                              ParamType.String,
+                                            ),
+                                            'userRef': serializeParam(
+                                              FFAppState().midwifeRef,
+                                              ParamType.DocumentReference,
+                                            ),
+                                            'userimage': serializeParam(
+                                              'https://static.vecteezy.com/system/resources/thumbnails/006/895/899/small/illustration-for-midwife-day-nurse-or-midwife-with-mask-holding-a-newborn-by-hands-vector.jpg',
+                                              ParamType.String,
+                                            ),
+                                          }.withoutNulls,
+                                        );
+                                      } else {
+                                        var chatsRecordReference =
+                                            ChatsRecord.collection.doc();
+                                        await chatsRecordReference
+                                            .set(createChatsRecordData(
+                                          user: currentUserReference,
+                                          userA: currentUserReference,
+                                          userB: FFAppState().midwifeRef,
+                                          image:
+                                              'https://static.vecteezy.com/system/resources/thumbnails/006/895/899/small/illustration-for-midwife-day-nurse-or-midwife-with-mask-holding-a-newborn-by-hands-vector.jpg',
+                                        ));
+                                        _model.newChatCopy =
+                                            ChatsRecord.getDocumentFromData(
+                                                createChatsRecordData(
+                                                  user: currentUserReference,
+                                                  userA: currentUserReference,
+                                                  userB:
+                                                      FFAppState().midwifeRef,
+                                                  image:
+                                                      'https://static.vecteezy.com/system/resources/thumbnails/006/895/899/small/illustration-for-midwife-day-nurse-or-midwife-with-mask-holding-a-newborn-by-hands-vector.jpg',
+                                                ),
+                                                chatsRecordReference);
+
+                                        context.pushNamed(
+                                          'chatMessages',
+                                          queryParameters: {
+                                            'chatUser': serializeParam(
+                                              _model.chatExists2?.reference,
+                                              ParamType.DocumentReference,
+                                            ),
+                                            'userName': serializeParam(
+                                              'Renske Midwife',
+                                              ParamType.String,
+                                            ),
+                                            'userRef': serializeParam(
+                                              FFAppState().midwifeRef,
+                                              ParamType.DocumentReference,
+                                            ),
+                                            'userimage': serializeParam(
+                                              'https://static.vecteezy.com/system/resources/thumbnails/006/895/899/small/illustration-for-midwife-day-nurse-or-midwife-with-mask-holding-a-newborn-by-hands-vector.jpg',
+                                              ParamType.String,
+                                            ),
+                                          }.withoutNulls,
+                                        );
+                                      }
+
+                                      setState(() {});
+                                    },
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFFFE4FF),
+                                        borderRadius:
+                                            BorderRadius.circular(24.0),
+                                      ),
                                       child: Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: const SizedBox(
-                                          height: 500.0,
-                                          child: ListOfFriendsWidget(),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ).then((value) => safeSetState(() {}));
-                            },
-                            text: 'Chat met vrienden',
-                            options: FFButtonOptions(
-                              height: 35.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).accent2,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Outfit',
-                                    color: Colors.white,
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: const AlignmentDirectional(1.0, 0.0),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 5.0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              await showModalBottomSheet(
-                                isScrollControlled: true,
-                                backgroundColor: Colors.transparent,
-                                enableDrag: false,
-                                context: context,
-                                builder: (context) {
-                                  return WebViewAware(
-                                    child: GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                      child: Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: const SizedBox(
-                                          height: 500.0,
-                                          child: ListOfUsersWidget(),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ).then((value) => safeSetState(() {}));
-                            },
-                            text: 'Zoek vrienden ',
-                            icon: const Icon(
-                              Icons.search_sharp,
-                              size: 20.0,
-                            ),
-                            options: FFButtonOptions(
-                              height: 35.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).accent2,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Outfit',
-                                    color: Colors.white,
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 3.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12.0),
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                            ),
-                          ),
-                          child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: StreamBuilder<List<ChatsRecord>>(
-                              stream: queryChatsRecord(
-                                queryBuilder: (chatsRecord) => chatsRecord
-                                    .where(Filter.or(
-                                      Filter(
-                                        'user_a',
-                                        isEqualTo: currentUserReference,
-                                      ),
-                                      Filter(
-                                        'user_b',
-                                        isEqualTo: currentUserReference,
-                                      ),
-                                    ))
-                                    .orderBy('last_message_time',
-                                        descending: true),
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: CircularProgressIndicator(
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          FlutterFlowTheme.of(context).primary,
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                }
-                                List<ChatsRecord> listViewChatsRecordList =
-                                    snapshot.data!;
-                                return ListView.builder(
-                                  padding: EdgeInsets.zero,
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: listViewChatsRecordList.length,
-                                  itemBuilder: (context, listViewIndex) {
-                                    final listViewChatsRecord =
-                                        listViewChatsRecordList[listViewIndex];
-                                    return StreamBuilder<UsersRecord>(
-                                      stream: UsersRecord.getDocument(
-                                          listViewChatsRecord.userB!),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
+                                        padding: const EdgeInsets.all(16.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 12.0, 0.0),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          1000.0),
+                                                  child: Image.asset(
+                                                    'assets/images/midwife_icon.png',
+                                                    width: 56.0,
+                                                    height: 56.0,
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
                                               ),
                                             ),
+                                            Flexible(
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Expanded(
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Align(
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Text(
+                                                            'Midwife Renske',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Figtree',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .textColor,
+                                                                  fontSize:
+                                                                      16.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                        const Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Icon(
+                                                            Icons.verified,
+                                                            color: Color(
+                                                                0xFF52A7FB),
+                                                            size: 18.0,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Flexible(
+                                                    child: Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              -1.0, 0.0),
+                                                      child: Text(
+                                                        'Have questions about pregnancy? \nAsk a certified midwife.',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Figtree',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .textColor,
+                                                                  fontSize:
+                                                                      12.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Icon(
+                                              Icons.chevron_right,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .textColor,
+                                              size: 24.0,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }
+                              },
+                            ),
+                            if (false)
+                              Align(
+                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 5.0),
+                                  child: FFButtonWidget(
+                                    onPressed: () {
+                                      print('Button pressed ...');
+                                    },
+                                    text: 'Zoek vrienden ',
+                                    icon: const Icon(
+                                      Icons.search_sharp,
+                                      size: 20.0,
+                                    ),
+                                    options: FFButtonOptions(
+                                      height: 35.0,
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          24.0, 0.0, 24.0, 0.0),
+                                      iconPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color:
+                                          FlutterFlowTheme.of(context).accent2,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Figtree',
+                                            color: Colors.white,
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                      elevation: 3.0,
+                                      borderSide: const BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 20.0, 0.0, 0.0),
+                              child: Material(
+                                color: Colors.transparent,
+                                elevation: 0.0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  child: Align(
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Builder(
+                                      builder: (context) {
+                                        if (_model.showChats) {
+                                          return StreamBuilder<
+                                              List<ChatsRecord>>(
+                                            stream: queryChatsRecord(
+                                              queryBuilder: (chatsRecord) =>
+                                                  chatsRecord
+                                                      .where(Filter.or(
+                                                        Filter(
+                                                          'user_a',
+                                                          isEqualTo:
+                                                              currentUserReference,
+                                                        ),
+                                                        Filter(
+                                                          'user_b',
+                                                          isEqualTo:
+                                                              currentUserReference,
+                                                        ),
+                                                      ))
+                                                      .orderBy(
+                                                          'last_message_time',
+                                                          descending: true),
+                                            ),
+                                            builder: (context, snapshot) {
+                                              // Customize what your widget looks like when it's loading.
+                                              if (!snapshot.hasData) {
+                                                return Center(
+                                                  child: SizedBox(
+                                                    width: 50.0,
+                                                    height: 50.0,
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      valueColor:
+                                                          AlwaysStoppedAnimation<
+                                                              Color>(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primary,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                              List<ChatsRecord>
+                                                  listViewChatsRecordList =
+                                                  snapshot.data!;
+                                              if (listViewChatsRecordList
+                                                  .isEmpty) {
+                                                return const EmptyInboxWidget();
+                                              }
+                                              return ListView.builder(
+                                                padding: EdgeInsets.zero,
+                                                primary: false,
+                                                shrinkWrap: true,
+                                                scrollDirection: Axis.vertical,
+                                                itemCount:
+                                                    listViewChatsRecordList
+                                                        .length,
+                                                itemBuilder:
+                                                    (context, listViewIndex) {
+                                                  final listViewChatsRecord =
+                                                      listViewChatsRecordList[
+                                                          listViewIndex];
+                                                  return SizedBox(
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
+                                                            .width *
+                                                        1.0,
+                                                    height: 82.0,
+                                                    child: custom_widgets
+                                                        .SlidableWidget(
+                                                      width: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .width *
+                                                          1.0,
+                                                      height: 82.0,
+                                                      timeStamp: dateTimeFormat(
+                                                          'Hm',
+                                                          listViewChatsRecord
+                                                              .lastMessageTime!),
+                                                      isSeen:
+                                                          listViewChatsRecord
+                                                              .isSeen,
+                                                      lastMessage:
+                                                          listViewChatsRecord
+                                                              .lastMessage,
+                                                      user: listViewChatsRecord
+                                                          .user!,
+                                                      userA: listViewChatsRecord
+                                                          .userA!,
+                                                      userB: listViewChatsRecord
+                                                          .userB!,
+                                                      chatDocument:
+                                                          listViewChatsRecord
+                                                              .reference,
+                                                      deleteAction: () async {
+                                                        await showModalBottomSheet(
+                                                          isScrollControlled:
+                                                              true,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          enableDrag: false,
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return WebViewAware(
+                                                              child:
+                                                                  GestureDetector(
+                                                                onTap: () => _model
+                                                                        .unfocusNode
+                                                                        .canRequestFocus
+                                                                    ? FocusScope.of(
+                                                                            context)
+                                                                        .requestFocus(_model
+                                                                            .unfocusNode)
+                                                                    : FocusScope.of(
+                                                                            context)
+                                                                        .unfocus(),
+                                                                child: Padding(
+                                                                  padding: MediaQuery
+                                                                      .viewInsetsOf(
+                                                                          context),
+                                                                  child:
+                                                                      DeleteChatWidget(
+                                                                    deleteChat:
+                                                                        () async {
+                                                                      await listViewChatsRecord
+                                                                          .reference
+                                                                          .delete();
+                                                                    },
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                        ).then((value) =>
+                                                            safeSetState(
+                                                                () {}));
+                                                      },
+                                                    ),
+                                                  );
+                                                },
+                                              );
+                                            },
+                                          );
+                                        } else {
+                                          return wrapWithModel(
+                                            model: _model.emptyInboxModel,
+                                            updateCallback: () =>
+                                                setState(() {}),
+                                            child: const EmptyInboxWidget(),
                                           );
                                         }
-                                        final containerUsersRecord =
-                                            snapshot.data!;
-                                        return Container(
-                                          width: 100.0,
-                                          height: 100.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                          ),
-                                          child: Visibility(
-                                            visible: (currentUserReference ==
-                                                    listViewChatsRecord
-                                                        .userA) ||
-                                                (currentUserReference ==
-                                                    listViewChatsRecord.userB),
-                                            child: InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                context.pushNamed(
-                                                  'chatMessages',
-                                                  queryParameters: {
-                                                    'chatUser': serializeParam(
-                                                      listViewChatsRecord
-                                                          .reference,
-                                                      ParamType
-                                                          .DocumentReference,
-                                                    ),
-                                                    'userName': serializeParam(
-                                                      '${containerUsersRecord.firstName} ${containerUsersRecord.lastName}',
-                                                      ParamType.String,
-                                                    ),
-                                                    'userRef': serializeParam(
-                                                      currentUserReference ==
-                                                              FFAppState()
-                                                                  .midwifeRef
-                                                          ? listViewChatsRecord
-                                                              .userA
-                                                          : containerUsersRecord
-                                                              .reference,
-                                                      ParamType
-                                                          .DocumentReference,
-                                                    ),
-                                                    'userimage': serializeParam(
-                                                      containerUsersRecord
-                                                          .photoUrl,
-                                                      ParamType.String,
-                                                    ),
-                                                  }.withoutNulls,
-                                                );
-                                              },
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .tertiary,
-                                                  borderRadius:
-                                                      const BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(0.0),
-                                                    bottomRight:
-                                                        Radius.circular(0.0),
-                                                    topLeft:
-                                                        Radius.circular(0.0),
-                                                    topRight:
-                                                        Radius.circular(0.0),
-                                                  ),
-                                                ),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(12.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      if (currentUserReference !=
-                                                          listViewChatsRecord
-                                                              .user)
-                                                        StreamBuilder<
-                                                            UsersRecord>(
-                                                          stream: UsersRecord
-                                                              .getDocument(
-                                                                  listViewChatsRecord
-                                                                      .userA!),
-                                                          builder: (context,
-                                                              snapshot) {
-                                                            // Customize what your widget looks like when it's loading.
-                                                            if (!snapshot
-                                                                .hasData) {
-                                                              return Center(
-                                                                child: SizedBox(
-                                                                  width: 50.0,
-                                                                  height: 50.0,
-                                                                  child:
-                                                                      CircularProgressIndicator(
-                                                                    valueColor:
-                                                                        AlwaysStoppedAnimation<
-                                                                            Color>(
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            }
-                                                            final circleImageUsersRecord =
-                                                                snapshot.data!;
-                                                            return Container(
-                                                              width: 60.0,
-                                                              height: 60.0,
-                                                              clipBehavior: Clip
-                                                                  .antiAlias,
-                                                              decoration:
-                                                                  const BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                              ),
-                                                              child:
-                                                                  Image.network(
-                                                                circleImageUsersRecord
-                                                                    .photoUrl,
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                              ),
-                                                            );
-                                                          },
-                                                        ),
-                                                      if (currentUserReference ==
-                                                          listViewChatsRecord
-                                                              .user)
-                                                        StreamBuilder<
-                                                            UsersRecord>(
-                                                          stream: UsersRecord
-                                                              .getDocument(
-                                                                  listViewChatsRecord
-                                                                      .userB!),
-                                                          builder: (context,
-                                                              snapshot) {
-                                                            // Customize what your widget looks like when it's loading.
-                                                            if (!snapshot
-                                                                .hasData) {
-                                                              return Center(
-                                                                child: SizedBox(
-                                                                  width: 50.0,
-                                                                  height: 50.0,
-                                                                  child:
-                                                                      CircularProgressIndicator(
-                                                                    valueColor:
-                                                                        AlwaysStoppedAnimation<
-                                                                            Color>(
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            }
-                                                            final circleImageUsersRecord =
-                                                                snapshot.data!;
-                                                            return Container(
-                                                              width: 60.0,
-                                                              height: 60.0,
-                                                              clipBehavior: Clip
-                                                                  .antiAlias,
-                                                              decoration:
-                                                                  const BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                              ),
-                                                              child:
-                                                                  Image.network(
-                                                                circleImageUsersRecord
-                                                                    .photoUrl,
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                              ),
-                                                            );
-                                                          },
-                                                        ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    8.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                if (currentUserReference !=
-                                                                    listViewChatsRecord
-                                                                        .user)
-                                                                  StreamBuilder<
-                                                                      UsersRecord>(
-                                                                    stream: UsersRecord.getDocument(
-                                                                        listViewChatsRecord
-                                                                            .userA!),
-                                                                    builder:
-                                                                        (context,
-                                                                            snapshot) {
-                                                                      // Customize what your widget looks like when it's loading.
-                                                                      if (!snapshot
-                                                                          .hasData) {
-                                                                        return Center(
-                                                                          child:
-                                                                              SizedBox(
-                                                                            width:
-                                                                                50.0,
-                                                                            height:
-                                                                                50.0,
-                                                                            child:
-                                                                                CircularProgressIndicator(
-                                                                              valueColor: AlwaysStoppedAnimation<Color>(
-                                                                                FlutterFlowTheme.of(context).primary,
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        );
-                                                                      }
-                                                                      final textUsersRecord =
-                                                                          snapshot
-                                                                              .data!;
-                                                                      return Text(
-                                                                        textUsersRecord
-                                                                            .displayName,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Outfit',
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FontWeight.w600,
-                                                                            ),
-                                                                      );
-                                                                    },
-                                                                  ),
-                                                                if (currentUserReference ==
-                                                                    listViewChatsRecord
-                                                                        .user)
-                                                                  StreamBuilder<
-                                                                      UsersRecord>(
-                                                                    stream: UsersRecord.getDocument(
-                                                                        listViewChatsRecord
-                                                                            .userB!),
-                                                                    builder:
-                                                                        (context,
-                                                                            snapshot) {
-                                                                      // Customize what your widget looks like when it's loading.
-                                                                      if (!snapshot
-                                                                          .hasData) {
-                                                                        return Center(
-                                                                          child:
-                                                                              SizedBox(
-                                                                            width:
-                                                                                50.0,
-                                                                            height:
-                                                                                50.0,
-                                                                            child:
-                                                                                CircularProgressIndicator(
-                                                                              valueColor: AlwaysStoppedAnimation<Color>(
-                                                                                FlutterFlowTheme.of(context).primary,
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        );
-                                                                      }
-                                                                      final textUsersRecord =
-                                                                          snapshot
-                                                                              .data!;
-                                                                      return Text(
-                                                                        textUsersRecord
-                                                                            .displayName,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Outfit',
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FontWeight.w600,
-                                                                            ),
-                                                                      );
-                                                                    },
-                                                                  ),
-                                                                if (valueOrDefault<
-                                                                        bool>(
-                                                                    currentUserDocument
-                                                                        ?.isAdmin,
-                                                                    false))
-                                                                  AuthUserStreamWidget(
-                                                                    builder:
-                                                                        (context) =>
-                                                                            const Icon(
-                                                                      Icons
-                                                                          .verified,
-                                                                      color: Color(
-                                                                          0xFF52A7FB),
-                                                                      size:
-                                                                          18.0,
-                                                                    ),
-                                                                  ),
-                                                              ],
-                                                            ),
-                                                            Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          5.0,
-                                                                          0.0),
-                                                                  child: Text(
-                                                                    listViewChatsRecord
-                                                                        .lastMessage,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Outfit',
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.w600,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                                Text(
-                                                                  dateTimeFormat(
-                                                                      'relative',
-                                                                      listViewChatsRecord
-                                                                          .lastMessageTime!),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Outfit',
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        );
                                       },
-                                    );
-                                  },
-                                );
-                              },
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
+                          ],
                         ),
                       ),
-                    ],
+                    ].addToEnd(const SizedBox(height: 80.0)),
                   ),
+                ],
+              ),
+              Align(
+                alignment: const AlignmentDirectional(0.0, 1.0),
+                child: wrapWithModel(
+                  model: _model.bottomNavBarModel,
+                  updateCallback: () => setState(() {}),
+                  child: const BottomNavBarWidget(),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
