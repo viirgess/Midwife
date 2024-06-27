@@ -1,16 +1,10 @@
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'test_component_model.dart';
 export 'test_component_model.dart';
 
 class TestComponentWidget extends StatefulWidget {
-  const TestComponentWidget({
-    super.key,
-    required this.ref,
-  });
-
-  final PostPregnancyCommunityForumRecord? ref;
+  const TestComponentWidget({super.key});
 
   @override
   State<TestComponentWidget> createState() => _TestComponentWidgetState();

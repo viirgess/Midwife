@@ -38,9 +38,8 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        FFAppState().selectedindex = 3;
-      });
+      FFAppState().selectedindex = 3;
+      setState(() {});
       _model.chatWithMidwife = await queryChatsRecordOnce(
         queryBuilder: (chatsRecord) => chatsRecord
             .where(
@@ -54,13 +53,11 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
         singleRecord: true,
       ).then((s) => s.firstOrNull);
       if (_model.chatWithMidwife?.reference != null) {
-        setState(() {
-          _model.chatWithRenske = true;
-        });
+        _model.chatWithRenske = true;
+        setState(() {});
       } else {
-        setState(() {
-          _model.chatWithRenske = false;
-        });
+        _model.chatWithRenske = false;
+        setState(() {});
       }
     });
 
@@ -359,17 +356,9 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                                                 _model.chatExists?.reference,
                                                 ParamType.DocumentReference,
                                               ),
-                                              'userName': serializeParam(
-                                                'Renske Midwife',
-                                                ParamType.String,
-                                              ),
                                               'userRef': serializeParam(
                                                 FFAppState().midwifeRef,
                                                 ParamType.DocumentReference,
-                                              ),
-                                              'userimage': serializeParam(
-                                                'https://static.vecteezy.com/system/resources/thumbnails/006/895/899/small/illustration-for-midwife-day-nurse-or-midwife-with-mask-holding-a-newborn-by-hands-vector.jpg',
-                                                ParamType.String,
                                               ),
                                             }.withoutNulls,
                                           );
@@ -403,24 +392,15 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                                                 _model.newChat?.reference,
                                                 ParamType.DocumentReference,
                                               ),
-                                              'userName': serializeParam(
-                                                'Renske Midwife',
-                                                ParamType.String,
-                                              ),
                                               'userRef': serializeParam(
                                                 FFAppState().midwifeRef,
                                                 ParamType.DocumentReference,
                                               ),
-                                              'userimage': serializeParam(
-                                                'https://static.vecteezy.com/system/resources/thumbnails/006/895/899/small/illustration-for-midwife-day-nurse-or-midwife-with-mask-holding-a-newborn-by-hands-vector.jpg',
-                                                ParamType.String,
-                                              ),
                                             }.withoutNulls,
                                           );
 
-                                          setState(() {
-                                            _model.chatWithRenske = true;
-                                          });
+                                          _model.chatWithRenske = true;
+                                          setState(() {});
                                         }
 
                                         setState(() {});
@@ -486,17 +466,9 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                                               _model.chatExists2?.reference,
                                               ParamType.DocumentReference,
                                             ),
-                                            'userName': serializeParam(
-                                              'Renske Midwife',
-                                              ParamType.String,
-                                            ),
                                             'userRef': serializeParam(
                                               FFAppState().midwifeRef,
                                               ParamType.DocumentReference,
-                                            ),
-                                            'userimage': serializeParam(
-                                              'https://static.vecteezy.com/system/resources/thumbnails/006/895/899/small/illustration-for-midwife-day-nurse-or-midwife-with-mask-holding-a-newborn-by-hands-vector.jpg',
-                                              ParamType.String,
                                             ),
                                           }.withoutNulls,
                                         );
@@ -530,17 +502,9 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                                               _model.chatExists2?.reference,
                                               ParamType.DocumentReference,
                                             ),
-                                            'userName': serializeParam(
-                                              'Renske Midwife',
-                                              ParamType.String,
-                                            ),
                                             'userRef': serializeParam(
                                               FFAppState().midwifeRef,
                                               ParamType.DocumentReference,
-                                            ),
-                                            'userimage': serializeParam(
-                                              'https://static.vecteezy.com/system/resources/thumbnails/006/895/899/small/illustration-for-midwife-day-nurse-or-midwife-with-mask-holding-a-newborn-by-hands-vector.jpg',
-                                              ParamType.String,
                                             ),
                                           }.withoutNulls,
                                         );
@@ -776,7 +740,7 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                                                               Color>(
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .primary,
+                                                            .secondary,
                                                       ),
                                                     ),
                                                   ),
@@ -816,9 +780,16 @@ class _PrivateChatsPageWidgetState extends State<PrivateChatsPageWidget> {
                                                           1.0,
                                                       height: 82.0,
                                                       timeStamp: dateTimeFormat(
-                                                          'Hm',
-                                                          listViewChatsRecord
-                                                              .lastMessageTime!),
+                                                        'Hm',
+                                                        listViewChatsRecord
+                                                            .lastMessageTime!,
+                                                        locale: FFLocalizations
+                                                                    .of(context)
+                                                                .languageShortCode ??
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .languageCode,
+                                                      ),
                                                       isSeen:
                                                           listViewChatsRecord
                                                               .isSeen,

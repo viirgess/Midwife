@@ -5,6 +5,7 @@ import 'package:collection/collection.dart';
 import '/backend/schema/util/firestore_util.dart';
 
 import 'index.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
 class NotificationsRecord extends FirestoreRecord {
   NotificationsRecord._(
@@ -79,6 +80,36 @@ class NotificationsRecord extends FirestoreRecord {
   String get blogTitle => _blogTitle ?? '';
   bool hasBlogTitle() => _blogTitle != null;
 
+  // "notification_type" field.
+  String? _notificationType;
+  String get notificationType => _notificationType ?? '';
+  bool hasNotificationType() => _notificationType != null;
+
+  // "content" field.
+  String? _content;
+  String get content => _content ?? '';
+  bool hasContent() => _content != null;
+
+  // "isCommunity" field.
+  bool? _isCommunity;
+  bool get isCommunity => _isCommunity ?? false;
+  bool hasIsCommunity() => _isCommunity != null;
+
+  // "createdAt" field.
+  DateTime? _createdAt;
+  DateTime? get createdAt => _createdAt;
+  bool hasCreatedAt() => _createdAt != null;
+
+  // "userRef" field.
+  DocumentReference? _userRef;
+  DocumentReference? get userRef => _userRef;
+  bool hasUserRef() => _userRef != null;
+
+  // "bold_content" field.
+  String? _boldContent;
+  String get boldContent => _boldContent ?? '';
+  bool hasBoldContent() => _boldContent != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
@@ -97,6 +128,12 @@ class NotificationsRecord extends FirestoreRecord {
     _userAcceptedFriendship =
         snapshotData['user_accepted_friendship'] as DocumentReference?;
     _blogTitle = snapshotData['blog_title'] as String?;
+    _notificationType = snapshotData['notification_type'] as String?;
+    _content = snapshotData['content'] as String?;
+    _isCommunity = snapshotData['isCommunity'] as bool?;
+    _createdAt = snapshotData['createdAt'] as DateTime?;
+    _userRef = snapshotData['userRef'] as DocumentReference?;
+    _boldContent = snapshotData['bold_content'] as String?;
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -152,6 +189,12 @@ Map<String, dynamic> createNotificationsRecordData({
   String? userPhotoUrl,
   DocumentReference? userAcceptedFriendship,
   String? blogTitle,
+  String? notificationType,
+  String? content,
+  bool? isCommunity,
+  DateTime? createdAt,
+  DocumentReference? userRef,
+  String? boldContent,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -168,6 +211,12 @@ Map<String, dynamic> createNotificationsRecordData({
       'user_photo_url': userPhotoUrl,
       'user_accepted_friendship': userAcceptedFriendship,
       'blog_title': blogTitle,
+      'notification_type': notificationType,
+      'content': content,
+      'isCommunity': isCommunity,
+      'createdAt': createdAt,
+      'userRef': userRef,
+      'bold_content': boldContent,
     }.withoutNulls,
   );
 
@@ -192,7 +241,13 @@ class NotificationsRecordDocumentEquality
         e1?.userDisplayName == e2?.userDisplayName &&
         e1?.userPhotoUrl == e2?.userPhotoUrl &&
         e1?.userAcceptedFriendship == e2?.userAcceptedFriendship &&
-        e1?.blogTitle == e2?.blogTitle;
+        e1?.blogTitle == e2?.blogTitle &&
+        e1?.notificationType == e2?.notificationType &&
+        e1?.content == e2?.content &&
+        e1?.isCommunity == e2?.isCommunity &&
+        e1?.createdAt == e2?.createdAt &&
+        e1?.userRef == e2?.userRef &&
+        e1?.boldContent == e2?.boldContent;
   }
 
   @override
@@ -209,7 +264,13 @@ class NotificationsRecordDocumentEquality
         e?.userDisplayName,
         e?.userPhotoUrl,
         e?.userAcceptedFriendship,
-        e?.blogTitle
+        e?.blogTitle,
+        e?.notificationType,
+        e?.content,
+        e?.isCommunity,
+        e?.createdAt,
+        e?.userRef,
+        e?.boldContent
       ]);
 
   @override

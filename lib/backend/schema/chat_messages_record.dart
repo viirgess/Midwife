@@ -5,6 +5,7 @@ import 'package:collection/collection.dart';
 import '/backend/schema/util/firestore_util.dart';
 
 import 'index.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
 class ChatMessagesRecord extends FirestoreRecord {
   ChatMessagesRecord._(
@@ -39,12 +40,24 @@ class ChatMessagesRecord extends FirestoreRecord {
   DateTime? get timeStamp => _timeStamp;
   bool hasTimeStamp() => _timeStamp != null;
 
+  // "images" field.
+  List<String>? _images;
+  List<String> get images => _images ?? const [];
+  bool hasImages() => _images != null;
+
+  // "images_is_set" field.
+  bool? _imagesIsSet;
+  bool get imagesIsSet => _imagesIsSet ?? false;
+  bool hasImagesIsSet() => _imagesIsSet != null;
+
   void _initializeFields() {
     _user = snapshotData['user'] as DocumentReference?;
     _chatUser = snapshotData['chat_user'] as DocumentReference?;
     _text = snapshotData['text'] as String?;
     _image = snapshotData['image'] as String?;
     _timeStamp = snapshotData['time_stamp'] as DateTime?;
+    _images = getDataList(snapshotData['images']);
+    _imagesIsSet = snapshotData['images_is_set'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -87,6 +100,7 @@ Map<String, dynamic> createChatMessagesRecordData({
   String? text,
   String? image,
   DateTime? timeStamp,
+  bool? imagesIsSet,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -95,6 +109,7 @@ Map<String, dynamic> createChatMessagesRecordData({
       'text': text,
       'image': image,
       'time_stamp': timeStamp,
+      'images_is_set': imagesIsSet,
     }.withoutNulls,
   );
 
@@ -107,16 +122,26 @@ class ChatMessagesRecordDocumentEquality
 
   @override
   bool equals(ChatMessagesRecord? e1, ChatMessagesRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.user == e2?.user &&
         e1?.chatUser == e2?.chatUser &&
         e1?.text == e2?.text &&
         e1?.image == e2?.image &&
-        e1?.timeStamp == e2?.timeStamp;
+        e1?.timeStamp == e2?.timeStamp &&
+        listEquality.equals(e1?.images, e2?.images) &&
+        e1?.imagesIsSet == e2?.imagesIsSet;
   }
 
   @override
-  int hash(ChatMessagesRecord? e) => const ListEquality()
-      .hash([e?.user, e?.chatUser, e?.text, e?.image, e?.timeStamp]);
+  int hash(ChatMessagesRecord? e) => const ListEquality().hash([
+        e?.user,
+        e?.chatUser,
+        e?.text,
+        e?.image,
+        e?.timeStamp,
+        e?.images,
+        e?.imagesIsSet
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is ChatMessagesRecord;

@@ -1,11 +1,9 @@
 // ignore_for_file: unnecessary_getters_setters
-
+import '/backend/algolia/serialization_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
 
-import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 class LessonStruct extends FFFirebaseStruct {
@@ -25,24 +23,28 @@ class LessonStruct extends FFFirebaseStruct {
   String? _title;
   String get title => _title ?? '';
   set title(String? val) => _title = val;
+
   bool hasTitle() => _title != null;
 
   // "video_path" field.
   String? _videoPath;
   String get videoPath => _videoPath ?? '';
   set videoPath(String? val) => _videoPath = val;
+
   bool hasVideoPath() => _videoPath != null;
 
   // "isSeen" field.
   bool? _isSeen;
   bool get isSeen => _isSeen ?? false;
   set isSeen(bool? val) => _isSeen = val;
+
   bool hasIsSeen() => _isSeen != null;
 
   // "lesson_id" field.
   String? _lessonId;
   String get lessonId => _lessonId ?? '';
   set lessonId(String? val) => _lessonId = val;
+
   bool hasLessonId() => _lessonId != null;
 
   static LessonStruct fromMap(Map<String, dynamic> data) => LessonStruct(
@@ -103,6 +105,34 @@ class LessonStruct extends FFFirebaseStruct {
           data['lesson_id'],
           ParamType.String,
           false,
+        ),
+      );
+
+  static LessonStruct fromAlgoliaData(Map<String, dynamic> data) =>
+      LessonStruct(
+        title: convertAlgoliaParam(
+          data['title'],
+          ParamType.String,
+          false,
+        ),
+        videoPath: convertAlgoliaParam(
+          data['video_path'],
+          ParamType.String,
+          false,
+        ),
+        isSeen: convertAlgoliaParam(
+          data['isSeen'],
+          ParamType.bool,
+          false,
+        ),
+        lessonId: convertAlgoliaParam(
+          data['lesson_id'],
+          ParamType.String,
+          false,
+        ),
+        firestoreUtilData: const FirestoreUtilData(
+          clearUnsetFields: false,
+          create: true,
         ),
       );
 

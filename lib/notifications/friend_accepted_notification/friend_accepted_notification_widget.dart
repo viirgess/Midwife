@@ -53,37 +53,31 @@ class _FriendAcceptedNotificationWidgetState
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: const Color(0xFFF0F0F0),
-        borderRadius: BorderRadius.circular(12.0),
+        color: FlutterFlowTheme.of(context).primaryBackground,
+        boxShadow: const [
+          BoxShadow(
+            blurRadius: 27.0,
+            color: Color(0x38B5A4CB),
+            offset: Offset(
+              0.0,
+              4.0,
+            ),
+            spreadRadius: 0.0,
+          )
+        ],
+        borderRadius: BorderRadius.circular(16.0),
       ),
       child: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Align(
-              alignment: const AlignmentDirectional(1.0, 0.0),
-              child: InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  await widget.notificationRef!.delete();
-                },
-                child: Icon(
-                  Icons.close_outlined,
-                  color: FlutterFlowTheme.of(context).accent2,
-                  size: 24.0,
-                ),
-              ),
-            ),
             Row(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Container(
-                  width: 80.0,
-                  height: 80.0,
+                  width: 40.0,
+                  height: 40.0,
                   clipBehavior: Clip.antiAlias,
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
@@ -102,10 +96,7 @@ class _FriendAcceptedNotificationWidgetState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          valueOrDefault<String>(
-                            widget.userName,
-                            '0',
-                          ),
+                          'User name ',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Figtree',

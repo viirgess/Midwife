@@ -49,15 +49,15 @@ class _BabyDevelopmentCardWidgetState extends State<BabyDevelopmentCardWidget> {
         color: FlutterFlowTheme.of(context).primaryBackground,
         boxShadow: const [
           BoxShadow(
-            blurRadius: 6.0,
-            color: Color(0xFFB5A4CB),
+            blurRadius: 27.0,
+            color: Color(0x39B5A4CB),
             offset: Offset(
               0.0,
               4.0,
             ),
           )
         ],
-        borderRadius: BorderRadius.circular(12.0),
+        borderRadius: BorderRadius.circular(24.0),
       ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),

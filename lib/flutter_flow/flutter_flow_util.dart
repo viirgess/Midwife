@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:collection/collection.dart';
 import 'package:from_css_color/from_css_color.dart';
+import 'dart:math' show pow, pi, sin;
+import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:json_path/json_path.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -13,6 +15,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../main.dart';
 
+import 'lat_lng.dart';
 
 export 'lat_lng.dart';
 export 'place.dart';
@@ -26,18 +29,20 @@ export 'package:intl/intl.dart';
 export 'package:cloud_firestore/cloud_firestore.dart'
     show DocumentReference, FirebaseFirestore;
 export 'package:page_transition/page_transition.dart';
+export 'internationalization.dart' show FFLocalizations;
 export 'nav/nav.dart';
-
-final RouteObserver<ModalRoute> routeObserver = RouteObserver<PageRoute>();
 
 T valueOrDefault<T>(T? value, T defaultValue) =>
     (value is String && value.isEmpty) || value == null ? defaultValue : value;
+
+void _setTimeagoLocales() {}
 
 String dateTimeFormat(String format, DateTime? dateTime, {String? locale}) {
   if (dateTime == null) {
     return '';
   }
   if (format == 'relative') {
+    _setTimeagoLocales();
     return timeago.format(dateTime, locale: locale, allowFromNow: true);
   }
   return DateFormat(format, locale).format(dateTime);
@@ -58,11 +63,11 @@ Theme wrapInMaterialDatePickerTheme(
 }) {
   final baseTheme = Theme.of(context);
   final dateTimeMaterialStateForegroundColor =
-      MaterialStateProperty.resolveWith((states) {
-    if (states.contains(MaterialState.disabled)) {
+      WidgetStateProperty.resolveWith((states) {
+    if (states.contains(WidgetState.disabled)) {
       return pickerForegroundColor.withOpacity(0.60);
     }
-    if (states.contains(MaterialState.selected)) {
+    if (states.contains(WidgetState.selected)) {
       return selectedDateTimeForegroundColor;
     }
     if (states.isEmpty) {
@@ -72,8 +77,8 @@ Theme wrapInMaterialDatePickerTheme(
   });
 
   final dateTimeMaterialStateBackgroundColor =
-      MaterialStateProperty.resolveWith((states) {
-    if (states.contains(MaterialState.selected)) {
+      WidgetStateProperty.resolveWith((states) {
+    if (states.contains(WidgetState.selected)) {
       return selectedDateTimeBackgroundColor;
     }
     return null;
@@ -94,15 +99,15 @@ Theme wrapInMaterialDatePickerTheme(
       ),
       textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
-            foregroundColor: MaterialStatePropertyAll(
+            foregroundColor: WidgetStatePropertyAll(
               actionButtonForegroundColor,
             ),
-            overlayColor: MaterialStateProperty.resolveWith((states) {
-              if (states.contains(MaterialState.hovered)) {
+            overlayColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.hovered)) {
                 return actionButtonForegroundColor.withOpacity(0.04);
               }
-              if (states.contains(MaterialState.focused) ||
-                  states.contains(MaterialState.pressed)) {
+              if (states.contains(WidgetState.focused) ||
+                  states.contains(WidgetState.pressed)) {
                 return actionButtonForegroundColor.withOpacity(0.12);
               }
               return null;
@@ -148,15 +153,15 @@ Theme wrapInMaterialTimePickerTheme(
       ),
       textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
-            foregroundColor: MaterialStatePropertyAll(
+            foregroundColor: WidgetStatePropertyAll(
               actionButtonForegroundColor,
             ),
-            overlayColor: MaterialStateProperty.resolveWith((states) {
-              if (states.contains(MaterialState.hovered)) {
+            overlayColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.hovered)) {
                 return actionButtonForegroundColor.withOpacity(0.04);
               }
-              if (states.contains(MaterialState.focused) ||
-                  states.contains(MaterialState.pressed)) {
+              if (states.contains(WidgetState.focused) ||
+                  states.contains(WidgetState.pressed)) {
                 return actionButtonForegroundColor.withOpacity(0.12);
               }
               return null;
@@ -166,19 +171,19 @@ Theme wrapInMaterialTimePickerTheme(
         backgroundColor: pickerBackgroundColor,
         hourMinuteTextColor: pickerForegroundColor,
         dialHandColor: selectedDateTimeBackgroundColor,
-        dialTextColor: MaterialStateColor.resolveWith((states) =>
-            states.contains(MaterialState.selected)
+        dialTextColor: WidgetStateColor.resolveWith((states) =>
+            states.contains(WidgetState.selected)
                 ? selectedDateTimeForegroundColor
                 : pickerForegroundColor),
         dayPeriodBorderSide: BorderSide(
           color: pickerForegroundColor,
         ),
-        dayPeriodTextColor: MaterialStateColor.resolveWith((states) =>
-            states.contains(MaterialState.selected)
+        dayPeriodTextColor: WidgetStateColor.resolveWith((states) =>
+            states.contains(WidgetState.selected)
                 ? selectedDateTimeForegroundColor
                 : pickerForegroundColor),
-        dayPeriodColor: MaterialStateColor.resolveWith((states) =>
-            states.contains(MaterialState.selected)
+        dayPeriodColor: WidgetStateColor.resolveWith((states) =>
+            states.contains(WidgetState.selected)
                 ? selectedDateTimeBackgroundColor
                 : Colors.transparent),
         entryModeIconColor: pickerForegroundColor,
@@ -379,9 +384,51 @@ bool responsiveVisibility({
 const kTextValidatorUsernameRegex = r'^[a-zA-Z][a-zA-Z0-9_-]{2,16}$';
 // https://stackoverflow.com/a/201378
 const kTextValidatorEmailRegex =
-    "^(?:[a-z0-9!#\$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#\$%&\'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])\$";
+    "^(?:[a-zA-Z0-9!#\$%&\'*+/=?^_`{|}~-]+(?:\\.[a-zA-Z0-9!#\$%&\'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-zA-Z0-9-]*[a-zA-Z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])\$";
 const kTextValidatorWebsiteRegex =
     r'(https?:\/\/)?(www\.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,10}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)|(https?:\/\/)?(www\.)?(?!ww)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,10}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)';
+
+LatLng? cachedUserLocation;
+Future<LatLng> getCurrentUserLocation(
+    {required LatLng defaultLocation, bool cached = false}) async {
+  if (cached && cachedUserLocation != null) {
+    return cachedUserLocation!;
+  }
+  return queryCurrentUserLocation().then((loc) {
+    if (loc != null) {
+      cachedUserLocation = loc;
+    }
+    return loc ?? defaultLocation;
+  }).onError((error, _) {
+    print("Error querying user location: $error");
+    return defaultLocation;
+  });
+}
+
+Future<LatLng?> queryCurrentUserLocation() async {
+  final serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) {
+    return Future.error('Location services are disabled.');
+  }
+
+  var permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
+      return Future.error('Location permissions are denied');
+    }
+  }
+
+  if (permission == LocationPermission.deniedForever) {
+    return Future.error(
+        'Location permissions are permanently denied, we cannot request permissions.');
+  }
+
+  final position = await Geolocator.getCurrentPosition();
+  return position.latitude != 0 && position.longitude != 0
+      ? LatLng(position.latitude, position.longitude)
+      : null;
+}
 
 extension FFTextEditingControllerExt on TextEditingController? {
   String get text => this == null ? '' : this!.text;
@@ -402,6 +449,9 @@ extension IterableExt<T> on Iterable<T> {
 extension StringDocRef on String {
   DocumentReference get ref => FirebaseFirestore.instance.doc(this);
 }
+
+void setAppLanguage(BuildContext context, String language) =>
+    MyApp.of(context).setLocale(language);
 
 void setDarkModeSetting(BuildContext context, ThemeMode themeMode) =>
     MyApp.of(context).setThemeMode(themeMode);
@@ -447,6 +497,14 @@ extension ListFilterExt<T> on Iterable<T?> {
   List<T> get withoutNulls => where((s) => s != null).map((e) => e!).toList();
 }
 
+extension MapFilterExtensions<T> on Map<String, T?> {
+  Map<String, T> get withoutNulls => Map.fromEntries(
+        entries
+            .where((e) => e.value != null)
+            .map((e) => MapEntry(e.key, e.value as T)),
+      );
+}
+
 extension MapListContainsExt on List<dynamic> {
   bool containsMap(dynamic map) => map is Map
       ? any((e) => e is Map && const DeepCollectionEquality().equals(e, map))
@@ -456,9 +514,12 @@ extension MapListContainsExt on List<dynamic> {
 extension ListDivideExt<T extends Widget> on Iterable<T> {
   Iterable<MapEntry<int, Widget>> get enumerate => toList().asMap().entries;
 
-  List<Widget> divide(Widget t) => isEmpty
+  List<Widget> divide(Widget t, {bool Function(int)? filterFn}) => isEmpty
       ? []
-      : (enumerate.map((e) => [e.value, t]).expand((i) => i).toList()
+      : (enumerate
+          .map((e) => [e.value, if (filterFn == null || filterFn(e.key)) t])
+          .expand((i) => i)
+          .toList()
         ..removeLast());
 
   List<Widget> around(Widget t) => addToStart(t).addToEnd(t);
@@ -514,4 +575,41 @@ extension ListUniqueExt<T> on Iterable<T> {
     }
     return distinctList;
   }
+}
+
+String roundTo(double value, int decimalPoints) {
+  final power = pow(10, decimalPoints);
+  return ((value * power).round() / power).toString();
+}
+
+double computeGradientAlignmentX(double evaluatedAngle) {
+  evaluatedAngle %= 360;
+  final rads = evaluatedAngle * pi / 180;
+  double x;
+  if (evaluatedAngle < 45 || evaluatedAngle > 315) {
+    x = sin(2 * rads);
+  } else if (45 <= evaluatedAngle && evaluatedAngle <= 135) {
+    x = 1;
+  } else if (135 <= evaluatedAngle && evaluatedAngle <= 225) {
+    x = sin(-2 * rads);
+  } else {
+    x = -1;
+  }
+  return double.parse(roundTo(x, 2));
+}
+
+double computeGradientAlignmentY(double evaluatedAngle) {
+  evaluatedAngle %= 360;
+  final rads = evaluatedAngle * pi / 180;
+  double y;
+  if (evaluatedAngle < 45 || evaluatedAngle > 315) {
+    y = -1;
+  } else if (45 <= evaluatedAngle && evaluatedAngle <= 135) {
+    y = sin(-2 * rads);
+  } else if (135 <= evaluatedAngle && evaluatedAngle <= 225) {
+    y = 1;
+  } else {
+    y = sin(2 * rads);
+  }
+  return double.parse(roundTo(y, 2));
 }

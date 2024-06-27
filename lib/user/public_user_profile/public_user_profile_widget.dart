@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -61,7 +60,7 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                 height: 50.0,
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
-                    FlutterFlowTheme.of(context).primary,
+                    FlutterFlowTheme.of(context).secondary,
                   ),
                 ),
               ),
@@ -182,36 +181,6 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                           ),
                                       ],
                                     ),
-                                    if (publicUserProfileUsersRecord
-                                            .calculatedDate !=
-                                        null)
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(-1.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 10.0, 0.0, 0.0),
-                                          child: Text(
-                                            '${valueOrDefault<String>(
-                                              functions
-                                                  .calculateWeek(
-                                                      publicUserProfileUsersRecord
-                                                          .calculatedDate)
-                                                  .toString(),
-                                              '0',
-                                            )}e van de zwangerschapp',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Figtree',
-                                                  fontSize: 18.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
                                   ],
                                 ),
                               ),
@@ -268,20 +237,10 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                                 _model.chatExists2?.reference,
                                                 ParamType.DocumentReference,
                                               ),
-                                              'userName': serializeParam(
-                                                publicUserProfileUsersRecord
-                                                    .displayName,
-                                                ParamType.String,
-                                              ),
                                               'userRef': serializeParam(
                                                 publicUserProfileUsersRecord
                                                     .reference,
                                                 ParamType.DocumentReference,
-                                              ),
-                                              'userimage': serializeParam(
-                                                publicUserProfileUsersRecord
-                                                    .photoUrl,
-                                                ParamType.String,
                                               ),
                                             }.withoutNulls,
                                           );
@@ -318,20 +277,10 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                                 _model.newChat2?.reference,
                                                 ParamType.DocumentReference,
                                               ),
-                                              'userName': serializeParam(
-                                                publicUserProfileUsersRecord
-                                                    .displayName,
-                                                ParamType.String,
-                                              ),
                                               'userRef': serializeParam(
                                                 publicUserProfileUsersRecord
                                                     .reference,
                                                 ParamType.DocumentReference,
-                                              ),
-                                              'userimage': serializeParam(
-                                                publicUserProfileUsersRecord
-                                                    .photoUrl,
-                                                ParamType.String,
                                               ),
                                             }.withoutNulls,
                                           );
@@ -427,7 +376,7 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                                                 Color>(
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .primary,
+                                                              .secondary,
                                                         ),
                                                       ),
                                                     ),
@@ -480,10 +429,9 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                                           },
                                                         ),
                                                       });
-                                                      setState(() {
-                                                        _model.requestHasSent =
-                                                            false;
-                                                      });
+                                                      _model.requestHasSent =
+                                                          false;
+                                                      setState(() {});
                                                     },
                                                     child: Row(
                                                       mainAxisSize:
@@ -559,10 +507,8 @@ class _PublicUserProfileWidgetState extends State<PublicUserProfileWidget> {
                                                     userPhotoUrl:
                                                         currentUserPhoto,
                                                   ));
-                                                  setState(() {
-                                                    _model.requestHasSent =
-                                                        true;
-                                                  });
+                                                  _model.requestHasSent = true;
+                                                  setState(() {});
                                                   triggerPushNotification(
                                                     notificationTitle:
                                                         'New Friend Request',

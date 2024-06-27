@@ -105,9 +105,8 @@ class _FavoritesWidgetState extends State<FavoritesWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  setState(() {
-                                    _model.selectedIndex = 0;
-                                  });
+                                  _model.selectedIndex = 0;
+                                  setState(() {});
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -144,9 +143,8 @@ class _FavoritesWidgetState extends State<FavoritesWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  setState(() {
-                                    _model.selectedIndex = 1;
-                                  });
+                                  _model.selectedIndex = 1;
+                                  setState(() {});
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(

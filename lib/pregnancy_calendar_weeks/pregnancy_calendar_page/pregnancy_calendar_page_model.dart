@@ -3,9 +3,10 @@ import '/components/bottom_nav_bar/bottom_nav_bar_widget.dart';
 import '/components/drawer_data/drawer_data_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pregnancy_calendar_weeks/baby_development_card/baby_development_card_widget.dart';
+import '/pregnancy_calendar_weeks/checklist_week/checklist_week_widget.dart';
+import '/pregnancy_calendar_weeks/health_tip_card/health_tip_card_widget.dart';
 import '/pregnancy_calendar_weeks/model3_d_card/model3_d_card_widget.dart';
 import '/pregnancy_calendar_weeks/physical_changes_of_the_mother_card/physical_changes_of_the_mother_card_widget.dart';
-import '/pregnancy_calendar_weeks/week_description_card/week_description_card_widget.dart';
 import 'pregnancy_calendar_page_widget.dart' show PregnancyCalendarPageWidget;
 import 'package:flutter/material.dart';
 
@@ -28,8 +29,10 @@ class PregnancyCalendarPageModel
   late BabyDevelopmentCardModel babyDevelopmentCardModel;
   // Model for physicalChangesOfTheMotherCard component.
   late PhysicalChangesOfTheMotherCardModel physicalChangesOfTheMotherCardModel;
-  // Model for WeekDescriptionCard component.
-  late WeekDescriptionCardModel weekDescriptionCardModel;
+  // Model for healthTipCard component.
+  late HealthTipCardModel healthTipCardModel;
+  // Model for checklistWeek component.
+  late ChecklistWeekModel checklistWeekModel;
   // Model for BottomNavBar component.
   late BottomNavBarModel bottomNavBarModel;
 
@@ -42,8 +45,8 @@ class PregnancyCalendarPageModel
         createModel(context, () => BabyDevelopmentCardModel());
     physicalChangesOfTheMotherCardModel =
         createModel(context, () => PhysicalChangesOfTheMotherCardModel());
-    weekDescriptionCardModel =
-        createModel(context, () => WeekDescriptionCardModel());
+    healthTipCardModel = createModel(context, () => HealthTipCardModel());
+    checklistWeekModel = createModel(context, () => ChecklistWeekModel());
     bottomNavBarModel = createModel(context, () => BottomNavBarModel());
   }
 
@@ -55,7 +58,8 @@ class PregnancyCalendarPageModel
     model3DCardModel.dispose();
     babyDevelopmentCardModel.dispose();
     physicalChangesOfTheMotherCardModel.dispose();
-    weekDescriptionCardModel.dispose();
+    healthTipCardModel.dispose();
+    checklistWeekModel.dispose();
     bottomNavBarModel.dispose();
   }
 }

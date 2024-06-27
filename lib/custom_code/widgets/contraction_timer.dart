@@ -82,8 +82,8 @@ class ContractionData {
 
 class ContractionStatistics {
   final int contractionsInHour;
-  final Duration averageDuration;
-  final Duration averageInterval;
+  final String averageDuration;
+  final String averageInterval;
 
   const ContractionStatistics(
       this.contractionsInHour, this.averageDuration, this.averageInterval);
@@ -93,6 +93,8 @@ class _ContractionTimerState extends State<ContractionTimer> {
   bool isContractionOngoing = false;
   DateTime? contractionStartTime;
   List<ContractionData> contractionList = [];
+  ContractionStatistics contractionsStatistics =
+      ContractionStatistics(0, '0', '0');
 
   Future<void> initContractions() async {
     final contractionsDocs = await FirebaseFirestore.instance
@@ -107,6 +109,15 @@ class _ContractionTimerState extends State<ContractionTimer> {
               ContractionData.fromMap(contractionDoc.data()))
           .toList();
       contractionList.sort(((a, b) => a.startTime.compareTo(b.startTime)));
+      contractionsStatistics = calculateContractionStatistics(contractionList);
+
+      FFAppState().update(() {
+        FFAppState().contractionStatistics = ContractrionStatisticsStruct(
+          qtyPerHour: contractionsStatistics.contractionsInHour,
+          avgDuration: contractionsStatistics.averageDuration,
+          avgInterval: contractionsStatistics.averageInterval,
+        );
+      });
     });
   }
 
@@ -124,6 +135,15 @@ class _ContractionTimerState extends State<ContractionTimer> {
 
     setState(() {
       contractionList.clear();
+      contractionsStatistics = calculateContractionStatistics(contractionList);
+
+      FFAppState().update(() {
+        FFAppState().contractionStatistics = ContractrionStatisticsStruct(
+          qtyPerHour: contractionsStatistics.contractionsInHour,
+          avgDuration: contractionsStatistics.averageDuration,
+          avgInterval: contractionsStatistics.averageInterval,
+        );
+      });
     });
   }
 
@@ -131,6 +151,7 @@ class _ContractionTimerState extends State<ContractionTimer> {
   void initState() {
     // TODO: implement initState
     initContractions();
+
     super.initState();
   }
 
@@ -156,6 +177,16 @@ class _ContractionTimerState extends State<ContractionTimer> {
       setState(() {
         isContractionOngoing = false;
         contractionList.add(contractionData);
+        contractionsStatistics =
+            calculateContractionStatistics(contractionList);
+
+        FFAppState().update(() {
+          FFAppState().contractionStatistics = ContractrionStatisticsStruct(
+            qtyPerHour: contractionsStatistics.contractionsInHour,
+            avgDuration: contractionsStatistics.averageDuration,
+            avgInterval: contractionsStatistics.averageInterval,
+          );
+        });
       });
 
       // Add data to Firestore (assuming proper authentication)
@@ -170,7 +201,7 @@ class _ContractionTimerState extends State<ContractionTimer> {
   ContractionStatistics calculateContractionStatistics(
       List<ContractionData> contractionList) {
     if (contractionList.isEmpty) {
-      return ContractionStatistics(0, Duration.zero, Duration.zero);
+      return ContractionStatistics(0, '0', '0');
     }
 
     final now = DateTime.now();
@@ -194,13 +225,16 @@ class _ContractionTimerState extends State<ContractionTimer> {
         .map((contraction) => contraction.interval!)
         .toList();
 
-    final averageInterval = nonZeroIntervals.isNotEmpty
-        ? nonZeroIntervals.reduce((a, b) => a + b).inSeconds /
+    final int averageInterval = nonZeroIntervals.isNotEmpty
+        ? nonZeroIntervals.reduce((a, b) => a + b).inSeconds ~/
             nonZeroIntervals.length
-        : Duration.zero;
+        : 0;
 
-    return ContractionStatistics(
-        contractionsInHour, averageDuration, averageInterval);
+    final avgDuration =
+        formatDuration(Duration(seconds: averageDuration.toInt()));
+    final avgInterval = formatDuration(Duration(seconds: averageInterval));
+
+    return ContractionStatistics(contractionsInHour, avgDuration, avgInterval);
   }
 
   @override
@@ -208,22 +242,23 @@ class _ContractionTimerState extends State<ContractionTimer> {
     return Column(
       children: [
         const SizedBox(height: 20.0),
-        Container(
-          height: 400,
-          width: double.infinity,
-          child: ListView.builder(
-            itemCount: contractionList.length,
-            reverse: true,
-            itemBuilder: (context, index) {
-              final contraction = contractionList[index];
-              return ContractionItemWidget(
-                strartDate: formatTime(contraction.startTime),
-                duration: formatDuration(contraction.duration),
-                index: (index + 1).toString(),
-                interval: formatDuration(contraction.interval ?? Duration()),
-                isFirst: index == 0,
-              );
-            },
+        Expanded(
+          child: Container(
+            width: double.infinity,
+            child: ListView.builder(
+              itemCount: contractionList.length,
+              reverse: true,
+              itemBuilder: (context, index) {
+                final contraction = contractionList[index];
+                return ContractionItemWidget(
+                  strartDate: formatTime(contraction.startTime),
+                  duration: formatDuration(contraction.duration),
+                  index: (index + 1).toString(),
+                  interval: formatDuration(contraction.interval ?? Duration()),
+                  isFirst: index == 0,
+                );
+              },
+            ),
           ),
         ),
         Container(

@@ -42,14 +42,15 @@ class _ReorderableListNamesState extends State<ReorderableListNames> {
             // Remove the object at the old index
             // final removedObject = widget.items.removeAt(oldIndex);
 
-            final removedObject = widget.items.removeAt(oldIndex);
+            setState(() {
+              final removedObject = widget.items.removeAt(oldIndex);
 
-            // Calculate adjusted new index (considering order shift)
-            int adjustedNewIndex =
-                newIndex > oldIndex ? newIndex - 1 : newIndex;
-
-            // Insert removed object at adjusted new index
-            widget.items.insert(adjustedNewIndex, removedObject);
+              // Calculate adjusted new index (considering order shift)
+              int adjustedNewIndex =
+                  newIndex > oldIndex ? newIndex - 1 : newIndex;
+              // Insert removed object at adjusted new index
+              widget.items.insert(adjustedNewIndex, removedObject);
+            });
 
             final updatedListOfNames = widget.items.map(
               (e) => {

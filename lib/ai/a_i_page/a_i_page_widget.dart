@@ -46,13 +46,11 @@ class _AIPageWidgetState extends State<AIPageWidget> {
         curve: Curves.ease,
       );
       if (FFAppState().AIChat.isNotEmpty) {
-        setState(() {
-          _model.showTextField = true;
-        });
+        _model.showTextField = true;
+        setState(() {});
       } else {
-        setState(() {
-          _model.showTextField = false;
-        });
+        _model.showTextField = false;
+        setState(() {});
       }
     });
 
@@ -274,14 +272,13 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                 ),
                                                 Builder(
                                                   builder: (context) {
-                                                    if (valueOrDefault<bool>(
-                                                            currentUserDocument
-                                                                ?.monthlySubscription,
-                                                            false) ||
-                                                        valueOrDefault<bool>(
-                                                            currentUserDocument
-                                                                ?.annualSubscription,
-                                                            false)) {
+                                                    if ((currentUserDocument
+                                                                    ?.subscriptions
+                                                                    .toList() ??
+                                                                [])
+                                                            .last
+                                                            .expiredDate! <
+                                                        getCurrentTimestamp) {
                                                       return Padding(
                                                         padding:
                                                             const EdgeInsetsDirectional
@@ -571,14 +568,12 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                         ?.aiRequests,
                                                     0) >
                                                 2) &&
-                                            !valueOrDefault<bool>(
-                                                currentUserDocument
-                                                    ?.monthlySubscription,
-                                                false) &&
-                                            !valueOrDefault<bool>(
-                                                currentUserDocument
-                                                    ?.annualSubscription,
-                                                false))) {
+                                            ((currentUserDocument?.subscriptions
+                                                            .toList() ??
+                                                        [])
+                                                    .last
+                                                    .expiredDate! <
+                                                getCurrentTimestamp))) {
                                           return Builder(
                                             builder: (context) {
                                               if (valueOrDefault(
@@ -728,13 +723,13 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                                 FFButtonWidget(
                                                                   onPressed:
                                                                       () async {
+                                                                    FFAppState()
+                                                                        .deleteAIChat();
+                                                                    FFAppState()
+                                                                        .AIChat = [];
+
                                                                     setState(
-                                                                        () {
-                                                                      FFAppState()
-                                                                          .deleteAIChat();
-                                                                      FFAppState()
-                                                                          .AIChat = [];
-                                                                    });
+                                                                        () {});
                                                                   },
                                                                   text:
                                                                       'Clear Chat',
@@ -791,13 +786,8 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                                     FFButtonWidget(
                                                                   onPressed: ((valueOrDefault(currentUserDocument?.aiRequests, 0) >
                                                                               2) &&
-                                                                          !valueOrDefault<bool>(
-                                                                              currentUserDocument
-                                                                                  ?.monthlySubscription,
-                                                                              false) &&
-                                                                          !valueOrDefault<bool>(
-                                                                              currentUserDocument?.annualSubscription,
-                                                                              false))
+                                                                          ((currentUserDocument?.subscriptions.toList() ?? []).last.expiredDate! <
+                                                                              getCurrentTimestamp))
                                                                       ? null
                                                                       : () {
                                                                           print(
@@ -1169,15 +1159,13 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                         if (_model.messageTextFieldTextController
                                                                     .text !=
                                                                 '') {
-                                                          setState(() {
-                                                            _model.showSend =
-                                                                true;
-                                                          });
+                                                          _model.showSend =
+                                                              true;
+                                                          setState(() {});
                                                         } else {
-                                                          setState(() {
-                                                            _model.showSend =
-                                                                false;
-                                                          });
+                                                          _model.showSend =
+                                                              false;
+                                                          setState(() {});
                                                         }
                                                       },
                                                     ),
@@ -1313,12 +1301,10 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                             .validate()) {
                                                       return;
                                                     }
-                                                    setState(() {
-                                                      FFAppState().addToAIChat(
-                                                          _model
-                                                              .messageTextFieldTextController
-                                                              .text);
-                                                    });
+                                                    FFAppState().addToAIChat(_model
+                                                        .messageTextFieldTextController
+                                                        .text);
+                                                    setState(() {});
                                                     setState(() {
                                                       _model
                                                           .messageTextFieldTextController
@@ -1331,19 +1317,18 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                           .messageTextFieldTextController
                                                           .text,
                                                     );
+
                                                     if ((_model.apiResultofu
                                                             ?.succeeded ??
                                                         true)) {
-                                                      setState(() {
-                                                        FFAppState()
-                                                            .addToAIChat(
-                                                                getJsonField(
-                                                          (_model.apiResultofu
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                          r'''$.choices[:].text''',
-                                                        ).toString());
-                                                      });
+                                                      FFAppState().addToAIChat(
+                                                          getJsonField(
+                                                        (_model.apiResultofu
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                        r'''$.choices[:].text''',
+                                                      ).toString());
+                                                      setState(() {});
 
                                                       await currentUserReference!
                                                           .update({
@@ -1357,16 +1342,14 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                                                         ),
                                                       });
                                                     } else {
-                                                      setState(() {
-                                                        FFAppState().addToAIChat(
-                                                            'Something went wrong...');
-                                                      });
+                                                      FFAppState().addToAIChat(
+                                                          'Something went wrong...');
+                                                      setState(() {});
                                                     }
 
-                                                    setState(() {
-                                                      _model.messages =
-                                                          _model.messages + 1;
-                                                    });
+                                                    _model.messages =
+                                                        _model.messages + 1;
+                                                    setState(() {});
                                                     await _model
                                                         .listViewController
                                                         ?.animateTo(
@@ -1535,9 +1518,8 @@ class _AIPageWidgetState extends State<AIPageWidget> {
                             20.0, 0.0, 20.0, 40.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            setState(() {
-                              _model.showTextField = true;
-                            });
+                            _model.showTextField = true;
+                            setState(() {});
                           },
                           text: 'Get an answer to my question',
                           options: FFButtonOptions(

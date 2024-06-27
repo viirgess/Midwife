@@ -12,15 +12,48 @@
           "package_name": "com.mycompany.midwifementor"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "7775155401-ps1nr351rphv22dvjj6k1dof5rovc851.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.midwifementor",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "7775155401-srgcnmh4bpcdjf3k11phm8m1cmce5k1i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.midwifementor",
+            "certificate_hash": "bda1ddb34581eb61a3e15d2ce5c2fa169b413412"
+          }
+        },
+        {
+          "client_id": "7775155401-k332rljgt7g908aslo11mnk7d57sn7io.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyDDslz4nKB6ooRJsbX00b9tkGxuOrFsd34"
+          "current_key": "AIzaSyC24OZaL4h_epK4k09MBx6Z2WLJ_v9zkpg"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "7775155401-k332rljgt7g908aslo11mnk7d57sn7io.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "7775155401-lp1mqgtn0qr5p51lokja7351me7okoka.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.midwifementor"
+              }
+            }
+          ]
         }
       }
     }

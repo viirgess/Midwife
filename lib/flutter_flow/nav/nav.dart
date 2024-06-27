@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -15,6 +15,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
+export '/backend/firebase_dynamic_links/firebase_dynamic_links.dart'
+    show generateCurrentPageLink;
 
 const kTransitionInfoKey = '__transition_info__';
 
@@ -75,390 +77,790 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const MainPageWidget() : const LoginPageWidget(),
+      errorBuilder: (context, state) => _RouteErrorBuilder(
+        state: state,
+        child:
+            appStateNotifier.loggedIn ? const MainPageWidget() : const OnboardingWidget(),
+      ),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const MainPageWidget() : const LoginPageWidget(),
+              appStateNotifier.loggedIn ? const MainPageWidget() : const OnboardingWidget(),
+          routes: [
+            FFRoute(
+              name: 'MainPage',
+              path: 'mainPage',
+              requireAuth: true,
+              builder: (context, params) => const MainPageWidget(),
+            ),
+            FFRoute(
+              name: 'AIPage',
+              path: 'aIPage',
+              requireAuth: true,
+              builder: (context, params) => const AIPageWidget(),
+            ),
+            FFRoute(
+              name: 'PregnancyCalendarPage',
+              path: 'pregnancyCalendarPage',
+              requireAuth: true,
+              builder: (context, params) => const PregnancyCalendarPageWidget(),
+            ),
+            FFRoute(
+              name: 'PrivateChatsPage',
+              path: 'privateChatsPage',
+              requireAuth: true,
+              builder: (context, params) => const PrivateChatsPageWidget(),
+            ),
+            FFRoute(
+              name: 'BlogPage',
+              path: 'blogPage',
+              requireAuth: true,
+              builder: (context, params) => const BlogPageWidget(),
+            ),
+            FFRoute(
+              name: 'FreeEbookPage',
+              path: 'freeEbookPage',
+              requireAuth: true,
+              builder: (context, params) => const FreeEbookPageWidget(),
+            ),
+            FFRoute(
+              name: 'OnlineCoachingPage',
+              path: 'onlineCoachingPage',
+              requireAuth: true,
+              builder: (context, params) => const OnlineCoachingPageWidget(),
+            ),
+            FFRoute(
+              name: 'Courses',
+              path: 'courses',
+              requireAuth: true,
+              builder: (context, params) => const CoursesWidget(),
+            ),
+            FFRoute(
+              name: 'SupportPage',
+              path: 'supportPage',
+              requireAuth: true,
+              builder: (context, params) => const SupportPageWidget(),
+            ),
+            FFRoute(
+              name: 'BlogsTopicsList',
+              path: 'blogsTopicsList',
+              requireAuth: true,
+              builder: (context, params) => BlogsTopicsListWidget(
+                sectionReference: params.getParam(
+                  'sectionReference',
+                  ParamType.DocumentReference,
+                  isList: false,
+                  collectionNamePath: ['blogs'],
+                ),
+                title: params.getParam(
+                  'title',
+                  ParamType.String,
+                ),
+                description: params.getParam(
+                  'description',
+                  ParamType.String,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'TopicDescription',
+              path: 'topicDescription',
+              requireAuth: true,
+              builder: (context, params) => TopicDescriptionWidget(
+                title: params.getParam(
+                  'title',
+                  ParamType.String,
+                ),
+                date: params.getParam(
+                  'date',
+                  ParamType.DateTime,
+                ),
+                image: params.getParam(
+                  'image',
+                  ParamType.String,
+                ),
+                topicOne: params.getParam(
+                  'topicOne',
+                  ParamType.String,
+                ),
+                oneDescription: params.getParam(
+                  'oneDescription',
+                  ParamType.String,
+                ),
+                topicTwo: params.getParam(
+                  'topicTwo',
+                  ParamType.String,
+                ),
+                twoDescription: params.getParam(
+                  'twoDescription',
+                  ParamType.String,
+                ),
+                topicThree: params.getParam(
+                  'topicThree',
+                  ParamType.String,
+                ),
+                threeDescription: params.getParam(
+                  'threeDescription',
+                  ParamType.String,
+                ),
+                topicFour: params.getParam(
+                  'topicFour',
+                  ParamType.String,
+                ),
+                fourDescription: params.getParam(
+                  'fourDescription',
+                  ParamType.String,
+                ),
+                topicFive: params.getParam(
+                  'topicFive',
+                  ParamType.String,
+                ),
+                fiveDescription: params.getParam(
+                  'fiveDescription',
+                  ParamType.String,
+                ),
+                topicSix: params.getParam(
+                  'topicSix',
+                  ParamType.String,
+                ),
+                sixDescription: params.getParam(
+                  'sixDescription',
+                  ParamType.String,
+                ),
+                chapterTitle: params.getParam(
+                  'chapterTitle',
+                  ParamType.String,
+                ),
+                chapterOne: params.getParam(
+                  'chapterOne',
+                  ParamType.String,
+                ),
+                chapterTwo: params.getParam(
+                  'chapterTwo',
+                  ParamType.String,
+                ),
+                chapterThree: params.getParam(
+                  'chapterThree',
+                  ParamType.String,
+                ),
+                partOne: params.getParam(
+                  'partOne',
+                  ParamType.String,
+                ),
+                partOneDescription: params.getParam(
+                  'partOneDescription',
+                  ParamType.String,
+                ),
+                partTwo: params.getParam(
+                  'partTwo',
+                  ParamType.String,
+                ),
+                partTwoDescription: params.getParam(
+                  'partTwoDescription',
+                  ParamType.String,
+                ),
+                partThree: params.getParam(
+                  'partThree',
+                  ParamType.String,
+                ),
+                partThreeDescription: params.getParam(
+                  'partThreeDescription',
+                  ParamType.String,
+                ),
+                partFour: params.getParam(
+                  'partFour',
+                  ParamType.String,
+                ),
+                partFourDescription: params.getParam(
+                  'partFourDescription',
+                  ParamType.String,
+                ),
+                partFive: params.getParam(
+                  'partFive',
+                  ParamType.String,
+                ),
+                partFiveDescription: params.getParam(
+                  'partFiveDescription',
+                  ParamType.String,
+                ),
+                partSix: params.getParam(
+                  'partSix',
+                  ParamType.String,
+                ),
+                partSixDescription: params.getParam(
+                  'partSixDescription',
+                  ParamType.String,
+                ),
+                partSeven: params.getParam(
+                  'partSeven',
+                  ParamType.String,
+                ),
+                partSevenDescription: params.getParam(
+                  'partSevenDescription',
+                  ParamType.String,
+                ),
+                partEight: params.getParam(
+                  'partEight',
+                  ParamType.String,
+                ),
+                partEightDescription: params.getParam(
+                  'partEightDescription',
+                  ParamType.String,
+                ),
+                partNine: params.getParam(
+                  'partNine',
+                  ParamType.String,
+                ),
+                partNineDescription: params.getParam(
+                  'partNineDescription',
+                  ParamType.String,
+                ),
+                partTen: params.getParam(
+                  'partTen',
+                  ParamType.String,
+                ),
+                partTenDescription: params.getParam(
+                  'partTenDescription',
+                  ParamType.String,
+                ),
+                chapterFour: params.getParam(
+                  'chapterFour',
+                  ParamType.String,
+                ),
+                chapterFive: params.getParam(
+                  'chapterFive',
+                  ParamType.String,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'userProfile',
+              path: 'userProfile',
+              requireAuth: true,
+              builder: (context, params) => const UserProfileWidget(),
+            ),
+            FFRoute(
+              name: 'PublicUserProfile',
+              path: 'publicUserProfile',
+              requireAuth: true,
+              builder: (context, params) => PublicUserProfileWidget(
+                userRef: params.getParam(
+                  'userRef',
+                  ParamType.DocumentReference,
+                  isList: false,
+                  collectionNamePath: ['users'],
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'chatMessages',
+              path: 'chatMessages',
+              requireAuth: true,
+              builder: (context, params) => ChatMessagesWidget(
+                chatUser: params.getParam(
+                  'chatUser',
+                  ParamType.DocumentReference,
+                  isList: false,
+                  collectionNamePath: ['chats'],
+                ),
+                userRef: params.getParam(
+                  'userRef',
+                  ParamType.DocumentReference,
+                  isList: false,
+                  collectionNamePath: ['users'],
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'testPage',
+              path: 'fa',
+              requireAuth: true,
+              builder: (context, params) => const TestPageWidget(),
+            ),
+            FFRoute(
+              name: 'payment',
+              path: 'payment',
+              requireAuth: true,
+              builder: (context, params) => const PaymentWidget(),
+            ),
+            FFRoute(
+              name: 'SubscriptionChoosePage',
+              path: 'subscriptionChoosePage',
+              requireAuth: true,
+              builder: (context, params) => const SubscriptionChoosePageWidget(),
+            ),
+            FFRoute(
+              name: 'ContractionsPage',
+              path: 'contractionsPage',
+              requireAuth: true,
+              builder: (context, params) => const ContractionsPageWidget(),
+            ),
+            FFRoute(
+              name: 'BabyNames',
+              path: 'babyNames',
+              requireAuth: true,
+              builder: (context, params) => const BabyNamesWidget(),
+            ),
+            FFRoute(
+              name: 'Favorites',
+              path: 'favorites',
+              requireAuth: true,
+              builder: (context, params) => const FavoritesWidget(),
+            ),
+            FFRoute(
+              name: 'MemoriesPage',
+              path: 'memoriesPage',
+              requireAuth: true,
+              builder: (context, params) => const MemoriesPageWidget(),
+            ),
+            FFRoute(
+              name: 'UploadPhotoPage',
+              path: 'uploadPhotoPage',
+              requireAuth: true,
+              builder: (context, params) => UploadPhotoPageWidget(
+                photoUrl: params.getParam(
+                  'photoUrl',
+                  ParamType.String,
+                ),
+                isEdit: params.getParam(
+                  'isEdit',
+                  ParamType.bool,
+                ),
+                memoryRef: params.getParam(
+                  'memoryRef',
+                  ParamType.DocumentReference,
+                  isList: false,
+                  collectionNamePath: ['users', 'memories'],
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'Community',
+              path: 'community',
+              requireAuth: true,
+              builder: (context, params) => CommunityWidget(
+                isPostCreated: params.getParam(
+                  'isPostCreated',
+                  ParamType.bool,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'SearchPage',
+              path: 'searchPage',
+              requireAuth: true,
+              builder: (context, params) => SearchPageWidget(
+                searchType: params.getParam(
+                  'searchType',
+                  ParamType.String,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'MyGroups',
+              path: 'myGroups',
+              requireAuth: true,
+              builder: (context, params) => const MyGroupsWidget(),
+            ),
+            FFRoute(
+              name: 'MyFriends',
+              path: 'myFriends',
+              requireAuth: true,
+              builder: (context, params) => const MyFriendsWidget(),
+            ),
+            FFRoute(
+              name: 'CreatePost',
+              path: 'createPost',
+              requireAuth: true,
+              builder: (context, params) => CreatePostWidget(
+                isEdit: params.getParam(
+                  'isEdit',
+                  ParamType.bool,
+                ),
+                postRef: params.getParam(
+                  'postRef',
+                  ParamType.DocumentReference,
+                  isList: false,
+                  collectionNamePath: ['posts'],
+                ),
+                title: params.getParam(
+                  'title',
+                  ParamType.String,
+                ),
+                details: params.getParam(
+                  'details',
+                  ParamType.String,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'GroupInner',
+              path: 'groupInner',
+              requireAuth: true,
+              builder: (context, params) => GroupInnerWidget(
+                groupRef: params.getParam(
+                  'groupRef',
+                  ParamType.DocumentReference,
+                  isList: false,
+                  collectionNamePath: ['groups'],
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'PostInner',
+              path: 'postInner',
+              requireAuth: true,
+              builder: (context, params) => PostInnerWidget(
+                postRef: params.getParam(
+                  'postRef',
+                  ParamType.DocumentReference,
+                  isList: false,
+                  collectionNamePath: ['posts'],
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'SearchInCommunity',
+              path: 'searchInCommunity',
+              requireAuth: true,
+              builder: (context, params) => const SearchInCommunityWidget(),
+            ),
+            FFRoute(
+              name: 'Library',
+              path: 'library',
+              requireAuth: true,
+              builder: (context, params) => const LibraryWidget(),
+            ),
+            FFRoute(
+              name: 'Course',
+              path: 'course',
+              requireAuth: true,
+              builder: (context, params) => CourseWidget(
+                courseRef: params.getParam(
+                  'courseRef',
+                  ParamType.DocumentReference,
+                  isList: false,
+                  collectionNamePath: ['courses'],
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'Lesson',
+              path: 'lesson',
+              requireAuth: true,
+              builder: (context, params) => LessonWidget(
+                lessonRef: params.getParam(
+                  'lessonRef',
+                  ParamType.DocumentReference,
+                  isList: false,
+                  collectionNamePath: ['courses', 'lessons'],
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'Onboarding',
+              path: 'onboarding/:userRef',
+              builder: (context, params) => OnboardingWidget(
+                userRef: params.getParam(
+                  'userRef',
+                  ParamType.DocumentReference,
+                  isList: false,
+                  collectionNamePath: ['users'],
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'Login',
+              path: 'login',
+              builder: (context, params) => const LoginWidget(),
+            ),
+            FFRoute(
+              name: 'ForgotPassword',
+              path: 'forgotPassword',
+              requireAuth: true,
+              builder: (context, params) => const ForgotPasswordWidget(),
+            ),
+            FFRoute(
+              name: 'Signup',
+              path: 'signup',
+              builder: (context, params) => SignupWidget(
+                userRef: params.getParam(
+                  'userRef',
+                  ParamType.DocumentReference,
+                  isList: false,
+                  collectionNamePath: ['users'],
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'ProfileSetup',
+              path: 'profileSetup',
+              requireAuth: true,
+              builder: (context, params) => const ProfileSetupWidget(),
+            ),
+            FFRoute(
+              name: 'CalculateDueDate',
+              path: 'calculateDueDate',
+              requireAuth: true,
+              builder: (context, params) => const CalculateDueDateWidget(),
+            ),
+            FFRoute(
+              name: 'Subscription',
+              path: 'subscription',
+              requireAuth: true,
+              builder: (context, params) => const SubscriptionWidget(),
+            ),
+            FFRoute(
+              name: 'FAQ',
+              path: 'faq',
+              requireAuth: true,
+              builder: (context, params) => const FaqWidget(),
+            ),
+            FFRoute(
+              name: 'SearchInGroup',
+              path: 'searchInGroup',
+              requireAuth: true,
+              builder: (context, params) => const SearchInGroupWidget(),
+            ),
+            FFRoute(
+              name: 'Trackers',
+              path: 'trackers',
+              requireAuth: true,
+              builder: (context, params) => const TrackersWidget(),
+            ),
+            FFRoute(
+              name: 'WeightTracker',
+              path: 'weightTracker',
+              requireAuth: true,
+              builder: (context, params) => const WeightTrackerWidget(),
+            ),
+            FFRoute(
+              name: 'WeightTrackerChart',
+              path: 'weightTrackerChart',
+              requireAuth: true,
+              builder: (context, params) => WeightTrackerChartWidget(
+                trackerRef: params.getParam(
+                  'trackerRef',
+                  ParamType.DocumentReference,
+                  isList: false,
+                  collectionNamePath: ['users', 'trackers'],
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'BabyGrowthInit',
+              path: 'babyGrowthInit',
+              requireAuth: true,
+              builder: (context, params) => const BabyGrowthInitWidget(),
+            ),
+            FFRoute(
+              name: 'BabyGrowthChart',
+              path: 'babyGrowthChart',
+              requireAuth: true,
+              builder: (context, params) => BabyGrowthChartWidget(
+                trackerRef: params.getParam(
+                  'trackerRef',
+                  ParamType.DocumentReference,
+                  isList: false,
+                  collectionNamePath: ['users', 'trackers'],
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'Feeding',
+              path: 'feeding',
+              requireAuth: true,
+              builder: (context, params) => FeedingWidget(
+                trackerRef: params.getParam(
+                  'trackerRef',
+                  ParamType.DocumentReference,
+                  isList: false,
+                  collectionNamePath: ['users', 'trackers'],
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'DiaperTracker',
+              path: 'diaperTracker',
+              requireAuth: true,
+              builder: (context, params) => DiaperTrackerWidget(
+                trackerRef: params.getParam(
+                  'trackerRef',
+                  ParamType.DocumentReference,
+                  isList: false,
+                  collectionNamePath: ['users', 'trackers'],
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'articlePage',
+              path: 'articlePage',
+              requireAuth: true,
+              asyncParams: {
+                'blog': getDoc(['blogs'], BlogsRecord.fromSnapshot),
+                'additionalSection': getDoc(['blogs', 'additional_section'],
+                    AdditionalSectionRecord.fromSnapshot),
+              },
+              builder: (context, params) => ArticlePageWidget(
+                blog: params.getParam(
+                  'blog',
+                  ParamType.Document,
+                ),
+                additionalSection: params.getParam(
+                  'additionalSection',
+                  ParamType.Document,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'Profile',
+              path: 'profile',
+              requireAuth: true,
+              builder: (context, params) => const ProfileWidget(),
+            ),
+            FFRoute(
+              name: 'PersonalInformation',
+              path: 'personalInformation',
+              requireAuth: true,
+              builder: (context, params) => const PersonalInformationWidget(),
+            ),
+            FFRoute(
+              name: 'ChangeName',
+              path: 'changeName',
+              requireAuth: true,
+              builder: (context, params) => const ChangeNameWidget(),
+            ),
+            FFRoute(
+              name: 'ChangeEmail',
+              path: 'changeEmail',
+              requireAuth: true,
+              builder: (context, params) => const ChangeEmailWidget(),
+            ),
+            FFRoute(
+              name: 'ChangePassword',
+              path: 'changePassword',
+              requireAuth: true,
+              builder: (context, params) => const ChangePasswordWidget(),
+            ),
+            FFRoute(
+              name: 'PregnancyInformation',
+              path: 'pregnancyInformation',
+              requireAuth: true,
+              builder: (context, params) => PregnancyInformationWidget(
+                isPregnant: params.getParam(
+                  'isPregnant',
+                  ParamType.bool,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'BabyGender',
+              path: 'babyGender',
+              requireAuth: true,
+              builder: (context, params) => const BabyGenderWidget(),
+            ),
+            FFRoute(
+              name: 'DueDate',
+              path: 'dueDate',
+              requireAuth: true,
+              builder: (context, params) => const DueDateWidget(),
+            ),
+            FFRoute(
+              name: 'ManageSubscription',
+              path: 'manageSubscription',
+              requireAuth: true,
+              builder: (context, params) => const ManageSubscriptionWidget(),
+            ),
+            FFRoute(
+              name: 'ChangePlan',
+              path: 'changePlan',
+              requireAuth: true,
+              builder: (context, params) => const ChangePlanWidget(),
+            ),
+            FFRoute(
+              name: 'ProfileFAQ',
+              path: 'profileFAQ',
+              requireAuth: true,
+              builder: (context, params) => const ProfileFAQWidget(),
+            ),
+            FFRoute(
+              name: 'Support',
+              path: 'support',
+              requireAuth: true,
+              builder: (context, params) => const SupportWidget(),
+            ),
+            FFRoute(
+              name: 'NotificationsSettings',
+              path: 'notificationsSettings',
+              requireAuth: true,
+              builder: (context, params) => const NotificationsSettingsWidget(),
+            ),
+            FFRoute(
+              name: 'TermsOfService',
+              path: 'termsOfService',
+              requireAuth: true,
+              builder: (context, params) => const TermsOfServiceWidget(),
+            ),
+            FFRoute(
+              name: 'InviteFriend',
+              path: 'inviteFriend',
+              requireAuth: true,
+              builder: (context, params) => const InviteFriendWidget(),
+            ),
+            FFRoute(
+              name: 'InvitedFriends',
+              path: 'invitedFriends',
+              requireAuth: true,
+              builder: (context, params) => const InvitedFriendsWidget(),
+            ),
+            FFRoute(
+              name: 'Collaborations',
+              path: 'collaborations',
+              requireAuth: true,
+              builder: (context, params) => const CollaborationsWidget(),
+            ),
+            FFRoute(
+              name: 'Notifications',
+              path: 'notifications',
+              requireAuth: true,
+              builder: (context, params) => const NotificationsWidget(),
+            ),
+            FFRoute(
+              name: 'PregnancyPlanner',
+              path: 'pregnancyPlanner',
+              requireAuth: true,
+              builder: (context, params) => const PregnancyPlannerWidget(),
+            ),
+            FFRoute(
+              name: 'Checklist',
+              path: 'checklist',
+              requireAuth: true,
+              builder: (context, params) => const ChecklistWidget(),
+            ),
+            FFRoute(
+              name: 'CheckListItem',
+              path: 'checkListItem',
+              requireAuth: true,
+              builder: (context, params) => CheckListItemWidget(
+                checklistItem: params.getParam(
+                  'checklistItem',
+                  ParamType.DocumentReference,
+                  isList: false,
+                  collectionNamePath: ['checklists'],
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'selectedBlogs',
+              path: 'selectedBlogs',
+              requireAuth: true,
+              builder: (context, params) => const SelectedBlogsWidget(),
+            )
+          ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),
-        FFRoute(
-          name: 'LoginPage',
-          path: '/loginPage',
-          builder: (context, params) => const LoginPageWidget(),
-        ),
-        FFRoute(
-          name: 'MainPage',
-          path: '/mainPage',
-          builder: (context, params) => const MainPageWidget(),
-        ),
-        FFRoute(
-          name: 'RegisterPage',
-          path: '/registerPage',
-          builder: (context, params) => const RegisterPageWidget(),
-        ),
-        FFRoute(
-          name: 'ResetPassword',
-          path: '/resetPassword',
-          builder: (context, params) => const ResetPasswordWidget(),
-        ),
-        FFRoute(
-          name: 'AIPage',
-          path: '/aIPage',
-          builder: (context, params) => const AIPageWidget(),
-        ),
-        FFRoute(
-          name: 'PregnancyCalendarPage',
-          path: '/pregnancyCalendarPage',
-          builder: (context, params) => const PregnancyCalendarPageWidget(),
-        ),
-        FFRoute(
-          name: 'CommunityPage',
-          path: '/communityPage',
-          builder: (context, params) => const CommunityPageWidget(),
-        ),
-        FFRoute(
-          name: 'PrivateChatsPage',
-          path: '/privateChatsPage',
-          builder: (context, params) => const PrivateChatsPageWidget(),
-        ),
-        FFRoute(
-          name: 'BlogPage',
-          path: '/blogPage',
-          builder: (context, params) => const BlogPageWidget(),
-        ),
-        FFRoute(
-          name: 'FreeEbookPage',
-          path: '/freeEbookPage',
-          builder: (context, params) => const FreeEbookPageWidget(),
-        ),
-        FFRoute(
-          name: 'OnlineCoachingPage',
-          path: '/onlineCoachingPage',
-          builder: (context, params) => const OnlineCoachingPageWidget(),
-        ),
-        FFRoute(
-          name: 'PregnancyCoursePage',
-          path: '/pregnancyCoursePage',
-          builder: (context, params) => const PregnancyCoursePageWidget(),
-        ),
-        FFRoute(
-          name: 'SupportPage',
-          path: '/supportPage',
-          builder: (context, params) => const SupportPageWidget(),
-        ),
-        FFRoute(
-          name: 'FAQPage',
-          path: '/fAQPage',
-          builder: (context, params) => const FAQPageWidget(),
-        ),
-        FFRoute(
-          name: 'CollaborationPage',
-          path: '/collaborationPage',
-          builder: (context, params) => const CollaborationPageWidget(),
-        ),
-        FFRoute(
-          name: 'BlogsTopicsList',
-          path: '/blogsTopicsList',
-          builder: (context, params) => BlogsTopicsListWidget(
-            sectionReference: params.getParam(
-              'sectionReference',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['blogs'],
-            ),
-            title: params.getParam(
-              'title',
-              ParamType.String,
-            ),
-            description: params.getParam(
-              'description',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'TopicDescription',
-          path: '/topicDescription',
-          builder: (context, params) => TopicDescriptionWidget(
-            title: params.getParam(
-              'title',
-              ParamType.String,
-            ),
-            date: params.getParam(
-              'date',
-              ParamType.DateTime,
-            ),
-            image: params.getParam(
-              'image',
-              ParamType.String,
-            ),
-            topicOne: params.getParam(
-              'topicOne',
-              ParamType.String,
-            ),
-            oneDescription: params.getParam(
-              'oneDescription',
-              ParamType.String,
-            ),
-            topicTwo: params.getParam(
-              'topicTwo',
-              ParamType.String,
-            ),
-            twoDescription: params.getParam(
-              'twoDescription',
-              ParamType.String,
-            ),
-            topicThree: params.getParam(
-              'topicThree',
-              ParamType.String,
-            ),
-            threeDescription: params.getParam(
-              'threeDescription',
-              ParamType.String,
-            ),
-            topicFour: params.getParam(
-              'topicFour',
-              ParamType.String,
-            ),
-            fourDescription: params.getParam(
-              'fourDescription',
-              ParamType.String,
-            ),
-            topicFive: params.getParam(
-              'topicFive',
-              ParamType.String,
-            ),
-            fiveDescription: params.getParam(
-              'fiveDescription',
-              ParamType.String,
-            ),
-            topicSix: params.getParam(
-              'topicSix',
-              ParamType.String,
-            ),
-            sixDescription: params.getParam(
-              'sixDescription',
-              ParamType.String,
-            ),
-            chapterTitle: params.getParam(
-              'chapterTitle',
-              ParamType.String,
-            ),
-            chapterOne: params.getParam(
-              'chapterOne',
-              ParamType.String,
-            ),
-            chapterTwo: params.getParam(
-              'chapterTwo',
-              ParamType.String,
-            ),
-            chapterThree: params.getParam(
-              'chapterThree',
-              ParamType.String,
-            ),
-            referenceSection: params.getParam(
-              'referenceSection',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['blogs', 'topics'],
-            ),
-            partOne: params.getParam(
-              'partOne',
-              ParamType.String,
-            ),
-            partOneDescription: params.getParam(
-              'partOneDescription',
-              ParamType.String,
-            ),
-            partTwo: params.getParam(
-              'partTwo',
-              ParamType.String,
-            ),
-            partTwoDescription: params.getParam(
-              'partTwoDescription',
-              ParamType.String,
-            ),
-            partThree: params.getParam(
-              'partThree',
-              ParamType.String,
-            ),
-            partThreeDescription: params.getParam(
-              'partThreeDescription',
-              ParamType.String,
-            ),
-            partFour: params.getParam(
-              'partFour',
-              ParamType.String,
-            ),
-            partFourDescription: params.getParam(
-              'partFourDescription',
-              ParamType.String,
-            ),
-            partFive: params.getParam(
-              'partFive',
-              ParamType.String,
-            ),
-            partFiveDescription: params.getParam(
-              'partFiveDescription',
-              ParamType.String,
-            ),
-            partSix: params.getParam(
-              'partSix',
-              ParamType.String,
-            ),
-            partSixDescription: params.getParam(
-              'partSixDescription',
-              ParamType.String,
-            ),
-            partSeven: params.getParam(
-              'partSeven',
-              ParamType.String,
-            ),
-            partSevenDescription: params.getParam(
-              'partSevenDescription',
-              ParamType.String,
-            ),
-            partEight: params.getParam(
-              'partEight',
-              ParamType.String,
-            ),
-            partEightDescription: params.getParam(
-              'partEightDescription',
-              ParamType.String,
-            ),
-            partNine: params.getParam(
-              'partNine',
-              ParamType.String,
-            ),
-            partNineDescription: params.getParam(
-              'partNineDescription',
-              ParamType.String,
-            ),
-            partTen: params.getParam(
-              'partTen',
-              ParamType.String,
-            ),
-            partTenDescription: params.getParam(
-              'partTenDescription',
-              ParamType.String,
-            ),
-            chapterFour: params.getParam(
-              'chapterFour',
-              ParamType.String,
-            ),
-            chapterFive: params.getParam(
-              'chapterFive',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'userProfile',
-          path: '/userProfile',
-          builder: (context, params) => const UserProfileWidget(),
-        ),
-        FFRoute(
-          name: 'PublicUserProfile',
-          path: '/publicUserProfile',
-          builder: (context, params) => PublicUserProfileWidget(
-            userRef: params.getParam(
-              'userRef',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['users'],
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'chatMessages',
-          path: '/chatMessages',
-          builder: (context, params) => ChatMessagesWidget(
-            chatUser: params.getParam(
-              'chatUser',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['chats'],
-            ),
-            userName: params.getParam(
-              'userName',
-              ParamType.String,
-            ),
-            userRef: params.getParam(
-              'userRef',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['users'],
-            ),
-            userimage: params.getParam(
-              'userimage',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'testPage',
-          path: '/testPage',
-          builder: (context, params) => const TestPageWidget(),
-        ),
-        FFRoute(
-          name: 'payment',
-          path: '/payment',
-          builder: (context, params) => const PaymentWidget(),
-        ),
-        FFRoute(
-          name: 'CoursePage',
-          path: '/coursePage',
-          builder: (context, params) => CoursePageWidget(
-            courseRef: params.getParam(
-              'courseRef',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['courses'],
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'CourseEditorPage',
-          path: '/courseEditorPage',
-          builder: (context, params) => CourseEditorPageWidget(
-            newCourseRef: params.getParam(
-              'newCourseRef',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['courses'],
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'SubscriptionChoosePage',
-          path: '/subscriptionChoosePage',
-          builder: (context, params) => const SubscriptionChoosePageWidget(),
-        ),
-        FFRoute(
-          name: 'nameListPage',
-          path: '/nameListPage',
-          builder: (context, params) => const NameListPageWidget(),
-        ),
-        FFRoute(
-          name: 'ContractionsPage',
-          path: '/contractionsPage',
-          builder: (context, params) => const ContractionsPageWidget(),
-        ),
-        FFRoute(
-          name: 'BabyNames',
-          path: '/babyNames',
-          builder: (context, params) => const BabyNamesWidget(),
-        ),
-        FFRoute(
-          name: 'Favorites',
-          path: '/favorites',
-          builder: (context, params) => const FavoritesWidget(),
-        )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
-      observers: [routeObserver],
     );
 
 extension NavParamExtensions on Map<String, String?> {
@@ -629,7 +1031,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/loginPage';
+            return '/onboarding/:userRef';
           }
           return null;
         },
@@ -643,15 +1045,11 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
-                      ),
-                    ),
+              ? Container(
+                  color: FlutterFlowTheme.of(context).tertiary,
+                  child: Image.asset(
+                    'assets/images/main-logo.png',
+                    fit: BoxFit.contain,
                   ),
                 )
               : PushNotificationsHandler(child: page);
@@ -697,6 +1095,34 @@ class TransitionInfo {
   final Alignment? alignment;
 
   static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
+}
+
+class _RouteErrorBuilder extends StatefulWidget {
+  const _RouteErrorBuilder({
+    required this.state,
+    required this.child,
+  });
+
+  final GoRouterState state;
+  final Widget child;
+
+  @override
+  State<_RouteErrorBuilder> createState() => _RouteErrorBuilderState();
+}
+
+class _RouteErrorBuilderState extends State<_RouteErrorBuilder> {
+  @override
+  void initState() {
+    super.initState();
+    // Handle erroneous links from Firebase Dynamic Links.
+    if (widget.state.uri.toString().startsWith('/link') &&
+        widget.state.uri.toString().contains('request_ip_version')) {
+      SchedulerBinding.instance.addPostFrameCallback((_) => context.go('/'));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.child;
 }
 
 class RootPageContext {

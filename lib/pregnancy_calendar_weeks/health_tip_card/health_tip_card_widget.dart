@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,12 @@ import 'health_tip_card_model.dart';
 export 'health_tip_card_model.dart';
 
 class HealthTipCardWidget extends StatefulWidget {
-  const HealthTipCardWidget({super.key});
+  const HealthTipCardWidget({
+    super.key,
+    required this.weeksDoc,
+  });
+
+  final WeeksRecord? weeksDoc;
 
   @override
   State<HealthTipCardWidget> createState() => _HealthTipCardWidgetState();
@@ -123,20 +129,26 @@ class _HealthTipCardWidgetState extends State<HealthTipCardWidget> {
                               ),
                             ),
                           ),
-                          Flexible(
-                            child: Text(
-                              'It is important to continue to eat a balanced diet with adequate protein, calcium and iron intake',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Figtree',
-                                    color: FlutterFlowTheme.of(context).accent2,
-                                    fontSize: 16.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                  ),
+                          if (widget.weeksDoc?.tipOne != null &&
+                              widget.weeksDoc?.tipOne != '')
+                            Flexible(
+                              child: Text(
+                                valueOrDefault<String>(
+                                  widget.weeksDoc?.tipOne,
+                                  '1',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Figtree',
+                                      color:
+                                          FlutterFlowTheme.of(context).accent2,
+                                      fontSize: 16.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                              ),
                             ),
-                          ),
                         ],
                       ),
                       Row(
@@ -156,20 +168,26 @@ class _HealthTipCardWidgetState extends State<HealthTipCardWidget> {
                               ),
                             ),
                           ),
-                          Flexible(
-                            child: Text(
-                              'It is important to continue to eat a balanced diet with adequate protein, calcium and iron intake',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Figtree',
-                                    color: FlutterFlowTheme.of(context).accent2,
-                                    fontSize: 16.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                  ),
+                          if (widget.weeksDoc?.tipTwo != null &&
+                              widget.weeksDoc?.tipTwo != '')
+                            Flexible(
+                              child: Text(
+                                valueOrDefault<String>(
+                                  widget.weeksDoc?.tipTwo,
+                                  '2',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Figtree',
+                                      color:
+                                          FlutterFlowTheme.of(context).accent2,
+                                      fontSize: 16.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                              ),
                             ),
-                          ),
                         ],
                       ),
                       Row(
@@ -189,55 +207,69 @@ class _HealthTipCardWidgetState extends State<HealthTipCardWidget> {
                               ),
                             ),
                           ),
-                          Flexible(
-                            child: Text(
-                              'It is important to continue to eat a balanced diet with adequate protein, calcium and iron intake',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Figtree',
-                                    color: FlutterFlowTheme.of(context).accent2,
-                                    fontSize: 16.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 15.0, 0.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'assets/images/Frame_1387.png',
-                                width: 24.0,
-                                height: 24.0,
-                                fit: BoxFit.fill,
+                          if (widget.weeksDoc?.tipThree != null &&
+                              widget.weeksDoc?.tipThree != '')
+                            Flexible(
+                              child: Text(
+                                valueOrDefault<String>(
+                                  widget.weeksDoc?.tipThree,
+                                  '3',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Figtree',
+                                      color:
+                                          FlutterFlowTheme.of(context).accent2,
+                                      fontSize: 16.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                               ),
                             ),
-                          ),
-                          Flexible(
-                            child: Text(
-                              'It is important to continue to eat a balanced diet with adequate protein, calcium and iron intake',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Figtree',
-                                    color: FlutterFlowTheme.of(context).accent2,
-                                    fontSize: 16.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                            ),
-                          ),
                         ],
                       ),
+                      if (widget.weeksDoc?.tipFour != null &&
+                          widget.weeksDoc?.tipFour != '')
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 15.0, 0.0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.asset(
+                                  'assets/images/Frame_1387.png',
+                                  width: 24.0,
+                                  height: 24.0,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                            if (widget.weeksDoc?.tipFour != null &&
+                                widget.weeksDoc?.tipFour != '')
+                              Flexible(
+                                child: Text(
+                                  valueOrDefault<String>(
+                                    widget.weeksDoc?.tipFour,
+                                    '4',
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Figtree',
+                                        color: FlutterFlowTheme.of(context)
+                                            .accent2,
+                                        fontSize: 16.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ),
+                          ],
+                        ),
                     ],
                   ),
                 ),

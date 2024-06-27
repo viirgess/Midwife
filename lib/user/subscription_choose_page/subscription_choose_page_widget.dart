@@ -115,9 +115,8 @@ class _SubscriptionChoosePageWidgetState
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            setState(() {
-                              _model.monthlyChosen = true;
-                            });
+                            _model.monthlyChosen = true;
+                            setState(() {});
                           },
                           child: Container(
                             width: 100.0,
@@ -232,9 +231,8 @@ class _SubscriptionChoosePageWidgetState
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            setState(() {
-                              _model.monthlyChosen = false;
-                            });
+                            _model.monthlyChosen = false;
+                            setState(() {});
                           },
                           child: Container(
                             width: 100.0,

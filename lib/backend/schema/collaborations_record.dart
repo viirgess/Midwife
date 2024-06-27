@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/enums/enums.dart';
 
 import 'index.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
 class CollaborationsRecord extends FirestoreRecord {
   CollaborationsRecord._(
@@ -14,31 +16,56 @@ class CollaborationsRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "title" field.
-  String? _title;
-  String get title => _title ?? '';
-  bool hasTitle() => _title != null;
+  // "type" field.
+  CollaborationType? _type;
+  CollaborationType? get type => _type;
+  bool hasType() => _type != null;
 
-  // "image" field.
-  String? _image;
-  String get image => _image ?? '';
-  bool hasImage() => _image != null;
+  // "promo_code" field.
+  String? _promoCode;
+  String get promoCode => _promoCode ?? '';
+  bool hasPromoCode() => _promoCode != null;
 
-  // "text" field.
-  String? _text;
-  String get text => _text ?? '';
-  bool hasText() => _text != null;
+  // "discount_value" field.
+  int? _discountValue;
+  int get discountValue => _discountValue ?? 0;
+  bool hasDiscountValue() => _discountValue != null;
 
-  // "button_text" field.
-  String? _buttonText;
-  String get buttonText => _buttonText ?? '';
-  bool hasButtonText() => _buttonText != null;
+  // "discount_type" field.
+  DiscountType? _discountType;
+  DiscountType? get discountType => _discountType;
+  bool hasDiscountType() => _discountType != null;
+
+  // "background_image" field.
+  String? _backgroundImage;
+  String get backgroundImage => _backgroundImage ?? '';
+  bool hasBackgroundImage() => _backgroundImage != null;
+
+  // "logo_image" field.
+  String? _logoImage;
+  String get logoImage => _logoImage ?? '';
+  bool hasLogoImage() => _logoImage != null;
+
+  // "company_name" field.
+  String? _companyName;
+  String get companyName => _companyName ?? '';
+  bool hasCompanyName() => _companyName != null;
+
+  // "short_description" field.
+  String? _shortDescription;
+  String get shortDescription => _shortDescription ?? '';
+  bool hasShortDescription() => _shortDescription != null;
 
   void _initializeFields() {
-    _title = snapshotData['title'] as String?;
-    _image = snapshotData['image'] as String?;
-    _text = snapshotData['text'] as String?;
-    _buttonText = snapshotData['button_text'] as String?;
+    _type = deserializeEnum<CollaborationType>(snapshotData['type']);
+    _promoCode = snapshotData['promo_code'] as String?;
+    _discountValue = castToType<int>(snapshotData['discount_value']);
+    _discountType =
+        deserializeEnum<DiscountType>(snapshotData['discount_type']);
+    _backgroundImage = snapshotData['background_image'] as String?;
+    _logoImage = snapshotData['logo_image'] as String?;
+    _companyName = snapshotData['company_name'] as String?;
+    _shortDescription = snapshotData['short_description'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -76,17 +103,25 @@ class CollaborationsRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createCollaborationsRecordData({
-  String? title,
-  String? image,
-  String? text,
-  String? buttonText,
+  CollaborationType? type,
+  String? promoCode,
+  int? discountValue,
+  DiscountType? discountType,
+  String? backgroundImage,
+  String? logoImage,
+  String? companyName,
+  String? shortDescription,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'title': title,
-      'image': image,
-      'text': text,
-      'button_text': buttonText,
+      'type': type,
+      'promo_code': promoCode,
+      'discount_value': discountValue,
+      'discount_type': discountType,
+      'background_image': backgroundImage,
+      'logo_image': logoImage,
+      'company_name': companyName,
+      'short_description': shortDescription,
     }.withoutNulls,
   );
 
@@ -99,15 +134,27 @@ class CollaborationsRecordDocumentEquality
 
   @override
   bool equals(CollaborationsRecord? e1, CollaborationsRecord? e2) {
-    return e1?.title == e2?.title &&
-        e1?.image == e2?.image &&
-        e1?.text == e2?.text &&
-        e1?.buttonText == e2?.buttonText;
+    return e1?.type == e2?.type &&
+        e1?.promoCode == e2?.promoCode &&
+        e1?.discountValue == e2?.discountValue &&
+        e1?.discountType == e2?.discountType &&
+        e1?.backgroundImage == e2?.backgroundImage &&
+        e1?.logoImage == e2?.logoImage &&
+        e1?.companyName == e2?.companyName &&
+        e1?.shortDescription == e2?.shortDescription;
   }
 
   @override
-  int hash(CollaborationsRecord? e) =>
-      const ListEquality().hash([e?.title, e?.image, e?.text, e?.buttonText]);
+  int hash(CollaborationsRecord? e) => const ListEquality().hash([
+        e?.type,
+        e?.promoCode,
+        e?.discountValue,
+        e?.discountType,
+        e?.backgroundImage,
+        e?.logoImage,
+        e?.companyName,
+        e?.shortDescription
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is CollaborationsRecord;

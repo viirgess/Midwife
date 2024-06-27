@@ -5,7 +5,7 @@ Future initFirebase() async {
   if (kIsWeb) {
     await Firebase.initializeApp(
         options: const FirebaseOptions(
-            apiKey: "AIzaSyBma7oFHhnPjDYUWHRjnz4kX2IT2Nr7CC0",
+            apiKey: "AIzaSyD4O8CQVfy3OV9FVmPWJvdXMC73jeEF_xo",
             authDomain: "midwifementor-a515e.firebaseapp.com",
             projectId: "midwifementor-a515e",
             storageBucket: "midwifementor-a515e.appspot.com",

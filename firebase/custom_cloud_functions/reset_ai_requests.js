@@ -2,6 +2,7 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 // To avoid deployment errors, do not call admin.initializeApp() in your code
 
+// 0 0 1 * *
 exports.resetAiRequests = functions
   .region("europe-west3")
   .pubsub.schedule("0 0 1 * *")

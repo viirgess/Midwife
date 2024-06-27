@@ -85,7 +85,8 @@ class _CalendarCardWidgetState extends State<CalendarCardWidget> {
                 child: AuthUserStreamWidget(
                   builder: (context) => Text(
                     functions
-                        .calculateWeek(currentUserDocument?.calculatedDate)
+                        .calculateWeek(currentUserDocument!.calculatedDate!,
+                            getCurrentTimestamp)
                         .toString(),
                     textAlign: TextAlign.start,
                     style: FlutterFlowTheme.of(context).bodyMedium.override(

@@ -1,5 +1,5 @@
 // ignore_for_file: unnecessary_getters_setters
-
+import '/backend/algolia/serialization_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '/backend/schema/util/firestore_util.dart';
@@ -19,12 +19,14 @@ class BabyNameStruct extends FFFirebaseStruct {
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "Sex" field.
   String? _sex;
   String get sex => _sex ?? '';
   set sex(String? val) => _sex = val;
+
   bool hasSex() => _sex != null;
 
   static BabyNameStruct fromMap(Map<String, dynamic> data) => BabyNameStruct(
@@ -63,6 +65,24 @@ class BabyNameStruct extends FFFirebaseStruct {
           data['Sex'],
           ParamType.String,
           false,
+        ),
+      );
+
+  static BabyNameStruct fromAlgoliaData(Map<String, dynamic> data) =>
+      BabyNameStruct(
+        name: convertAlgoliaParam(
+          data['Name'],
+          ParamType.String,
+          false,
+        ),
+        sex: convertAlgoliaParam(
+          data['Sex'],
+          ParamType.String,
+          false,
+        ),
+        firestoreUtilData: const FirestoreUtilData(
+          clearUnsetFields: false,
+          create: true,
         ),
       );
 

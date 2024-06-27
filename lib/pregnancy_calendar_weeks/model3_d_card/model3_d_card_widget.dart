@@ -33,9 +33,8 @@ class _Model3DCardWidgetState extends State<Model3DCardWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.viewClicked = false;
-      });
+      _model.viewClicked = false;
+      setState(() {});
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -69,9 +68,8 @@ class _Model3DCardWidgetState extends State<Model3DCardWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  setState(() {
-                    _model.viewClicked = true;
-                  });
+                  _model.viewClicked = true;
+                  setState(() {});
                 },
                 child: Container(
                   width: double.infinity,
@@ -89,9 +87,8 @@ class _Model3DCardWidgetState extends State<Model3DCardWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          setState(() {
-                            _model.viewClicked = true;
-                          });
+                          _model.viewClicked = true;
+                          setState(() {});
                         },
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),

@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/avatar_image_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -72,7 +73,7 @@ class _MessageBoxWidgetState extends State<MessageBoxWidget> {
                 height: 50.0,
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
-                    FlutterFlowTheme.of(context).primary,
+                    FlutterFlowTheme.of(context).secondary,
                   ),
                 ),
               ),
@@ -104,19 +105,11 @@ class _MessageBoxWidgetState extends State<MessageBoxWidget> {
                         widget.chatDocument,
                         ParamType.DocumentReference,
                       ),
-                      'userName': serializeParam(
-                        '${containerUsersRecord.firstName} ${containerUsersRecord.lastName}',
-                        ParamType.String,
-                      ),
                       'userRef': serializeParam(
                         currentUserReference == FFAppState().midwifeRef
                             ? widget.userA
                             : containerUsersRecord.reference,
                         ParamType.DocumentReference,
-                      ),
-                      'userimage': serializeParam(
-                        containerUsersRecord.photoUrl,
-                        ParamType.String,
                       ),
                     }.withoutNulls,
                   );
@@ -135,39 +128,58 @@ class _MessageBoxWidgetState extends State<MessageBoxWidget> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      if (currentUserReference != widget.user)
-                        StreamBuilder<UsersRecord>(
-                          stream: UsersRecord.getDocument(widget.userA!),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  child: CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                      FlutterFlowTheme.of(context).primary,
+                      Builder(
+                        builder: (context) {
+                          if (containerUsersRecord.photoUrl != '') {
+                            return Visibility(
+                              visible: currentUserReference != widget.user,
+                              child: StreamBuilder<UsersRecord>(
+                                stream: UsersRecord.getDocument(widget.userA!),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        child: CircularProgressIndicator(
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                            FlutterFlowTheme.of(context)
+                                                .secondary,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  final circleImageUsersRecord = snapshot.data!;
+                                  return Container(
+                                    width: 60.0,
+                                    height: 60.0,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
                                     ),
-                                  ),
-                                ),
-                              );
-                            }
-                            final circleImageUsersRecord = snapshot.data!;
-                            return Container(
-                              width: 60.0,
-                              height: 60.0,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.network(
-                                circleImageUsersRecord.photoUrl,
-                                fit: BoxFit.cover,
+                                    child: Image.network(
+                                      circleImageUsersRecord.photoUrl,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  );
+                                },
                               ),
                             );
-                          },
-                        ),
+                          } else {
+                            return wrapWithModel(
+                              model: _model.avatarImageModel,
+                              updateCallback: () => setState(() {}),
+                              child: AvatarImageWidget(
+                                firstName: containerUsersRecord.firstName,
+                                lastname: containerUsersRecord.lastName,
+                              ),
+                            );
+                          }
+                        },
+                      ),
                       if (currentUserReference == widget.user)
                         StreamBuilder<UsersRecord>(
                           stream: UsersRecord.getDocument(widget.userB!),
@@ -180,7 +192,7 @@ class _MessageBoxWidgetState extends State<MessageBoxWidget> {
                                   height: 50.0,
                                   child: CircularProgressIndicator(
                                     valueColor: AlwaysStoppedAnimation<Color>(
-                                      FlutterFlowTheme.of(context).primary,
+                                      FlutterFlowTheme.of(context).secondary,
                                     ),
                                   ),
                                 ),
@@ -230,7 +242,7 @@ class _MessageBoxWidgetState extends State<MessageBoxWidget> {
                                                     AlwaysStoppedAnimation<
                                                         Color>(
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
+                                                      .secondary,
                                                 ),
                                               ),
                                             ),
@@ -269,7 +281,7 @@ class _MessageBoxWidgetState extends State<MessageBoxWidget> {
                                                     AlwaysStoppedAnimation<
                                                         Color>(
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
+                                                      .secondary,
                                                 ),
                                               ),
                                             ),

@@ -2,6 +2,7 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -126,13 +127,11 @@ class _ListOfFriendsWidgetState extends State<ListOfFriendsWidget> {
                                         _model.simpleSearchResults = [])
                                     .whenComplete(() => setState(() {}));
 
-                                setState(() {
-                                  _model.isShowFullList = false;
-                                });
+                                _model.isShowFullList = false;
+                                setState(() {});
                               } else {
-                                setState(() {
-                                  _model.isShowFullList = true;
-                                });
+                                _model.isShowFullList = true;
+                                setState(() {});
                               }
                             },
                           ),
@@ -218,13 +217,11 @@ class _ListOfFriendsWidgetState extends State<ListOfFriendsWidget> {
                                             .whenComplete(
                                                 () => setState(() {}));
 
-                                        setState(() {
-                                          _model.isShowFullList = false;
-                                        });
+                                        _model.isShowFullList = false;
+                                        setState(() {});
                                       } else {
-                                        setState(() {
-                                          _model.isShowFullList = true;
-                                        });
+                                        _model.isShowFullList = true;
+                                        setState(() {});
                                       }
 
                                       setState(() {});
@@ -296,7 +293,7 @@ class _ListOfFriendsWidgetState extends State<ListOfFriendsWidget> {
                                                     AlwaysStoppedAnimation<
                                                         Color>(
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
+                                                      .secondary,
                                                 ),
                                               ),
                                             ),
@@ -314,245 +311,428 @@ class _ListOfFriendsWidgetState extends State<ListOfFriendsWidget> {
                                               width: 0.0,
                                             ),
                                           ),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 10.0, 0.0, 10.0),
-                                            child: InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                _model.chatExists =
-                                                    await queryChatsRecordOnce(
-                                                  queryBuilder: (chatsRecord) =>
-                                                      chatsRecord
-                                                          .where(
-                                                            'user_a',
-                                                            isEqualTo:
-                                                                currentUserReference,
-                                                          )
-                                                          .where(
-                                                            'user_b',
-                                                            isEqualTo:
-                                                                containerUsersRecord
-                                                                    .reference,
+                                          child: Wrap(
+                                            spacing: 0.0,
+                                            runSpacing: 0.0,
+                                            alignment: WrapAlignment.start,
+                                            crossAxisAlignment:
+                                                WrapCrossAlignment.start,
+                                            direction: Axis.horizontal,
+                                            runAlignment: WrapAlignment.start,
+                                            verticalDirection:
+                                                VerticalDirection.down,
+                                            clipBehavior: Clip.none,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 10.0, 0.0, 10.0),
+                                                child: InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    _model.chatExists =
+                                                        await queryChatsRecordOnce(
+                                                      queryBuilder:
+                                                          (chatsRecord) =>
+                                                              chatsRecord
+                                                                  .where(
+                                                                    'user_a',
+                                                                    isEqualTo:
+                                                                        currentUserReference,
+                                                                  )
+                                                                  .where(
+                                                                    'user_b',
+                                                                    isEqualTo:
+                                                                        containerUsersRecord
+                                                                            .reference,
+                                                                  ),
+                                                      singleRecord: true,
+                                                    ).then((s) =>
+                                                            s.firstOrNull);
+                                                    if (_model.chatExists
+                                                            ?.reference !=
+                                                        null) {
+                                                      context.pushNamed(
+                                                        'chatMessages',
+                                                        queryParameters: {
+                                                          'chatUser':
+                                                              serializeParam(
+                                                            _model.chatExists
+                                                                ?.reference,
+                                                            ParamType
+                                                                .DocumentReference,
                                                           ),
-                                                  singleRecord: true,
-                                                ).then((s) => s.firstOrNull);
-                                                if (_model.chatExists
-                                                        ?.reference !=
-                                                    null) {
-                                                  context.pushNamed(
-                                                    'chatMessages',
-                                                    queryParameters: {
-                                                      'chatUser':
-                                                          serializeParam(
-                                                        _model.chatExists
-                                                            ?.reference,
-                                                        ParamType
-                                                            .DocumentReference,
-                                                      ),
-                                                      'userName':
-                                                          serializeParam(
-                                                        '${containerUsersRecord.firstName} ${containerUsersRecord.lastName}',
-                                                        ParamType.String,
-                                                      ),
-                                                      'userRef': serializeParam(
-                                                        containerUsersRecord
-                                                            .reference,
-                                                        ParamType
-                                                            .DocumentReference,
-                                                      ),
-                                                      'userimage':
-                                                          serializeParam(
-                                                        containerUsersRecord
-                                                            .photoUrl,
-                                                        ParamType.String,
-                                                      ),
-                                                    }.withoutNulls,
-                                                  );
-                                                } else {
-                                                  _model.chatExists2 =
-                                                      await queryChatsRecordOnce(
-                                                    queryBuilder:
-                                                        (chatsRecord) =>
-                                                            chatsRecord
-                                                                .where(
-                                                                  'user_a',
-                                                                  isEqualTo:
-                                                                      containerUsersRecord
-                                                                          .reference,
-                                                                )
-                                                                .where(
-                                                                  'user_b',
-                                                                  isEqualTo:
-                                                                      currentUserReference,
-                                                                ),
-                                                    singleRecord: true,
-                                                  ).then((s) => s.firstOrNull);
-                                                  if (_model.chatExists2
-                                                          ?.reference !=
-                                                      null) {
-                                                    context.pushNamed(
-                                                      'chatMessages',
-                                                      queryParameters: {
-                                                        'chatUser':
-                                                            serializeParam(
-                                                          _model.chatExists2
-                                                              ?.reference,
-                                                          ParamType
-                                                              .DocumentReference,
-                                                        ),
-                                                        'userName':
-                                                            serializeParam(
-                                                          currentUserDisplayName,
-                                                          ParamType.String,
-                                                        ),
-                                                        'userRef':
-                                                            serializeParam(
-                                                          currentUserReference,
-                                                          ParamType
-                                                              .DocumentReference,
-                                                        ),
-                                                        'userimage':
-                                                            serializeParam(
-                                                          currentUserPhoto,
-                                                          ParamType.String,
-                                                        ),
-                                                      }.withoutNulls,
-                                                    );
-                                                  } else {
-                                                    var chatsRecordReference =
-                                                        ChatsRecord.collection
-                                                            .doc();
-                                                    await chatsRecordReference
-                                                        .set(
-                                                            createChatsRecordData(
-                                                      user:
-                                                          currentUserReference,
-                                                      userA:
-                                                          currentUserReference,
-                                                      userB:
-                                                          containerUsersRecord
-                                                              .reference,
-                                                      image:
-                                                          containerUsersRecord
-                                                              .photoUrl,
-                                                    ));
-                                                    _model.newChat = ChatsRecord
-                                                        .getDocumentFromData(
-                                                            createChatsRecordData(
-                                                              user:
-                                                                  currentUserReference,
-                                                              userA:
-                                                                  currentUserReference,
-                                                              userB:
-                                                                  containerUsersRecord
-                                                                      .reference,
-                                                              image:
-                                                                  containerUsersRecord
-                                                                      .photoUrl,
+                                                          'userRef':
+                                                              serializeParam(
+                                                            containerUsersRecord
+                                                                .reference,
+                                                            ParamType
+                                                                .DocumentReference,
+                                                          ),
+                                                        }.withoutNulls,
+                                                      );
+                                                    } else {
+                                                      _model.chatExists2 =
+                                                          await queryChatsRecordOnce(
+                                                        queryBuilder:
+                                                            (chatsRecord) =>
+                                                                chatsRecord
+                                                                    .where(
+                                                                      'user_a',
+                                                                      isEqualTo:
+                                                                          containerUsersRecord
+                                                                              .reference,
+                                                                    )
+                                                                    .where(
+                                                                      'user_b',
+                                                                      isEqualTo:
+                                                                          currentUserReference,
+                                                                    ),
+                                                        singleRecord: true,
+                                                      ).then((s) =>
+                                                              s.firstOrNull);
+                                                      if (_model.chatExists2
+                                                              ?.reference !=
+                                                          null) {
+                                                        context.pushNamed(
+                                                          'chatMessages',
+                                                          queryParameters: {
+                                                            'chatUser':
+                                                                serializeParam(
+                                                              _model.chatExists2
+                                                                  ?.reference,
+                                                              ParamType
+                                                                  .DocumentReference,
                                                             ),
-                                                            chatsRecordReference);
+                                                            'userRef':
+                                                                serializeParam(
+                                                              currentUserReference,
+                                                              ParamType
+                                                                  .DocumentReference,
+                                                            ),
+                                                          }.withoutNulls,
+                                                        );
+                                                      } else {
+                                                        var chatsRecordReference =
+                                                            ChatsRecord
+                                                                .collection
+                                                                .doc();
+                                                        await chatsRecordReference
+                                                            .set(
+                                                                createChatsRecordData(
+                                                          user:
+                                                              currentUserReference,
+                                                          userA:
+                                                              currentUserReference,
+                                                          userB:
+                                                              containerUsersRecord
+                                                                  .reference,
+                                                          image:
+                                                              containerUsersRecord
+                                                                  .photoUrl,
+                                                        ));
+                                                        _model.newChat = ChatsRecord
+                                                            .getDocumentFromData(
+                                                                createChatsRecordData(
+                                                                  user:
+                                                                      currentUserReference,
+                                                                  userA:
+                                                                      currentUserReference,
+                                                                  userB: containerUsersRecord
+                                                                      .reference,
+                                                                  image: containerUsersRecord
+                                                                      .photoUrl,
+                                                                ),
+                                                                chatsRecordReference);
 
-                                                    context.pushNamed(
-                                                      'chatMessages',
-                                                      queryParameters: {
-                                                        'chatUser':
-                                                            serializeParam(
-                                                          _model.newChat
-                                                              ?.reference,
-                                                          ParamType
-                                                              .DocumentReference,
-                                                        ),
-                                                        'userName':
-                                                            serializeParam(
-                                                          '${containerUsersRecord.firstName} ${containerUsersRecord.lastName}',
-                                                          ParamType.String,
-                                                        ),
-                                                        'userRef':
-                                                            serializeParam(
-                                                          containerUsersRecord
-                                                              .reference,
-                                                          ParamType
-                                                              .DocumentReference,
-                                                        ),
-                                                        'userimage':
-                                                            serializeParam(
-                                                          containerUsersRecord
-                                                              .photoUrl,
-                                                          ParamType.String,
-                                                        ),
-                                                      }.withoutNulls,
-                                                    );
-                                                  }
-                                                }
+                                                        context.pushNamed(
+                                                          'chatMessages',
+                                                          queryParameters: {
+                                                            'chatUser':
+                                                                serializeParam(
+                                                              _model.newChat
+                                                                  ?.reference,
+                                                              ParamType
+                                                                  .DocumentReference,
+                                                            ),
+                                                            'userRef':
+                                                                serializeParam(
+                                                              containerUsersRecord
+                                                                  .reference,
+                                                              ParamType
+                                                                  .DocumentReference,
+                                                            ),
+                                                          }.withoutNulls,
+                                                        );
+                                                      }
+                                                    }
 
-                                                Navigator.pop(context);
+                                                    Navigator.pop(context);
 
-                                                setState(() {});
-                                              },
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                8.0, 0.0),
-                                                    child: Container(
-                                                      width: 50.0,
-                                                      height: 50.0,
-                                                      clipBehavior:
-                                                          Clip.antiAlias,
-                                                      decoration: const BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                      ),
-                                                      child: Image.network(
-                                                        containerUsersRecord
-                                                            .photoUrl,
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Row(
+                                                    setState(() {});
+                                                  },
+                                                  child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
                                                     children: [
-                                                      Text(
-                                                        '${containerUsersRecord.firstName} ${containerUsersRecord.lastName}',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Figtree',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .alternate,
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                      Builder(
+                                                        builder: (context) {
+                                                          if (containerUsersRecord
+                                                                      .photoUrl !=
+                                                                  '') {
+                                                            return Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          8.0,
+                                                                          0.0),
+                                                              child: Container(
+                                                                width: 50.0,
+                                                                height: 50.0,
+                                                                clipBehavior: Clip
+                                                                    .antiAlias,
+                                                                decoration:
+                                                                    const BoxDecoration(
+                                                                  shape: BoxShape
+                                                                      .circle,
                                                                 ),
+                                                                child: Image
+                                                                    .network(
+                                                                  containerUsersRecord
+                                                                      .photoUrl,
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          } else {
+                                                            return Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          8.0,
+                                                                          0.0),
+                                                              child: Container(
+                                                                width: 50.0,
+                                                                height: 50.0,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: const Color(
+                                                                      0xFFFCEEFF),
+                                                                  shape: BoxShape
+                                                                      .circle,
+                                                                  border: Border
+                                                                      .all(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .tertiary,
+                                                                    width: 1.0,
+                                                                  ),
+                                                                ),
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    '${String.fromCharCode(containerUsersRecord.firstName.runes.first)}${String.fromCharCode(containerUsersRecord.lastName.runes.first)}',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Figtree',
+                                                                          fontSize:
+                                                                              16.0,
+                                                                          letterSpacing:
+                                                                              1.2,
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                        },
                                                       ),
-                                                      if (containerUsersRecord
-                                                          .isAdmin)
-                                                        const Icon(
-                                                          Icons.verified,
-                                                          color:
-                                                              Color(0xFF52A7FB),
-                                                          size: 18.0,
+                                                      Flexible(
+                                                        child: Wrap(
+                                                          spacing: 0.0,
+                                                          runSpacing: 0.0,
+                                                          alignment:
+                                                              WrapAlignment
+                                                                  .start,
+                                                          crossAxisAlignment:
+                                                              WrapCrossAlignment
+                                                                  .start,
+                                                          direction:
+                                                              Axis.horizontal,
+                                                          runAlignment:
+                                                              WrapAlignment
+                                                                  .start,
+                                                          verticalDirection:
+                                                              VerticalDirection
+                                                                  .down,
+                                                          clipBehavior:
+                                                              Clip.none,
+                                                          children: [
+                                                            Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .min,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Wrap(
+                                                                  spacing: 0.0,
+                                                                  runSpacing:
+                                                                      0.0,
+                                                                  alignment:
+                                                                      WrapAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      WrapCrossAlignment
+                                                                          .start,
+                                                                  direction: Axis
+                                                                      .horizontal,
+                                                                  runAlignment:
+                                                                      WrapAlignment
+                                                                          .start,
+                                                                  verticalDirection:
+                                                                      VerticalDirection
+                                                                          .down,
+                                                                  clipBehavior:
+                                                                      Clip.none,
+                                                                  children: [
+                                                                    Text(
+                                                                      '${containerUsersRecord.firstName} ${containerUsersRecord.lastName}',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyLarge
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Figtree',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).alternate,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                          ),
+                                                                    ),
+                                                                    if (containerUsersRecord
+                                                                        .isAdmin)
+                                                                      const Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            6.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .verified,
+                                                                          color:
+                                                                              Color(0xFF52A7FB),
+                                                                          size:
+                                                                              18.0,
+                                                                        ),
+                                                                      ),
+                                                                    Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .min,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .start,
+                                                                      children: [
+                                                                        if ((containerUsersRecord.location !=
+                                                                                null) &&
+                                                                            (currentUserDocument?.location !=
+                                                                                null))
+                                                                          Padding(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                                0.0,
+                                                                                0.0,
+                                                                                3.0,
+                                                                                0.0),
+                                                                            child:
+                                                                                ClipRRect(
+                                                                              borderRadius: BorderRadius.circular(8.0),
+                                                                              child: Image.asset(
+                                                                                'assets/images/location_fill.png',
+                                                                                width: 20.0,
+                                                                                height: 20.0,
+                                                                                fit: BoxFit.cover,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        if ((containerUsersRecord.location !=
+                                                                                null) &&
+                                                                            (currentUserDocument?.location !=
+                                                                                null))
+                                                                          Text(
+                                                                            '${valueOrDefault<String>(
+                                                                              functions.calculateDistanceBetweenUsers(currentUserDocument!.location!, containerUsersRecord.location!),
+                                                                              '0',
+                                                                            )} from you',
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Figtree',
+                                                                                  letterSpacing: 0.0,
+                                                                                ),
+                                                                          ),
+                                                                      ],
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                if (containerUsersRecord
+                                                                            .locationName !=
+                                                                        '')
+                                                                  Align(
+                                                                    alignment:
+                                                                        const AlignmentDirectional(
+                                                                            -1.0,
+                                                                            0.0),
+                                                                    child: Text(
+                                                                      containerUsersRecord.locationName,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Figtree',
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                              ].divide(const SizedBox(
+                                                                  height: 4.0)),
+                                                            ),
+                                                          ],
                                                         ),
+                                                      ),
                                                     ],
                                                   ),
-                                                ],
+                                                ),
                                               ),
-                                            ),
+                                            ],
                                           ),
                                         );
                                       },

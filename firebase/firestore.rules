@@ -36,18 +36,6 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    match /blogs/{parent}/topics/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if false;
-      allow delete: if false;
-    }
-
-    match /{path=**}/topics/{document} {
-      allow read: if true;
-    }
-
-
     match /weeks/{document} {
       allow create: if true;
       allow read: if true;
@@ -76,69 +64,12 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    match /pregnancy_community_forum/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if false;
-      allow delete: if false;
-    }
-
-    match /pregnancy_community_forum/{parent}/pregnancy_comments_forum/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if false;
-      allow delete: if false;
-    }
-
-    match /{path=**}/pregnancy_comments_forum/{document} {
-      allow read: if true;
-    }
-
-
-    match /post_pregnancy_community_forum/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if false;
-      allow delete: if false;
-    }
-
-    match /post_pregnancy_community_forum/{parent}/post_pregnancy_comments_forum/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if false;
-      allow delete: if false;
-    }
-
-    match /{path=**}/post_pregnancy_comments_forum/{document} {
-      allow read: if true;
-    }
-
-
-    match /collaborations/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if false;
-      allow delete: if false;
-    }
-
     match /courses/{document} {
       allow create: if true;
       allow read: if true;
       allow write: if false;
       allow delete: if false;
     }
-
-    match /courses/{parent}/sections/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if false;
-      allow delete: if false;
-    }
-
-    match /{path=**}/sections/{document} {
-      allow read: if true;
-    }
-
 
     match /courses/{parent}/lessons/{document} {
       allow create: if true;
@@ -152,30 +83,6 @@ service cloud.firestore {
     }
 
 
-    match /pregnancy_community_forum/{parent}/pregnancy_replies/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if false;
-      allow delete: if false;
-    }
-
-    match /{path=**}/pregnancy_replies/{document} {
-      allow read: if true;
-    }
-
-
-    match /post_pregnancy_community_forum/{parent}/post_pregnancy_replies/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if false;
-      allow delete: if false;
-    }
-
-    match /{path=**}/post_pregnancy_replies/{document} {
-      allow read: if true;
-    }
-
-
     match /name_list/{document} {
       allow create: if true;
       allow read: if true;
@@ -184,13 +91,105 @@ service cloud.firestore {
     }
 
     match /users/{parent}/contractions/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if true;
-      allow delete: if true;
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
     }
 
-    match /{path=**}/contractions/{document} {
+    match /users/{parent}/memories/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /groups/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /posts/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /posts/{parent}/comments/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/comments/{document} {
+      allow read: if true;
+    }
+
+
+    match /posts/{parent}/replies/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/replies/{document} {
+      allow read: if true;
+    }
+
+
+    match /courses/{parent}/sections/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/sections/{document} {
+      allow read: if true;
+    }
+
+
+    match /users/{parent}/trackers/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /collaborations/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /pregnancy_planner/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /checklists/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /blogs/{parent}/additional_section/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/additional_section/{document} {
       allow read: if true;
     }
 

@@ -7,9 +7,10 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pregnancy_calendar_weeks/baby_development_card/baby_development_card_widget.dart';
+import '/pregnancy_calendar_weeks/checklist_week/checklist_week_widget.dart';
+import '/pregnancy_calendar_weeks/health_tip_card/health_tip_card_widget.dart';
 import '/pregnancy_calendar_weeks/model3_d_card/model3_d_card_widget.dart';
 import '/pregnancy_calendar_weeks/physical_changes_of_the_mother_card/physical_changes_of_the_mother_card_widget.dart';
-import '/pregnancy_calendar_weeks/week_description_card/week_description_card_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -40,13 +41,11 @@ class _PregnancyCalendarPageWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.week =
-            functions.calculateWeek(currentUserDocument?.calculatedDate);
-      });
-      setState(() {
-        FFAppState().selectedindex = 2;
-      });
+      _model.week = functions.calculateWeek(
+          currentUserDocument!.calculatedDate!, getCurrentTimestamp);
+      setState(() {});
+      FFAppState().selectedindex = 2;
+      setState(() {});
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -82,7 +81,7 @@ class _PregnancyCalendarPageWidgetState
                 height: 50.0,
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
-                    FlutterFlowTheme.of(context).primary,
+                    FlutterFlowTheme.of(context).secondary,
                   ),
                 ),
               ),
@@ -131,99 +130,85 @@ class _PregnancyCalendarPageWidgetState
                         Flexible(
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                20.0, 0.0, 20.0, 95.0),
+                                0.0, 0.0, 0.0, 95.0),
                             child: ListView(
                               padding: EdgeInsets.zero,
                               shrinkWrap: true,
                               scrollDirection: Axis.vertical,
                               children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: Image.asset(
-                                        'assets/images/stat_banner.png',
-                                      ).image,
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 0.0, 20.0, 0.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: Image.asset(
+                                          'assets/images/stat_banner.png',
+                                        ).image,
+                                      ),
+                                      borderRadius: BorderRadius.circular(24.0),
                                     ),
-                                    borderRadius: BorderRadius.circular(24.0),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 6.0),
-                                          child: Text(
-                                            'My pregnancy term',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Figtree',
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 24.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 8.0, 0.0),
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                  child: Image.asset(
-                                                    'assets/images/timer.png',
-                                                    width: 20.0,
-                                                    height: 20.0,
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ),
-                                              ),
-                                              AuthUserStreamWidget(
-                                                builder: (context) => Text(
-                                                  functions
-                                                      .calculateWeek(
-                                                          currentUserDocument
-                                                              ?.calculatedDate)
-                                                      .toString(),
-                                                  textAlign: TextAlign.start,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(20.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 6.0),
+                                            child: Text(
+                                              'My pregnancy term',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily: 'Figtree',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .accent2,
-                                                        fontSize: 20.0,
                                                         letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w600,
                                                       ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 24.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 8.0, 0.0),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    child: Image.asset(
+                                                      'assets/images/timer.png',
+                                                      width: 20.0,
+                                                      height: 20.0,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
                                                 ),
-                                              ),
-                                              Text(
-                                                ', ',
-                                                textAlign: TextAlign.start,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                                AuthUserStreamWidget(
+                                                  builder: (context) => Text(
+                                                    functions
+                                                        .calculateWeek(
+                                                            currentUserDocument!
+                                                                .calculatedDate!,
+                                                            getCurrentTimestamp)
+                                                        .toString(),
+                                                    textAlign: TextAlign.start,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Figtree',
@@ -235,10 +220,10 @@ class _PregnancyCalendarPageWidgetState
                                                           fontWeight:
                                                               FontWeight.w600,
                                                         ),
-                                              ),
-                                              AuthUserStreamWidget(
-                                                builder: (context) => Text(
-                                                  '${functions.calculateDay(currentUserDocument?.calculatedDate)} dagen',
+                                                  ),
+                                                ),
+                                                Text(
+                                                  ', ',
                                                   textAlign: TextAlign.start,
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -255,43 +240,10 @@ class _PregnancyCalendarPageWidgetState
                                                             FontWeight.w600,
                                                       ),
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 12.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                4.0, 0.0),
-                                                    child: Text(
-                                                      'Days left:',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Figtree',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    '312',
+                                                AuthUserStreamWidget(
+                                                  builder: (context) => Text(
+                                                    '${functions.calculateDay(currentUserDocument?.calculatedDate)} dagen',
+                                                    textAlign: TextAlign.start,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -300,82 +252,170 @@ class _PregnancyCalendarPageWidgetState
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .accent2,
-                                                          fontSize: 18.0,
+                                                          fontSize: 20.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w600,
                                                         ),
                                                   ),
-                                                ],
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                4.0, 0.0),
-                                                    child: Text(
-                                                      'EDD:',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Figtree',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                  AuthUserStreamWidget(
-                                                    builder: (context) => Text(
-                                                      dateTimeFormat(
-                                                          'yMd',
-                                                          currentUserDocument!
-                                                              .calculatedDate!),
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Figtree',
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .accent2,
-                                                            fontSize: 18.0,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                        LinearPercentIndicator(
-                                          percent: 0.5,
-                                          lineHeight: 10.0,
-                                          animation: true,
-                                          animateFromLastPercent: true,
-                                          progressColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondary,
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryBackground,
-                                          barRadius: const Radius.circular(10.0),
-                                          padding: EdgeInsets.zero,
-                                        ),
-                                      ],
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 12.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  4.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        'Days left:',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Figtree',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                    AuthUserStreamWidget(
+                                                      builder: (context) =>
+                                                          Text(
+                                                        valueOrDefault<String>(
+                                                          functions.calculateDateToBabyBirth(
+                                                              currentUserDocument
+                                                                  ?.calculatedDate),
+                                                          '7',
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Figtree',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .accent2,
+                                                                  fontSize:
+                                                                      18.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  4.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        'EDD:',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Figtree',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                    AuthUserStreamWidget(
+                                                      builder: (context) =>
+                                                          Text(
+                                                        dateTimeFormat(
+                                                          'yMMMd',
+                                                          currentUserDocument!
+                                                              .calculatedDate!,
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Figtree',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .accent2,
+                                                                  fontSize:
+                                                                      18.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          LinearPercentIndicator(
+                                            percent: 0.5,
+                                            lineHeight: 10.0,
+                                            animation: true,
+                                            animateFromLastPercent: true,
+                                            progressColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondary,
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryBackground,
+                                            barRadius: const Radius.circular(10.0),
+                                            padding: EdgeInsets.zero,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 28.0, 0.0, 16.0),
+                                      20.0, 28.0, 20.0, 16.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment:
@@ -401,9 +441,8 @@ class _PregnancyCalendarPageWidgetState
                                             size: 20.0,
                                           ),
                                           onPressed: () async {
-                                            setState(() {
-                                              _model.week = _model.week! + -1;
-                                            });
+                                            _model.week = _model.week! + -1;
+                                            setState(() {});
                                           },
                                         ),
                                       ),
@@ -461,9 +500,8 @@ class _PregnancyCalendarPageWidgetState
                                           size: 20.0,
                                         ),
                                         onPressed: () async {
-                                          setState(() {
-                                            _model.week = _model.week! + 1;
-                                          });
+                                          _model.week = _model.week! + 1;
+                                          setState(() {});
                                         },
                                       ),
                                     ],
@@ -471,7 +509,7 @@ class _PregnancyCalendarPageWidgetState
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 20.0),
+                                      20.0, 0.0, 20.0, 20.0),
                                   child: wrapWithModel(
                                     model: _model.model3DCardModel,
                                     updateCallback: () => setState(() {}),
@@ -484,7 +522,7 @@ class _PregnancyCalendarPageWidgetState
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 12.0),
+                                      20.0, 0.0, 20.0, 12.0),
                                   child: wrapWithModel(
                                     model: _model.babyDevelopmentCardModel,
                                     updateCallback: () => setState(() {}),
@@ -494,47 +532,58 @@ class _PregnancyCalendarPageWidgetState
                                     ),
                                   ),
                                 ),
-                                wrapWithModel(
-                                  model: _model
-                                      .physicalChangesOfTheMotherCardModel,
-                                  updateCallback: () => setState(() {}),
-                                  child: PhysicalChangesOfTheMotherCardWidget(
-                                    text: pregnancyCalendarPageWeeksRecord
-                                        .secondChapter,
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 0.0, 20.0, 12.0),
+                                  child: wrapWithModel(
+                                    model: _model
+                                        .physicalChangesOfTheMotherCardModel,
+                                    updateCallback: () => setState(() {}),
+                                    child: PhysicalChangesOfTheMotherCardWidget(
+                                      text: pregnancyCalendarPageWeeksRecord
+                                          .secondChapter,
+                                    ),
                                   ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 50.0),
+                                      20.0, 0.0, 20.0, 12.0),
                                   child: wrapWithModel(
-                                    model: _model.weekDescriptionCardModel,
+                                    model: _model.healthTipCardModel,
                                     updateCallback: () => setState(() {}),
-                                    child: WeekDescriptionCardWidget(
-                                      parameter1: valueOrDefault<String>(
-                                        pregnancyCalendarPageWeeksRecord
-                                            .firstChapter,
-                                        'first',
-                                      ),
-                                      parameter2: valueOrDefault<String>(
-                                        pregnancyCalendarPageWeeksRecord
-                                            .secondChapter,
-                                        'second',
-                                      ),
-                                      parameter3: valueOrDefault<String>(
-                                        pregnancyCalendarPageWeeksRecord
-                                            .thirdChapter,
-                                        'third',
-                                      ),
-                                      parameter4: valueOrDefault<String>(
-                                        pregnancyCalendarPageWeeksRecord
-                                            .fourthChapter,
-                                        'fourth',
-                                      ),
-                                      parameter5: valueOrDefault<String>(
-                                        pregnancyCalendarPageWeeksRecord
-                                            .fifthChapter,
-                                        '0',
-                                      ),
+                                    child: HealthTipCardWidget(
+                                      weeksDoc:
+                                          pregnancyCalendarPageWeeksRecord,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 0.0, 20.0, 20.0),
+                                  child: wrapWithModel(
+                                    model: _model.checklistWeekModel,
+                                    updateCallback: () => setState(() {}),
+                                    child: ChecklistWeekWidget(
+                                      text: pregnancyCalendarPageWeeksRecord
+                                          .fifthChapter,
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        20.0, 0.0, 20.0, 20.0),
+                                    child: Text(
+                                      'Disclaimer: Deze inhoud is alleen voor informatieve doeleinden en mag professioneel medisch advies niet vervangen. Raadpleeg een arts of andere zorgverlener als u zich zorgen maakt of vragen heeft over uw gezondheid. Als u vertrouwt op de verstrekte informatie, doet u dit volledig op eigen risico.',
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Figtree',
+                                            fontSize: 12.0,
+                                            letterSpacing: 0.0,
+                                          ),
                                     ),
                                   ),
                                 ),

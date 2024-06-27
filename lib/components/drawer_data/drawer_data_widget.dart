@@ -28,6 +28,8 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
     super.initState();
     _model = createModel(context, () => DrawerDataModel());
 
+    _model.switchValue =
+        valueOrDefault<bool>(currentUserDocument?.isPregnant, false);
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -192,7 +194,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                       highlightColor: Colors.transparent,
                       onTap: () async {
                         context.goNamed(
-                          'CommunityPage',
+                          'Community',
                           extra: <String, dynamic>{
                             kTransitionInfoKey: const TransitionInfo(
                               hasTransition: true,
@@ -328,7 +330,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                 highlightColor: Colors.transparent,
                 onTap: () async {
                   context.goNamed(
-                    'PregnancyCoursePage',
+                    'Courses',
                     extra: <String, dynamic>{
                       kTransitionInfoKey: const TransitionInfo(
                         hasTransition: true,
@@ -351,62 +353,26 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
             ),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
-              child: InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  context.goNamed(
-                    'CollaborationPage',
-                    extra: <String, dynamic>{
-                      kTransitionInfoKey: const TransitionInfo(
-                        hasTransition: true,
-                        transitionType: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                      ),
-                    },
-                  );
-                },
-                child: Text(
-                  'Samenwerkingen',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Figtree',
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        fontSize: 16.0,
-                        letterSpacing: 0.0,
-                      ),
-                ),
+              child: Text(
+                'Samenwerkingen',
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Figtree',
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      fontSize: 16.0,
+                      letterSpacing: 0.0,
+                    ),
               ),
             ),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
-              child: InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  context.goNamed(
-                    'FAQPage',
-                    extra: <String, dynamic>{
-                      kTransitionInfoKey: const TransitionInfo(
-                        hasTransition: true,
-                        transitionType: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                      ),
-                    },
-                  );
-                },
-                child: Text(
-                  'Veelgestelde vragen',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Figtree',
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        fontSize: 16.0,
-                        letterSpacing: 0.0,
-                      ),
-                ),
+              child: Text(
+                'Veelgestelde vragen',
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Figtree',
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      fontSize: 16.0,
+                      letterSpacing: 0.0,
+                    ),
               ),
             ),
             Padding(
@@ -448,23 +414,20 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                     alignment: const AlignmentDirectional(0.0, 0.0),
                     child: AuthUserStreamWidget(
                       builder: (context) => Switch.adaptive(
-                        value: _model.switchValue ??= valueOrDefault<bool>(
-                            currentUserDocument?.isPregnant, false),
+                        value: _model.switchValue!,
                         onChanged: (newValue) async {
                           setState(() => _model.switchValue = newValue);
                           if (newValue) {
-                            setState(() {
-                              FFAppState().isPregnant = true;
-                            });
+                            FFAppState().isPregnant = true;
+                            setState(() {});
 
                             await currentUserReference!
                                 .update(createUsersRecordData(
                               isPregnant: true,
                             ));
                           } else {
-                            setState(() {
-                              FFAppState().isPregnant = false;
-                            });
+                            FFAppState().isPregnant = false;
+                            setState(() {});
 
                             await currentUserReference!
                                 .update(createUsersRecordData(
@@ -573,7 +536,7 @@ class _DrawerDataWidgetState extends State<DrawerDataWidget> {
                   await authManager.signOut();
                   GoRouter.of(context).clearRedirectLocation();
 
-                  context.goNamedAuth('LoginPage', context.mounted);
+                  context.goNamedAuth('Onboarding', context.mounted);
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.max,

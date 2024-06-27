@@ -1,20 +1,6 @@
 {
   "indexes": [
     {
-      "collectionGroup": "pregnancy_community_forum",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "isPregnant",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "created_time",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
       "collectionGroup": "chats",
       "queryScope": "COLLECTION",
       "fields": [
@@ -29,6 +15,20 @@
         {
           "fieldPath": "last_message_time",
           "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "blogs",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "trimester",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "ASCENDING"
         }
       ]
     },
@@ -61,43 +61,71 @@
       ]
     },
     {
-      "collectionGroup": "pregnancy_replies",
+      "collectionGroup": "memories",
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "commentRef",
+          "fieldPath": "weeks",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "posts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "sex",
           "order": "ASCENDING"
         },
         {
           "fieldPath": "created_time",
-          "order": "ASCENDING"
+          "order": "DESCENDING"
         }
       ]
     },
     {
-      "collectionGroup": "sections",
+      "collectionGroup": "posts",
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "course_ref",
+          "fieldPath": "group_ref",
           "order": "ASCENDING"
         },
         {
-          "fieldPath": "createdAt",
-          "order": "ASCENDING"
+          "fieldPath": "created_time",
+          "order": "DESCENDING"
         }
       ]
     },
     {
-      "collectionGroup": "lessons",
+      "collectionGroup": "replies",
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "section_ref",
+          "fieldPath": "comment_ref",
           "order": "ASCENDING"
         },
         {
-          "fieldPath": "createdAt",
+          "fieldPath": "created_by",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "pregnancy_planner",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "userRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
           "order": "ASCENDING"
         }
       ]

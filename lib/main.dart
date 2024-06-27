@@ -9,8 +9,11 @@ import 'auth/firebase_auth/auth_util.dart';
 import 'backend/push_notifications/push_notifications_util.dart';
 import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_util.dart';
+import 'flutter_flow/internationalization.dart';
 
 import 'backend/stripe/payment_manager.dart';
+
+import '/backend/firebase_dynamic_links/firebase_dynamic_links.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,12 +44,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  ThemeMode _themeMode = ThemeMode.system;
+  Locale? _locale;
 
-  late Stream<BaseAuthUser> userStream;
+  ThemeMode _themeMode = ThemeMode.system;
 
   late AppStateNotifier _appStateNotifier;
   late GoRouter _router;
+
+  late Stream<BaseAuthUser> userStream;
 
   final authUserSub = authenticatedUserStream.listen((_) {});
   final fcmTokenSub = fcmTokenUserStream.listen((_) {});
@@ -57,8 +62,10 @@ class _MyAppState extends State<MyApp> {
 
     _appStateNotifier = AppStateNotifier.instance;
     _router = createRouter(_appStateNotifier);
-    userStream = midWifeMentorFirebaseUserStream()
-      ..listen((user) => _appStateNotifier.update(user));
+    userStream = mamaMentorFirebaseUserStream()
+      ..listen((user) {
+        _appStateNotifier.update(user);
+      });
     jwtTokenStream.listen((_) {});
     Future.delayed(
       const Duration(milliseconds: 1000),
@@ -73,6 +80,10 @@ class _MyAppState extends State<MyApp> {
     super.dispose();
   }
 
+  void setLocale(String language) {
+    setState(() => _locale = createLocale(language));
+  }
+
   void setThemeMode(ThemeMode mode) => setState(() {
         _themeMode = mode;
       });
@@ -80,19 +91,27 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'midWifeMentor',
+      title: 'Mama Mentor',
       localizationsDelegates: const [
+        FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [Locale('en', '')],
+      locale: _locale,
+      supportedLocales: const [
+        Locale('nl'),
+      ],
       theme: ThemeData(
         brightness: Brightness.light,
         useMaterial3: false,
       ),
       themeMode: _themeMode,
       routerConfig: _router,
+      builder: (_, child) => DynamicLinksHandler(
+        router: _router,
+        child: child!,
+      ),
     );
   }
 }

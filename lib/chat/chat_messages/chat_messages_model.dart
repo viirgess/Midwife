@@ -25,9 +25,13 @@ class ChatMessagesModel extends FlutterFlowModel<ChatMessagesWidget> {
   String? Function(BuildContext, String?)?
       messageTextFieldTextControllerValidator;
   bool isDataUploading2 = false;
-  FFUploadedFile uploadedLocalFile2 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl2 = '';
+  List<FFUploadedFile> uploadedLocalFiles2 = [];
+  List<String> uploadedFileUrls2 = [];
+
+  // Stores action output result for [Backend Call - Read Document] action in Container widget.
+  UsersRecord? userBDoc;
+  // Stores action output result for [Backend Call - Read Document] action in Container widget.
+  UsersRecord? userADoc;
 
   @override
   void initState(BuildContext context) {

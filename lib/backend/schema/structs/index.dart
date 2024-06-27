@@ -1,4 +1,20 @@
 export '/backend/schema/util/schema_util.dart';
 
+export 'baby_growth_struct.dart';
+export 'baby_height_struct.dart';
 export 'baby_name_struct.dart';
+export 'baby_weigth_struct.dart';
+export 'bottle_feeding_struct.dart';
+export 'breast_feeding_struct.dart';
+export 'checklist_item_struct.dart';
+export 'contractrion_statistics_struct.dart';
+export 'diaper_tracker_struct.dart';
+export 'feeding_journal_struct.dart';
 export 'lesson_struct.dart';
+export 'notification_settings_struct.dart';
+export 'percentile_data_struct.dart';
+export 'profile_struct.dart';
+export 'pump_feedin_struct.dart';
+export 'reaction_struct.dart';
+export 'subscription_struct.dart';
+export 'weight_struct.dart';

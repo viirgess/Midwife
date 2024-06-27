@@ -5,8 +5,8 @@ import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class MidWifeMentorFirebaseUser extends BaseAuthUser {
-  MidWifeMentorFirebaseUser(this.user);
+class MamaMentorFirebaseUser extends BaseAuthUser {
+  MamaMentorFirebaseUser(this.user);
   User? user;
   @override
   bool get loggedIn => user != null;
@@ -55,17 +55,17 @@ class MidWifeMentorFirebaseUser extends BaseAuthUser {
   static BaseAuthUser fromUserCredential(UserCredential userCredential) =>
       fromFirebaseUser(userCredential.user);
   static BaseAuthUser fromFirebaseUser(User? user) =>
-      MidWifeMentorFirebaseUser(user);
+      MamaMentorFirebaseUser(user);
 }
 
-Stream<BaseAuthUser> midWifeMentorFirebaseUserStream() => FirebaseAuth.instance
+Stream<BaseAuthUser> mamaMentorFirebaseUserStream() => FirebaseAuth.instance
         .authStateChanges()
         .debounce((user) => user == null && !loggedIn
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
         .map<BaseAuthUser>(
       (user) {
-        currentUser = MidWifeMentorFirebaseUser(user);
+        currentUser = MamaMentorFirebaseUser(user);
         return currentUser!;
       },
     );

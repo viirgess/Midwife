@@ -70,9 +70,8 @@ class _FAQCardWidgetState extends State<FAQCardWidget> {
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () async {
-                setState(() {
-                  _model.arrowClicked = !_model.arrowClicked;
-                });
+                _model.arrowClicked = !_model.arrowClicked;
+                setState(() {});
               },
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -101,9 +100,8 @@ class _FAQCardWidgetState extends State<FAQCardWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          setState(() {
-                            _model.arrowClicked = true;
-                          });
+                          _model.arrowClicked = true;
+                          setState(() {});
                         },
                         child: Icon(
                           Icons.arrow_drop_down_outlined,
@@ -121,9 +119,8 @@ class _FAQCardWidgetState extends State<FAQCardWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          setState(() {
-                            _model.arrowClicked = false;
-                          });
+                          _model.arrowClicked = false;
+                          setState(() {});
                         },
                         child: Icon(
                           Icons.arrow_drop_up_sharp,

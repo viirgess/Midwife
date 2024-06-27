@@ -1,8 +1,11 @@
 import 'dart:async';
 
+import '/backend/algolia/serialization_util.dart';
+import '/backend/algolia/algolia_manager.dart';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/enums/enums.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -71,16 +74,6 @@ class UsersRecord extends FirestoreRecord {
       _friendRequestsPending ?? const [];
   bool hasFriendRequestsPending() => _friendRequestsPending != null;
 
-  // "monthly_subscription" field.
-  bool? _monthlySubscription;
-  bool get monthlySubscription => _monthlySubscription ?? false;
-  bool hasMonthlySubscription() => _monthlySubscription != null;
-
-  // "annual_subscription" field.
-  bool? _annualSubscription;
-  bool get annualSubscription => _annualSubscription ?? false;
-  bool hasAnnualSubscription() => _annualSubscription != null;
-
   // "ai_requests" field.
   int? _aiRequests;
   int get aiRequests => _aiRequests ?? 0;
@@ -106,6 +99,87 @@ class UsersRecord extends FirestoreRecord {
   List<BabyNameStruct> get likedNamesGirl => _likedNamesGirl ?? const [];
   bool hasLikedNamesGirl() => _likedNamesGirl != null;
 
+  // "reports" field.
+  List<DocumentReference>? _reports;
+  List<DocumentReference> get reports => _reports ?? const [];
+  bool hasReports() => _reports != null;
+
+  // "searchHistory" field.
+  List<String>? _searchHistory;
+  List<String> get searchHistory => _searchHistory ?? const [];
+  bool hasSearchHistory() => _searchHistory != null;
+
+  // "location" field.
+  LatLng? _location;
+  LatLng? get location => _location;
+  bool hasLocation() => _location != null;
+
+  // "locationName" field.
+  String? _locationName;
+  String get locationName => _locationName ?? '';
+  bool hasLocationName() => _locationName != null;
+
+  // "hasWeightReminder" field.
+  bool? _hasWeightReminder;
+  bool get hasWeightReminder => _hasWeightReminder ?? false;
+  bool hasHasWeightReminder() => _hasWeightReminder != null;
+
+  // "hasBabyReminder" field.
+  bool? _hasBabyReminder;
+  bool get hasBabyReminder => _hasBabyReminder ?? false;
+  bool hasHasBabyReminder() => _hasBabyReminder != null;
+
+  // "blogs" field.
+  List<DocumentReference>? _blogs;
+  List<DocumentReference> get blogs => _blogs ?? const [];
+  bool hasBlogs() => _blogs != null;
+
+  // "babyWasBorn" field.
+  bool? _babyWasBorn;
+  bool get babyWasBorn => _babyWasBorn ?? false;
+  bool hasBabyWasBorn() => _babyWasBorn != null;
+
+  // "babyGender" field.
+  Gender? _babyGender;
+  Gender? get babyGender => _babyGender;
+  bool hasBabyGender() => _babyGender != null;
+
+  // "subscriptions" field.
+  List<SubscriptionStruct>? _subscriptions;
+  List<SubscriptionStruct> get subscriptions => _subscriptions ?? const [];
+  bool hasSubscriptions() => _subscriptions != null;
+
+  // "notification_settings" field.
+  NotificationSettingsStruct? _notificationSettings;
+  NotificationSettingsStruct get notificationSettings =>
+      _notificationSettings ?? NotificationSettingsStruct();
+  bool hasNotificationSettings() => _notificationSettings != null;
+
+  // "userRefMe" field.
+  DocumentReference? _userRefMe;
+  DocumentReference? get userRefMe => _userRefMe;
+  bool hasUserRefMe() => _userRefMe != null;
+
+  // "userRefs" field.
+  List<DocumentReference>? _userRefs;
+  List<DocumentReference> get userRefs => _userRefs ?? const [];
+  bool hasUserRefs() => _userRefs != null;
+
+  // "reminderDaysOfWeek" field.
+  List<String>? _reminderDaysOfWeek;
+  List<String> get reminderDaysOfWeek => _reminderDaysOfWeek ?? const [];
+  bool hasReminderDaysOfWeek() => _reminderDaysOfWeek != null;
+
+  // "reminderTimeOfDay" field.
+  String? _reminderTimeOfDay;
+  String get reminderTimeOfDay => _reminderTimeOfDay ?? '';
+  bool hasReminderTimeOfDay() => _reminderTimeOfDay != null;
+
+  // "sex" field.
+  bool? _sex;
+  bool get sex => _sex ?? false;
+  bool hasSex() => _sex != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -119,8 +193,6 @@ class UsersRecord extends FirestoreRecord {
     _userFriends = getDataList(snapshotData['user_friends']);
     _friendRequestsPending =
         getDataList(snapshotData['friend_requests_pending']);
-    _monthlySubscription = snapshotData['monthly_subscription'] as bool?;
-    _annualSubscription = snapshotData['annual_subscription'] as bool?;
     _aiRequests = castToType<int>(snapshotData['ai_requests']);
     _isPregnant = snapshotData['is_pregnant'] as bool?;
     _isAdmin = snapshotData['is_admin'] as bool?;
@@ -132,6 +204,26 @@ class UsersRecord extends FirestoreRecord {
       snapshotData['liked_names_girl'],
       BabyNameStruct.fromMap,
     );
+    _reports = getDataList(snapshotData['reports']);
+    _searchHistory = getDataList(snapshotData['searchHistory']);
+    _location = snapshotData['location'] as LatLng?;
+    _locationName = snapshotData['locationName'] as String?;
+    _hasWeightReminder = snapshotData['hasWeightReminder'] as bool?;
+    _hasBabyReminder = snapshotData['hasBabyReminder'] as bool?;
+    _blogs = getDataList(snapshotData['blogs']);
+    _babyWasBorn = snapshotData['babyWasBorn'] as bool?;
+    _babyGender = deserializeEnum<Gender>(snapshotData['babyGender']);
+    _subscriptions = getStructList(
+      snapshotData['subscriptions'],
+      SubscriptionStruct.fromMap,
+    );
+    _notificationSettings = NotificationSettingsStruct.maybeFromMap(
+        snapshotData['notification_settings']);
+    _userRefMe = snapshotData['userRefMe'] as DocumentReference?;
+    _userRefs = getDataList(snapshotData['userRefs']);
+    _reminderDaysOfWeek = getDataList(snapshotData['reminderDaysOfWeek']);
+    _reminderTimeOfDay = snapshotData['reminderTimeOfDay'] as String?;
+    _sex = snapshotData['sex'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -153,6 +245,135 @@ class UsersRecord extends FirestoreRecord {
     DocumentReference reference,
   ) =>
       UsersRecord._(reference, mapFromFirestore(data));
+
+  static UsersRecord fromAlgolia(AlgoliaObjectSnapshot snapshot) =>
+      UsersRecord.getDocumentFromData(
+        {
+          'email': snapshot.data['email'],
+          'display_name': snapshot.data['display_name'],
+          'photo_url': snapshot.data['photo_url'],
+          'uid': snapshot.data['uid'],
+          'created_time': convertAlgoliaParam(
+            snapshot.data['created_time'],
+            ParamType.DateTime,
+            false,
+          ),
+          'phone_number': snapshot.data['phone_number'],
+          'first_name': snapshot.data['first_name'],
+          'last_name': snapshot.data['last_name'],
+          'calculated_date': convertAlgoliaParam(
+            snapshot.data['calculated_date'],
+            ParamType.DateTime,
+            false,
+          ),
+          'user_friends': safeGet(
+            () => convertAlgoliaParam<DocumentReference>(
+              snapshot.data['user_friends'],
+              ParamType.DocumentReference,
+              true,
+            ).toList(),
+          ),
+          'friend_requests_pending': safeGet(
+            () => convertAlgoliaParam<DocumentReference>(
+              snapshot.data['friend_requests_pending'],
+              ParamType.DocumentReference,
+              true,
+            ).toList(),
+          ),
+          'ai_requests': convertAlgoliaParam(
+            snapshot.data['ai_requests'],
+            ParamType.int,
+            false,
+          ),
+          'is_pregnant': snapshot.data['is_pregnant'],
+          'is_admin': snapshot.data['is_admin'],
+          'liked_names_boy': safeGet(
+            () => (snapshot.data['liked_names_boy'] as Iterable)
+                .map((d) => BabyNameStruct.fromAlgoliaData(d).toMap())
+                .toList(),
+          ),
+          'liked_names_girl': safeGet(
+            () => (snapshot.data['liked_names_girl'] as Iterable)
+                .map((d) => BabyNameStruct.fromAlgoliaData(d).toMap())
+                .toList(),
+          ),
+          'reports': safeGet(
+            () => convertAlgoliaParam<DocumentReference>(
+              snapshot.data['reports'],
+              ParamType.DocumentReference,
+              true,
+            ).toList(),
+          ),
+          'searchHistory': safeGet(
+            () => snapshot.data['searchHistory'].toList(),
+          ),
+          'location': convertAlgoliaParam(
+            snapshot.data,
+            ParamType.LatLng,
+            false,
+          ),
+          'locationName': snapshot.data['locationName'],
+          'hasWeightReminder': snapshot.data['hasWeightReminder'],
+          'hasBabyReminder': snapshot.data['hasBabyReminder'],
+          'blogs': safeGet(
+            () => convertAlgoliaParam<DocumentReference>(
+              snapshot.data['blogs'],
+              ParamType.DocumentReference,
+              true,
+            ).toList(),
+          ),
+          'babyWasBorn': snapshot.data['babyWasBorn'],
+          'babyGender': convertAlgoliaParam<Gender>(
+            snapshot.data['babyGender'],
+            ParamType.Enum,
+            false,
+          ),
+          'subscriptions': safeGet(
+            () => (snapshot.data['subscriptions'] as Iterable)
+                .map((d) => SubscriptionStruct.fromAlgoliaData(d).toMap())
+                .toList(),
+          ),
+          'notification_settings': NotificationSettingsStruct.fromAlgoliaData(
+                  snapshot.data['notification_settings'] ?? {})
+              .toMap(),
+          'userRefMe': convertAlgoliaParam(
+            snapshot.data['userRefMe'],
+            ParamType.DocumentReference,
+            false,
+          ),
+          'userRefs': safeGet(
+            () => convertAlgoliaParam<DocumentReference>(
+              snapshot.data['userRefs'],
+              ParamType.DocumentReference,
+              true,
+            ).toList(),
+          ),
+          'reminderDaysOfWeek': safeGet(
+            () => snapshot.data['reminderDaysOfWeek'].toList(),
+          ),
+          'reminderTimeOfDay': snapshot.data['reminderTimeOfDay'],
+          'sex': snapshot.data['sex'],
+        },
+        UsersRecord.collection.doc(snapshot.objectID),
+      );
+
+  static Future<List<UsersRecord>> search({
+    String? term,
+    FutureOr<LatLng>? location,
+    int? maxResults,
+    double? searchRadiusMeters,
+    bool useCache = false,
+  }) =>
+      FFAlgoliaManager.instance
+          .algoliaQuery(
+            index: 'users',
+            term: term,
+            maxResults: maxResults,
+            location: location,
+            searchRadiusMeters: searchRadiusMeters,
+            useCache: useCache,
+          )
+          .then((r) => r.map(fromAlgolia).toList());
 
   @override
   String toString() =>
@@ -177,11 +398,19 @@ Map<String, dynamic> createUsersRecordData({
   String? firstName,
   String? lastName,
   DateTime? calculatedDate,
-  bool? monthlySubscription,
-  bool? annualSubscription,
   int? aiRequests,
   bool? isPregnant,
   bool? isAdmin,
+  LatLng? location,
+  String? locationName,
+  bool? hasWeightReminder,
+  bool? hasBabyReminder,
+  bool? babyWasBorn,
+  Gender? babyGender,
+  NotificationSettingsStruct? notificationSettings,
+  DocumentReference? userRefMe,
+  String? reminderTimeOfDay,
+  bool? sex,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -194,13 +423,25 @@ Map<String, dynamic> createUsersRecordData({
       'first_name': firstName,
       'last_name': lastName,
       'calculated_date': calculatedDate,
-      'monthly_subscription': monthlySubscription,
-      'annual_subscription': annualSubscription,
       'ai_requests': aiRequests,
       'is_pregnant': isPregnant,
       'is_admin': isAdmin,
+      'location': location,
+      'locationName': locationName,
+      'hasWeightReminder': hasWeightReminder,
+      'hasBabyReminder': hasBabyReminder,
+      'babyWasBorn': babyWasBorn,
+      'babyGender': babyGender,
+      'notification_settings': NotificationSettingsStruct().toMap(),
+      'userRefMe': userRefMe,
+      'reminderTimeOfDay': reminderTimeOfDay,
+      'sex': sex,
     }.withoutNulls,
   );
+
+  // Handle nested data for "notification_settings" field.
+  addNotificationSettingsStructData(
+      firestoreData, notificationSettings, 'notification_settings');
 
   return firestoreData;
 }
@@ -223,13 +464,27 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         listEquality.equals(e1?.userFriends, e2?.userFriends) &&
         listEquality.equals(
             e1?.friendRequestsPending, e2?.friendRequestsPending) &&
-        e1?.monthlySubscription == e2?.monthlySubscription &&
-        e1?.annualSubscription == e2?.annualSubscription &&
         e1?.aiRequests == e2?.aiRequests &&
         e1?.isPregnant == e2?.isPregnant &&
         e1?.isAdmin == e2?.isAdmin &&
         listEquality.equals(e1?.likedNamesBoy, e2?.likedNamesBoy) &&
-        listEquality.equals(e1?.likedNamesGirl, e2?.likedNamesGirl);
+        listEquality.equals(e1?.likedNamesGirl, e2?.likedNamesGirl) &&
+        listEquality.equals(e1?.reports, e2?.reports) &&
+        listEquality.equals(e1?.searchHistory, e2?.searchHistory) &&
+        e1?.location == e2?.location &&
+        e1?.locationName == e2?.locationName &&
+        e1?.hasWeightReminder == e2?.hasWeightReminder &&
+        e1?.hasBabyReminder == e2?.hasBabyReminder &&
+        listEquality.equals(e1?.blogs, e2?.blogs) &&
+        e1?.babyWasBorn == e2?.babyWasBorn &&
+        e1?.babyGender == e2?.babyGender &&
+        listEquality.equals(e1?.subscriptions, e2?.subscriptions) &&
+        e1?.notificationSettings == e2?.notificationSettings &&
+        e1?.userRefMe == e2?.userRefMe &&
+        listEquality.equals(e1?.userRefs, e2?.userRefs) &&
+        listEquality.equals(e1?.reminderDaysOfWeek, e2?.reminderDaysOfWeek) &&
+        e1?.reminderTimeOfDay == e2?.reminderTimeOfDay &&
+        e1?.sex == e2?.sex;
   }
 
   @override
@@ -245,13 +500,27 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.calculatedDate,
         e?.userFriends,
         e?.friendRequestsPending,
-        e?.monthlySubscription,
-        e?.annualSubscription,
         e?.aiRequests,
         e?.isPregnant,
         e?.isAdmin,
         e?.likedNamesBoy,
-        e?.likedNamesGirl
+        e?.likedNamesGirl,
+        e?.reports,
+        e?.searchHistory,
+        e?.location,
+        e?.locationName,
+        e?.hasWeightReminder,
+        e?.hasBabyReminder,
+        e?.blogs,
+        e?.babyWasBorn,
+        e?.babyGender,
+        e?.subscriptions,
+        e?.notificationSettings,
+        e?.userRefMe,
+        e?.userRefs,
+        e?.reminderDaysOfWeek,
+        e?.reminderTimeOfDay,
+        e?.sex
       ]);
 
   @override

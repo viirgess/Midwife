@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../auth_manager.dart';
 
 import '/backend/backend.dart';
+import 'facebook_auth.dart';
 import 'anonymous_auth.dart';
 import 'apple_auth.dart';
 import 'email_auth.dart';
@@ -44,6 +45,7 @@ class FirebaseAuthManager extends AuthManager
         EmailSignInManager,
         GoogleSignInManager,
         AppleSignInManager,
+        FacebookSignInManager,
         AnonymousSignInManager,
         JwtSignInManager,
         GithubSignInManager,
@@ -273,6 +275,10 @@ class FirebaseAuthManager extends AuthManager
     }
   }
 
+  @override
+  Future<BaseAuthUser?> signInWithFacebook(BuildContext context) =>
+      _signInOrCreateAccount(context, facebookSignIn, 'FACEBOOK');
+
   /// Tries to sign in or create an account using Firebase Auth.
   /// Returns the User object if sign in was successful.
   Future<BaseAuthUser?> _signInOrCreateAccount(
@@ -287,7 +293,7 @@ class FirebaseAuthManager extends AuthManager
       }
       return userCredential == null
           ? null
-          : MidWifeMentorFirebaseUser.fromUserCredential(userCredential);
+          : MamaMentorFirebaseUser.fromUserCredential(userCredential);
     } on FirebaseAuthException catch (e) {
       final errorMsg = switch (e.code) {
         'email-already-in-use' =>

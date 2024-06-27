@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import '/notifications/notification_modal_sheet/notification_modal_sheet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'user_profile_model.dart';
@@ -96,38 +95,10 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
               Expanded(
                 child: Align(
                   alignment: const AlignmentDirectional(1.0, 0.0),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      await showModalBottomSheet(
-                        isScrollControlled: true,
-                        backgroundColor: FlutterFlowTheme.of(context).alternate,
-                        barrierColor: const Color(0x19C67AF5),
-                        context: context,
-                        builder: (context) {
-                          return WebViewAware(
-                            child: GestureDetector(
-                              onTap: () => _model.unfocusNode.canRequestFocus
-                                  ? FocusScope.of(context)
-                                      .requestFocus(_model.unfocusNode)
-                                  : FocusScope.of(context).unfocus(),
-                              child: Padding(
-                                padding: MediaQuery.viewInsetsOf(context),
-                                child: const NotificationModalSheetWidget(),
-                              ),
-                            ),
-                          );
-                        },
-                      ).then((value) => safeSetState(() {}));
-                    },
-                    child: Icon(
-                      Icons.notifications_none,
-                      color: FlutterFlowTheme.of(context).primary,
-                      size: 32.0,
-                    ),
+                  child: Icon(
+                    Icons.notifications_none,
+                    color: FlutterFlowTheme.of(context).primary,
+                    size: 32.0,
                   ),
                 ),
               ),
@@ -401,49 +372,40 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                         ),
                       ),
                     ),
-                    if ((valueOrDefault<bool>(
-                                currentUserDocument?.monthlySubscription,
-                                false) !=
-                            null) ||
-                        valueOrDefault<bool>(
-                            currentUserDocument?.annualSubscription, false))
-                      Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 8.0),
-                          child: AuthUserStreamWidget(
-                            builder: (context) => FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
-                              },
-                              text: 'Cancel Plan',
-                              options: FFButtonOptions(
-                                height: 40.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Figtree',
-                                      color: Colors.white,
-                                      letterSpacing: 0.0,
-                                    ),
-                                elevation: 3.0,
-                                borderSide: const BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
+                    Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                        child: FFButtonWidget(
+                          onPressed: () {
+                            print('Button pressed ...');
+                          },
+                          text: 'Cancel Plan',
+                          options: FFButtonOptions(
+                            height: 40.0,
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Figtree',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
+                            elevation: 3.0,
+                            borderSide: const BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
                             ),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
                       ),
+                    ),
                     Material(
                       color: Colors.transparent,
                       elevation: 3.0,
@@ -749,11 +711,20 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                         valueOrDefault<String>(
                                           _model.datePicked != null
                                               ? dateTimeFormat(
-                                                  'yMd', _model.datePicked)
+                                                  'yMd',
+                                                  _model.datePicked,
+                                                  locale: FFLocalizations.of(
+                                                          context)
+                                                      .languageCode,
+                                                )
                                               : dateTimeFormat(
                                                   'yMd',
                                                   currentUserDocument
-                                                      ?.calculatedDate),
+                                                      ?.calculatedDate,
+                                                  locale: FFLocalizations.of(
+                                                          context)
+                                                      .languageCode,
+                                                ),
                                           'date',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -897,7 +868,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                           await authManager.signOut();
                           GoRouter.of(context).clearRedirectLocation();
 
-                          context.goNamedAuth('LoginPage', context.mounted);
+                          context.goNamedAuth('Onboarding', context.mounted);
                         },
                         text: 'Uitloggen',
                         options: FFButtonOptions(

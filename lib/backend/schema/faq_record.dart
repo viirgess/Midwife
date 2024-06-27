@@ -5,6 +5,7 @@ import 'package:collection/collection.dart';
 import '/backend/schema/util/firestore_util.dart';
 
 import 'index.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
 class FaqRecord extends FirestoreRecord {
   FaqRecord._(
@@ -19,26 +20,20 @@ class FaqRecord extends FirestoreRecord {
   String get title => _title ?? '';
   bool hasTitle() => _title != null;
 
-  // "subtitle" field.
-  String? _subtitle;
-  String get subtitle => _subtitle ?? '';
-  bool hasSubtitle() => _subtitle != null;
-
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   bool hasDescription() => _description != null;
 
-  // "footer" field.
-  String? _footer;
-  String get footer => _footer ?? '';
-  bool hasFooter() => _footer != null;
+  // "group" field.
+  String? _group;
+  String get group => _group ?? '';
+  bool hasGroup() => _group != null;
 
   void _initializeFields() {
     _title = snapshotData['title'] as String?;
-    _subtitle = snapshotData['subtitle'] as String?;
     _description = snapshotData['description'] as String?;
-    _footer = snapshotData['footer'] as String?;
+    _group = snapshotData['group'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -76,16 +71,14 @@ class FaqRecord extends FirestoreRecord {
 
 Map<String, dynamic> createFaqRecordData({
   String? title,
-  String? subtitle,
   String? description,
-  String? footer,
+  String? group,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'title': title,
-      'subtitle': subtitle,
       'description': description,
-      'footer': footer,
+      'group': group,
     }.withoutNulls,
   );
 
@@ -98,14 +91,13 @@ class FaqRecordDocumentEquality implements Equality<FaqRecord> {
   @override
   bool equals(FaqRecord? e1, FaqRecord? e2) {
     return e1?.title == e2?.title &&
-        e1?.subtitle == e2?.subtitle &&
         e1?.description == e2?.description &&
-        e1?.footer == e2?.footer;
+        e1?.group == e2?.group;
   }
 
   @override
-  int hash(FaqRecord? e) => const ListEquality()
-      .hash([e?.title, e?.subtitle, e?.description, e?.footer]);
+  int hash(FaqRecord? e) =>
+      const ListEquality().hash([e?.title, e?.description, e?.group]);
 
   @override
   bool isValidKey(Object? o) => o is FaqRecord;

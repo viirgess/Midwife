@@ -1,11 +1,13 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/drawer_data/drawer_data_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/blogs/blogs_component/bookmark_container/bookmark_container_widget.dart';
+import '/components/bottom_nav_bar/bottom_nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/notifications/notification_modal_sheet/notification_modal_sheet_widget.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'blog_page_model.dart';
 export 'blog_page_model.dart';
 
@@ -45,341 +47,721 @@ class _BlogPageWidgetState extends State<BlogPageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        drawer: SizedBox(
-          width: MediaQuery.sizeOf(context).width * 0.66,
-          child: Drawer(
-            child: WebViewAware(
-              child: wrapWithModel(
-                model: _model.drawerDataModel,
-                updateCallback: () => setState(() {}),
-                child: const DrawerDataWidget(),
-              ),
-            ),
-          ),
-        ),
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 30.0,
+          title: Container(
+            width: double.infinity,
+            height: 100.0,
+            decoration: BoxDecoration(
+              color: FlutterFlowTheme.of(context).primaryBackground,
             ),
-            onPressed: () async {
-              context.pushNamed('MainPage');
-            },
-          ),
-          title: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Expanded(
-                child: Align(
-                  alignment: const AlignmentDirectional(1.0, 0.0),
-                  child: InkWell(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 6.0, 0.0),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.safePop();
+                          },
+                          child: Icon(
+                            Icons.chevron_left_outlined,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            size: 24.0,
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                        child: Text(
+                          'Blogs',
+                          style: FlutterFlowTheme.of(context)
+                              .headlineLarge
+                              .override(
+                                fontFamily: 'Figtree',
+                                color: FlutterFlowTheme.of(context).alternate,
+                                fontSize: 22.0,
+                                letterSpacing: 0.0,
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
-                      await showModalBottomSheet(
-                        isScrollControlled: true,
-                        backgroundColor: FlutterFlowTheme.of(context).alternate,
-                        barrierColor: const Color(0x19C67AF5),
-                        context: context,
-                        builder: (context) {
-                          return WebViewAware(
-                            child: GestureDetector(
-                              onTap: () => _model.unfocusNode.canRequestFocus
-                                  ? FocusScope.of(context)
-                                      .requestFocus(_model.unfocusNode)
-                                  : FocusScope.of(context).unfocus(),
-                              child: Padding(
-                                padding: MediaQuery.viewInsetsOf(context),
-                                child: const NotificationModalSheetWidget(),
-                              ),
-                            ),
-                          );
+                      context.goNamed(
+                        'selectedBlogs',
+                        extra: <String, dynamic>{
+                          kTransitionInfoKey: const TransitionInfo(
+                            hasTransition: true,
+                            transitionType: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                          ),
                         },
-                      ).then((value) => safeSetState(() {}));
+                      );
                     },
-                    child: Icon(
-                      Icons.notifications_none,
-                      color: FlutterFlowTheme.of(context).primary,
-                      size: 32.0,
+                    child: wrapWithModel(
+                      model: _model.bookmarkContainerModel,
+                      updateCallback: () => setState(() {}),
+                      child: const BookmarkContainerWidget(),
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
           actions: const [],
           centerTitle: true,
           elevation: 0.0,
         ),
         body: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              child: ListView(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            32.0, 0.0, 32.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 8.0),
-                                  child: Text(
-                                    'Blogs',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Figtree',
-                                          fontSize: 30.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                ),
-                                Container(
-                                  width: 300.0,
-                                  decoration: const BoxDecoration(),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 12.0),
-                                    child: Text(
-                                      'Duik in onze verschillende zwangerschapsblogs',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Figtree',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            fontSize: 16.0,
-                                            letterSpacing: 0.0,
-                                          ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 6.0, 0.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          _model.allClicked = !_model.allClicked;
+                          _model.trimesterOne = false;
+                          _model.trimesterTwo = false;
+                          _model.trimesterThree = false;
+                          _model.trimesterFour = false;
+                          setState(() {});
+                        },
+                        text: 'All',
+                        options: FFButtonOptions(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 10.0, 16.0, 10.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: valueOrDefault<Color>(
+                            () {
+                              if (_model.allClicked == false) {
+                                return FlutterFlowTheme.of(context)
+                                    .primaryBackground;
+                              } else if (_model.allClicked == true) {
+                                return const Color(0xFFF6F1FF);
+                              } else {
+                                return FlutterFlowTheme.of(context)
+                                    .primaryBackground;
+                              }
+                            }(),
+                            FlutterFlowTheme.of(context).primaryBackground,
+                          ),
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Figtree',
+                                    color: valueOrDefault<Color>(
+                                      () {
+                                        if (_model.allClicked == false) {
+                                          return const Color(0xFF9183A2);
+                                        } else if (_model.allClicked == true) {
+                                          return const Color(0xFFA07EFF);
+                                        } else {
+                                          return const Color(0xFF9183A2);
+                                        }
+                                      }(),
+                                      const Color(0xFF9183A2),
                                     ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
                                   ),
-                                ),
-                              ],
+                          borderSide: BorderSide(
+                            color: valueOrDefault<Color>(
+                              () {
+                                if (_model.allClicked == false) {
+                                  return FlutterFlowTheme.of(context)
+                                      .primaryBackground;
+                                } else if (_model.allClicked == true) {
+                                  return const Color(0xFFF6F1FF);
+                                } else {
+                                  return const Color(0xFF9183A2);
+                                }
+                              }(),
+                              const Color(0xFF9183A2),
                             ),
-                          ],
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(100.0),
                         ),
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                      ),
-                      StreamBuilder<List<BlogsRecord>>(
-                        stream: queryBlogsRecord(),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50.0,
-                                height: 50.0,
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    FlutterFlowTheme.of(context).primary,
-                                  ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 6.0, 0.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          _model.trimesterOne = true;
+                          _model.allClicked = false;
+                          _model.trimesterTwo = false;
+                          _model.trimesterThree = false;
+                          _model.trimesterFour = false;
+                          setState(() {});
+                        },
+                        text: 'Trimester 1',
+                        options: FFButtonOptions(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 10.0, 16.0, 10.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: valueOrDefault<Color>(
+                            () {
+                              if (_model.trimesterOne == false) {
+                                return FlutterFlowTheme.of(context)
+                                    .primaryBackground;
+                              } else if (_model.trimesterOne == true) {
+                                return const Color(0xFFF6F1FF);
+                              } else {
+                                return FlutterFlowTheme.of(context)
+                                    .primaryBackground;
+                              }
+                            }(),
+                            FlutterFlowTheme.of(context).primaryBackground,
+                          ),
+                          textStyle: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .override(
+                                fontFamily: 'Figtree',
+                                color: valueOrDefault<Color>(
+                                  () {
+                                    if (_model.trimesterOne == false) {
+                                      return const Color(0xFF9183A2);
+                                    } else if (_model.trimesterOne == true) {
+                                      return const Color(0xFFA07EFF);
+                                    } else {
+                                      return const Color(0xFF9183A2);
+                                    }
+                                  }(),
+                                  const Color(0xFF9183A2),
                                 ),
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.normal,
                               ),
-                            );
-                          }
-                          List<BlogsRecord> columnBlogsRecordList =
-                              snapshot.data!;
-                          return Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: List.generate(
-                                columnBlogsRecordList.length, (columnIndex) {
-                              final columnBlogsRecord =
-                                  columnBlogsRecordList[columnIndex];
-                              return Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    18.0, 0.0, 18.0, 18.0),
-                                child: Container(
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFF0F0F0),
-                                    borderRadius: BorderRadius.circular(12.0),
+                          borderSide: BorderSide(
+                            color: valueOrDefault<Color>(
+                              () {
+                                if (_model.trimesterOne == false) {
+                                  return FlutterFlowTheme.of(context)
+                                      .primaryBackground;
+                                } else if (_model.trimesterOne == true) {
+                                  return const Color(0xFFF6F1FF);
+                                } else {
+                                  return const Color(0xFF9183A2);
+                                }
+                              }(),
+                              const Color(0xFF9183A2),
+                            ),
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(100.0),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 6.0, 0.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          _model.trimesterTwo = true;
+                          _model.allClicked = false;
+                          _model.trimesterOne = false;
+                          _model.trimesterThree = false;
+                          _model.trimesterFour = false;
+                          setState(() {});
+                        },
+                        text: 'Trimester 2',
+                        options: FFButtonOptions(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 10.0, 16.0, 10.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: valueOrDefault<Color>(
+                            () {
+                              if (_model.trimesterTwo == false) {
+                                return FlutterFlowTheme.of(context)
+                                    .primaryBackground;
+                              } else if (_model.trimesterTwo == true) {
+                                return const Color(0xFFF6F1FF);
+                              } else {
+                                return FlutterFlowTheme.of(context)
+                                    .primaryBackground;
+                              }
+                            }(),
+                            FlutterFlowTheme.of(context).primaryBackground,
+                          ),
+                          textStyle: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .override(
+                                fontFamily: 'Figtree',
+                                color: valueOrDefault<Color>(
+                                  () {
+                                    if (_model.trimesterTwo == false) {
+                                      return const Color(0xFF9183A2);
+                                    } else if (_model.trimesterTwo == true) {
+                                      return const Color(0xFFA07EFF);
+                                    } else {
+                                      return const Color(0xFF9183A2);
+                                    }
+                                  }(),
+                                  const Color(0xFF9183A2),
+                                ),
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.normal,
+                              ),
+                          borderSide: BorderSide(
+                            color: valueOrDefault<Color>(
+                              () {
+                                if (_model.trimesterTwo == false) {
+                                  return FlutterFlowTheme.of(context)
+                                      .primaryBackground;
+                                } else if (_model.trimesterTwo == true) {
+                                  return const Color(0xFFF6F1FF);
+                                } else {
+                                  return const Color(0xFF9183A2);
+                                }
+                              }(),
+                              const Color(0xFF9183A2),
+                            ),
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(100.0),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 6.0, 0.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          _model.trimesterThree = true;
+                          _model.allClicked = false;
+                          _model.trimesterOne = false;
+                          _model.trimesterTwo = false;
+                          _model.trimesterFour = false;
+                          setState(() {});
+                        },
+                        text: 'Trimester 3',
+                        options: FFButtonOptions(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 10.0, 16.0, 10.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: valueOrDefault<Color>(
+                            () {
+                              if (_model.trimesterThree == false) {
+                                return FlutterFlowTheme.of(context)
+                                    .primaryBackground;
+                              } else if (_model.trimesterThree == true) {
+                                return const Color(0xFFF6F1FF);
+                              } else {
+                                return FlutterFlowTheme.of(context)
+                                    .primaryBackground;
+                              }
+                            }(),
+                            FlutterFlowTheme.of(context).primaryBackground,
+                          ),
+                          textStyle: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .override(
+                                fontFamily: 'Figtree',
+                                color: valueOrDefault<Color>(
+                                  () {
+                                    if (_model.trimesterThree == false) {
+                                      return const Color(0xFF9183A2);
+                                    } else if (_model.trimesterThree == true) {
+                                      return const Color(0xFFA07EFF);
+                                    } else {
+                                      return const Color(0xFF9183A2);
+                                    }
+                                  }(),
+                                  const Color(0xFF9183A2),
+                                ),
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.normal,
+                              ),
+                          borderSide: BorderSide(
+                            color: valueOrDefault<Color>(
+                              () {
+                                if (_model.trimesterThree == false) {
+                                  return FlutterFlowTheme.of(context)
+                                      .primaryBackground;
+                                } else if (_model.trimesterThree == true) {
+                                  return const Color(0xFFF6F1FF);
+                                } else {
+                                  return const Color(0xFF9183A2);
+                                }
+                              }(),
+                              const Color(0xFF9183A2),
+                            ),
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(100.0),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 6.0, 0.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          _model.trimesterFour = true;
+                          _model.allClicked = false;
+                          _model.trimesterOne = false;
+                          _model.trimesterTwo = false;
+                          _model.trimesterThree = false;
+                          setState(() {});
+                        },
+                        text: 'Trimester 4',
+                        options: FFButtonOptions(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 10.0, 16.0, 10.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: valueOrDefault<Color>(
+                            () {
+                              if (_model.trimesterFour == false) {
+                                return FlutterFlowTheme.of(context)
+                                    .primaryBackground;
+                              } else if (_model.trimesterFour == true) {
+                                return const Color(0xFFF6F1FF);
+                              } else {
+                                return FlutterFlowTheme.of(context)
+                                    .primaryBackground;
+                              }
+                            }(),
+                            FlutterFlowTheme.of(context).primaryBackground,
+                          ),
+                          textStyle: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .override(
+                                fontFamily: 'Figtree',
+                                color: valueOrDefault<Color>(
+                                  () {
+                                    if (_model.trimesterFour == false) {
+                                      return const Color(0xFF9183A2);
+                                    } else if (_model.trimesterFour == true) {
+                                      return const Color(0xFFA07EFF);
+                                    } else {
+                                      return const Color(0xFF9183A2);
+                                    }
+                                  }(),
+                                  const Color(0xFF9183A2),
+                                ),
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.normal,
+                              ),
+                          borderSide: BorderSide(
+                            color: valueOrDefault<Color>(
+                              () {
+                                if (_model.trimesterFour == false) {
+                                  return FlutterFlowTheme.of(context)
+                                      .primaryBackground;
+                                } else if (_model.trimesterFour == true) {
+                                  return const Color(0xFFF6F1FF);
+                                } else {
+                                  return const Color(0xFF9183A2);
+                                }
+                              }(),
+                              const Color(0xFF9183A2),
+                            ),
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(100.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 12.0, 20.0, 0.0),
+                child: StreamBuilder<List<BlogsRecord>>(
+                  stream: queryBlogsRecord(
+                    queryBuilder: (blogsRecord) => blogsRecord.where(
+                      'trimester',
+                      isEqualTo: () {
+                        if (_model.trimesterOne == true) {
+                          return 1;
+                        } else if (_model.trimesterTwo == true) {
+                          return 2;
+                        } else if (_model.trimesterThree == true) {
+                          return 3;
+                        } else if (_model.trimesterFour == true) {
+                          return 4;
+                        } else {
+                          return null;
+                        }
+                      }(),
+                    ).orderBy('date'),
+                  ),
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50.0,
+                          height: 50.0,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).secondary,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                    List<BlogsRecord> listViewBlogsRecordList = snapshot.data!;
+                    return ListView.builder(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemCount: listViewBlogsRecordList.length,
+                      itemBuilder: (context, listViewIndex) {
+                        final listViewBlogsRecord =
+                            listViewBlogsRecordList[listViewIndex];
+                        return Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 16.0),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              _model.additionalSection =
+                                  await queryAdditionalSectionRecordOnce(
+                                parent: listViewBlogsRecord.reference,
+                                singleRecord: true,
+                              ).then((s) => s.firstOrNull);
+
+                              context.goNamed(
+                                'articlePage',
+                                queryParameters: {
+                                  'blog': serializeParam(
+                                    listViewBlogsRecord,
+                                    ParamType.Document,
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        18.0, 18.0, 18.0, 18.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Align(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 12.0),
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: Image.network(
-                                                columnBlogsRecord.image,
-                                                fit: BoxFit.contain,
-                                                alignment: const Alignment(0.0, 0.0),
+                                  'additionalSection': serializeParam(
+                                    _model.additionalSection,
+                                    ParamType.Document,
+                                  ),
+                                }.withoutNulls,
+                                extra: <String, dynamic>{
+                                  'blog': listViewBlogsRecord,
+                                  'additionalSection': _model.additionalSection,
+                                },
+                              );
+
+                              setState(() {});
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                boxShadow: const [
+                                  BoxShadow(
+                                    blurRadius: 27.0,
+                                    color: Color(0x38B5A4CB),
+                                    offset: Offset(
+                                      0.0,
+                                      4.0,
+                                    ),
+                                    spreadRadius: 0.0,
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 12.0),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(16.0),
+                                        child: Image.network(
+                                          'https://picsum.photos/seed/302/600',
+                                          width: double.infinity,
+                                          height: 200.0,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment:
+                                          const AlignmentDirectional(-1.0, 0.0),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 8.0),
+                                        child: Text(
+                                          listViewBlogsRecord.mainTitle,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Figtree',
+                                                color: const Color(0xFF242224),
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w600,
                                               ),
+                                        ),
+                                      ),
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Text(
+                                              '${dateTimeFormat(
+                                                'yMd',
+                                                listViewBlogsRecord.date,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              )}  •  ${listViewBlogsRecord.timeOfReading} min read',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Figtree',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
-                                          ),
+                                          ],
                                         ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 8.0),
-                                          child: Text(
-                                            columnBlogsRecord.title,
-                                            textAlign: TextAlign.start,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Figtree',
-                                                  fontSize: 22.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 8.0),
-                                          child: Text(
-                                            columnBlogsRecord.description,
-                                            textAlign: TextAlign.start,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Figtree',
-                                                  fontSize: 16.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.normal,
-                                                ),
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment:
-                                              const AlignmentDirectional(-1.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 10.0, 0.0, 0.0),
-                                            child: InkWell(
+                                        if ((currentUserDocument?.blogs
+                                                        .toList() ??
+                                                    [])
+                                                .contains(listViewBlogsRecord
+                                                    .reference) ==
+                                            true)
+                                          AuthUserStreamWidget(
+                                            builder: (context) => InkWell(
                                               splashColor: Colors.transparent,
                                               focusColor: Colors.transparent,
                                               hoverColor: Colors.transparent,
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
-                                                context.goNamed(
-                                                  'BlogsTopicsList',
-                                                  queryParameters: {
-                                                    'sectionReference':
-                                                        serializeParam(
-                                                      columnBlogsRecord
-                                                          .reference,
-                                                      ParamType
-                                                          .DocumentReference,
-                                                    ),
-                                                    'title': serializeParam(
-                                                      columnBlogsRecord.title,
-                                                      ParamType.String,
-                                                    ),
-                                                    'description':
-                                                        serializeParam(
-                                                      columnBlogsRecord
-                                                          .shortDescription,
-                                                      ParamType.String,
-                                                    ),
-                                                  }.withoutNulls,
-                                                  extra: <String, dynamic>{
-                                                    kTransitionInfoKey:
-                                                        const TransitionInfo(
-                                                      hasTransition: true,
-                                                      transitionType:
-                                                          PageTransitionType
-                                                              .fade,
-                                                      duration: Duration(
-                                                          milliseconds: 0),
-                                                    ),
-                                                  },
-                                                );
-                                              },
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .accent2,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          6.0),
-                                                ),
-                                                child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(56.0, 10.0,
-                                                          56.0, 10.0),
-                                                  child: Text(
-                                                    'Bekijk',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Figtree',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryBackground,
-                                                          fontSize: 18.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
+                                                await currentUserReference!
+                                                    .update({
+                                                  ...mapToFirestore(
+                                                    {
+                                                      'blogs': FieldValue
+                                                          .arrayRemove([
+                                                        listViewBlogsRecord
+                                                            .reference
+                                                      ]),
+                                                    },
                                                   ),
+                                                });
+                                              },
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: SvgPicture.asset(
+                                                  'assets/images/bookmark-bold.svg',
+                                                  width: 20.0,
+                                                  height: 20.0,
+                                                  fit: BoxFit.fill,
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ),
+                                        if ((currentUserDocument?.blogs
+                                                        .toList() ??
+                                                    [])
+                                                .contains(listViewBlogsRecord
+                                                    .reference) ==
+                                            false)
+                                          AuthUserStreamWidget(
+                                            builder: (context) => InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                await currentUserReference!
+                                                    .update({
+                                                  ...mapToFirestore(
+                                                    {
+                                                      'blogs': FieldValue
+                                                          .arrayUnion([
+                                                        listViewBlogsRecord
+                                                            .reference
+                                                      ]),
+                                                    },
+                                                  ),
+                                                });
+                                              },
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: SvgPicture.asset(
+                                                  'assets/images/bookmark-stroke.svg',
+                                                  width: 20.0,
+                                                  height: 20.0,
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
                                       ],
                                     ),
-                                  ),
+                                  ],
                                 ),
-                              );
-                            }),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
+              ),
+            ),
+            Align(
+              alignment: const AlignmentDirectional(0.0, 1.0),
+              child: wrapWithModel(
+                model: _model.bottomNavBarModel,
+                updateCallback: () => setState(() {}),
+                child: const BottomNavBarWidget(),
               ),
             ),
           ],

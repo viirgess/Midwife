@@ -10,12 +10,14 @@ class ListOfMembersModel extends FlutterFlowModel<ListOfMembersWidget> {
 
   ///  State fields for stateful widgets in this component.
 
-  List<UsersRecord> simpleSearchResults1 = [];
+  // Stores action output result for [Firestore Query - Query a collection] action in ListOfMembers widget.
+  List<UsersRecord>? listOfUsers;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  List<UsersRecord> simpleSearchResults2 = [];
+  // Algolia Search Results from action on TextField
+  List<UsersRecord>? algoliaSearchResults = [];
 
   @override
   void initState(BuildContext context) {}

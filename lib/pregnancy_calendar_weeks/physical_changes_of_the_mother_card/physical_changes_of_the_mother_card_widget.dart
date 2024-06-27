@@ -51,14 +51,14 @@ class _PhysicalChangesOfTheMotherCardWidgetState
         boxShadow: const [
           BoxShadow(
             blurRadius: 27.0,
-            color: Color(0xFFB5A4CB),
+            color: Color(0x37B5A4CB),
             offset: Offset(
               0.0,
               4.0,
             ),
           )
         ],
-        borderRadius: BorderRadius.circular(12.0),
+        borderRadius: BorderRadius.circular(24.0),
       ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -97,16 +97,19 @@ class _PhysicalChangesOfTheMotherCardWidgetState
             ),
             Align(
               alignment: const AlignmentDirectional(-1.0, 0.0),
-              child: Text(
-                valueOrDefault<String>(
-                  widget.text,
-                  'text',
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                child: Text(
+                  valueOrDefault<String>(
+                    widget.text,
+                    'text',
+                  ),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Figtree',
+                        fontSize: 16.0,
+                        letterSpacing: 0.0,
+                      ),
                 ),
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Figtree',
-                      fontSize: 16.0,
-                      letterSpacing: 0.0,
-                    ),
               ),
             ),
           ],

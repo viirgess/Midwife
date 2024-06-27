@@ -3,12 +3,16 @@ import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
 import '/chat/actions_with_user/actions_with_user_widget.dart';
+import '/chat/confirm_sending_photo/confirm_sending_photo_widget.dart';
+import '/chat/user_sent_message/user_sent_message_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/upload_data.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'chat_messages_model.dart';
 export 'chat_messages_model.dart';
@@ -17,15 +21,11 @@ class ChatMessagesWidget extends StatefulWidget {
   const ChatMessagesWidget({
     super.key,
     this.chatUser,
-    required this.userName,
     required this.userRef,
-    required this.userimage,
   });
 
   final DocumentReference? chatUser;
-  final String? userName;
   final DocumentReference? userRef;
-  final String? userimage;
 
   @override
   State<ChatMessagesWidget> createState() => _ChatMessagesWidgetState();
@@ -52,7 +52,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
 
     _model.messageTextFieldTextController ??= TextEditingController();
     _model.messageTextFieldFocusNode ??= FocusNode();
-
+    _model.messageTextFieldFocusNode!.addListener(() => setState(() {}));
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -65,6 +65,8 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -85,7 +87,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                     height: 50.0,
                     child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
+                        FlutterFlowTheme.of(context).secondary,
                       ),
                     ),
                   ),
@@ -135,7 +137,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                           valueColor:
                                               AlwaysStoppedAnimation<Color>(
                                             FlutterFlowTheme.of(context)
-                                                .primary,
+                                                .secondary,
                                           ),
                                         ),
                                       ),
@@ -222,7 +224,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                                             Color>(
                                                                       FlutterFlowTheme.of(
                                                                               context)
-                                                                          .primary,
+                                                                          .secondary,
                                                                     ),
                                                                   ),
                                                                 ),
@@ -235,33 +237,85 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                                   MainAxisSize
                                                                       .max,
                                                               children: [
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          8.0,
-                                                                          0.0,
-                                                                          6.0,
-                                                                          0.0),
-                                                                  child:
-                                                                      Container(
-                                                                    width: 50.0,
-                                                                    height:
-                                                                        50.0,
-                                                                    clipBehavior:
-                                                                        Clip.antiAlias,
-                                                                    decoration:
-                                                                        const BoxDecoration(
-                                                                      shape: BoxShape
-                                                                          .circle,
-                                                                    ),
-                                                                    child: Image
-                                                                        .network(
-                                                                      rowUsersRecord
-                                                                          .photoUrl,
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                    ),
-                                                                  ),
+                                                                Builder(
+                                                                  builder:
+                                                                      (context) {
+                                                                    if (rowUsersRecord.photoUrl !=
+                                                                            '') {
+                                                                      return Padding(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            8.0,
+                                                                            0.0,
+                                                                            6.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Container(
+                                                                          width:
+                                                                              50.0,
+                                                                          height:
+                                                                              50.0,
+                                                                          clipBehavior:
+                                                                              Clip.antiAlias,
+                                                                          decoration:
+                                                                              const BoxDecoration(
+                                                                            shape:
+                                                                                BoxShape.circle,
+                                                                          ),
+                                                                          child:
+                                                                              Image.network(
+                                                                            rowUsersRecord.photoUrl,
+                                                                            fit:
+                                                                                BoxFit.cover,
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    } else {
+                                                                      return Align(
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              8.0,
+                                                                              0.0,
+                                                                              6.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Container(
+                                                                            width:
+                                                                                50.0,
+                                                                            height:
+                                                                                50.0,
+                                                                            decoration:
+                                                                                BoxDecoration(
+                                                                              color: const Color(0xFFFCEEFF),
+                                                                              shape: BoxShape.circle,
+                                                                              border: Border.all(
+                                                                                color: FlutterFlowTheme.of(context).tertiary,
+                                                                                width: 1.0,
+                                                                              ),
+                                                                            ),
+                                                                            alignment:
+                                                                                const AlignmentDirectional(0.0, 0.0),
+                                                                            child:
+                                                                                Align(
+                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                              child: Text(
+                                                                                '${String.fromCharCode(rowUsersRecord.firstName.runes.first)}${String.fromCharCode(rowUsersRecord.lastName.runes.first)}',
+                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      fontFamily: 'Figtree',
+                                                                                      fontSize: 18.0,
+                                                                                      letterSpacing: 1.2,
+                                                                                      fontWeight: FontWeight.w600,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    }
+                                                                  },
                                                                 ),
                                                                 Text(
                                                                   rowUsersRecord
@@ -321,7 +375,7 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                                             Color>(
                                                                       FlutterFlowTheme.of(
                                                                               context)
-                                                                          .primary,
+                                                                          .secondary,
                                                                     ),
                                                                   ),
                                                                 ),
@@ -334,33 +388,83 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                                   MainAxisSize
                                                                       .max,
                                                               children: [
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          20.0,
-                                                                          0.0,
-                                                                          12.0,
-                                                                          0.0),
-                                                                  child:
-                                                                      Container(
-                                                                    width: 40.0,
-                                                                    height:
-                                                                        40.0,
-                                                                    clipBehavior:
-                                                                        Clip.antiAlias,
-                                                                    decoration:
-                                                                        const BoxDecoration(
-                                                                      shape: BoxShape
-                                                                          .circle,
-                                                                    ),
-                                                                    child: Image
-                                                                        .network(
-                                                                      rowUsersRecord
-                                                                          .photoUrl,
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                    ),
-                                                                  ),
+                                                                Builder(
+                                                                  builder:
+                                                                      (context) {
+                                                                    if (rowUsersRecord.photoUrl !=
+                                                                            '') {
+                                                                      return Padding(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            20.0,
+                                                                            0.0,
+                                                                            12.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Container(
+                                                                          width:
+                                                                              50.0,
+                                                                          height:
+                                                                              50.0,
+                                                                          clipBehavior:
+                                                                              Clip.antiAlias,
+                                                                          decoration:
+                                                                              const BoxDecoration(
+                                                                            shape:
+                                                                                BoxShape.circle,
+                                                                          ),
+                                                                          child:
+                                                                              Image.network(
+                                                                            rowUsersRecord.photoUrl,
+                                                                            fit:
+                                                                                BoxFit.cover,
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    } else {
+                                                                      return Align(
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Container(
+                                                                          width:
+                                                                              56.0,
+                                                                          height:
+                                                                              56.0,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            color:
+                                                                                const Color(0xFFFCEEFF),
+                                                                            shape:
+                                                                                BoxShape.circle,
+                                                                            border:
+                                                                                Border.all(
+                                                                              color: FlutterFlowTheme.of(context).tertiary,
+                                                                              width: 1.0,
+                                                                            ),
+                                                                          ),
+                                                                          alignment: const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Align(
+                                                                            alignment:
+                                                                                const AlignmentDirectional(0.0, 0.0),
+                                                                            child:
+                                                                                Text(
+                                                                              '${String.fromCharCode(rowUsersRecord.firstName.runes.first)}${String.fromCharCode(rowUsersRecord.lastName.runes.first)}',
+                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                    fontFamily: 'Figtree',
+                                                                                    fontSize: 18.0,
+                                                                                    letterSpacing: 1.2,
+                                                                                    fontWeight: FontWeight.w600,
+                                                                                  ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    }
+                                                                  },
                                                                 ),
                                                                 Text(
                                                                   rowUsersRecord
@@ -443,6 +547,8 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                               chatRef:
                                                                   columnChatsRecord
                                                                       .reference,
+                                                              userRef: widget
+                                                                  .userRef!,
                                                             ),
                                                           ),
                                                         ),
@@ -478,380 +584,522 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                           ),
                                         ),
                                       ),
-                                      Expanded(
-                                        child: Align(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 1.0),
-                                          child: StreamBuilder<
-                                              List<ChatMessagesRecord>>(
-                                            stream: queryChatMessagesRecord(
-                                              queryBuilder:
-                                                  (chatMessagesRecord) =>
-                                                      chatMessagesRecord
-                                                          .where(
-                                                            'chat_user',
-                                                            isEqualTo:
-                                                                widget.chatUser,
-                                                          )
-                                                          .orderBy(
-                                                              'time_stamp'),
-                                            )..listen((snapshot) async {
-                                                List<ChatMessagesRecord>
-                                                    chatListViewChatMessagesRecordList =
-                                                    snapshot;
-                                                if (_model.chatListViewPreviousSnapshot !=
-                                                        null &&
-                                                    !const ListEquality(
-                                                            ChatMessagesRecordDocumentEquality())
-                                                        .equals(
-                                                            chatListViewChatMessagesRecordList,
-                                                            _model
-                                                                .chatListViewPreviousSnapshot)) {
-                                                  await _model.chatListView
-                                                      ?.animateTo(
-                                                    _model
-                                                        .chatListView!
-                                                        .position
-                                                        .maxScrollExtent,
-                                                    duration: const Duration(
-                                                        milliseconds: 200),
-                                                    curve: Curves.ease,
-                                                  );
-
-                                                  setState(() {});
-                                                }
-                                                _model.chatListViewPreviousSnapshot =
-                                                    snapshot;
-                                              }),
-                                            builder: (context, snapshot) {
-                                              // Customize what your widget looks like when it's loading.
-                                              if (!snapshot.hasData) {
-                                                return Center(
-                                                  child: SizedBox(
-                                                    width: 50.0,
-                                                    height: 50.0,
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      valueColor:
-                                                          AlwaysStoppedAnimation<
-                                                              Color>(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              }
-                                              List<ChatMessagesRecord>
-                                                  chatListViewChatMessagesRecordList =
-                                                  snapshot.data!;
-                                              return ListView.builder(
-                                                padding: const EdgeInsets.fromLTRB(
-                                                  0,
-                                                  0,
-                                                  0,
-                                                  12.0,
+                                      Flexible(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            if (columnChatsRecord
+                                                    .lastMessageTime !=
+                                                null)
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xFFF0DEFE),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
                                                 ),
-                                                shrinkWrap: true,
-                                                scrollDirection: Axis.vertical,
-                                                itemCount:
-                                                    chatListViewChatMessagesRecordList
-                                                        .length,
-                                                itemBuilder: (context,
-                                                    chatListViewIndex) {
-                                                  final chatListViewChatMessagesRecord =
-                                                      chatListViewChatMessagesRecordList[
-                                                          chatListViewIndex];
-                                                  return Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(15.0, 8.0,
-                                                                15.0, 0.0),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.end,
-                                                      children: [
-                                                        if ((chatListViewChatMessagesRecord
-                                                                    .user !=
-                                                                currentUserReference) &&
-                                                            ((chatListViewChatMessagesRecord
-                                                                            .text !=
-                                                                        '') ||
-                                                                (chatListViewChatMessagesRecord
-                                                                            .image !=
-                                                                        '')))
-                                                          Align(
-                                                            alignment:
-                                                                const AlignmentDirectional(
-                                                                    -1.0, 0.0),
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          46.0,
-                                                                          0.0),
-                                                              child: Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .min,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .end,
-                                                                children: [
-                                                                  if ((chatListViewChatMessagesRecord
-                                                                              .user !=
-                                                                          currentUserReference) &&
-                                                                      ((chatListViewChatMessagesRecord.text !=
-                                                                                  '') ||
-                                                                          (chatListViewChatMessagesRecord.image != '')))
-                                                                    Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              1.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          Material(
-                                                                        color: Colors
-                                                                            .transparent,
-                                                                        elevation:
-                                                                            2.0,
-                                                                        shape:
-                                                                            RoundedRectangleBorder(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(20.0),
-                                                                        ),
-                                                                        child:
-                                                                            SafeArea(
-                                                                          child:
-                                                                              Container(
-                                                                            constraints:
-                                                                                const BoxConstraints(
-                                                                              maxHeight: double.infinity,
-                                                                            ),
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                              borderRadius: BorderRadius.circular(20.0),
-                                                                            ),
-                                                                            alignment:
-                                                                                const AlignmentDirectional(0.0, 0.0),
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 12.0, 4.0),
-                                                                              child: Row(
-                                                                                mainAxisSize: MainAxisSize.max,
-                                                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                                                crossAxisAlignment: CrossAxisAlignment.end,
-                                                                                children: [
-                                                                                  Align(
-                                                                                    alignment: const AlignmentDirectional(0.0, 1.0),
-                                                                                    child: Container(
-                                                                                      constraints: const BoxConstraints(
-                                                                                        maxWidth: 230.0,
-                                                                                      ),
-                                                                                      decoration: const BoxDecoration(),
-                                                                                      child: Visibility(
-                                                                                        visible: chatListViewChatMessagesRecord.text != '',
-                                                                                        child: Padding(
-                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 10.0),
-                                                                                          child: Text(
-                                                                                            chatListViewChatMessagesRecord.text,
-                                                                                            textAlign: TextAlign.start,
-                                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                  fontFamily: 'Figtree',
-                                                                                                  color: FlutterFlowTheme.of(context).alternate,
-                                                                                                  fontSize: 16.0,
-                                                                                                  letterSpacing: 0.0,
-                                                                                                ),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                  Align(
-                                                                                    alignment: const AlignmentDirectional(0.0, 1.0),
-                                                                                    child: Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 5.0),
-                                                                                      child: Column(
-                                                                                        mainAxisSize: MainAxisSize.max,
-                                                                                        mainAxisAlignment: MainAxisAlignment.end,
-                                                                                        children: [
-                                                                                          Align(
-                                                                                            alignment: const AlignmentDirectional(0.0, 1.0),
-                                                                                            child: Text(
-                                                                                              dateTimeFormat('Hm', chatListViewChatMessagesRecord.timeStamp!),
-                                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                    fontFamily: 'Figtree',
-                                                                                                    color: FlutterFlowTheme.of(context).alternate,
-                                                                                                    fontSize: 12.0,
-                                                                                                    letterSpacing: 0.0,
-                                                                                                  ),
-                                                                                            ),
-                                                                                          ),
-                                                                                        ],
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                ],
-                                                              ),
+                                                child: Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          17.0, 2.0, 17.0, 2.0),
+                                                  child: Text(
+                                                    functions.generateTimeStamp(
+                                                        columnChatsRecord
+                                                            .lastMessageTime!),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Figtree',
+                                                          color:
+                                                              const Color(0xFF9183A2),
+                                                          fontSize: 12.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ),
+                                            Container(
+                                              decoration: const BoxDecoration(),
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 1.0),
+                                                child: StreamBuilder<
+                                                    List<ChatMessagesRecord>>(
+                                                  stream:
+                                                      queryChatMessagesRecord(
+                                                    queryBuilder:
+                                                        (chatMessagesRecord) =>
+                                                            chatMessagesRecord
+                                                                .where(
+                                                                  'chat_user',
+                                                                  isEqualTo: widget
+                                                                      .chatUser,
+                                                                )
+                                                                .orderBy(
+                                                                    'time_stamp'),
+                                                  )..listen((snapshot) {
+                                                          List<ChatMessagesRecord>
+                                                              chatListViewChatMessagesRecordList =
+                                                              snapshot;
+                                                          if (_model.chatListViewPreviousSnapshot !=
+                                                                  null &&
+                                                              !const ListEquality(
+                                                                      ChatMessagesRecordDocumentEquality())
+                                                                  .equals(
+                                                                      chatListViewChatMessagesRecordList,
+                                                                      _model
+                                                                          .chatListViewPreviousSnapshot)) {
+                                                            () async {
+                                                              await _model
+                                                                  .chatListView
+                                                                  ?.animateTo(
+                                                                _model
+                                                                    .chatListView!
+                                                                    .position
+                                                                    .maxScrollExtent,
+                                                                duration: const Duration(
+                                                                    milliseconds:
+                                                                        200),
+                                                                curve:
+                                                                    Curves.ease,
+                                                              );
+
+                                                              setState(() {});
+                                                            }();
+                                                          }
+                                                          _model.chatListViewPreviousSnapshot =
+                                                              snapshot;
+                                                        }),
+                                                  builder: (context, snapshot) {
+                                                    // Customize what your widget looks like when it's loading.
+                                                    if (!snapshot.hasData) {
+                                                      return Center(
+                                                        child: SizedBox(
+                                                          width: 50.0,
+                                                          height: 50.0,
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            valueColor:
+                                                                AlwaysStoppedAnimation<
+                                                                    Color>(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondary,
                                                             ),
                                                           ),
-                                                        if ((chatListViewChatMessagesRecord
-                                                                    .user ==
-                                                                currentUserReference) &&
-                                                            ((chatListViewChatMessagesRecord
-                                                                            .text !=
-                                                                        '') ||
-                                                                (chatListViewChatMessagesRecord
-                                                                            .image !=
-                                                                        '')))
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        60.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .end,
-                                                              children: [
-                                                                if ((chatListViewChatMessagesRecord
-                                                                            .user ==
-                                                                        currentUserReference) &&
-                                                                    ((chatListViewChatMessagesRecord.text !=
-                                                                                '') ||
-                                                                        (chatListViewChatMessagesRecord.image !=
-                                                                                '')))
-                                                                  Align(
-                                                                    alignment:
-                                                                        const AlignmentDirectional(
-                                                                            1.0,
+                                                        ),
+                                                      );
+                                                    }
+                                                    List<ChatMessagesRecord>
+                                                        chatListViewChatMessagesRecordList =
+                                                        snapshot.data!;
+                                                    return ListView.builder(
+                                                      padding:
+                                                          const EdgeInsets.fromLTRB(
+                                                        0,
+                                                        0,
+                                                        0,
+                                                        12.0,
+                                                      ),
+                                                      shrinkWrap: true,
+                                                      scrollDirection:
+                                                          Axis.vertical,
+                                                      itemCount:
+                                                          chatListViewChatMessagesRecordList
+                                                              .length,
+                                                      itemBuilder: (context,
+                                                          chatListViewIndex) {
+                                                        final chatListViewChatMessagesRecord =
+                                                            chatListViewChatMessagesRecordList[
+                                                                chatListViewIndex];
+                                                        return Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      15.0,
+                                                                      8.0,
+                                                                      15.0,
+                                                                      0.0),
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .end,
+                                                            children: [
+                                                              if ((chatListViewChatMessagesRecord
+                                                                          .user !=
+                                                                      currentUserReference) &&
+                                                                  ((chatListViewChatMessagesRecord.text !=
+                                                                              '') ||
+                                                                      (chatListViewChatMessagesRecord.image !=
+                                                                              '')))
+                                                                Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          -1.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            46.0,
                                                                             0.0),
-                                                                    child:
-                                                                        Material(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                      elevation:
-                                                                          2.0,
-                                                                      shape:
-                                                                          RoundedRectangleBorder(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(20.0),
-                                                                      ),
-                                                                      child:
-                                                                          SafeArea(
-                                                                        child:
-                                                                            Container(
-                                                                          constraints:
-                                                                              const BoxConstraints(
-                                                                            maxHeight:
-                                                                                double.infinity,
-                                                                          ),
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).secondary,
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(20.0),
-                                                                          ),
-                                                                          alignment: const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                                16.0,
-                                                                                10.0,
-                                                                                12.0,
-                                                                                4.0),
+                                                                    child: Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .min,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .end,
+                                                                      children: [
+                                                                        if ((chatListViewChatMessagesRecord.user !=
+                                                                                currentUserReference) &&
+                                                                            ((chatListViewChatMessagesRecord.text != '') ||
+                                                                                (chatListViewChatMessagesRecord.image != '')))
+                                                                          Align(
+                                                                            alignment:
+                                                                                const AlignmentDirectional(1.0, 0.0),
                                                                             child:
-                                                                                Row(
-                                                                              mainAxisSize: MainAxisSize.min,
-                                                                              mainAxisAlignment: MainAxisAlignment.start,
-                                                                              crossAxisAlignment: CrossAxisAlignment.end,
-                                                                              children: [
-                                                                                Container(
+                                                                                Material(
+                                                                              color: Colors.transparent,
+                                                                              elevation: 2.0,
+                                                                              shape: RoundedRectangleBorder(
+                                                                                borderRadius: BorderRadius.circular(20.0),
+                                                                              ),
+                                                                              child: SafeArea(
+                                                                                child: Container(
                                                                                   constraints: const BoxConstraints(
-                                                                                    maxWidth: 230.0,
+                                                                                    maxHeight: double.infinity,
                                                                                   ),
-                                                                                  decoration: const BoxDecoration(),
-                                                                                  child: Visibility(
-                                                                                    visible: chatListViewChatMessagesRecord.text != '',
-                                                                                    child: Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 10.0),
-                                                                                      child: Text(
-                                                                                        chatListViewChatMessagesRecord.text,
-                                                                                        textAlign: TextAlign.start,
-                                                                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                              fontFamily: 'Figtree',
-                                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                                              fontSize: 16.0,
-                                                                                              letterSpacing: 0.0,
-                                                                                            ),
-                                                                                      ),
-                                                                                    ),
+                                                                                  decoration: BoxDecoration(
+                                                                                    color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                    borderRadius: BorderRadius.circular(20.0),
                                                                                   ),
-                                                                                ),
-                                                                                Align(
-                                                                                  alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
                                                                                   child: Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 5.0),
-                                                                                    child: Column(
+                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 12.0, 4.0),
+                                                                                    child: Row(
                                                                                       mainAxisSize: MainAxisSize.max,
-                                                                                      mainAxisAlignment: MainAxisAlignment.end,
+                                                                                      mainAxisAlignment: MainAxisAlignment.start,
+                                                                                      crossAxisAlignment: CrossAxisAlignment.end,
                                                                                       children: [
                                                                                         Align(
                                                                                           alignment: const AlignmentDirectional(0.0, 1.0),
-                                                                                          child: Text(
-                                                                                            dateTimeFormat('Hm', chatListViewChatMessagesRecord.timeStamp!),
-                                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                  fontFamily: 'Figtree',
-                                                                                                  color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                                                  fontSize: 12.0,
-                                                                                                  letterSpacing: 0.0,
+                                                                                          child: Container(
+                                                                                            constraints: const BoxConstraints(
+                                                                                              maxWidth: 230.0,
+                                                                                            ),
+                                                                                            decoration: const BoxDecoration(),
+                                                                                            child: Visibility(
+                                                                                              visible: chatListViewChatMessagesRecord.text != '',
+                                                                                              child: Padding(
+                                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 10.0),
+                                                                                                child: Text(
+                                                                                                  chatListViewChatMessagesRecord.text,
+                                                                                                  textAlign: TextAlign.start,
+                                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                        fontFamily: 'Figtree',
+                                                                                                        color: FlutterFlowTheme.of(context).alternate,
+                                                                                                        fontSize: 16.0,
+                                                                                                        letterSpacing: 0.0,
+                                                                                                      ),
                                                                                                 ),
+                                                                                              ),
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
+                                                                                        Align(
+                                                                                          alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                          child: Padding(
+                                                                                            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 5.0),
+                                                                                            child: Column(
+                                                                                              mainAxisSize: MainAxisSize.max,
+                                                                                              mainAxisAlignment: MainAxisAlignment.end,
+                                                                                              children: [
+                                                                                                Align(
+                                                                                                  alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                  child: Text(
+                                                                                                    dateTimeFormat(
+                                                                                                      'Hm',
+                                                                                                      chatListViewChatMessagesRecord.timeStamp!,
+                                                                                                      locale: FFLocalizations.of(context).languageCode,
+                                                                                                    ),
+                                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                          fontFamily: 'Figtree',
+                                                                                                          color: FlutterFlowTheme.of(context).alternate,
+                                                                                                          fontSize: 12.0,
+                                                                                                          letterSpacing: 0.0,
+                                                                                                        ),
+                                                                                                  ),
+                                                                                                ),
+                                                                                              ],
+                                                                                            ),
                                                                                           ),
                                                                                         ),
                                                                                       ],
                                                                                     ),
                                                                                   ),
                                                                                 ),
-                                                                              ],
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              if ((chatListViewChatMessagesRecord
+                                                                          .user ==
+                                                                      currentUserReference) &&
+                                                                  ((chatListViewChatMessagesRecord.text !=
+                                                                              '') ||
+                                                                      (chatListViewChatMessagesRecord.image !=
+                                                                              '')) &&
+                                                                  (chatListViewChatMessagesRecord
+                                                                          .imagesIsSet ==
+                                                                      false))
+                                                                Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          60.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .end,
+                                                                    children: [
+                                                                      if ((chatListViewChatMessagesRecord.user ==
+                                                                              currentUserReference) &&
+                                                                          ((chatListViewChatMessagesRecord.text != '') ||
+                                                                              (chatListViewChatMessagesRecord.image != '')))
+                                                                        Align(
+                                                                          alignment: const AlignmentDirectional(
+                                                                              1.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Material(
+                                                                            color:
+                                                                                Colors.transparent,
+                                                                            elevation:
+                                                                                2.0,
+                                                                            shape:
+                                                                                RoundedRectangleBorder(
+                                                                              borderRadius: BorderRadius.circular(20.0),
+                                                                            ),
+                                                                            child:
+                                                                                SafeArea(
+                                                                              child: Container(
+                                                                                constraints: const BoxConstraints(
+                                                                                  maxHeight: double.infinity,
+                                                                                ),
+                                                                                decoration: BoxDecoration(
+                                                                                  color: FlutterFlowTheme.of(context).secondary,
+                                                                                  borderRadius: BorderRadius.circular(20.0),
+                                                                                ),
+                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                child: Padding(
+                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 12.0, 4.0),
+                                                                                  child: Row(
+                                                                                    mainAxisSize: MainAxisSize.min,
+                                                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                                                                    children: [
+                                                                                      Container(
+                                                                                        constraints: const BoxConstraints(
+                                                                                          maxWidth: 230.0,
+                                                                                        ),
+                                                                                        decoration: const BoxDecoration(),
+                                                                                        child: Visibility(
+                                                                                          visible: chatListViewChatMessagesRecord.text != '',
+                                                                                          child: Padding(
+                                                                                            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 10.0),
+                                                                                            child: Text(
+                                                                                              chatListViewChatMessagesRecord.text,
+                                                                                              textAlign: TextAlign.start,
+                                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                    fontFamily: 'Figtree',
+                                                                                                    color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                                    fontSize: 16.0,
+                                                                                                    letterSpacing: 0.0,
+                                                                                                  ),
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                      Align(
+                                                                                        alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                        child: Padding(
+                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 5.0),
+                                                                                          child: Column(
+                                                                                            mainAxisSize: MainAxisSize.max,
+                                                                                            mainAxisAlignment: MainAxisAlignment.end,
+                                                                                            children: [
+                                                                                              Align(
+                                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                                child: Text(
+                                                                                                  dateTimeFormat(
+                                                                                                    'Hm',
+                                                                                                    chatListViewChatMessagesRecord.timeStamp!,
+                                                                                                    locale: FFLocalizations.of(context).languageCode,
+                                                                                                  ),
+                                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                        fontFamily: 'Figtree',
+                                                                                                        color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                                        fontSize: 12.0,
+                                                                                                        letterSpacing: 0.0,
+                                                                                                      ),
+                                                                                                ),
+                                                                                              ),
+                                                                                            ],
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              if ((chatListViewChatMessagesRecord
+                                                                          .user ==
+                                                                      currentUserReference) &&
+                                                                  ((chatListViewChatMessagesRecord.text !=
+                                                                              '') ||
+                                                                      (chatListViewChatMessagesRecord
+                                                                              .images
+                                                                              .length !=
+                                                                          null)))
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .end,
+                                                                  children: [
+                                                                    if ((chatListViewChatMessagesRecord.user ==
+                                                                            currentUserReference) &&
+                                                                        ((chatListViewChatMessagesRecord.text != '') ||
+                                                                            (chatListViewChatMessagesRecord.image !=
+                                                                                    '')) &&
+                                                                        (chatListViewChatMessagesRecord.imagesIsSet ==
+                                                                            true))
+                                                                      Align(
+                                                                        alignment: const AlignmentDirectional(
+                                                                            1.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Material(
+                                                                          color:
+                                                                              Colors.transparent,
+                                                                          elevation:
+                                                                              2.0,
+                                                                          shape:
+                                                                              RoundedRectangleBorder(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(20.0),
+                                                                          ),
+                                                                          child:
+                                                                              SafeArea(
+                                                                            child:
+                                                                                Container(
+                                                                              constraints: const BoxConstraints(
+                                                                                maxHeight: double.infinity,
+                                                                              ),
+                                                                              decoration: BoxDecoration(
+                                                                                color: FlutterFlowTheme.of(context).secondary,
+                                                                                borderRadius: BorderRadius.circular(20.0),
+                                                                              ),
+                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                              child: Padding(
+                                                                                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 12.0, 4.0),
+                                                                                child: Row(
+                                                                                  mainAxisSize: MainAxisSize.min,
+                                                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                                                                  children: [
+                                                                                    Container(
+                                                                                      constraints: const BoxConstraints(
+                                                                                        maxWidth: 230.0,
+                                                                                      ),
+                                                                                      decoration: const BoxDecoration(),
+                                                                                    ),
+                                                                                    Align(
+                                                                                      alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                      child: UserSentMessageWidget(
+                                                                                        key: Key('Keyj98_${chatListViewIndex}_of_${chatListViewChatMessagesRecordList.length}'),
+                                                                                        images: chatListViewChatMessagesRecord,
+                                                                                      ),
+                                                                                    ),
+                                                                                    Align(
+                                                                                      alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                      child: Padding(
+                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 5.0),
+                                                                                        child: Column(
+                                                                                          mainAxisSize: MainAxisSize.max,
+                                                                                          mainAxisAlignment: MainAxisAlignment.end,
+                                                                                          children: [
+                                                                                            Align(
+                                                                                              alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                              child: Padding(
+                                                                                                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                                                                                                child: Text(
+                                                                                                  dateTimeFormat(
+                                                                                                    'Hm',
+                                                                                                    chatListViewChatMessagesRecord.timeStamp!,
+                                                                                                    locale: FFLocalizations.of(context).languageCode,
+                                                                                                  ),
+                                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                        fontFamily: 'Figtree',
+                                                                                                        color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                                        fontSize: 12.0,
+                                                                                                        letterSpacing: 0.0,
+                                                                                                      ),
+                                                                                                ),
+                                                                                              ),
+                                                                                            ),
+                                                                                          ],
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
                                                                             ),
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                    ),
-                                                                  ),
-                                                              ],
-                                                            ),
+                                                                  ],
+                                                                ),
+                                                            ],
                                                           ),
-                                                      ],
-                                                    ),
-                                                  );
-                                                },
-                                                controller: _model.chatListView,
-                                              );
-                                            },
-                                          ),
+                                                        );
+                                                      },
+                                                      controller:
+                                                          _model.chatListView,
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                       SafeArea(
@@ -866,80 +1114,6 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
-                                                if (_model.uploadedFileUrl1 !=
-                                                        '')
-                                                  Align(
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                            0.0, 0.0),
-                                                    child: SizedBox(
-                                                      width: 100.0,
-                                                      child: Stack(
-                                                        children: [
-                                                          ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
-                                                            child:
-                                                                Image.network(
-                                                              _model
-                                                                  .uploadedFileUrl1,
-                                                              width: 100.0,
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                          Align(
-                                                            alignment:
-                                                                const AlignmentDirectional(
-                                                                    1.0, -1.0),
-                                                            child: InkWell(
-                                                              splashColor: Colors
-                                                                  .transparent,
-                                                              focusColor: Colors
-                                                                  .transparent,
-                                                              hoverColor: Colors
-                                                                  .transparent,
-                                                              highlightColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              onTap: () async {
-                                                                setState(() {
-                                                                  _model.isDataUploading1 =
-                                                                      false;
-                                                                  _model.uploadedLocalFile1 =
-                                                                      FFUploadedFile(
-                                                                          bytes:
-                                                                              Uint8List.fromList([]));
-                                                                  _model.uploadedFileUrl1 =
-                                                                      '';
-                                                                });
-
-                                                                setState(() {
-                                                                  _model.isDataUploading2 =
-                                                                      false;
-                                                                  _model.uploadedLocalFile2 =
-                                                                      FFUploadedFile(
-                                                                          bytes:
-                                                                              Uint8List.fromList([]));
-                                                                  _model.uploadedFileUrl2 =
-                                                                      '';
-                                                                });
-                                                              },
-                                                              child: Icon(
-                                                                Icons
-                                                                    .close_sharp,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .error,
-                                                                size: 24.0,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
                                                 Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
@@ -1076,21 +1250,21 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                               '_model.messageTextFieldTextController',
                                                               const Duration(
                                                                   milliseconds:
-                                                                      2000),
+                                                                      1000),
                                                               () async {
                                                                 if (_model
                                                                         .messageTextFieldTextController
                                                                         .text !=
                                                                     '') {
-                                                                  setState(() {
-                                                                    _model.showSend =
-                                                                        true;
-                                                                  });
+                                                                  _model.showSend =
+                                                                      true;
+                                                                  setState(
+                                                                      () {});
                                                                 } else {
-                                                                  setState(() {
-                                                                    _model.showSend =
-                                                                        false;
-                                                                  });
+                                                                  _model.showSend =
+                                                                      false;
+                                                                  setState(
+                                                                      () {});
                                                                 }
                                                               },
                                                             ),
@@ -1220,7 +1394,10 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                           onTap: () async {
                                                             final selectedMedia =
                                                                 await selectMedia(
-                                                              multiImage: false,
+                                                              mediaSource:
+                                                                  MediaSource
+                                                                      .photoGallery,
+                                                              multiImage: true,
                                                             );
                                                             if (selectedMedia !=
                                                                     null &&
@@ -1278,18 +1455,68 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                                       selectedMedia
                                                                           .length) {
                                                                 setState(() {
-                                                                  _model.uploadedLocalFile2 =
-                                                                      selectedUploadedFiles
-                                                                          .first;
-                                                                  _model.uploadedFileUrl2 =
-                                                                      downloadUrls
-                                                                          .first;
+                                                                  _model.uploadedLocalFiles2 =
+                                                                      selectedUploadedFiles;
+                                                                  _model.uploadedFileUrls2 =
+                                                                      downloadUrls;
                                                                 });
                                                               } else {
                                                                 setState(() {});
                                                                 return;
                                                               }
                                                             }
+
+                                                            FFAppState()
+                                                                    .uploadedImages =
+                                                                _model
+                                                                    .uploadedFileUrls2
+                                                                    .toList()
+                                                                    .cast<
+                                                                        String>();
+                                                            setState(() {});
+                                                            await showModalBottomSheet(
+                                                              isScrollControlled:
+                                                                  true,
+                                                              backgroundColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              enableDrag: false,
+                                                              context: context,
+                                                              builder:
+                                                                  (context) {
+                                                                return WebViewAware(
+                                                                  child:
+                                                                      GestureDetector(
+                                                                    onTap: () => _model
+                                                                            .unfocusNode
+                                                                            .canRequestFocus
+                                                                        ? FocusScope.of(context).requestFocus(_model
+                                                                            .unfocusNode)
+                                                                        : FocusScope.of(context)
+                                                                            .unfocus(),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: MediaQuery
+                                                                          .viewInsetsOf(
+                                                                              context),
+                                                                      child:
+                                                                          ConfirmSendingPhotoWidget(
+                                                                        personName:
+                                                                            columnUsersRecord.displayName,
+                                                                        images:
+                                                                            FFAppState().uploadedImages,
+                                                                        user:
+                                                                            currentUserReference!,
+                                                                        chatUser:
+                                                                            columnChatsRecord.reference,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            ).then((value) =>
+                                                                safeSetState(
+                                                                    () {}));
                                                           },
                                                           child: ClipRRect(
                                                             borderRadius:
@@ -1351,27 +1578,72 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                               isSeenByUser:
                                                                   false,
                                                             ));
-                                                            triggerPushNotification(
-                                                              notificationTitle:
-                                                                  'New message!',
-                                                              notificationText:
-                                                                  '${'${valueOrDefault(currentUserDocument?.firstName, '')} ${valueOrDefault(currentUserDocument?.lastName, '')}'} Has sent you a new message!',
-                                                              userRefs: [
-                                                                widget.userRef!
-                                                              ],
-                                                              initialPageName:
-                                                                  'chatMessages',
-                                                              parameterData: {
-                                                                'chatUser': widget
-                                                                    .chatUser,
-                                                                'userName':
-                                                                    '${valueOrDefault(currentUserDocument?.firstName, '')} ${valueOrDefault(currentUserDocument?.lastName, '')}',
-                                                                'userRef':
-                                                                    currentUserReference,
-                                                                'userimage':
-                                                                    currentUserPhoto,
-                                                              },
-                                                            );
+                                                            if (columnChatsRecord
+                                                                    .userA ==
+                                                                currentUserReference) {
+                                                              _model.userBDoc =
+                                                                  await UsersRecord
+                                                                      .getDocumentOnce(
+                                                                          columnChatsRecord
+                                                                              .userB!);
+                                                              if (_model
+                                                                  .userBDoc!
+                                                                  .notificationSettings
+                                                                  .messaging) {
+                                                                triggerPushNotification(
+                                                                  notificationTitle:
+                                                                      'New message!',
+                                                                  notificationText:
+                                                                      '${'${valueOrDefault(currentUserDocument?.firstName, '')} ${valueOrDefault(currentUserDocument?.lastName, '')}'} Has sent you a new message!',
+                                                                  userRefs: [
+                                                                    _model
+                                                                        .userADoc!
+                                                                        .reference
+                                                                  ],
+                                                                  initialPageName:
+                                                                      'chatMessages',
+                                                                  parameterData: {
+                                                                    'chatUser':
+                                                                        widget
+                                                                            .chatUser,
+                                                                    'userRef':
+                                                                        currentUserReference,
+                                                                  },
+                                                                );
+                                                              }
+                                                            } else {
+                                                              _model.userADoc =
+                                                                  await UsersRecord
+                                                                      .getDocumentOnce(
+                                                                          columnChatsRecord
+                                                                              .userA!);
+                                                              if (_model
+                                                                  .userADoc!
+                                                                  .notificationSettings
+                                                                  .messaging) {
+                                                                triggerPushNotification(
+                                                                  notificationTitle:
+                                                                      'New message!',
+                                                                  notificationText:
+                                                                      '${'${valueOrDefault(currentUserDocument?.firstName, '')} ${valueOrDefault(currentUserDocument?.lastName, '')}'} Has sent you a new message!',
+                                                                  userRefs: [
+                                                                    _model
+                                                                        .userADoc!
+                                                                        .reference
+                                                                  ],
+                                                                  initialPageName:
+                                                                      'chatMessages',
+                                                                  parameterData: {
+                                                                    'chatUser':
+                                                                        widget
+                                                                            .chatUser,
+                                                                    'userRef':
+                                                                        currentUserReference,
+                                                                  },
+                                                                );
+                                                              }
+                                                            }
+
                                                             setState(() {
                                                               _model
                                                                   .messageTextFieldTextController
@@ -1392,13 +1664,10 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                             setState(() {
                                                               _model.isDataUploading2 =
                                                                   false;
-                                                              _model.uploadedLocalFile2 =
-                                                                  FFUploadedFile(
-                                                                      bytes: Uint8List
-                                                                          .fromList(
-                                                                              []));
-                                                              _model.uploadedFileUrl2 =
-                                                                  '';
+                                                              _model.uploadedLocalFiles2 =
+                                                                  [];
+                                                              _model.uploadedFileUrls2 =
+                                                                  [];
                                                             });
 
                                                             await _model
@@ -1414,6 +1683,8 @@ class _ChatMessagesWidgetState extends State<ChatMessagesWidget> {
                                                               curve:
                                                                   Curves.ease,
                                                             );
+
+                                                            setState(() {});
                                                           },
                                                           child: Container(
                                                             width: 32.0,

@@ -73,15 +73,11 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 
   @override
   Widget build(BuildContext context) => _loading
-      ? Center(
-          child: SizedBox(
-            width: 50.0,
-            height: 50.0,
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(
-                FlutterFlowTheme.of(context).primary,
-              ),
-            ),
+      ? Container(
+          color: FlutterFlowTheme.of(context).tertiary,
+          child: Image.asset(
+            'assets/images/main-logo.png',
+            fit: BoxFit.contain,
           ),
         )
       : widget.child;
@@ -108,21 +104,15 @@ class ParameterData {
 
 final parametersBuilderMap =
     <String, Future<ParameterData> Function(Map<String, dynamic>)>{
-  'LoginPage': ParameterData.none(),
   'MainPage': ParameterData.none(),
-  'RegisterPage': ParameterData.none(),
-  'ResetPassword': ParameterData.none(),
   'AIPage': ParameterData.none(),
   'PregnancyCalendarPage': ParameterData.none(),
-  'CommunityPage': ParameterData.none(),
   'PrivateChatsPage': ParameterData.none(),
   'BlogPage': ParameterData.none(),
   'FreeEbookPage': ParameterData.none(),
   'OnlineCoachingPage': ParameterData.none(),
-  'PregnancyCoursePage': ParameterData.none(),
+  'Courses': ParameterData.none(),
   'SupportPage': ParameterData.none(),
-  'FAQPage': ParameterData.none(),
-  'CollaborationPage': ParameterData.none(),
   'BlogsTopicsList': (data) async => ParameterData(
         allParams: {
           'sectionReference':
@@ -152,8 +142,6 @@ final parametersBuilderMap =
           'chapterOne': getParameter<String>(data, 'chapterOne'),
           'chapterTwo': getParameter<String>(data, 'chapterTwo'),
           'chapterThree': getParameter<String>(data, 'chapterThree'),
-          'referenceSection':
-              getParameter<DocumentReference>(data, 'referenceSection'),
           'partOne': getParameter<String>(data, 'partOne'),
           'partOneDescription':
               getParameter<String>(data, 'partOneDescription'),
@@ -197,28 +185,154 @@ final parametersBuilderMap =
   'chatMessages': (data) async => ParameterData(
         allParams: {
           'chatUser': getParameter<DocumentReference>(data, 'chatUser'),
-          'userName': getParameter<String>(data, 'userName'),
           'userRef': getParameter<DocumentReference>(data, 'userRef'),
-          'userimage': getParameter<String>(data, 'userimage'),
         },
       ),
   'testPage': ParameterData.none(),
   'payment': ParameterData.none(),
-  'CoursePage': (data) async => ParameterData(
+  'SubscriptionChoosePage': ParameterData.none(),
+  'ContractionsPage': ParameterData.none(),
+  'BabyNames': ParameterData.none(),
+  'Favorites': ParameterData.none(),
+  'MemoriesPage': ParameterData.none(),
+  'UploadPhotoPage': (data) async => ParameterData(
+        allParams: {
+          'photoUrl': getParameter<String>(data, 'photoUrl'),
+          'isEdit': getParameter<bool>(data, 'isEdit'),
+          'memoryRef': getParameter<DocumentReference>(data, 'memoryRef'),
+        },
+      ),
+  'Community': (data) async => ParameterData(
+        allParams: {
+          'isPostCreated': getParameter<bool>(data, 'isPostCreated'),
+        },
+      ),
+  'SearchPage': (data) async => ParameterData(
+        allParams: {
+          'searchType': getParameter<String>(data, 'searchType'),
+        },
+      ),
+  'MyGroups': ParameterData.none(),
+  'MyFriends': ParameterData.none(),
+  'CreatePost': (data) async => ParameterData(
+        allParams: {
+          'isEdit': getParameter<bool>(data, 'isEdit'),
+          'postRef': getParameter<DocumentReference>(data, 'postRef'),
+          'title': getParameter<String>(data, 'title'),
+          'details': getParameter<String>(data, 'details'),
+        },
+      ),
+  'GroupInner': (data) async => ParameterData(
+        allParams: {
+          'groupRef': getParameter<DocumentReference>(data, 'groupRef'),
+        },
+      ),
+  'PostInner': (data) async => ParameterData(
+        allParams: {
+          'postRef': getParameter<DocumentReference>(data, 'postRef'),
+        },
+      ),
+  'SearchInCommunity': ParameterData.none(),
+  'Library': ParameterData.none(),
+  'Course': (data) async => ParameterData(
         allParams: {
           'courseRef': getParameter<DocumentReference>(data, 'courseRef'),
         },
       ),
-  'CourseEditorPage': (data) async => ParameterData(
+  'Lesson': (data) async => ParameterData(
         allParams: {
-          'newCourseRef': getParameter<DocumentReference>(data, 'newCourseRef'),
+          'lessonRef': getParameter<DocumentReference>(data, 'lessonRef'),
         },
       ),
-  'SubscriptionChoosePage': ParameterData.none(),
-  'nameListPage': ParameterData.none(),
-  'ContractionsPage': ParameterData.none(),
-  'BabyNames': ParameterData.none(),
-  'Favorites': ParameterData.none(),
+  'Onboarding': (data) async {
+    final allParams = {
+      'userRef': getParameter<DocumentReference>(data, 'userRef'),
+    };
+    return ParameterData(
+      requiredParams: {
+        'userRef': serializeParam(
+          allParams['userRef'],
+          ParamType.DocumentReference,
+        ),
+      },
+      allParams: allParams,
+    );
+  },
+  'Login': ParameterData.none(),
+  'ForgotPassword': ParameterData.none(),
+  'Signup': (data) async => ParameterData(
+        allParams: {
+          'userRef': getParameter<DocumentReference>(data, 'userRef'),
+        },
+      ),
+  'ProfileSetup': ParameterData.none(),
+  'CalculateDueDate': ParameterData.none(),
+  'Subscription': ParameterData.none(),
+  'FAQ': ParameterData.none(),
+  'SearchInGroup': ParameterData.none(),
+  'Trackers': ParameterData.none(),
+  'WeightTracker': ParameterData.none(),
+  'WeightTrackerChart': (data) async => ParameterData(
+        allParams: {
+          'trackerRef': getParameter<DocumentReference>(data, 'trackerRef'),
+        },
+      ),
+  'BabyGrowthInit': ParameterData.none(),
+  'BabyGrowthChart': (data) async => ParameterData(
+        allParams: {
+          'trackerRef': getParameter<DocumentReference>(data, 'trackerRef'),
+        },
+      ),
+  'Feeding': (data) async => ParameterData(
+        allParams: {
+          'trackerRef': getParameter<DocumentReference>(data, 'trackerRef'),
+        },
+      ),
+  'DiaperTracker': (data) async => ParameterData(
+        allParams: {
+          'trackerRef': getParameter<DocumentReference>(data, 'trackerRef'),
+        },
+      ),
+  'articlePage': (data) async => ParameterData(
+        allParams: {
+          'blog': await getDocumentParameter<BlogsRecord>(
+              data, 'blog', BlogsRecord.fromSnapshot),
+          'additionalSection':
+              await getDocumentParameter<AdditionalSectionRecord>(data,
+                  'additionalSection', AdditionalSectionRecord.fromSnapshot),
+        },
+      ),
+  'Profile': ParameterData.none(),
+  'PersonalInformation': ParameterData.none(),
+  'ChangeName': ParameterData.none(),
+  'ChangeEmail': ParameterData.none(),
+  'ChangePassword': ParameterData.none(),
+  'PregnancyInformation': (data) async => ParameterData(
+        allParams: {
+          'isPregnant': getParameter<bool>(data, 'isPregnant'),
+        },
+      ),
+  'BabyGender': ParameterData.none(),
+  'DueDate': ParameterData.none(),
+  'ManageSubscription': ParameterData.none(),
+  'ChangePlan': ParameterData.none(),
+  'ProfileFAQ': ParameterData.none(),
+  'Support': ParameterData.none(),
+  'NotificationsSettings': ParameterData.none(),
+  'TermsOfService': ParameterData.none(),
+  'InviteFriend': ParameterData.none(),
+  'InvitedFriends': ParameterData.none(),
+  'Collaborations': ParameterData.none(),
+  'Notifications': ParameterData.none(),
+  'PregnancyPlanner': ParameterData.none(),
+  'Checklist': ParameterData.none(),
+  'CheckListItem': (data) async => ParameterData(
+        allParams: {
+          'checklistItem':
+              getParameter<DocumentReference>(data, 'checklistItem'),
+        },
+      ),
+  'selectedBlogs': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

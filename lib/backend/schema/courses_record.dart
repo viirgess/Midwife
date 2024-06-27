@@ -30,11 +30,6 @@ class CoursesRecord extends FirestoreRecord {
   String get imageUrl => _imageUrl ?? '';
   bool hasImageUrl() => _imageUrl != null;
 
-  // "price" field.
-  double? _price;
-  double get price => _price ?? 0.0;
-  bool hasPrice() => _price != null;
-
   // "enrolled_users" field.
   List<DocumentReference>? _enrolledUsers;
   List<DocumentReference> get enrolledUsers => _enrolledUsers ?? const [];
@@ -50,14 +45,19 @@ class CoursesRecord extends FirestoreRecord {
   bool get forPregnant => _forPregnant ?? false;
   bool hasForPregnant() => _forPregnant != null;
 
+  // "totalLength" field.
+  int? _totalLength;
+  int get totalLength => _totalLength ?? 0;
+  bool hasTotalLength() => _totalLength != null;
+
   void _initializeFields() {
     _title = snapshotData['title'] as String?;
     _description = snapshotData['description'] as String?;
     _imageUrl = snapshotData['imageUrl'] as String?;
-    _price = castToType<double>(snapshotData['price']);
     _enrolledUsers = getDataList(snapshotData['enrolled_users']);
     _createdAt = snapshotData['createdAt'] as DateTime?;
     _forPregnant = snapshotData['forPregnant'] as bool?;
+    _totalLength = castToType<int>(snapshotData['totalLength']);
   }
 
   static CollectionReference get collection =>
@@ -98,18 +98,18 @@ Map<String, dynamic> createCoursesRecordData({
   String? title,
   String? description,
   String? imageUrl,
-  double? price,
   DateTime? createdAt,
   bool? forPregnant,
+  int? totalLength,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'title': title,
       'description': description,
       'imageUrl': imageUrl,
-      'price': price,
       'createdAt': createdAt,
       'forPregnant': forPregnant,
+      'totalLength': totalLength,
     }.withoutNulls,
   );
 
@@ -125,10 +125,10 @@ class CoursesRecordDocumentEquality implements Equality<CoursesRecord> {
     return e1?.title == e2?.title &&
         e1?.description == e2?.description &&
         e1?.imageUrl == e2?.imageUrl &&
-        e1?.price == e2?.price &&
         listEquality.equals(e1?.enrolledUsers, e2?.enrolledUsers) &&
         e1?.createdAt == e2?.createdAt &&
-        e1?.forPregnant == e2?.forPregnant;
+        e1?.forPregnant == e2?.forPregnant &&
+        e1?.totalLength == e2?.totalLength;
   }
 
   @override
@@ -136,10 +136,10 @@ class CoursesRecordDocumentEquality implements Equality<CoursesRecord> {
         e?.title,
         e?.description,
         e?.imageUrl,
-        e?.price,
         e?.enrolledUsers,
         e?.createdAt,
-        e?.forPregnant
+        e?.forPregnant,
+        e?.totalLength
       ]);
 
   @override

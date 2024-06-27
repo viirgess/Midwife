@@ -1,13 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/components/app_bar/app_bar_widget.dart';
 import '/components/bottom_nav_bar/bottom_nav_bar_widget.dart';
-import '/components/drawer_data/drawer_data_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'main_page_model.dart';
 export 'main_page_model.dart';
 
@@ -22,6 +20,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
   late MainPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LatLng? currentUserLocationValue;
 
   @override
   void initState() {
@@ -30,9 +29,13 @@ class _MainPageWidgetState extends State<MainPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        FFAppState().selectedindex = 1;
-      });
+      currentUserLocationValue =
+          await getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0));
+      FFAppState().selectedindex = 1;
+      FFAppState().userRef = currentUserReference;
+      FFAppState().dueDate = currentUserDocument?.calculatedDate;
+      FFAppState().babyBirthDate = currentUserDocument?.calculatedDate;
+      setState(() {});
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -56,18 +59,6 @@ class _MainPageWidgetState extends State<MainPageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        drawer: SizedBox(
-          width: MediaQuery.sizeOf(context).width * 0.65,
-          child: Drawer(
-            child: WebViewAware(
-              child: wrapWithModel(
-                model: _model.drawerDataModel,
-                updateCallback: () => setState(() {}),
-                child: const DrawerDataWidget(),
-              ),
-            ),
-          ),
-        ),
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
@@ -88,181 +79,313 @@ class _MainPageWidgetState extends State<MainPageWidget> {
         ),
         body: Stack(
           children: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
-              child: ListView(
-                padding: const EdgeInsets.fromLTRB(
-                  0,
-                  0,
-                  0,
-                  80.0,
-                ),
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                children: [
-                  if (_model.closeClicked == false)
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 22.0, 0.0, 16.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: Image.asset(
-                              'assets/images/banner.png',
-                            ).image,
+            Align(
+              alignment: const AlignmentDirectional(0.0, 0.0),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                child: ListView(
+                  padding: const EdgeInsets.fromLTRB(
+                    0,
+                    0,
+                    0,
+                    88.0,
+                  ),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    if (FFAppState().isWelcomeClosed == false)
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 22.0, 0.0, 16.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: Image.asset(
+                                'assets/images/banner.png',
+                              ).image,
+                            ),
+                            borderRadius: BorderRadius.circular(24.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Welcome to Mama Mentor!',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Figtree',
+                                            color: FlutterFlowTheme.of(context)
+                                                .accent2,
+                                            fontSize: 16.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                    Container(
+                                      width: 250.0,
+                                      decoration: const BoxDecoration(
+                                        color: Color(0x00FFFFFF),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 6.0, 0.0, 0.0),
+                                        child: Text(
+                                          'We’re here to keep you calm during and after your pregnancy',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Figtree',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .accent2,
+                                                fontSize: 16.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    _model.closeClicked = true;
+                                    setState(() {});
+                                    FFAppState().isWelcomeClosed = true;
+                                    setState(() {});
+                                  },
+                                  child: Icon(
+                                    Icons.close_rounded,
+                                    color: FlutterFlowTheme.of(context).accent2,
+                                    size: 24.0,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Welcome to Mama Mentor!',
+                      ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed(
+                            'PregnancyCalendarPage',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: const TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
+                            },
+                          );
+
+                          FFAppState().selectedindex = 2;
+                          setState(() {});
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            image: DecorationImage(
+                              fit: BoxFit.fill,
+                              image: Image.asset(
+                                'assets/images/big_card.png',
+                              ).image,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 175.0,
+                                  decoration: const BoxDecoration(
+                                    color: Color(0x00FFFFFF),
+                                  ),
+                                  child: Text(
+                                    'Pregnancy Calendar',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Figtree',
                                           color: FlutterFlowTheme.of(context)
                                               .accent2,
-                                          fontSize: 16.0,
+                                          fontSize: 28.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w600,
                                         ),
                                   ),
-                                  Container(
-                                    width: 250.0,
-                                    decoration: const BoxDecoration(
-                                      color: Color(0x00FFFFFF),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 6.0, 0.0, 0.0),
-                                      child: Text(
-                                        'We’re here to keep you calm during and after your pregnancy',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Figtree',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .accent2,
-                                              fontSize: 16.0,
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
+                                ),
+                                Container(
+                                  width: 175.0,
+                                  decoration: const BoxDecoration(
+                                    color: Color(0x00FFFFFF),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 24.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Track your pregnancy in 3D and get weekly updates',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Figtree',
+                                            color: FlutterFlowTheme.of(context)
+                                                .accent2,
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.normal,
+                                          ),
                                     ),
                                   ),
-                                ],
-                              ),
-                              InkWell(
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 5.0, 0.0),
+                              child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  setState(() {
-                                    _model.closeClicked = true;
-                                  });
-                                },
-                                child: Icon(
-                                  Icons.close_rounded,
-                                  color: FlutterFlowTheme.of(context).accent2,
-                                  size: 24.0,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        context.pushNamed('PregnancyCalendarPage');
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: Image.asset(
-                              'assets/images/big_card.png',
-                            ).image,
-                          ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 175.0,
-                                decoration: const BoxDecoration(
-                                  color: Color(0x00FFFFFF),
-                                ),
-                                child: Text(
-                                  'Pregnancy Calendar',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Figtree',
-                                        color: FlutterFlowTheme.of(context)
-                                            .accent2,
-                                        fontSize: 28.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
+                                  context.pushNamed(
+                                    'AIPage',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
                                       ),
-                                ),
-                              ),
-                              Container(
-                                width: 175.0,
-                                decoration: const BoxDecoration(
-                                  color: Color(0x00FFFFFF),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 24.0, 0.0, 0.0),
-                                  child: Text(
-                                    'Track your pregnancy in 3D and get weekly updates',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Figtree',
-                                          color: FlutterFlowTheme.of(context)
-                                              .accent2,
-                                          fontSize: 14.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.normal,
-                                        ),
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: Image.asset(
+                                        'assets/images/card_(1).png',
+                                      ).image,
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 16.0, 0.0, 57.0),
+                                    child: Text(
+                                      'Mama \nMentor AI',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Figtree',
+                                            color: FlutterFlowTheme.of(context)
+                                                .accent2,
+                                            fontSize: 20.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ],
+                            ),
                           ),
-                        ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  5.0, 0.0, 0.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'PregnancyPlanner',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: Image.asset(
+                                        'assets/images/card_(2).png',
+                                      ).image,
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 16.0, 0.0, 57.0),
+                                    child: Text(
+                                      'Pregnancy \nPlanner',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Figtree',
+                                            color: FlutterFlowTheme.of(context)
+                                                .accent2,
+                                            fontSize: 20.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
-                    child: Row(
+                    Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -277,7 +400,16 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                context.pushNamed('AIPage');
+                                context.pushNamed(
+                                  'BabyNames',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
+                                );
                               },
                               child: Container(
                                 decoration: BoxDecoration(
@@ -286,7 +418,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                                   image: DecorationImage(
                                     fit: BoxFit.fill,
                                     image: Image.asset(
-                                      'assets/images/card_(1).png',
+                                      'assets/images/card_(3).png',
                                     ).image,
                                   ),
                                 ),
@@ -294,7 +426,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 16.0, 0.0, 57.0),
                                   child: Text(
-                                    'Mama \nMentor AI',
+                                    'Baby \nNames',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -315,32 +447,50 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 5.0, 0.0, 0.0, 0.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                image: DecorationImage(
-                                  fit: BoxFit.fill,
-                                  image: Image.asset(
-                                    'assets/images/card_(2).png',
-                                  ).image,
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed(
+                                  'ContractionsPage',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
+                                );
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: Image.asset(
+                                      'assets/images/card_(4).png',
+                                    ).image,
+                                  ),
                                 ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 16.0, 0.0, 57.0),
-                                child: Text(
-                                  'Pregnancy \nPlanner',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Figtree',
-                                        color: FlutterFlowTheme.of(context)
-                                            .accent2,
-                                        fontSize: 20.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 16.0, 0.0, 57.0),
+                                  child: Text(
+                                    'Contraction \nTimer',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Figtree',
+                                          color: FlutterFlowTheme.of(context)
+                                              .accent2,
+                                          fontSize: 20.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -348,231 +498,227 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                         ),
                       ],
                     ),
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 5.0, 0.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              context.pushNamed('BabyNames');
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed(
+                            'Trackers',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: const TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
                             },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                image: DecorationImage(
-                                  fit: BoxFit.fill,
-                                  image: Image.asset(
-                                    'assets/images/card_(3).png',
-                                  ).image,
-                                ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 16.0, 0.0, 57.0),
-                                child: Text(
-                                  'Baby \nNames',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Figtree',
-                                        color: FlutterFlowTheme.of(context)
-                                            .accent2,
-                                        fontSize: 20.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                ),
-                              ),
+                          );
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: Image.asset(
+                                'assets/images/trackers_bg.png',
+                              ).image,
                             ),
+                            borderRadius: BorderRadius.circular(24.0),
                           ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              5.0, 0.0, 0.0, 0.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              context.pushNamed('ContractionsPage');
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                image: DecorationImage(
-                                  fit: BoxFit.fill,
-                                  image: Image.asset(
-                                    'assets/images/card_(4).png',
-                                  ).image,
-                                ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 16.0, 0.0, 57.0),
-                                child: Text(
-                                  'Contraction \nTimer',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Figtree',
-                                        color: FlutterFlowTheme.of(context)
-                                            .accent2,
-                                        fontSize: 20.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        context.pushNamed('CommunityPage');
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: Image.asset(
-                              'assets/images/big_card_(1).png',
-                            ).image,
-                          ),
-                          borderRadius: BorderRadius.circular(24.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              20.0, 20.0, 20.0, 20.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 20.0),
-                                child: Text(
-                                  'Community',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Figtree',
-                                        color: FlutterFlowTheme.of(context)
-                                            .accent2,
-                                        fontSize: 28.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                ),
-                              ),
-                              Text(
-                                'Find like-minded people, \ndiscuss and share experience',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Figtree',
-                                      color:
-                                          FlutterFlowTheme.of(context).accent2,
-                                      fontSize: 14.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 5.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed('nameListPage');
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  image: DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: Image.asset(
-                                      'assets/images/card_(5).png',
-                                    ).image,
-                                  ),
-                                ),
-                                child: Padding(
+                                20.0, 20.0, 20.0, 20.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 16.0, 0.0, 57.0),
+                                      0.0, 0.0, 0.0, 20.0),
                                   child: Text(
-                                    'Private \nchats',
+                                    'Trackers',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Figtree',
                                           color: FlutterFlowTheme.of(context)
                                               .accent2,
-                                          fontSize: 20.0,
+                                          fontSize: 28.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w600,
                                         ),
                                   ),
                                 ),
-                              ),
+                                Text(
+                                  'Track your weight, baby\'s growth, \nfeeding, and diaper changes',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Figtree',
+                                        color: FlutterFlowTheme.of(context)
+                                            .accent2,
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                        Expanded(
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed(
+                            'Community',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: const TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
+                            },
+                          );
+
+                          FFAppState().selectedindex = 4;
+                          setState(() {});
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: Image.asset(
+                                'assets/images/big_card_(1).png',
+                              ).image,
+                            ),
+                            borderRadius: BorderRadius.circular(24.0),
+                          ),
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                5.0, 0.0, 0.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed('ContractionsPage');
-                              },
+                                20.0, 20.0, 20.0, 20.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 20.0),
+                                  child: Text(
+                                    'Community',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Figtree',
+                                          color: FlutterFlowTheme.of(context)
+                                              .accent2,
+                                          fontSize: 28.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ),
+                                Text(
+                                  'Find like-minded people, \ndiscuss and share experience',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Figtree',
+                                        color: FlutterFlowTheme.of(context)
+                                            .accent2,
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 5.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'PrivateChatsPage',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+
+                                  FFAppState().selectedindex = 3;
+                                  setState(() {});
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: Image.asset(
+                                        'assets/images/card_(5).png',
+                                      ).image,
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 16.0, 0.0, 57.0),
+                                    child: Text(
+                                      'Private \nchats',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Figtree',
+                                            color: FlutterFlowTheme.of(context)
+                                                .accent2,
+                                            fontSize: 20.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  5.0, 0.0, 0.0, 0.0),
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
@@ -604,30 +750,21 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 5.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed('nameListPage');
-                              },
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 5.0, 0.0),
                               child: Container(
                                 height: 108.0,
                                 decoration: BoxDecoration(
@@ -660,309 +797,374 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                               ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                5.0, 0.0, 0.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed('ContractionsPage');
-                              },
-                              child: Container(
-                                height: 108.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  image: DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: Image.asset(
-                                      'assets/images/card_(4).png',
-                                    ).image,
-                                  ),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 16.0, 0.0, 57.0),
-                                  child: Text(
-                                    'Memories',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Figtree',
-                                          color: FlutterFlowTheme.of(context)
-                                              .accent2,
-                                          fontSize: 20.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryBackground,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: Image.asset(
-                            'assets/images/big_card_(2).png',
-                          ).image,
-                        ),
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            20.0, 20.0, 20.0, 20.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
+                          Expanded(
+                            child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 20.0),
-                              child: Text(
-                                'Courses',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Figtree',
-                                      color:
-                                          FlutterFlowTheme.of(context).accent2,
-                                      fontSize: 28.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
+                                  5.0, 0.0, 0.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'MemoriesPage',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  height: 108.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: Image.asset(
+                                        'assets/images/card_(4).png',
+                                      ).image,
                                     ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 16.0, 0.0, 57.0),
+                                    child: Text(
+                                      'Memories',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Figtree',
+                                            color: FlutterFlowTheme.of(context)
+                                                .accent2,
+                                            fontSize: 20.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
-                            Text(
-                              'Learn and grow: take a pregnancy \ncourses for (future) parents',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Figtree',
-                                    color: FlutterFlowTheme.of(context).accent2,
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                  ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed(
+                            'Courses',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: const TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
+                            },
+                          );
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: Image.asset(
+                                'assets/images/big_card_(2).png',
+                              ).image,
                             ),
-                          ],
+                            borderRadius: BorderRadius.circular(24.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                20.0, 20.0, 20.0, 20.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 20.0),
+                                  child: Text(
+                                    'Courses',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Figtree',
+                                          color: FlutterFlowTheme.of(context)
+                                              .accent2,
+                                          fontSize: 28.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ),
+                                Text(
+                                  'Learn and grow: take a pregnancy \ncourses for (future) parents',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Figtree',
+                                        color: FlutterFlowTheme.of(context)
+                                            .accent2,
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 5.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed('nameListPage');
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  image: DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: Image.asset(
-                                      'assets/images/card_(3).png',
-                                    ).image,
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 5.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'InviteFriend',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: Image.asset(
+                                        'assets/images/card_(3).png',
+                                      ).image,
+                                    ),
                                   ),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 16.0, 0.0, 57.0),
-                                  child: Text(
-                                    'Baby \nNames',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Figtree',
-                                          color: FlutterFlowTheme.of(context)
-                                              .accent2,
-                                          fontSize: 20.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                5.0, 0.0, 0.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed('ContractionsPage');
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  image: DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: Image.asset(
-                                      'assets/images/card_(4).png',
-                                    ).image,
-                                  ),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 16.0, 0.0, 57.0),
-                                  child: Text(
-                                    'Contraction \nTimer',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Figtree',
-                                          color: FlutterFlowTheme.of(context)
-                                              .accent2,
-                                          fontSize: 20.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 16.0, 0.0, 57.0),
+                                    child: Text(
+                                      'Invite a Friend\n',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Figtree',
+                                            color: FlutterFlowTheme.of(context)
+                                                .accent2,
+                                            fontSize: 20.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  5.0, 0.0, 0.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'Collaborations',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: Image.asset(
+                                        'assets/images/card_(4).png',
+                                      ).image,
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 16.0, 0.0, 57.0),
+                                    child: Text(
+                                      'Collaborations\n',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Figtree',
+                                            color: FlutterFlowTheme.of(context)
+                                                .accent2,
+                                            fontSize: 20.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 5.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed('nameListPage');
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  image: DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: Image.asset(
-                                      'assets/images/card_(3).png',
-                                    ).image,
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 5.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'ProfileFAQ',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: Image.asset(
+                                        'assets/images/card_(3).png',
+                                      ).image,
+                                    ),
                                   ),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 16.0, 0.0, 57.0),
-                                  child: Text(
-                                    'Baby \nNames',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Figtree',
-                                          color: FlutterFlowTheme.of(context)
-                                              .accent2,
-                                          fontSize: 20.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                5.0, 0.0, 0.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed('ContractionsPage');
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  image: DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: Image.asset(
-                                      'assets/images/card_(4).png',
-                                    ).image,
-                                  ),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 16.0, 0.0, 57.0),
-                                  child: Text(
-                                    'Contraction \nTimer',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Figtree',
-                                          color: FlutterFlowTheme.of(context)
-                                              .accent2,
-                                          fontSize: 20.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 16.0, 0.0, 57.0),
+                                    child: Text(
+                                      'FAQ\n',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Figtree',
+                                            color: FlutterFlowTheme.of(context)
+                                                .accent2,
+                                            fontSize: 20.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  5.0, 0.0, 0.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'Support',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: Image.asset(
+                                        'assets/images/card_(4).png',
+                                      ).image,
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 16.0, 0.0, 57.0),
+                                    child: Text(
+                                      'Support\n',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Figtree',
+                                            color: FlutterFlowTheme.of(context)
+                                                .accent2,
+                                            fontSize: 20.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             Align(
