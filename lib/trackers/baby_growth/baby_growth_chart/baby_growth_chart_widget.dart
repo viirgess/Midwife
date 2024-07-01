@@ -46,6 +46,7 @@ class _BabyGrowthChartWidgetState extends State<BabyGrowthChartWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       setState(() {});
       _model.sexSelected = true;
+      _model.isGirl = true;
       setState(() {});
     });
 
@@ -1059,6 +1060,7 @@ class _BabyGrowthChartWidgetState extends State<BabyGrowthChartWidget> {
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         _model.sexSelected = false;
+                                        _model.isGirl = false;
                                         setState(() {});
                                       },
                                       child: Container(
@@ -1154,6 +1156,7 @@ class _BabyGrowthChartWidgetState extends State<BabyGrowthChartWidget> {
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         _model.sexSelected = true;
+                                        _model.isGirl = true;
                                         setState(() {});
                                       },
                                       child: Container(
@@ -1438,7 +1441,7 @@ class _BabyGrowthChartWidgetState extends State<BabyGrowthChartWidget> {
                                               chartDataBabyHeight:
                                                   columnTrackersRecord
                                                       .babyHeights,
-                                              isGirl: true,
+                                              isGirl: _model.isGirl == true,
                                             ),
                                           ),
                                         );

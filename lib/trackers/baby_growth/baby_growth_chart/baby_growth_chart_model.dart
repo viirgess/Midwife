@@ -9,6 +9,8 @@ class BabyGrowthChartModel extends FlutterFlowModel<BabyGrowthChartWidget> {
 
   bool sexSelected = false;
 
+  bool isGirl = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
