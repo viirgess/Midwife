@@ -45,6 +45,8 @@ class _BabyGrowthChartWidgetState extends State<BabyGrowthChartWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       setState(() {});
+      _model.sexSelected = true;
+      setState(() {});
     });
 
     if (!isWeb) {
@@ -1436,9 +1438,7 @@ class _BabyGrowthChartWidgetState extends State<BabyGrowthChartWidget> {
                                               chartDataBabyHeight:
                                                   columnTrackersRecord
                                                       .babyHeights,
-                                              isGirl: (_model.sexSelected ==
-                                                      true) ||
-                                                  (_model.sexSelected == false),
+                                              isGirl: true,
                                             ),
                                           ),
                                         );
@@ -1469,10 +1469,8 @@ class _BabyGrowthChartWidgetState extends State<BabyGrowthChartWidget> {
                                               chartDataBabyHeight:
                                                   columnTrackersRecord
                                                       .babyHeights,
-                                              isGirl: _model.sexSelected == true
-                                                  ? true
-                                                  : (_model.sexSelected ==
-                                                      false),
+                                              isGirl:
+                                                  _model.sexSelected == true,
                                             ),
                                           ),
                                         );
