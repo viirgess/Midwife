@@ -1572,6 +1572,12 @@ class _ProfileSetupWidgetState extends State<ProfileSetupWidget> {
                                         );
                                         _model.buttonText = 'Finish';
                                         setState(() {});
+                                        if (_model.datePicked != null) {
+                                          await currentUserReference!
+                                              .update(createUsersRecordData(
+                                            calculatedDate: _model.datePicked,
+                                          ));
+                                        }
                                       }
                                     }
                                   }

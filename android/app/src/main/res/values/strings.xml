@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
     <string name="app_name">Mama Mentor</string>
-    <string name="facebook_app_id">467113449335054</string>
-               <string name="fb_login_protocol_scheme">fb467113449335054</string>
+    <string name="facebook_app_id">1647065392797250</string>
+               <string name="fb_login_protocol_scheme">fb1647065392797250</string>
 </resources>

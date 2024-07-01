@@ -322,7 +322,8 @@ class _AddHeightValueBabyWidgetState extends State<AddHeightValueBabyWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 28.0, 0.0, 50.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 28.0, 0.0, 100.0),
                   child: FFButtonWidget(
                     onPressed: (FFAppState().babyCurrentHeight == 0.0)
                         ? null
@@ -339,7 +340,7 @@ class _AddHeightValueBabyWidgetState extends State<AddHeightValueBabyWidget> {
                                     getBabyHeightFirestoreData(
                                       updateBabyHeightStruct(
                                         BabyHeightStruct(
-                                          date: _model.datePicked,
+                                          date: _model.datePicked ?? getCurrentTimestamp,
                                           height:
                                               FFAppState().babyCurrentHeight,
                                           difference: double.parse(

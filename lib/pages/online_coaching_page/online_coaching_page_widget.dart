@@ -2,7 +2,6 @@ import '/components/drawer_data/drawer_data_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'online_coaching_page_model.dart';
@@ -66,28 +65,26 @@ class _OnlineCoachingPageWidgetState extends State<OnlineCoachingPageWidget> {
             borderWidth: 1.0,
             buttonSize: 60.0,
             icon: Icon(
-              Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 30.0,
+              Icons.chevron_left_outlined,
+              color: FlutterFlowTheme.of(context).alternate,
+              size: 24.0,
             ),
             onPressed: () async {
-              context.pushNamed('MainPage');
+              context.pop();
             },
           ),
-          title: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Expanded(
-                child: Align(
-                  alignment: const AlignmentDirectional(1.0, 0.0),
-                  child: Icon(
-                    Icons.notifications_none,
-                    color: FlutterFlowTheme.of(context).primary,
-                    size: 32.0,
+          title: Align(
+            alignment: const AlignmentDirectional(-1.0, 0.0),
+            child: Text(
+              'Online coaching',
+              style: FlutterFlowTheme.of(context).headlineMedium.override(
+                    fontFamily: 'Figtree',
+                    color: FlutterFlowTheme.of(context).alternate,
+                    fontSize: 22.0,
+                    letterSpacing: 0.0,
+                    fontWeight: FontWeight.w600,
                   ),
-                ),
-              ),
-            ],
+            ),
           ),
           actions: const [],
           centerTitle: true,
@@ -96,51 +93,100 @@ class _OnlineCoachingPageWidgetState extends State<OnlineCoachingPageWidget> {
         body: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Align(
-              alignment: const AlignmentDirectional(-1.0, 0.0),
-              child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(32.0, 16.0, 0.0, 0.0),
-                child: Text(
-                  'Online coaching',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Figtree',
-                        fontSize: 30.0,
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.bold,
+            Expanded(
+              child: Stack(
+                alignment: const AlignmentDirectional(0.0, 1.0),
+                children: [
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, -1.0),
+                    child: Container(
+                      width: double.infinity,
+                      height: MediaQuery.sizeOf(context).height,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).customColor1,
                       ),
-                ),
-              ),
-            ),
-            Align(
-              alignment: const AlignmentDirectional(-1.0, 0.0),
-              child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(32.0, 12.0, 16.0, 12.0),
-                child: Text(
-                  'Persoonlijke begeleiding op afstand: plan je 1:1 sessies met een verloskundige',
-                  textAlign: TextAlign.start,
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Figtree',
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        fontSize: 20.0,
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.normal,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                20.0, 36.0, 0.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 51.0),
+                                  child: Text(
+                                    'Online 1:1 coaching\nmet verloskundige',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Figtree',
+                                          color: const Color(0xFF300A61),
+                                          fontSize: 18.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ),
+                                Text(
+                                  'Afspraken worden \ngemaakt via Calendly',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Figtree',
+                                        color: const Color(0xFF9183A2),
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 170.0,
+                            height: 250.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context).customColor1,
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.asset(
+                                'assets/images/Group.png',
+                                width: 154.0,
+                                height: 250.0,
+                                fit: BoxFit.contain,
+                                alignment: const Alignment(1.0, 0.0),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                ),
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              height: 550.0,
-              decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-              ),
-              child: FlutterFlowWebView(
-                content:
-                    '<!-- Calendly inline widget begin -->\n<div class=\"calendly-inline-widget\" data-url=\"https://calendly.com/midwifementor/1-op-1-coaching-verloskundige-renske?hide_gdpr_banner=1&primary_color=9e00ff\" style=\"min-width:320px;height:1200px;\"></div>\n<script type=\"text/javascript\" src=\"https://assets.calendly.com/assets/external/widget.js\" async></script>\n<!-- Calendly inline widget end -->',
-                height: MediaQuery.sizeOf(context).height * 1.0,
-                verticalScroll: true,
-                horizontalScroll: false,
-                html: true,
+                    ),
+                  ),
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, 1.0),
+                    child: Container(
+                      width: double.infinity,
+                      height: 600.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(0.0),
+                          bottomRight: Radius.circular(0.0),
+                          topLeft: Radius.circular(32.0),
+                          topRight: Radius.circular(32.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

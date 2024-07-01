@@ -1,3 +1,5 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -391,6 +393,14 @@ class _CalculateDueDateWidgetState extends State<CalculateDueDateWidget> {
                                   _model.datePicked!,
                                   FFAppState().cycleDuration);
                           setState(() {});
+
+                          await currentUserReference!
+                              .update(createUsersRecordData(
+                            calculatedDate:
+                                functions.calculateEstimatedDeliveryDate(
+                                    _model.datePicked!,
+                                    FFAppState().cycleDuration),
+                          ));
                           context.pop();
                         },
                         text: 'Next',

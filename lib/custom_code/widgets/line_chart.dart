@@ -130,7 +130,6 @@ class _LineChartState extends State<LineChart> {
       width: widget.width ?? MediaQuery.of(context).size.width,
       height: widget.height ?? MediaQuery.of(context).size.height * 0.3,
       child: SfCartesianChart(
-        // zoomPanBehavior: _zoomPanBehavior,
         primaryXAxis: NumericAxis(
           minimum: double.parse(widget.minX.toString()),
           maximum: double.parse(widget.maxX.toString()),
@@ -240,17 +239,19 @@ class _LineChartState extends State<LineChart> {
                   yValueMapper: (BabyWeigthStruct data, _) => data.weight,
                   markerSettings:
                       MarkerSettings(isVisible: true, width: 12, height: 12)),
-          if (widget.isHeight)
-            LineSeries<BabyHeightStruct, double>(
-                dataSource: widget.chartDataBabyHeight,
-                color: FlutterFlowTheme.of(context).secondary,
-                width: 3,
-                xValueMapper: (BabyHeightStruct data, _) =>
-                    calculateBabyAge(widget.dateOfBirth!, data.date!),
-                yValueMapper: (BabyHeightStruct data, _) => data.height,
-                markerSettings:
-                    MarkerSettings(isVisible: true, width: 12, height: 12)),
+          if (widget.isBaby)
+            if (widget.isHeight)
+              LineSeries<BabyHeightStruct, double>(
+                  dataSource: widget.chartDataBabyHeight,
+                  color: FlutterFlowTheme.of(context).secondary,
+                  width: 3,
+                  xValueMapper: (BabyHeightStruct data, _) =>
+                      calculateBabyAge(widget.dateOfBirth!, data.date!),
+                  yValueMapper: (BabyHeightStruct data, _) => data.height,
+                  markerSettings:
+                      MarkerSettings(isVisible: true, width: 12, height: 12)),
         ],
+        zoomPanBehavior: _zoomPanBehavior,
       ),
     );
   }

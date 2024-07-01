@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'package:mama_mentor/components/save_button/save_button_widget.dart';
+
 import 'package:flutter/cupertino.dart';
 
 Future<double> weightPicker(
@@ -142,6 +144,10 @@ Future<double> weightPicker(
               Expanded(child: grams),
             ],
           ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20.0).copyWith(bottom: 50),
+          child: SaveButtonWidget(text: 'Save'),
         ),
       ],
     ),

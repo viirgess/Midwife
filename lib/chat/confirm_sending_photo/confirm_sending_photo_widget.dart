@@ -311,9 +311,15 @@ class _ConfirmSendingPhotoWidgetState extends State<ConfirmSendingPhotoWidget> {
                               ...createChatMessagesRecordData(
                                 user: currentUserReference,
                                 chatUser: widget.chatUser,
-                                text: _model.textController.text != ''
-                                    ? _model.textController.text
-                                    : '',
+                                text: () {
+                                  if (_model.textController.text != '') {
+                                    return _model.textController.text;
+                                  } else if (_model.textController.text == '') {
+                                    return ' ';
+                                  } else {
+                                    return '';
+                                  }
+                                }(),
                                 timeStamp: getCurrentTimestamp,
                                 imagesIsSet: true,
                               ),

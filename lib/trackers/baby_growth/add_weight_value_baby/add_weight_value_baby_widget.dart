@@ -305,7 +305,8 @@ class _AddWeightValueBabyWidgetState extends State<AddWeightValueBabyWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 28.0, 0.0, 50.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 28.0, 0.0, 100.0),
                   child: FFButtonWidget(
                     onPressed: (FFAppState().babyCurrentWeight == 0.0)
                         ? null
@@ -322,7 +323,7 @@ class _AddWeightValueBabyWidgetState extends State<AddWeightValueBabyWidget> {
                                     getBabyWeigthFirestoreData(
                                       updateBabyWeigthStruct(
                                         BabyWeigthStruct(
-                                          date: _model.datePicked,
+                                          date: _model.datePicked ?? getCurrentTimestamp,
                                           weight:
                                               FFAppState().babyCurrentWeight,
                                           difference: double.parse(

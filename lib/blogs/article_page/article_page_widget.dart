@@ -4,8 +4,8 @@ import '/components/bottom_nav_bar/bottom_nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:share_plus/share_plus.dart';
 import 'article_page_model.dart';
 export 'article_page_model.dart';
 
@@ -32,6 +32,9 @@ class _ArticlePageWidgetState extends State<ArticlePageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ArticlePageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {});
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -75,7 +78,16 @@ class _ArticlePageWidgetState extends State<ArticlePageWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        context.safePop();
+                        context.goNamed(
+                          'BlogPage',
+                          extra: <String, dynamic>{
+                            kTransitionInfoKey: const TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.fade,
+                              duration: Duration(milliseconds: 0),
+                            ),
+                          },
+                        );
                       },
                       child: Icon(
                         Icons.chevron_left_outlined,
@@ -101,31 +113,16 @@ class _ArticlePageWidgetState extends State<ArticlePageWidget> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Builder(
-                        builder: (context) => Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 12.0, 0.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              await Share.share(
-                                '',
-                                sharePositionOrigin:
-                                    getWidgetBoundingBox(context),
-                              );
-                            },
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: SvgPicture.asset(
-                                'assets/images/options.svg',
-                                width: 40.0,
-                                height: 40.0,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: SvgPicture.asset(
+                            'assets/images/options.svg',
+                            width: 40.0,
+                            height: 40.0,
+                            fit: BoxFit.fill,
                           ),
                         ),
                       ),
@@ -1771,7 +1768,7 @@ class _ArticlePageWidgetState extends State<ArticlePageWidget> {
                             ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 12.0, 0.0, 0.0),
+                                0.0, 42.0, 0.0, 0.0),
                             child: Text(
                               'Misschien iets voor jou',
                               style: FlutterFlowTheme.of(context)

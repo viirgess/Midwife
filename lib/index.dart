@@ -112,3 +112,7 @@ export '/pregnancy_planner/check_list_item/check_list_item_widget.dart'
     show CheckListItemWidget;
 export '/blogs/selected_blogs/selected_blogs_widget.dart'
     show SelectedBlogsWidget;
+export '/profile/help_center/processing_agreement/processing_agreement_widget.dart'
+    show ProcessingAgreementWidget;
+export '/profile/help_center/privacy_policy/privacy_policy_widget.dart'
+    show PrivacyPolicyWidget;

@@ -119,6 +119,8 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                   child: StreamBuilder<List<NotificationsRecord>>(
                     stream: queryNotificationsRecord(
                       parent: currentUserReference,
+                      queryBuilder: (notificationsRecord) => notificationsRecord
+                          .orderBy('createdAt', descending: true),
                     ),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.

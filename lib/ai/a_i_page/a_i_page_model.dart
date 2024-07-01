@@ -15,6 +15,8 @@ class AIPageModel extends FlutterFlowModel<AIPageWidget> {
 
   bool? showTextField;
 
+  String? prompt;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

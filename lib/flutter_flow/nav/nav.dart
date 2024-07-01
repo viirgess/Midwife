@@ -857,6 +857,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'selectedBlogs',
               requireAuth: true,
               builder: (context, params) => const SelectedBlogsWidget(),
+            ),
+            FFRoute(
+              name: 'ProcessingAgreement',
+              path: 'processingAgreement',
+              requireAuth: true,
+              builder: (context, params) => const ProcessingAgreementWidget(),
+            ),
+            FFRoute(
+              name: 'PrivacyPolicy',
+              path: 'privacyPolicy',
+              requireAuth: true,
+              builder: (context, params) => const PrivacyPolicyWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

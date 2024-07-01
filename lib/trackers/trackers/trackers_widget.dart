@@ -86,369 +86,362 @@ class _TrackersWidgetState extends State<TrackersWidget> {
           centerTitle: true,
           elevation: 0.0,
         ),
-        body: SafeArea(
-          top: true,
-          child: Stack(
-            children: [
-              Container(
-                decoration: const BoxDecoration(),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
-                          20.0, 20.0, 20.0, 12.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: Align(
-                              alignment: const AlignmentDirectional(0.0, -1.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  _model.readDoc1 =
-                                      await TrackersRecord.getDocumentOnce(
-                                          FFAppState().trackerRef!);
-                                  if ((_model.readDoc1?.reference != null) &&
-                                      (_model.readDoc1!.weightTracker.isNotEmpty)) {
-                                    context.pushNamed(
-                                      'WeightTrackerChart',
-                                      queryParameters: {
-                                        'trackerRef': serializeParam(
-                                          _model.readDoc1?.reference,
-                                          ParamType.DocumentReference,
-                                        ),
-                                      }.withoutNulls,
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                        ),
-                                      },
-                                    );
-                                  } else {
-                                    FFAppState().currentWeight = 0.0;
-                                    FFAppState().initWeight = 0.0;
-                                    setState(() {});
-
-                                    context.pushNamed(
-                                      'WeightTracker',
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                        ),
-                                      },
-                                    );
-                                  }
-
+        body: Stack(
+          children: [
+            Container(
+              decoration: const BoxDecoration(),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 12.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Align(
+                            alignment: const AlignmentDirectional(0.0, -1.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                _model.readDoc1 =
+                                    await TrackersRecord.getDocumentOnce(
+                                        FFAppState().trackerRef!);
+                                if ((_model.readDoc1?.reference != null) &&
+                                    (_model.readDoc1!.weightTracker.isNotEmpty)) {
+                                  context.pushNamed(
+                                    'WeightTrackerChart',
+                                    queryParameters: {
+                                      'trackerRef': serializeParam(
+                                        _model.readDoc1?.reference,
+                                        ParamType.DocumentReference,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                } else {
+                                  FFAppState().currentWeight = 0.0;
+                                  FFAppState().initWeight = 0.0;
                                   setState(() {});
-                                },
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 108.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: Image.asset(
-                                        'assets/images/tracker_bg_1.png',
-                                      ).image,
-                                    ),
-                                    borderRadius: BorderRadius.circular(24.0),
-                                    border: Border.all(
-                                      color:
-                                          FlutterFlowTheme.of(context).tertiary,
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 16.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Pregnancy \nweight tracker',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Figtree',
-                                            color: FlutterFlowTheme.of(context)
-                                                .textColor,
-                                            fontSize: 16.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Align(
-                              alignment: const AlignmentDirectional(0.0, -1.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  _model.readDoc2 =
-                                      await TrackersRecord.getDocumentOnce(
-                                          FFAppState().trackerRef!);
-                                  if ((_model.readDoc2?.reference != null) &&
-                                      (_model.readDoc2!.babyWeigths.isNotEmpty)) {
-                                    context.pushNamed(
-                                      'BabyGrowthChart',
-                                      queryParameters: {
-                                        'trackerRef': serializeParam(
-                                          _model.readDoc2?.reference,
-                                          ParamType.DocumentReference,
-                                        ),
-                                      }.withoutNulls,
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                        ),
-                                      },
-                                    );
-                                  } else {
-                                    FFAppState().babyInitWeight = 0.0;
-                                    FFAppState().babyInitHeight = 0.0;
-                                    FFAppState().babyCurrentWeight = 0.0;
-                                    FFAppState().babyCurrentHeight = 0.0;
-                                    setState(() {});
-
-                                    context.pushNamed(
-                                      'BabyGrowthInit',
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                        ),
-                                      },
-                                    );
-                                  }
-
-                                  setState(() {});
-                                },
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 108.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: Image.asset(
-                                        'assets/images/tracker_bg_2.png',
-                                      ).image,
-                                    ),
-                                    borderRadius: BorderRadius.circular(24.0),
-                                    border: Border.all(
-                                      color: const Color(0xFFF6EAFF),
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 16.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Baby growth \ntracker',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Figtree',
-                                            color: FlutterFlowTheme.of(context)
-                                                .textColor,
-                                            fontSize: 16.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ].divide(const SizedBox(width: 12.0)),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: Align(
-                              alignment: const AlignmentDirectional(0.0, -1.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  _model.readDoc3 =
-                                      await TrackersRecord.getDocumentOnce(
-                                          FFAppState().trackerRef!);
 
                                   context.pushNamed(
+                                    'WeightTracker',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                }
+
+                                setState(() {});
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                height: 108.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: Image.asset(
+                                      'assets/images/tracker_bg_1.png',
+                                    ).image,
+                                  ),
+                                  borderRadius: BorderRadius.circular(24.0),
+                                  border: Border.all(
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 16.0, 0.0, 0.0),
+                                  child: Text(
+                                    'Pregnancy \nweight tracker',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Figtree',
+                                          color: FlutterFlowTheme.of(context)
+                                              .textColor,
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Align(
+                            alignment: const AlignmentDirectional(0.0, -1.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                _model.readDoc2 =
+                                    await TrackersRecord.getDocumentOnce(
+                                        FFAppState().trackerRef!);
+                                if ((_model.readDoc2?.reference != null) &&
+                                    (_model.readDoc2!.babyWeigths.isNotEmpty)) {
+                                  context.pushNamed(
+                                    'BabyGrowthChart',
+                                    queryParameters: {
+                                      'trackerRef': serializeParam(
+                                        _model.readDoc2?.reference,
+                                        ParamType.DocumentReference,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                } else {
+                                  FFAppState().babyInitWeight = 0.0;
+                                  FFAppState().babyInitHeight = 0.0;
+                                  FFAppState().babyCurrentWeight = 0.0;
+                                  FFAppState().babyCurrentHeight = 0.0;
+                                  setState(() {});
+
+                                  context.pushNamed(
+                                    'BabyGrowthInit',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                }
+
+                                setState(() {});
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                height: 108.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: Image.asset(
+                                      'assets/images/tracker_bg_2.png',
+                                    ).image,
+                                  ),
+                                  borderRadius: BorderRadius.circular(24.0),
+                                  border: Border.all(
+                                    color: const Color(0xFFF6EAFF),
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 16.0, 0.0, 0.0),
+                                  child: Text(
+                                    'Baby growth \ntracker',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Figtree',
+                                          color: FlutterFlowTheme.of(context)
+                                              .textColor,
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ].divide(const SizedBox(width: 12.0)),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Align(
+                            alignment: const AlignmentDirectional(0.0, -1.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                _model.readDoc3 =
+                                    await TrackersRecord.getDocumentOnce(
+                                        FFAppState().trackerRef!);
+
+                                context.pushNamed(
+                                  'Feeding',
+                                  queryParameters: {
+                                    'trackerRef': serializeParam(
+                                      _model.readDoc3?.reference,
+                                      ParamType.DocumentReference,
+                                    ),
+                                  }.withoutNulls,
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
+                                );
+
+                                setState(() {});
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                height: 108.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: Image.asset(
+                                      'assets/images/tracker_bg_3.png',
+                                    ).image,
+                                  ),
+                                  borderRadius: BorderRadius.circular(24.0),
+                                  border: Border.all(
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 16.0, 0.0, 0.0),
+                                  child: Text(
                                     'Feeding',
-                                    queryParameters: {
-                                      'trackerRef': serializeParam(
-                                        _model.readDoc3?.reference,
-                                        ParamType.DocumentReference,
-                                      ),
-                                    }.withoutNulls,
-                                    extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
-                                        hasTransition: true,
-                                        transitionType: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                      ),
-                                    },
-                                  );
-
-                                  setState(() {});
-                                },
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 108.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: Image.asset(
-                                        'assets/images/tracker_bg_3.png',
-                                      ).image,
-                                    ),
-                                    borderRadius: BorderRadius.circular(24.0),
-                                    border: Border.all(
-                                      color:
-                                          FlutterFlowTheme.of(context).tertiary,
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 16.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Feeding',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Figtree',
-                                            color: FlutterFlowTheme.of(context)
-                                                .textColor,
-                                            fontSize: 16.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Figtree',
+                                          color: FlutterFlowTheme.of(context)
+                                              .textColor,
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                          Expanded(
-                            child: Align(
-                              alignment: const AlignmentDirectional(0.0, -1.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  _model.readDoc4 =
-                                      await TrackersRecord.getDocumentOnce(
-                                          FFAppState().trackerRef!);
+                        ),
+                        Expanded(
+                          child: Align(
+                            alignment: const AlignmentDirectional(0.0, -1.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                _model.readDoc4 =
+                                    await TrackersRecord.getDocumentOnce(
+                                        FFAppState().trackerRef!);
 
-                                  context.pushNamed(
-                                    'DiaperTracker',
-                                    queryParameters: {
-                                      'trackerRef': serializeParam(
-                                        FFAppState().trackerRef,
-                                        ParamType.DocumentReference,
-                                      ),
-                                    }.withoutNulls,
-                                    extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
-                                        hasTransition: true,
-                                        transitionType: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                      ),
-                                    },
-                                  );
+                                context.pushNamed(
+                                  'DiaperTracker',
+                                  queryParameters: {
+                                    'trackerRef': serializeParam(
+                                      FFAppState().trackerRef,
+                                      ParamType.DocumentReference,
+                                    ),
+                                  }.withoutNulls,
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
+                                );
 
-                                  setState(() {});
-                                },
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 108.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: Image.asset(
-                                        'assets/images/tracker_bg_4.png',
-                                      ).image,
-                                    ),
-                                    borderRadius: BorderRadius.circular(24.0),
-                                    border: Border.all(
-                                      color:
-                                          FlutterFlowTheme.of(context).tertiary,
-                                    ),
+                                setState(() {});
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                height: 108.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: Image.asset(
+                                      'assets/images/tracker_bg_4.png',
+                                    ).image,
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 16.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Diaper change \ntracker',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Figtree',
-                                            color: FlutterFlowTheme.of(context)
-                                                .textColor,
-                                            fontSize: 16.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    ),
+                                  borderRadius: BorderRadius.circular(24.0),
+                                  border: Border.all(
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 16.0, 0.0, 0.0),
+                                  child: Text(
+                                    'Diaper change \ntracker',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Figtree',
+                                          color: FlutterFlowTheme.of(context)
+                                              .textColor,
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(width: 12.0)),
-                      ),
+                        ),
+                      ].divide(const SizedBox(width: 12.0)),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              Align(
-                alignment: const AlignmentDirectional(0.0, 1.0),
-                child: wrapWithModel(
-                  model: _model.bottomNavBarModel,
-                  updateCallback: () => setState(() {}),
-                  child: const BottomNavBarWidget(),
-                ),
+            ),
+            Align(
+              alignment: const AlignmentDirectional(0.0, 1.0),
+              child: wrapWithModel(
+                model: _model.bottomNavBarModel,
+                updateCallback: () => setState(() {}),
+                child: const BottomNavBarWidget(),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

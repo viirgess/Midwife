@@ -48,59 +48,79 @@ class _UserSentMessageWidgetState extends State<UserSentMessageWidget> {
     return Align(
       alignment: const AlignmentDirectional(-1.0, -1.0),
       child: Container(
-        width: 280.0,
-        height: 200.0,
+        height: 100.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondary,
         ),
         alignment: const AlignmentDirectional(-1.0, 0.0),
-        child: Builder(
-          builder: (context) {
-            final images = widget.images?.images.toList() ?? [];
-            return Row(
-              mainAxisSize: MainAxisSize.max,
-              children: List.generate(images.length, (imagesIndex) {
-                final imagesItem = images[imagesIndex];
-                return Align(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Flexible(
+                child: Align(
                   alignment: const AlignmentDirectional(-1.0, 0.0),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      await showModalBottomSheet(
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        enableDrag: false,
-                        context: context,
-                        builder: (context) {
-                          return WebViewAware(
-                            child: Padding(
-                              padding: MediaQuery.viewInsetsOf(context),
-                              child: ImageViewWidget(
-                                image: imagesItem,
+                  child: Builder(
+                    builder: (context) {
+                      final imaged = widget.images?.images.toList() ?? [];
+                      return Wrap(
+                        spacing: 3.0,
+                        runSpacing: 3.0,
+                        alignment: WrapAlignment.start,
+                        crossAxisAlignment: WrapCrossAlignment.start,
+                        direction: Axis.horizontal,
+                        runAlignment: WrapAlignment.start,
+                        verticalDirection: VerticalDirection.down,
+                        clipBehavior: Clip.none,
+                        children: List.generate(imaged.length, (imagedIndex) {
+                          final imagedItem = imaged[imagedIndex];
+                          return Align(
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                await showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  enableDrag: false,
+                                  context: context,
+                                  builder: (context) {
+                                    return WebViewAware(
+                                      child: Padding(
+                                        padding:
+                                            MediaQuery.viewInsetsOf(context),
+                                        child: ImageViewWidget(
+                                          image: imagedItem,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => safeSetState(() {}));
+                              },
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.network(
+                                  imagedItem,
+                                  width: 100.0,
+                                  height: 100.0,
+                                  fit: BoxFit.fill,
+                                  alignment: const Alignment(0.0, 0.0),
+                                ),
                               ),
                             ),
                           );
-                        },
-                      ).then((value) => safeSetState(() {}));
+                        }),
+                      );
                     },
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.network(
-                        imagesItem,
-                        width: 100.0,
-                        height: 100.0,
-                        fit: BoxFit.contain,
-                        alignment: const Alignment(0.0, 0.0),
-                      ),
-                    ),
                   ),
-                );
-              }),
-            );
-          },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

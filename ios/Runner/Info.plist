@@ -29,7 +29,7 @@
             <key>CFBundleURLSchemes</key>
             <array>
                 <string>com.googleusercontent.apps.7775155401-lp1mqgtn0qr5p51lokja7351me7okoka</string>
-                <string>fb467113449335054</string>
+                <string>fb1647065392797250</string>
             </array>
         </dict>
 
@@ -48,7 +48,7 @@
     <true/>
 
     <key>FacebookAppID</key>
-    <string>467113449335054</string>
+    <string>1647065392797250</string>
     <key>FacebookDisplayName</key>
     <string>Mama Mentor</string>
 

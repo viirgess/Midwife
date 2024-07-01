@@ -233,231 +233,69 @@ class _CommunityWidgetState extends State<CommunityWidget> {
             centerTitle: true,
             elevation: 0.0,
           ),
-          body: SafeArea(
-            top: true,
-            child: Stack(
-              children: [
-                Container(
-                  decoration: const BoxDecoration(
-                    color: Color(0xFFEBE9F8),
-                  ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 20.0, 0.0, 0.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Text(
-                                  'Welcome to community! 👋',
+          body: Stack(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                  color: Color(0xFFEBE9F8),
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).primaryBackground,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 20.0, 0.0, 0.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Welcome to community! 👋',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Figtree',
+                                      color: FlutterFlowTheme.of(context)
+                                          .textColor,
+                                      fontSize: 20.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    36.0, 12.0, 36.0, 0.0),
+                                child: Text(
+                                  'Make friends, share your experiences and get support in the Mama Mentor community',
+                                  textAlign: TextAlign.center,
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Figtree',
-                                        color: FlutterFlowTheme.of(context)
-                                            .textColor,
-                                        fontSize: 20.0,
                                         letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
                                       ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      36.0, 12.0, 36.0, 0.0),
-                                  child: Text(
-                                    'Make friends, share your experiences and get support in the Mama Mentor community',
-                                    textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Figtree',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            context.pushNamed(
-                                              'MyFriends',
-                                              extra: <String, dynamic>{
-                                                kTransitionInfoKey:
-                                                    const TransitionInfo(
-                                                  hasTransition: true,
-                                                  transitionType:
-                                                      PageTransitionType.fade,
-                                                  duration:
-                                                      Duration(milliseconds: 0),
-                                                ),
-                                              },
-                                            );
-                                          },
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                              image: DecorationImage(
-                                                fit: BoxFit.fill,
-                                                image: Image.asset(
-                                                  'assets/images/friends.png',
-                                                ).image,
-                                              ),
-                                            ),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      16.0, 16.0, 0.0, 57.0),
-                                              child: Text(
-                                                'My friends\n',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Figtree',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .accent2,
-                                                          fontSize: 20.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            context.pushNamed(
-                                              'MyGroups',
-                                              extra: <String, dynamic>{
-                                                kTransitionInfoKey:
-                                                    const TransitionInfo(
-                                                  hasTransition: true,
-                                                  transitionType:
-                                                      PageTransitionType.fade,
-                                                  duration:
-                                                      Duration(milliseconds: 0),
-                                                ),
-                                              },
-                                            );
-                                          },
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                              image: DecorationImage(
-                                                fit: BoxFit.fill,
-                                                image: Image.asset(
-                                                  'assets/images/groups.png',
-                                                ).image,
-                                              ),
-                                            ),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      16.0, 16.0, 0.0, 57.0),
-                                              child: Text(
-                                                'My groups\n',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Figtree',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .accent2,
-                                                          fontSize: 20.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ].divide(const SizedBox(width: 11.0)),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 4.0, 0.0, 0.0),
-                          child: Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Suggested topics',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Figtree',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .textColor,
-                                              fontSize: 22.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                      InkWell(
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Expanded(
+                                      child: InkWell(
                                         splashColor: Colors.transparent,
                                         focusColor: Colors.transparent,
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           context.pushNamed(
-                                            'SearchPage',
-                                            queryParameters: {
-                                              'searchType': serializeParam(
-                                                'topics',
-                                                ParamType.String,
-                                              ),
-                                            }.withoutNulls,
+                                            'MyFriends',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
                                                   const TransitionInfo(
@@ -470,551 +308,801 @@ class _CommunityWidgetState extends State<CommunityWidget> {
                                             },
                                           );
                                         },
-                                        child: Text(
-                                          'View all',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Figtree',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondary,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 18.0, 0.0, 0.0),
-                                    child: AuthUserStreamWidget(
-                                      builder: (context) =>
-                                          StreamBuilder<List<GroupsRecord>>(
-                                        stream: FFAppState().groups(
-                                          requestFn: () => queryGroupsRecord(
-                                            queryBuilder: (groupsRecord) =>
-                                                groupsRecord
-                                                    .where(
-                                                      'isProvince',
-                                                      isEqualTo: false,
-                                                    )
-                                                    .where(
-                                                      'sex',
-                                                      isEqualTo: valueOrDefault<
-                                                              bool>(
-                                                          currentUserDocument
-                                                              ?.sex,
-                                                          false),
-                                                    ),
-                                            limit: 5,
-                                          ),
-                                        ),
-                                        builder: (context, snapshot) {
-                                          // Customize what your widget looks like when it's loading.
-                                          if (!snapshot.hasData) {
-                                            return Center(
-                                              child: SizedBox(
-                                                width: 50.0,
-                                                height: 50.0,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  valueColor:
-                                                      AlwaysStoppedAnimation<
-                                                          Color>(
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondary,
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          }
-                                          List<GroupsRecord>
-                                              listViewGroupsRecordList =
-                                              snapshot.data!;
-                                          return ListView.separated(
-                                            padding: EdgeInsets.zero,
-                                            primary: false,
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.vertical,
-                                            itemCount:
-                                                listViewGroupsRecordList.length,
-                                            separatorBuilder: (_, __) =>
-                                                const SizedBox(height: 13.0),
-                                            itemBuilder:
-                                                (context, listViewIndex) {
-                                              final listViewGroupsRecord =
-                                                  listViewGroupsRecordList[
-                                                      listViewIndex];
-                                              return FutureBuilder<int>(
-                                                future: queryPostsRecordCount(
-                                                  queryBuilder: (postsRecord) =>
-                                                      postsRecord.where(
-                                                    'group_ref',
-                                                    isEqualTo:
-                                                        listViewGroupsRecord
-                                                            .reference,
-                                                  ),
-                                                ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 50.0,
-                                                        height: 50.0,
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }
-                                                  int containerCount =
-                                                      snapshot.data!;
-                                                  return Container(
-                                                    decoration: const BoxDecoration(),
-                                                    child: InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        context.pushNamed(
-                                                          'GroupInner',
-                                                          queryParameters: {
-                                                            'groupRef':
-                                                                serializeParam(
-                                                              listViewGroupsRecord
-                                                                  .reference,
-                                                              ParamType
-                                                                  .DocumentReference,
-                                                            ),
-                                                          }.withoutNulls,
-                                                          extra: <String,
-                                                              dynamic>{
-                                                            kTransitionInfoKey:
-                                                                const TransitionInfo(
-                                                              hasTransition:
-                                                                  true,
-                                                              transitionType:
-                                                                  PageTransitionType
-                                                                      .fade,
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      0),
-                                                            ),
-                                                          },
-                                                        );
-                                                      },
-                                                      child:
-                                                          SuggestedItemWidget(
-                                                        key: Key(
-                                                            'Key6o5_${listViewIndex}_of_${listViewGroupsRecordList.length}'),
-                                                        groupImage:
-                                                            listViewGroupsRecord
-                                                                .imagePreview,
-                                                        groupName:
-                                                            listViewGroupsRecord
-                                                                .name,
-                                                        numberOfMembers:
-                                                            listViewGroupsRecord
-                                                                .members.length,
-                                                        numberOfPosts:
-                                                            containerCount,
-                                                        isUserJoined:
-                                                            listViewGroupsRecord
-                                                                .members
-                                                                .contains(
-                                                                    currentUserReference),
-                                                        groupRef:
-                                                            listViewGroupsRecord
-                                                                .reference,
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            },
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 4.0, 0.0, 0.0),
-                          child: Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Provinces',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Figtree',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .textColor,
-                                              fontSize: 22.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                      InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          context.pushNamed(
-                                            'SearchPage',
-                                            queryParameters: {
-                                              'searchType': serializeParam(
-                                                'provinces',
-                                                ParamType.String,
-                                              ),
-                                            }.withoutNulls,
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  const TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType.fade,
-                                                duration:
-                                                    Duration(milliseconds: 0),
-                                              ),
-                                            },
-                                          );
-                                        },
-                                        child: Text(
-                                          'View all',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Figtree',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondary,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 18.0, 0.0, 0.0),
-                                    child: AuthUserStreamWidget(
-                                      builder: (context) =>
-                                          StreamBuilder<List<GroupsRecord>>(
-                                        stream: _model.provinces(
-                                          requestFn: () => queryGroupsRecord(
-                                            queryBuilder: (groupsRecord) =>
-                                                groupsRecord
-                                                    .where(
-                                                      'isProvince',
-                                                      isEqualTo: true,
-                                                    )
-                                                    .where(
-                                                      'sex',
-                                                      isEqualTo: valueOrDefault<
-                                                              bool>(
-                                                          currentUserDocument
-                                                              ?.sex,
-                                                          false),
-                                                    ),
-                                            limit: 5,
-                                          ),
-                                        ),
-                                        builder: (context, snapshot) {
-                                          // Customize what your widget looks like when it's loading.
-                                          if (!snapshot.hasData) {
-                                            return Center(
-                                              child: SizedBox(
-                                                width: 50.0,
-                                                height: 50.0,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  valueColor:
-                                                      AlwaysStoppedAnimation<
-                                                          Color>(
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondary,
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          }
-                                          List<GroupsRecord>
-                                              listViewGroupsRecordList =
-                                              snapshot.data!;
-                                          return ListView.separated(
-                                            padding: EdgeInsets.zero,
-                                            primary: false,
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.vertical,
-                                            itemCount:
-                                                listViewGroupsRecordList.length,
-                                            separatorBuilder: (_, __) =>
-                                                const SizedBox(height: 13.0),
-                                            itemBuilder:
-                                                (context, listViewIndex) {
-                                              final listViewGroupsRecord =
-                                                  listViewGroupsRecordList[
-                                                      listViewIndex];
-                                              return FutureBuilder<int>(
-                                                future: queryPostsRecordCount(
-                                                  queryBuilder: (postsRecord) =>
-                                                      postsRecord.where(
-                                                    'group_ref',
-                                                    isEqualTo:
-                                                        listViewGroupsRecord
-                                                            .reference,
-                                                  ),
-                                                ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 50.0,
-                                                        height: 50.0,
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }
-                                                  int containerCount =
-                                                      snapshot.data!;
-                                                  return Container(
-                                                    decoration: const BoxDecoration(),
-                                                    child: InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        context.pushNamed(
-                                                          'GroupInner',
-                                                          queryParameters: {
-                                                            'groupRef':
-                                                                serializeParam(
-                                                              listViewGroupsRecord
-                                                                  .reference,
-                                                              ParamType
-                                                                  .DocumentReference,
-                                                            ),
-                                                          }.withoutNulls,
-                                                          extra: <String,
-                                                              dynamic>{
-                                                            kTransitionInfoKey:
-                                                                const TransitionInfo(
-                                                              hasTransition:
-                                                                  true,
-                                                              transitionType:
-                                                                  PageTransitionType
-                                                                      .fade,
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      0),
-                                                            ),
-                                                          },
-                                                        );
-                                                      },
-                                                      child:
-                                                          SuggestedItemWidget(
-                                                        key: Key(
-                                                            'Keyv36_${listViewIndex}_of_${listViewGroupsRecordList.length}'),
-                                                        groupImage:
-                                                            listViewGroupsRecord
-                                                                .imagePreview,
-                                                        groupName:
-                                                            listViewGroupsRecord
-                                                                .name,
-                                                        numberOfMembers:
-                                                            listViewGroupsRecord
-                                                                .members.length,
-                                                        numberOfPosts: 0,
-                                                        isUserJoined:
-                                                            listViewGroupsRecord
-                                                                .members
-                                                                .contains(
-                                                                    currentUserReference),
-                                                        groupRef:
-                                                            listViewGroupsRecord
-                                                                .reference,
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            },
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 4.0, 0.0, 0.0),
-                          child: AuthUserStreamWidget(
-                            builder: (context) => PagedListView<
-                                DocumentSnapshot<Object?>?, PostsRecord>(
-                              pagingController: _model.setListViewController3(
-                                PostsRecord.collection
-                                    .where(
-                                      'sex',
-                                      isEqualTo: valueOrDefault<bool>(
-                                          currentUserDocument?.sex, false),
-                                    )
-                                    .orderBy('created_time', descending: true),
-                              ),
-                              padding: EdgeInsets.zero,
-                              primary: false,
-                              shrinkWrap: true,
-                              reverse: false,
-                              scrollDirection: Axis.vertical,
-                              builderDelegate:
-                                  PagedChildBuilderDelegate<PostsRecord>(
-                                // Customize what your widget looks like when it's loading the first page.
-                                firstPageProgressIndicatorBuilder: (_) =>
-                                    Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).secondary,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                // Customize what your widget looks like when it's loading another page.
-                                newPageProgressIndicatorBuilder: (_) => Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).secondary,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-
-                                itemBuilder: (context, _, listViewIndex) {
-                                  final listViewPostsRecord = _model
-                                      .listViewPagingController3!
-                                      .itemList![listViewIndex];
-                                  return Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 4.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Container(
-                                          width: double.infinity,
+                                        child: Container(
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryBackground,
+                                            image: DecorationImage(
+                                              fit: BoxFit.fill,
+                                              image: Image.asset(
+                                                'assets/images/friends.png',
+                                              ).image,
+                                            ),
                                           ),
                                           child: Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 20.0, 0.0, 20.0),
-                                            child: PostWidget(
-                                              key: Key(
-                                                  'Key41z_${listViewIndex}_of_${_model.listViewPagingController3!.itemList!.length}'),
-                                              authorRef: listViewPostsRecord
-                                                  .autherRef!,
-                                              groupRef:
-                                                  listViewPostsRecord.groupRef!,
-                                              postRef:
-                                                  listViewPostsRecord.reference,
-                                              showGroup: true,
-                                              isInner: false,
-                                              refreshPosts: () async {},
+                                                    16.0, 16.0, 0.0, 57.0),
+                                            child: Text(
+                                              'My friends\n',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Figtree',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .accent2,
+                                                    fontSize: 20.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
                                             ),
                                           ),
                                         ),
-                                      ],
+                                      ),
                                     ),
-                                  );
-                                },
+                                    Expanded(
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.pushNamed(
+                                            'MyGroups',
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  const TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType.fade,
+                                                duration:
+                                                    Duration(milliseconds: 0),
+                                              ),
+                                            },
+                                          );
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                            image: DecorationImage(
+                                              fit: BoxFit.fill,
+                                              image: Image.asset(
+                                                'assets/images/groups.png',
+                                              ).image,
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 16.0, 0.0, 57.0),
+                                            child: Text(
+                                              'My groups\n',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Figtree',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .accent2,
+                                                    fontSize: 20.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ].divide(const SizedBox(width: 11.0)),
+                                ),
                               ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                        child: AuthUserStreamWidget(
+                          builder: (context) => PagedListView<
+                              DocumentSnapshot<Object?>?, PostsRecord>(
+                            pagingController: _model.setPostsListViewController(
+                              PostsRecord.collection
+                                  .where(
+                                    'sex',
+                                    isEqualTo: valueOrDefault<bool>(
+                                        currentUserDocument?.sex, false),
+                                  )
+                                  .orderBy('created_time', descending: true),
+                            ),
+                            padding: EdgeInsets.zero,
+                            primary: false,
+                            shrinkWrap: true,
+                            reverse: false,
+                            scrollDirection: Axis.vertical,
+                            builderDelegate:
+                                PagedChildBuilderDelegate<PostsRecord>(
+                              // Customize what your widget looks like when it's loading the first page.
+                              firstPageProgressIndicatorBuilder: (_) => Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).secondary,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              // Customize what your widget looks like when it's loading another page.
+                              newPageProgressIndicatorBuilder: (_) => Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).secondary,
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                              itemBuilder: (context, _, postsListViewIndex) {
+                                final postsListViewPostsRecord = _model
+                                    .postsListViewPagingController!
+                                    .itemList![postsListViewIndex];
+                                return Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 4.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Container(
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 20.0, 0.0, 20.0),
+                                          child: PostWidget(
+                                            key: Key(
+                                                'Key41z_${postsListViewIndex}_of_${_model.postsListViewPagingController!.itemList!.length}'),
+                                            authorRef: postsListViewPostsRecord
+                                                .autherRef!,
+                                            groupRef: postsListViewPostsRecord
+                                                .groupRef!,
+                                            postRef: postsListViewPostsRecord
+                                                .reference,
+                                            showGroup: true,
+                                            isInner: false,
+                                            refreshPosts: () async {},
+                                          ),
+                                        ),
+                                      ),
+                                      if (postsListViewIndex == 1)
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 4.0, 0.0, 0.0),
+                                          child: Container(
+                                            width: double.infinity,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(20.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        'Suggested topics',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Figtree',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .textColor,
+                                                                  fontSize:
+                                                                      22.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                      ),
+                                                      InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          context.pushNamed(
+                                                            'SearchPage',
+                                                            queryParameters: {
+                                                              'searchType':
+                                                                  serializeParam(
+                                                                'topics',
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                            }.withoutNulls,
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              kTransitionInfoKey:
+                                                                  const TransitionInfo(
+                                                                hasTransition:
+                                                                    true,
+                                                                transitionType:
+                                                                    PageTransitionType
+                                                                        .fade,
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        0),
+                                                              ),
+                                                            },
+                                                          );
+                                                        },
+                                                        child: Text(
+                                                          'View all',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Figtree',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 18.0,
+                                                                0.0, 0.0),
+                                                    child: StreamBuilder<
+                                                        List<GroupsRecord>>(
+                                                      stream:
+                                                          FFAppState().groups(
+                                                        requestFn: () =>
+                                                            queryGroupsRecord(
+                                                          queryBuilder:
+                                                              (groupsRecord) =>
+                                                                  groupsRecord
+                                                                      .where(
+                                                                        'isProvince',
+                                                                        isEqualTo:
+                                                                            false,
+                                                                      )
+                                                                      .where(
+                                                                        'sex',
+                                                                        isEqualTo: valueOrDefault<bool>(
+                                                                            currentUserDocument?.sex,
+                                                                            false),
+                                                                      ),
+                                                          limit: 5,
+                                                        ),
+                                                      ),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 50.0,
+                                                              height: 50.0,
+                                                              child:
+                                                                  CircularProgressIndicator(
+                                                                valueColor:
+                                                                    AlwaysStoppedAnimation<
+                                                                        Color>(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondary,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }
+                                                        List<GroupsRecord>
+                                                            listViewGroupsRecordList =
+                                                            snapshot.data!;
+                                                        return ListView
+                                                            .separated(
+                                                          padding:
+                                                              EdgeInsets.zero,
+                                                          primary: false,
+                                                          shrinkWrap: true,
+                                                          scrollDirection:
+                                                              Axis.vertical,
+                                                          itemCount:
+                                                              listViewGroupsRecordList
+                                                                  .length,
+                                                          separatorBuilder: (_,
+                                                                  __) =>
+                                                              const SizedBox(
+                                                                  height: 13.0),
+                                                          itemBuilder: (context,
+                                                              listViewIndex) {
+                                                            final listViewGroupsRecord =
+                                                                listViewGroupsRecordList[
+                                                                    listViewIndex];
+                                                            return FutureBuilder<
+                                                                int>(
+                                                              future:
+                                                                  queryPostsRecordCount(
+                                                                queryBuilder:
+                                                                    (postsRecord) =>
+                                                                        postsRecord
+                                                                            .where(
+                                                                  'group_ref',
+                                                                  isEqualTo:
+                                                                      listViewGroupsRecord
+                                                                          .reference,
+                                                                ),
+                                                              ),
+                                                              builder: (context,
+                                                                  snapshot) {
+                                                                // Customize what your widget looks like when it's loading.
+                                                                if (!snapshot
+                                                                    .hasData) {
+                                                                  return Center(
+                                                                    child:
+                                                                        SizedBox(
+                                                                      width:
+                                                                          50.0,
+                                                                      height:
+                                                                          50.0,
+                                                                      child:
+                                                                          CircularProgressIndicator(
+                                                                        valueColor:
+                                                                            AlwaysStoppedAnimation<Color>(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .secondary,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                }
+                                                                int containerCount =
+                                                                    snapshot
+                                                                        .data!;
+                                                                return Container(
+                                                                  decoration:
+                                                                      const BoxDecoration(),
+                                                                  child:
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
+                                                                      context
+                                                                          .pushNamed(
+                                                                        'GroupInner',
+                                                                        queryParameters:
+                                                                            {
+                                                                          'groupRef':
+                                                                              serializeParam(
+                                                                            listViewGroupsRecord.reference,
+                                                                            ParamType.DocumentReference,
+                                                                          ),
+                                                                        }.withoutNulls,
+                                                                        extra: <String,
+                                                                            dynamic>{
+                                                                          kTransitionInfoKey:
+                                                                              const TransitionInfo(
+                                                                            hasTransition:
+                                                                                true,
+                                                                            transitionType:
+                                                                                PageTransitionType.fade,
+                                                                            duration:
+                                                                                Duration(milliseconds: 0),
+                                                                          ),
+                                                                        },
+                                                                      );
+                                                                    },
+                                                                    child:
+                                                                        SuggestedItemWidget(
+                                                                      key: Key(
+                                                                          'Key6o5_${listViewIndex}_of_${listViewGroupsRecordList.length}'),
+                                                                      groupImage:
+                                                                          listViewGroupsRecord
+                                                                              .imagePreview,
+                                                                      groupName:
+                                                                          listViewGroupsRecord
+                                                                              .name,
+                                                                      numberOfMembers: listViewGroupsRecord
+                                                                          .members
+                                                                          .length,
+                                                                      numberOfPosts:
+                                                                          containerCount,
+                                                                      isUserJoined: listViewGroupsRecord
+                                                                          .members
+                                                                          .contains(
+                                                                              currentUserReference),
+                                                                      groupRef:
+                                                                          listViewGroupsRecord
+                                                                              .reference,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      if (postsListViewIndex == 3)
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 4.0, 0.0, 0.0),
+                                          child: Container(
+                                            width: double.infinity,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(20.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        'Provinces',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Figtree',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .textColor,
+                                                                  fontSize:
+                                                                      22.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                      ),
+                                                      InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          context.pushNamed(
+                                                            'SearchPage',
+                                                            queryParameters: {
+                                                              'searchType':
+                                                                  serializeParam(
+                                                                'provinces',
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                            }.withoutNulls,
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              kTransitionInfoKey:
+                                                                  const TransitionInfo(
+                                                                hasTransition:
+                                                                    true,
+                                                                transitionType:
+                                                                    PageTransitionType
+                                                                        .fade,
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        0),
+                                                              ),
+                                                            },
+                                                          );
+                                                        },
+                                                        child: Text(
+                                                          'View all',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Figtree',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 18.0,
+                                                                0.0, 0.0),
+                                                    child: StreamBuilder<
+                                                        List<GroupsRecord>>(
+                                                      stream: _model.provinces(
+                                                        requestFn: () =>
+                                                            queryGroupsRecord(
+                                                          queryBuilder:
+                                                              (groupsRecord) =>
+                                                                  groupsRecord
+                                                                      .where(
+                                                                        'isProvince',
+                                                                        isEqualTo:
+                                                                            true,
+                                                                      )
+                                                                      .where(
+                                                                        'sex',
+                                                                        isEqualTo: valueOrDefault<bool>(
+                                                                            currentUserDocument?.sex,
+                                                                            false),
+                                                                      ),
+                                                          limit: 5,
+                                                        ),
+                                                      ),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 50.0,
+                                                              height: 50.0,
+                                                              child:
+                                                                  CircularProgressIndicator(
+                                                                valueColor:
+                                                                    AlwaysStoppedAnimation<
+                                                                        Color>(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondary,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }
+                                                        List<GroupsRecord>
+                                                            listViewGroupsRecordList =
+                                                            snapshot.data!;
+                                                        return ListView
+                                                            .separated(
+                                                          padding:
+                                                              EdgeInsets.zero,
+                                                          primary: false,
+                                                          shrinkWrap: true,
+                                                          scrollDirection:
+                                                              Axis.vertical,
+                                                          itemCount:
+                                                              listViewGroupsRecordList
+                                                                  .length,
+                                                          separatorBuilder: (_,
+                                                                  __) =>
+                                                              const SizedBox(
+                                                                  height: 13.0),
+                                                          itemBuilder: (context,
+                                                              listViewIndex) {
+                                                            final listViewGroupsRecord =
+                                                                listViewGroupsRecordList[
+                                                                    listViewIndex];
+                                                            return FutureBuilder<
+                                                                int>(
+                                                              future:
+                                                                  queryPostsRecordCount(
+                                                                queryBuilder:
+                                                                    (postsRecord) =>
+                                                                        postsRecord
+                                                                            .where(
+                                                                  'group_ref',
+                                                                  isEqualTo:
+                                                                      listViewGroupsRecord
+                                                                          .reference,
+                                                                ),
+                                                              ),
+                                                              builder: (context,
+                                                                  snapshot) {
+                                                                // Customize what your widget looks like when it's loading.
+                                                                if (!snapshot
+                                                                    .hasData) {
+                                                                  return Center(
+                                                                    child:
+                                                                        SizedBox(
+                                                                      width:
+                                                                          50.0,
+                                                                      height:
+                                                                          50.0,
+                                                                      child:
+                                                                          CircularProgressIndicator(
+                                                                        valueColor:
+                                                                            AlwaysStoppedAnimation<Color>(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .secondary,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                }
+                                                                int containerCount =
+                                                                    snapshot
+                                                                        .data!;
+                                                                return Container(
+                                                                  decoration:
+                                                                      const BoxDecoration(),
+                                                                  child:
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
+                                                                      context
+                                                                          .pushNamed(
+                                                                        'GroupInner',
+                                                                        queryParameters:
+                                                                            {
+                                                                          'groupRef':
+                                                                              serializeParam(
+                                                                            listViewGroupsRecord.reference,
+                                                                            ParamType.DocumentReference,
+                                                                          ),
+                                                                        }.withoutNulls,
+                                                                        extra: <String,
+                                                                            dynamic>{
+                                                                          kTransitionInfoKey:
+                                                                              const TransitionInfo(
+                                                                            hasTransition:
+                                                                                true,
+                                                                            transitionType:
+                                                                                PageTransitionType.fade,
+                                                                            duration:
+                                                                                Duration(milliseconds: 0),
+                                                                          ),
+                                                                        },
+                                                                      );
+                                                                    },
+                                                                    child:
+                                                                        SuggestedItemWidget(
+                                                                      key: Key(
+                                                                          'Keyv36_${listViewIndex}_of_${listViewGroupsRecordList.length}'),
+                                                                      groupImage:
+                                                                          listViewGroupsRecord
+                                                                              .imagePreview,
+                                                                      groupName:
+                                                                          listViewGroupsRecord
+                                                                              .name,
+                                                                      numberOfMembers: listViewGroupsRecord
+                                                                          .members
+                                                                          .length,
+                                                                      numberOfPosts:
+                                                                          0,
+                                                                      isUserJoined: listViewGroupsRecord
+                                                                          .members
+                                                                          .contains(
+                                                                              currentUserReference),
+                                                                      groupRef:
+                                                                          listViewGroupsRecord
+                                                                              .reference,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                );
+                              },
                             ),
                           ),
                         ),
-                        Container(
-                          width: double.infinity,
-                          height: 100.0,
-                          decoration: BoxDecoration(
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                          ),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: 100.0,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).primaryBackground,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-                Align(
-                  alignment: const AlignmentDirectional(0.0, 1.0),
-                  child: wrapWithModel(
-                    model: _model.bottomNavBarModel,
-                    updateCallback: () => setState(() {}),
-                    child: const BottomNavBarWidget(),
-                  ),
+              ),
+              Align(
+                alignment: const AlignmentDirectional(0.0, 1.0),
+                child: wrapWithModel(
+                  model: _model.bottomNavBarModel,
+                  updateCallback: () => setState(() {}),
+                  child: const BottomNavBarWidget(),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

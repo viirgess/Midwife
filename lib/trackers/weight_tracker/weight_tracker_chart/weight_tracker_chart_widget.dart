@@ -105,135 +105,115 @@ class _WeightTrackerChartWidgetState extends State<WeightTrackerChartWidget> {
           centerTitle: true,
           elevation: 0.0,
         ),
-        body: SafeArea(
-          top: true,
-          child: Stack(
-            children: [
-              Container(
-                decoration: const BoxDecoration(),
-                child: ListView(
-                  padding: EdgeInsets.zero,
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
-                      child: StreamBuilder<List<TrackersRecord>>(
-                        stream: queryTrackersRecord(
-                          parent: currentUserReference,
-                          singleRecord: true,
-                        ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50.0,
-                                height: 50.0,
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    FlutterFlowTheme.of(context).secondary,
-                                  ),
+        body: Stack(
+          children: [
+            Container(
+              decoration: const BoxDecoration(),
+              child: ListView(
+                padding: EdgeInsets.zero,
+                scrollDirection: Axis.vertical,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                    child: StreamBuilder<List<TrackersRecord>>(
+                      stream: queryTrackersRecord(
+                        parent: currentUserReference,
+                        singleRecord: true,
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  FlutterFlowTheme.of(context).secondary,
                                 ),
                               ),
-                            );
-                          }
-                          List<TrackersRecord> columnTrackersRecordList =
-                              snapshot.data!;
-                          // Return an empty Container when the item does not exist.
-                          if (snapshot.data!.isEmpty) {
-                            return Container();
-                          }
-                          final columnTrackersRecord =
-                              columnTrackersRecordList.isNotEmpty
-                                  ? columnTrackersRecordList.first
-                                  : null;
-                          return Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 20.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Container(
-                                        width: 100.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              blurRadius: 8.0,
-                                              color: Color(0x1EB5A4CB),
-                                              offset: Offset(
-                                                0.0,
-                                                4.0,
-                                              ),
-                                              spreadRadius: 0.0,
-                                            )
-                                          ],
-                                          borderRadius:
-                                              BorderRadius.circular(20.0),
-                                          border: Border.all(
-                                            color: const Color(0xFFEBE9F8),
-                                            width: 1.0,
-                                          ),
+                            ),
+                          );
+                        }
+                        List<TrackersRecord> columnTrackersRecordList =
+                            snapshot.data!;
+                        // Return an empty Container when the item does not exist.
+                        if (snapshot.data!.isEmpty) {
+                          return Container();
+                        }
+                        final columnTrackersRecord =
+                            columnTrackersRecordList.isNotEmpty
+                                ? columnTrackersRecordList.first
+                                : null;
+                        return Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 20.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      width: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            blurRadius: 8.0,
+                                            color: Color(0x1EB5A4CB),
+                                            offset: Offset(
+                                              0.0,
+                                              4.0,
+                                            ),
+                                            spreadRadius: 0.0,
+                                          )
+                                        ],
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                        border: Border.all(
+                                          color: const Color(0xFFEBE9F8),
+                                          width: 1.0,
                                         ),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 12.0, 0.0, 12.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                'Initial weight',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Figtree',
-                                                          fontSize: 12.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 4.0, 0.0, 8.0),
-                                                child: Text(
-                                                  dateTimeFormat(
-                                                    'dd.MM.yy',
-                                                    columnTrackersRecord!
-                                                        .weightTracker
-                                                        .first
-                                                        .date!,
-                                                    locale: FFLocalizations.of(
-                                                            context)
-                                                        .languageCode,
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 12.0, 0.0, 12.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Initial weight',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily: 'Figtree',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
                                                         fontSize: 12.0,
                                                         letterSpacing: 0.0,
                                                       ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 4.0, 0.0, 8.0),
+                                              child: Text(
+                                                dateTimeFormat(
+                                                  'dd.MM.yy',
+                                                  columnTrackersRecord!
+                                                      .weightTracker
+                                                      .first
+                                                      .date!,
+                                                  locale: FFLocalizations.of(
+                                                          context)
+                                                      .languageCode,
                                                 ),
-                                              ),
-                                              Text(
-                                                '${columnTrackersRecord.weightTracker.first.weight.toString()} kg',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -241,93 +221,87 @@ class _WeightTrackerChartWidgetState extends State<WeightTrackerChartWidget> {
                                                           fontFamily: 'Figtree',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .textColor,
-                                                          fontSize: 18.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Container(
-                                        width: 100.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              blurRadius: 8.0,
-                                              color: Color(0x1EB5A4CB),
-                                              offset: Offset(
-                                                0.0,
-                                                4.0,
-                                              ),
-                                              spreadRadius: 0.0,
-                                            )
-                                          ],
-                                          borderRadius:
-                                              BorderRadius.circular(20.0),
-                                          border: Border.all(
-                                            color: const Color(0xFFEBE9F8),
-                                            width: 1.0,
-                                          ),
-                                        ),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 12.0, 0.0, 12.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                'Current weight',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Figtree',
+                                                              .secondary,
                                                           fontSize: 12.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 4.0, 0.0, 8.0),
-                                                child: Text(
-                                                  dateTimeFormat(
-                                                    'dd.MM.yy',
-                                                    columnTrackersRecord
-                                                        .weightTracker
-                                                        .last
-                                                        .date!,
-                                                    locale: FFLocalizations.of(
+                                            ),
+                                            Text(
+                                              '${columnTrackersRecord.weightTracker.first.weight.toString()} kg',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Figtree',
+                                                    color: FlutterFlowTheme.of(
                                                             context)
-                                                        .languageCode,
+                                                        .textColor,
+                                                    fontSize: 18.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      width: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            blurRadius: 8.0,
+                                            color: Color(0x1EB5A4CB),
+                                            offset: Offset(
+                                              0.0,
+                                              4.0,
+                                            ),
+                                            spreadRadius: 0.0,
+                                          )
+                                        ],
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                        border: Border.all(
+                                          color: const Color(0xFFEBE9F8),
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 12.0, 0.0, 12.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Current weight',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily: 'Figtree',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
                                                         fontSize: 12.0,
                                                         letterSpacing: 0.0,
                                                       ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 4.0, 0.0, 8.0),
+                                              child: Text(
+                                                dateTimeFormat(
+                                                  'dd.MM.yy',
+                                                  columnTrackersRecord
+                                                      .weightTracker.last.date!,
+                                                  locale: FFLocalizations.of(
+                                                          context)
+                                                      .languageCode,
                                                 ),
-                                              ),
-                                              Text(
-                                                '${columnTrackersRecord.weightTracker.last.weight.toString()} kg',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -335,96 +309,92 @@ class _WeightTrackerChartWidgetState extends State<WeightTrackerChartWidget> {
                                                           fontFamily: 'Figtree',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .textColor,
-                                                          fontSize: 18.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Container(
-                                        width: 100.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              blurRadius: 8.0,
-                                              color: Color(0x1EB5A4CB),
-                                              offset: Offset(
-                                                0.0,
-                                                4.0,
-                                              ),
-                                              spreadRadius: 0.0,
-                                            )
-                                          ],
-                                          borderRadius:
-                                              BorderRadius.circular(20.0),
-                                          border: Border.all(
-                                            color: const Color(0xFFEBE9F8),
-                                            width: 1.0,
-                                          ),
-                                        ),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 12.0, 0.0, 12.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                'Total weight \ngain\n',
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Figtree',
+                                                              .secondary,
                                                           fontSize: 12.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  if ((columnTrackersRecord
-                                                              .weightTracker
-                                                              .last
-                                                              .weight -
-                                                          columnTrackersRecord
-                                                              .weightTracker
-                                                              .first
-                                                              .weight) >
-                                                      0.0)
-                                                    Text(
-                                                      '+',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Figtree',
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .textColor,
-                                                            fontSize: 18.0,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                    ),
+                                            ),
+                                            Text(
+                                              '${columnTrackersRecord.weightTracker.last.weight.toString()} kg',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Figtree',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .textColor,
+                                                    fontSize: 18.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      width: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            blurRadius: 8.0,
+                                            color: Color(0x1EB5A4CB),
+                                            offset: Offset(
+                                              0.0,
+                                              4.0,
+                                            ),
+                                            spreadRadius: 0.0,
+                                          )
+                                        ],
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                        border: Border.all(
+                                          color: const Color(0xFFEBE9F8),
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 12.0, 0.0, 12.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Total weight \ngain\n',
+                                              textAlign: TextAlign.center,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Figtree',
+                                                        fontSize: 12.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                if ((columnTrackersRecord
+                                                            .weightTracker
+                                                            .last
+                                                            .weight -
+                                                        columnTrackersRecord
+                                                            .weightTracker
+                                                            .first
+                                                            .weight) >
+                                                    0.0)
                                                   Text(
-                                                    '${(columnTrackersRecord.weightTracker.last.weight - columnTrackersRecord.weightTracker.first.weight).toStringAsFixed(2)} kg',
+                                                    '+',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -439,285 +409,297 @@ class _WeightTrackerChartWidgetState extends State<WeightTrackerChartWidget> {
                                                               FontWeight.w600,
                                                         ),
                                                   ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
+                                                Text(
+                                                  '${(columnTrackersRecord.weightTracker.last.weight - columnTrackersRecord.weightTracker.first.weight).toStringAsFixed(2)} kg',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Figtree',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .textColor,
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 8.0)),
-                                ),
+                                  ),
+                                ].divide(const SizedBox(width: 8.0)),
                               ),
-                              Container(
-                                width: double.infinity,
-                                height: 360.0,
-                                decoration: const BoxDecoration(),
-                                child: Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: AuthUserStreamWidget(
-                                    builder: (context) => SizedBox(
+                            ),
+                            Container(
+                              width: double.infinity,
+                              height: 360.0,
+                              decoration: const BoxDecoration(),
+                              child: Align(
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: AuthUserStreamWidget(
+                                  builder: (context) => SizedBox(
+                                    width: double.infinity,
+                                    height: double.infinity,
+                                    child: custom_widgets.LineChart(
                                       width: double.infinity,
                                       height: double.infinity,
-                                      child: custom_widgets.LineChart(
-                                        width: double.infinity,
-                                        height: double.infinity,
-                                        chartData:
-                                            columnTrackersRecord.weightTracker,
-                                        calculatedDate: currentUserDocument!
-                                            .calculatedDate!,
-                                        isBaby: false,
-                                        isHeight: false,
-                                        minX: 0,
-                                        maxX: 40,
-                                        minY: 35,
-                                        maxY: 120,
-                                        chartDataBabyWeight:
-                                            columnTrackersRecord.babyWeigths,
-                                        chartDataBabyHeight:
-                                            columnTrackersRecord.babyHeights,
-                                        isGirl: false,
-                                      ),
+                                      chartData:
+                                          columnTrackersRecord.weightTracker,
+                                      calculatedDate:
+                                          currentUserDocument!.calculatedDate!,
+                                      isBaby: false,
+                                      isHeight: false,
+                                      minX: 0,
+                                      maxX: 40,
+                                      minY: 35,
+                                      maxY: 120,
+                                      chartDataBabyWeight:
+                                          columnTrackersRecord.babyWeigths,
+                                      chartDataBabyHeight:
+                                          columnTrackersRecord.babyHeights,
+                                      isGirl: false,
                                     ),
                                   ),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 30.0, 0.0, 0.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Reminders to weigh myself',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Figtree',
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                            fontSize: 16.0,
-                                            letterSpacing: 0.0,
-                                          ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 30.0, 0.0, 0.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Reminders to weigh myself',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Figtree',
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                  AuthUserStreamWidget(
+                                    builder: (context) => Switch.adaptive(
+                                      value: _model.switchValue!,
+                                      onChanged: (newValue) async {
+                                        setState(() =>
+                                            _model.switchValue = newValue);
+                                        if (newValue) {
+                                          await currentUserReference!
+                                              .update(createUsersRecordData(
+                                            hasWeightReminder: true,
+                                          ));
+                                        } else {
+                                          await currentUserReference!
+                                              .update(createUsersRecordData(
+                                            hasWeightReminder: false,
+                                          ));
+                                        }
+                                      },
+                                      activeColor: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      activeTrackColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
+                                      inactiveTrackColor:
+                                          FlutterFlowTheme.of(context).tertiary,
+                                      inactiveThumbColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
                                     ),
-                                    AuthUserStreamWidget(
-                                      builder: (context) => Switch.adaptive(
-                                        value: _model.switchValue!,
-                                        onChanged: (newValue) async {
-                                          setState(() =>
-                                              _model.switchValue = newValue);
-                                          if (newValue) {
-                                            await currentUserReference!
-                                                .update(createUsersRecordData(
-                                              hasWeightReminder: true,
-                                            ));
-                                          } else {
-                                            await currentUserReference!
-                                                .update(createUsersRecordData(
-                                              hasWeightReminder: false,
-                                            ));
-                                          }
-                                        },
-                                        activeColor:
-                                            FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                        activeTrackColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondary,
-                                        inactiveTrackColor:
-                                            FlutterFlowTheme.of(context)
-                                                .tertiary,
-                                        inactiveThumbColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondary,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 28.0, 0.0, 0.0),
-                                child: Builder(
-                                  builder: (context) {
-                                    final weights = columnTrackersRecord
-                                            .weightTracker
-                                            .toList() ??
-                                        [];
-                                    return ListView.separated(
-                                      padding: EdgeInsets.zero,
-                                      reverse: true,
-                                      primary: false,
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.vertical,
-                                      itemCount: weights.length,
-                                      separatorBuilder: (_, __) =>
-                                          const SizedBox(height: 8.0),
-                                      itemBuilder: (context, weightsIndex) {
-                                        final weightsItem =
-                                            weights[weightsIndex];
-                                        return Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            custom_widgets.SlidableWeightItem(
-                                              width: double.infinity,
-                                              height: 40.0,
-                                              date: dateTimeFormat(
-                                                'dd.MM.yy',
-                                                weightsItem.date!,
-                                                locale:
-                                                    FFLocalizations.of(context)
-                                                        .languageCode,
-                                              ),
-                                              weight: weightsItem.weight,
-                                              difference: weightsItem
-                                                  .differenceWithPrevious,
-                                              week: weightsItem.date!,
-                                              isBaby: false,
-                                              isHeight: false,
-                                              editValue: () async {
-                                                FFAppState().currentWeight =
-                                                    columnTrackersRecord
-                                                        .weightTracker[
-                                                            weightsIndex]
-                                                        .weight;
-                                                setState(() {});
-                                                await showModalBottomSheet(
-                                                  isScrollControlled: true,
-                                                  backgroundColor:
-                                                      Colors.transparent,
-                                                  enableDrag: false,
-                                                  context: context,
-                                                  builder: (context) {
-                                                    return WebViewAware(
-                                                      child: GestureDetector(
-                                                        onTap: () => _model
-                                                                .unfocusNode
-                                                                .canRequestFocus
-                                                            ? FocusScope.of(
-                                                                    context)
-                                                                .requestFocus(_model
-                                                                    .unfocusNode)
-                                                            : FocusScope.of(
-                                                                    context)
-                                                                .unfocus(),
-                                                        child: Padding(
-                                                          padding: MediaQuery
-                                                              .viewInsetsOf(
-                                                                  context),
-                                                          child:
-                                                              EditWeightValueWidget(
-                                                            trackerRef: widget
-                                                                .trackerRef!,
-                                                            index: weightsIndex,
-                                                          ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 28.0, 0.0, 0.0),
+                              child: Builder(
+                                builder: (context) {
+                                  final weights = columnTrackersRecord
+                                          .weightTracker
+                                          .toList() ??
+                                      [];
+                                  return ListView.separated(
+                                    padding: EdgeInsets.zero,
+                                    reverse: true,
+                                    primary: false,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: weights.length,
+                                    separatorBuilder: (_, __) =>
+                                        const SizedBox(height: 8.0),
+                                    itemBuilder: (context, weightsIndex) {
+                                      final weightsItem = weights[weightsIndex];
+                                      return Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          custom_widgets.SlidableWeightItem(
+                                            width: double.infinity,
+                                            height: 40.0,
+                                            date: dateTimeFormat(
+                                              'dd.MM.yy',
+                                              weightsItem.date!,
+                                              locale:
+                                                  FFLocalizations.of(context)
+                                                      .languageCode,
+                                            ),
+                                            weight: weightsItem.weight,
+                                            difference: weightsItem
+                                                .differenceWithPrevious,
+                                            week: weightsItem.date!,
+                                            isBaby: false,
+                                            isHeight: false,
+                                            editValue: () async {
+                                              FFAppState().currentWeight =
+                                                  columnTrackersRecord
+                                                      .weightTracker[
+                                                          weightsIndex]
+                                                      .weight;
+                                              setState(() {});
+                                              await showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                enableDrag: false,
+                                                context: context,
+                                                builder: (context) {
+                                                  return WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () => _model
+                                                              .unfocusNode
+                                                              .canRequestFocus
+                                                          ? FocusScope.of(
+                                                                  context)
+                                                              .requestFocus(_model
+                                                                  .unfocusNode)
+                                                          : FocusScope.of(
+                                                                  context)
+                                                              .unfocus(),
+                                                      child: Padding(
+                                                        padding: MediaQuery
+                                                            .viewInsetsOf(
+                                                                context),
+                                                        child:
+                                                            EditWeightValueWidget(
+                                                          trackerRef: widget
+                                                              .trackerRef!,
+                                                          index: weightsIndex,
                                                         ),
                                                       ),
-                                                    );
-                                                  },
-                                                ).then((value) =>
-                                                    safeSetState(() {}));
-                                              },
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
-                                  },
+                                                    ),
+                                                  );
+                                                },
+                                              ).then((value) =>
+                                                  safeSetState(() {}));
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ].addToEnd(const SizedBox(height: 120.0)),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (!(isWeb
+                ? MediaQuery.viewInsetsOf(context).bottom > 0
+                : _isKeyboardVisible))
+              Align(
+                alignment: const AlignmentDirectional(0.0, 1.0),
+                child: Container(
+                  width: double.infinity,
+                  height: 100.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).primaryBackground,
+                    boxShadow: const [
+                      BoxShadow(
+                        blurRadius: 4.0,
+                        color: Color(0x33000000),
+                        offset: Offset(2.0, 0.0),
+                      )
+                    ],
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(0.0),
+                      bottomRight: Radius.circular(0.0),
+                      topLeft: Radius.circular(32.0),
+                      topRight: Radius.circular(32.0),
+                    ),
+                  ),
+                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 16.0, 20.0, 0.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (context) {
+                            return WebViewAware(
+                              child: GestureDetector(
+                                onTap: () => _model.unfocusNode.canRequestFocus
+                                    ? FocusScope.of(context)
+                                        .requestFocus(_model.unfocusNode)
+                                    : FocusScope.of(context).unfocus(),
+                                child: Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: AddWeightValueWidget(
+                                    trackerRef: widget.trackerRef!,
+                                  ),
                                 ),
                               ),
-                            ].addToEnd(const SizedBox(height: 120.0)),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              if (!(isWeb
-                  ? MediaQuery.viewInsetsOf(context).bottom > 0
-                  : _isKeyboardVisible))
-                Align(
-                  alignment: const AlignmentDirectional(0.0, 1.0),
-                  child: Container(
-                    width: double.infinity,
-                    height: 100.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryBackground,
-                      boxShadow: const [
-                        BoxShadow(
-                          blurRadius: 4.0,
-                          color: Color(0x33000000),
-                          offset: Offset(2.0, 0.0),
-                        )
-                      ],
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(0.0),
-                        bottomRight: Radius.circular(0.0),
-                        topLeft: Radius.circular(32.0),
-                        topRight: Radius.circular(32.0),
-                      ),
-                    ),
-                    alignment: const AlignmentDirectional(0.0, -1.0),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 16.0, 20.0, 0.0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          await showModalBottomSheet(
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            context: context,
-                            builder: (context) {
-                              return WebViewAware(
-                                child: GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: AddWeightValueWidget(
-                                      trackerRef: widget.trackerRef!,
-                                    ),
-                                  ),
+                            );
+                          },
+                        ).then((value) => safeSetState(() {}));
+                      },
+                      text: 'Add weight value',
+                      options: FFButtonOptions(
+                        width: double.infinity,
+                        height: 48.0,
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            24.0, 14.0, 24.0, 14.0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).secondary,
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Figtree',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                              );
-                            },
-                          ).then((value) => safeSetState(() {}));
-                        },
-                        text: 'Add weight value',
-                        options: FFButtonOptions(
-                          width: double.infinity,
-                          height: 48.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              24.0, 14.0, 24.0, 14.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).secondary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Figtree',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                          elevation: 0.0,
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 0.0,
-                          ),
-                          borderRadius: BorderRadius.circular(16.0),
+                        elevation: 0.0,
+                        borderSide: const BorderSide(
+                          color: Colors.transparent,
+                          width: 0.0,
                         ),
+                        borderRadius: BorderRadius.circular(16.0),
                       ),
                     ),
                   ),
                 ),
-            ],
-          ),
+              ),
+          ],
         ),
       ),
     );

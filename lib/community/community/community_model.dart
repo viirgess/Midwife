@@ -11,11 +11,12 @@ class CommunityModel extends FlutterFlowModel<CommunityWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for ListView widget.
+  // State field(s) for PostsListView widget.
 
-  PagingController<DocumentSnapshot?, PostsRecord>? listViewPagingController3;
-  Query? listViewPagingQuery3;
-  List<StreamSubscription?> listViewStreamSubscriptions3 = [];
+  PagingController<DocumentSnapshot?, PostsRecord>?
+      postsListViewPagingController;
+  Query? postsListViewPagingQuery;
+  List<StreamSubscription?> postsListViewStreamSubscriptions = [];
 
   // Model for BottomNavBar component.
   late BottomNavBarModel bottomNavBarModel;
@@ -45,10 +46,10 @@ class CommunityModel extends FlutterFlowModel<CommunityWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    for (var s in listViewStreamSubscriptions3) {
+    for (var s in postsListViewStreamSubscriptions) {
       s?.cancel();
     }
-    listViewPagingController3?.dispose();
+    postsListViewPagingController?.dispose();
 
     bottomNavBarModel.dispose();
 
@@ -58,19 +59,21 @@ class CommunityModel extends FlutterFlowModel<CommunityWidget> {
   }
 
   /// Additional helper methods.
-  PagingController<DocumentSnapshot?, PostsRecord> setListViewController3(
+  PagingController<DocumentSnapshot?, PostsRecord> setPostsListViewController(
     Query query, {
     DocumentReference<Object?>? parent,
   }) {
-    listViewPagingController3 ??= _createListViewController3(query, parent);
-    if (listViewPagingQuery3 != query) {
-      listViewPagingQuery3 = query;
-      listViewPagingController3?.refresh();
+    postsListViewPagingController ??=
+        _createPostsListViewController(query, parent);
+    if (postsListViewPagingQuery != query) {
+      postsListViewPagingQuery = query;
+      postsListViewPagingController?.refresh();
     }
-    return listViewPagingController3!;
+    return postsListViewPagingController!;
   }
 
-  PagingController<DocumentSnapshot?, PostsRecord> _createListViewController3(
+  PagingController<DocumentSnapshot?, PostsRecord>
+      _createPostsListViewController(
     Query query,
     DocumentReference<Object?>? parent,
   ) {
@@ -79,9 +82,9 @@ class CommunityModel extends FlutterFlowModel<CommunityWidget> {
     return controller
       ..addPageRequestListener(
         (nextPageMarker) => queryPostsRecordPage(
-          queryBuilder: (_) => listViewPagingQuery3 ??= query,
+          queryBuilder: (_) => postsListViewPagingQuery ??= query,
           nextPageMarker: nextPageMarker,
-          streamSubscriptions: listViewStreamSubscriptions3,
+          streamSubscriptions: postsListViewStreamSubscriptions,
           controller: controller,
           pageSize: 5,
           isStream: true,

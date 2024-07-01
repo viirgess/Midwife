@@ -47,13 +47,18 @@ class _ChatBubbleAIState extends State<ChatBubbleAI> {
         constraints: BoxConstraints(
           maxWidth: MediaQuery.of(context).size.width * 0.7,
         ),
-        child: Text(
-          widget.text,
-          style: TextStyle(
-            fontSize: 16,
-            color:
-                widget.isSender ? Colors.white : Color.fromRGBO(36, 34, 36, 1),
-          ),
+        child: Column(
+          children: [
+            Text(
+              widget.text,
+              style: TextStyle(
+                fontSize: 16,
+                color: widget.isSender
+                    ? Colors.white
+                    : Color.fromRGBO(36, 34, 36, 1),
+              ),
+            ),
+          ],
         ),
       ),
     );

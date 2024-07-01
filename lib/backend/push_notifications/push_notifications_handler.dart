@@ -333,6 +333,8 @@ final parametersBuilderMap =
         },
       ),
   'selectedBlogs': ParameterData.none(),
+  'ProcessingAgreement': ParameterData.none(),
+  'PrivacyPolicy': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {
